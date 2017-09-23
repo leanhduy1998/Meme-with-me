@@ -117,7 +117,7 @@ class PrivateRoomViewController: UIViewController,UITableViewDelegate, UITableVi
         })
         // if game has been created, go to another segue
         inGameRef.observe(DataEventType.childAdded, with: { (snapshot) in
-            if snapshot.key == self.leaderId && self.leaderId != MyPlayerData.id {
+            if snapshot.key.contains(self.leaderId)  && self.leaderId != MyPlayerData.id {
                 DispatchQueue.main.async {
                     self.performSegue(withIdentifier: "InGameViewControllerSegue", sender: self)
                 }

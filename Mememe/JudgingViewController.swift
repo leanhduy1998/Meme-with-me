@@ -218,7 +218,7 @@ class JudgingViewController: UIViewController,UIGestureRecognizerDelegate {
             }
             delegate.saveContext {
                 DispatchQueue.main.async {
-                    InGameHelper.updateWinnerCard(leaderId: self.leaderId, cardPlayerId: wonCard.playerId)
+                    InGameHelper.updateWinnerCard(gameId: self.game.gameId!, cardPlayerId: wonCard.playerId)
                 }
             }
         }

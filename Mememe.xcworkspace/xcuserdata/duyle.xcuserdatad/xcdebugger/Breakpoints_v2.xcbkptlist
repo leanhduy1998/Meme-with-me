@@ -202,7 +202,7 @@
                   moduleName = "Mememe"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/duyle/Desktop/ios/Mememe/Mememe/AvailableRoomHelper.swift"
-                  timestampString = "527819884.543435"
+                  timestampString = "527828930.765599"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "125"
@@ -217,7 +217,7 @@
                   moduleName = "Mememe"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/duyle/Desktop/ios/Mememe/Mememe/AvailableRoomHelper.swift"
-                  timestampString = "527819884.545905"
+                  timestampString = "527828930.767585"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "126"
@@ -256,6 +256,22 @@
             startingLineNumber = "99"
             endingLineNumber = "99"
             landmarkName = "tableView(_:cellForRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Mememe/InGameViewController.swift"
+            timestampString = "527828930.560397"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "153"
+            endingLineNumber = "153"
+            landmarkName = "addObserverForCardNormals()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

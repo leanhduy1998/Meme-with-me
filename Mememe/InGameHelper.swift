@@ -39,98 +39,123 @@ class InGameHelper{
         }
         
         data["playerOrderInGame"] = orders
-        data["gameId"] = gameId
+        data["leaderId"] = MyPlayerData.id
         
-        inGameRef.child(MyPlayerData.id).setValue(data)
+        inGameRef.child(gameId).setValue(data)
     }
-    static func getBeginingGameFromFirB(leaderId:String, completionHandler: @escaping (_ game: Game) -> Void){
+    static func getBeginingGameFromFirB(leaderId:String, completionHandler: @escaping (_ game: Game, _ leaderId:String) -> Void){
         let delegate = UIApplication.shared.delegate as! AppDelegate
         
-        inGameRef.child(leaderId).observeSingleEvent(of: DataEventType.value, with: { (snapshot) in
-            DispatchQueue.main.async {
-                let game = Game(createdDate: Date(), gameId: "", context: delegate.stack.context)
-                let postDict = snapshot.value as? [String : AnyObject] ?? [:]
-                
-                var roundImageUrl: String!
-                
-                for(key,value) in postDict {
-                    switch(key) {
-                    case "gameId":
-                        game.gameId = value as! String
-                        break
-                    case "playerOrderInGame":
-                        let orders = value as? [String : AnyObject] ?? [:]
-                        for (playerId,number) in orders {
-                            let playerOrder = PlayerOrderInGame(orderNum: Int(number as! String)!, playerId: playerId, context: delegate.stack.context)
-                            game.addToPlayersorder(playerOrder)
-                        }
-                        break
-                        
-                    case "players":
-                        let players = value as? [String : AnyObject] ?? [:]
-                        
-                        for (playerId,playerData) in players {
-                            let player = conversion.getPlayerFromDictionary(playerId: playerId, playerData: playerData as! [String : Any])
-                            game.addToPlayers(player)
-                        }
-                        break
-                        
-                    case "rounds":
-                        roundImageUrl = value as? String
-                        break
-                        
-                    default:
-                        break
-                    }
-                }
-                let round = Round(roundNum: 0, context: delegate.stack.context)
-                    
-                var playerId = ""
-                    
-                for order in (game.playersorder?.allObjects as? [PlayerOrderInGame])! {
-                    if order.orderNum == round.roundNum {
-                        playerId = order.playerId!
-                        break
-                    }
-                }
-                    
-                let helper = UserFilesHelper()
-                helper.getMemeData(memeName: roundImageUrl, completeHandler: { (imageData) in
+        inGameRef.observeSingleEvent(of: DataEventType.value, with: { (snapshot) in
+            let gameIdAndValue = snapshot.value as? [String : Any]
+            for (gameId,value) in gameIdAndValue! {
+                if gameId.contains(leaderId) {
                     DispatchQueue.main.async {
-                        let cardCeasar = CardCeasar(cardPic: imageData, playerId: playerId, round: 0, cardPicUrl: roundImageUrl, context: delegate.stack.context)
-                        round.cardceasar = cardCeasar
-                        game.addToRounds(round)
+                        var leaderId: String!
+                        let game = Game(createdDate: Date(), gameId: gameId, context: delegate.stack.context)
+                        let postDict = value as? [String : AnyObject] ?? [:]
                         
-                        delegate.saveContext {
-                            completionHandler(game)
+                        var roundImageUrl: String!
+                        
+                        for(key,value) in postDict {
+                            switch(key) {
+                            case "playerOrderInGame":
+                                let orders = value as? [String : AnyObject] ?? [:]
+                                for (playerId,number) in orders {
+                                    let playerOrder = PlayerOrderInGame(orderNum: Int(number as! String)!, playerId: playerId, context: delegate.stack.context)
+                                    game.addToPlayersorder(playerOrder)
+                                }
+                                break
+                                
+                            case "players":
+                                let players = value as? [String : AnyObject] ?? [:]
+                                
+                                for (playerId,playerData) in players {
+                                    let player = conversion.getPlayerFromDictionary(playerId: playerId, playerData: playerData as! [String : Any])
+                                    game.addToPlayers(player)
+                                }
+                                break
+                                
+                            case "rounds":
+                                roundImageUrl = value as? String
+                                break
+                            case "leaderId":
+                                leaderId = value as? String
+                                break
+                                
+                            default:
+                                break
+                            }
                         }
+                        let round = Round(roundNum: 0, context: delegate.stack.context)
+                        
+                        var playerId = ""
+                        
+                        for order in (game.playersorder?.allObjects as? [PlayerOrderInGame])! {
+                            if order.orderNum == round.roundNum {
+                                playerId = order.playerId!
+                                break
+                            }
+                        }
+                        
+                        let helper = UserFilesHelper()
+                        helper.getMemeData(memeName: roundImageUrl, completeHandler: { (imageData) in
+                            DispatchQueue.main.async {
+                                let cardCeasar = CardCeasar(cardPic: imageData, playerId: playerId, round: 0, cardPicUrl: roundImageUrl, context: delegate.stack.context)
+                                round.cardceasar = cardCeasar
+                                game.addToRounds(round)
+                                
+                                delegate.saveContext {
+                                    completionHandler(game, leaderId)
+                                }
+                            }
+                        })
                     }
-                })
+                }
             }
+            
         })
     }
     
-    static func updateGameToNextRound(leaderId:String, nextRound: Int, nextRoundImageUrl:String){
-        inGameRef.child(leaderId).child("normalCards").removeValue()
-        inGameRef.child(leaderId).child("rounds").setValue(nextRoundImageUrl)
+    
+    static func updateGameToNextRound(gameId:String, nextRound: Int, nextRoundImageUrl:String){
+        inGameRef.child(gameId).child("normalCards").removeValue()
+        inGameRef.child(gameId).child("rounds").setValue(nextRoundImageUrl)
     }
     
-    static func insertNormalCardIntoGame(leaderId:String, card:CardNormal){
+    static func insertNormalCardIntoGame(gameId:String, card:CardNormal){
         let value = conversion.getCardDictionaryFromNormalCard(card: card)
-        inGameRef.child(leaderId).child("normalCards").child(card.playerId!).setValue(value)
+        inGameRef.child(gameId).child("normalCards").child(card.playerId!).setValue(value)
     }
-    static func insertNormalCardIntoGame(leaderId:String, card:CardNormal,completionHandler: @escaping () -> Void){
+    static func insertNormalCardIntoGame(gameId:String, card:CardNormal,completionHandler: @escaping () -> Void){
         let value = conversion.getCardDictionaryFromNormalCard(card: card)
-        inGameRef.child(leaderId).child("normalCards").child(card.playerId!).setValue(value)
+        inGameRef.child(gameId).child("normalCards").child(card.playerId!).setValue(value)
         completionHandler()
     }
     
     static func removeYourInGameRoom(){
-        inGameRef.child(MyPlayerData.id).removeValue()
+        inGameRef.observeSingleEvent(of: DataEventType.value, with: { (snapshot) in
+            DispatchQueue.main.async {
+                let gameIdAndValue = snapshot.value as? [String : Any]
+                if (gameIdAndValue != nil) {
+                    for (gameId,value) in gameIdAndValue! {
+                        let gameValue = value as? [String : Any]
+                        for (key,value) in gameValue! {
+                            let id = value as? String
+                            print(MyPlayerData.id)
+                            if (key == "leaderId") && (id == MyPlayerData.id) {
+                                inGameRef.child(gameId).removeValue()
+                                break
+                            }
+                        }
+                    }
+                }
+            }
+        })
     }
     
-    static func getRoundImage(roundNum: Int, leaderId: String, completionHandler: @escaping (_ imageData: Data, _ imageUrl: String) -> Void){
-        inGameRef.child(leaderId).child("rounds").observeSingleEvent(of: DataEventType.value, with: { (snapshot) in
+    static func getRoundImage(roundNum: Int, gameId: String, completionHandler: @escaping (_ imageData: Data, _ imageUrl: String) -> Void){
+        inGameRef.child(gameId).child("rounds").observeSingleEvent(of: DataEventType.value, with: { (snapshot) in
 
             let postValue = snapshot.value as? String
         
@@ -143,8 +168,8 @@ class InGameHelper{
     }
     
     // judging
-    static func updateWinnerCard(leaderId: String, cardPlayerId: String){
-    inGameRef.child(leaderId).child("normalCards").child(cardPlayerId).child("didWin").setValue(true)
+    static func updateWinnerCard(gameId: String, cardPlayerId: String){
+    inGameRef.child(gameId).child("normalCards").child(cardPlayerId).child("didWin").setValue(true)
     }
 
 }

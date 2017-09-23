@@ -59,8 +59,9 @@ class InGameViewController: UIViewController, UITableViewDelegate, UITableViewDa
             createBeginingData()
         }
         else {
-            InGameHelper.getBeginingGameFromFirB(leaderId: leaderId, completionHandler: { (game) in
+            InGameHelper.getBeginingGameFromFirB(leaderId: leaderId, completionHandler: { (game, leaderId) in
                 DispatchQueue.main.async {
+                    self.leaderId = leaderId
                     self.game = game
                     self.reloadCurrentPlayersIcon()
                     self.reloadPreviewCards()
@@ -94,7 +95,8 @@ class InGameViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func addObserverForCardNormals(){
-        inGameRef.child(leaderId).child("normalCards").observe(DataEventType.childAdded, with: { (snapshot) in
+        print(game.gameId!)
+        inGameRef.child(game.gameId!).child("normalCards").observe(DataEventType.childAdded, with: { (snapshot) in
             let playerId = snapshot.key
             
             if playerId != MyPlayerData.id {
@@ -110,7 +112,7 @@ class InGameViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 self.AddEditJudgeMemeBtn.title = "Edit Your Meme"
             }
         })
-        inGameRef.child(leaderId).child("normalCards").observe(DataEventType.childChanged, with: { (snapshot) in
+        inGameRef.child(game.gameId!).child("normalCards").observe(DataEventType.childChanged, with: { (snapshot) in
             let postDict = snapshot.value as?  [String:Any]
             DispatchQueue.main.async {
                 let cardNormals = GetGameCoreDataData.getLatestRound(game: self.game).cardnormal?.allObjects as? [CardNormal]
@@ -146,6 +148,12 @@ class InGameViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 }
             }
         })
+        
+        inGameRef.child(game.gameId!).child("leaderId").observe(DataEventType.childChanged, with: { (snapshot) in
+            let id = snapshot.value as?  String
+            self.leaderId = id!
+            print("changed \(self.leaderId)")
+        })
     }
     
     func countDownTillNextRound(){
@@ -174,7 +182,7 @@ class InGameViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 let helper = UserFilesHelper()
                 helper.getRandomMemeData(completeHandler: { (memeData, memeUrl) in
                     DispatchQueue.main.async {
-                        InGameHelper.updateGameToNextRound(leaderId: self.leaderId, nextRound: nextRound, nextRoundImageUrl: memeUrl)
+                        InGameHelper.updateGameToNextRound(gameId: self.game.gameId!, nextRound: nextRound, nextRoundImageUrl: memeUrl)
                         
                         round.cardceasar = CardCeasar(cardPic: memeData, playerId: nextRoundCeasarId, round: nextRound, cardPicUrl: memeUrl, context: self.delegate.stack.context)
                         self.game.addToRounds(round)
@@ -189,7 +197,7 @@ class InGameViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 })
             }
             else {
-                InGameHelper.getRoundImage(roundNum: nextRound, leaderId: leaderId, completionHandler: { (imageData, imageUrl) in
+                InGameHelper.getRoundImage(roundNum: nextRound, gameId: game.gameId!, completionHandler: { (imageData, imageUrl) in
                     DispatchQueue.main.async {
                         round.cardceasar = CardCeasar(cardPic: imageData, playerId: nextRoundCeasarId, round: nextRound, cardPicUrl: imageUrl, context: self.delegate.stack.context)
                         self.game.addToRounds(round)

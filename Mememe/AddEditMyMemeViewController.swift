@@ -50,7 +50,7 @@ class AddEditMyMemeViewController: UIViewController, UITableViewDelegate, UITabl
                 card.topText = topLabel.text!
                 card.bottomText = bottomLabel.text!
                 
-                InGameHelper.insertNormalCardIntoGame(leaderId: leaderId, card: card)
+                InGameHelper.insertNormalCardIntoGame(gameId: game.gameId!, card: card)
                 break
             }
         }
@@ -60,7 +60,7 @@ class AddEditMyMemeViewController: UIViewController, UITableViewDelegate, UITabl
             let myCard = CardNormal(bottomText: bottomLabel.text!, didWin: false, playerId: myPlayerId, round: Int((latestRound.roundNum)), topText: topLabel.text!, context: delegate.stack.context)
             latestRound.addToCardnormal(myCard)
             
-            InGameHelper.insertNormalCardIntoGame(leaderId: leaderId, card: myCard)
+            InGameHelper.insertNormalCardIntoGame(gameId: game.gameId!, card: myCard)
         }
         
                 
