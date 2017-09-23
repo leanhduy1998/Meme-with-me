@@ -167,6 +167,14 @@ class InGameHelper{
         )
     }
     
+    static func updateLeaderId(newLeaderId: String, gameId:String){
+        inGameRef.child(gameId).child("leaderId").setValue(newLeaderId)
+    }
+    
+    static func removeYourselfFromGame(gameId:String){
+        inGameRef.child(gameId).child("players").child(MyPlayerData.id).removeValue()
+    }
+    
     // judging
     static func updateWinnerCard(gameId: String, cardPlayerId: String){
     inGameRef.child(gameId).child("normalCards").child(cardPlayerId).child("didWin").setValue(true)

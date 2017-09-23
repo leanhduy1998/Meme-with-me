@@ -149,10 +149,31 @@ class InGameViewController: UIViewController, UITableViewDelegate, UITableViewDa
             }
         })
         
-        inGameRef.child(game.gameId!).child("leaderId").observe(DataEventType.childChanged, with: { (snapshot) in
-            let id = snapshot.value as?  String
-            self.leaderId = id!
-            print("changed \(self.leaderId)")
+        inGameRef.child(game.gameId!).observe(DataEventType.childChanged, with: { (snapshot) in
+            DispatchQueue.main.async {
+                let id = snapshot.value as?  String
+                
+                let oldLeaderId = self.leaderId
+                self.leaderId = id!
+                
+                let playerOrder = self.game.playersorder?.allObjects as? [PlayerOrderInGame]
+                
+                var roundNumRemoved = 0
+                for order in playerOrder! {
+                    if order.playerId == oldLeaderId {
+                        roundNumRemoved = Int(order.orderNum)
+                        self.game.removeFromPlayersorder(order)
+                        break
+                    }
+                }
+                
+
+                for order in playerOrder! {
+                    if Int(order.orderNum) > roundNumRemoved {
+                        order.orderNum = order.orderNum - Int16(1)
+                    }
+                }
+            }
         })
     }
     
@@ -278,7 +299,15 @@ class InGameViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     private func leaveRoom(action: UIAlertAction){
-        
+        for player in playersInGame {
+            if player.userId != MyPlayerData.id {
+                InGameHelper.updateLeaderId(newLeaderId: player.userId, gameId: game.gameId!)
+                break
+            }
+        }
+        InGameHelper.removeYourInGameRoom()
+        inGameRef.removeAllObservers()
+        dismiss(animated: true, completion: nil)
     }
     private func endGame(action: UIAlertAction){
         
