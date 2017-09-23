@@ -1,0 +1,1403 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		19E08B3ED51842C1186BCEDA /* Pods_Mememe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1EFF53BA25955FB53356C75 /* Pods_Mememe.framework */; };
+		2413D78F1F3D58A0001EA209 /* Round.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2413D78D1F3D58A0001EA209 /* Round.swift */; };
+		2413D7901F3D58A0001EA209 /* RoundCoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2413D78E1F3D58A0001EA209 /* RoundCoreDataProperties.swift */; };
+		2413D79C1F4204C2001EA209 /* AddEditMyMemeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2413D79B1F4204C2001EA209 /* AddEditMyMemeViewController.swift */; };
+		2413D79E1F42082B001EA209 /* HeartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2413D79D1F42082B001EA209 /* HeartView.swift */; };
+		2413D7AF1F42112A001EA209 /* PlayerLove.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2413D7AB1F42112A001EA209 /* PlayerLove.swift */; };
+		2413D7B01F42112A001EA209 /* PlayerLoveCoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2413D7AC1F42112A001EA209 /* PlayerLoveCoreDataProperties.swift */; };
+		2413D7B51F422838001EA209 /* AddEditMyMemeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2413D7B41F422838001EA209 /* AddEditMyMemeView.swift */; };
+		2413D7B81F4263C4001EA209 /* AddEditMyMemeTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2413D7B71F4263C4001EA209 /* AddEditMyMemeTableView.swift */; };
+		2413D7BA1F426544001EA209 /* AddEditMyMemeTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2413D7B91F426544001EA209 /* AddEditMyMemeTableCell.swift */; };
+		2413D7BC1F427A81001EA209 /* MemeLabelConfigurer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2413D7BB1F427A81001EA209 /* MemeLabelConfigurer.swift */; };
+		2413D7BF1F43E78C001EA209 /* CardNormal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2413D7BD1F43E78C001EA209 /* CardNormal.swift */; };
+		2413D7C01F43E78C001EA209 /* CardNormalCoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2413D7BE1F43E78C001EA209 /* CardNormalCoreDataProperties.swift */; };
+		2413D7CD1F44D62F001EA209 /* PlayerOrderInGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2413D7C91F44D62F001EA209 /* PlayerOrderInGame.swift */; };
+		2413D7CE1F44D62F001EA209 /* PlayerOrderInGameCoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2413D7CA1F44D62F001EA209 /* PlayerOrderInGameCoreDataProperties.swift */; };
+		2413D7CF1F44D62F001EA209 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2413D7CB1F44D62F001EA209 /* Game.swift */; };
+		2413D7D01F44D62F001EA209 /* GameCoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2413D7CC1F44D62F001EA209 /* GameCoreDataProperties.swift */; };
+		2413D7D21F44D85A001EA209 /* InGameBeginingSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2413D7D11F44D85A001EA209 /* InGameBeginingSetup.swift */; };
+		2413D7D41F45189A001EA209 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2413D7D31F45189A001EA209 /* CardView.swift */; };
+		2413D7D71F461DBD001EA209 /* JudgingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2413D7D61F461DBD001EA209 /* JudgingViewController.swift */; };
+		2413D7D91F47D074001EA209 /* JudgingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2413D7D81F47D074001EA209 /* JudgingView.swift */; };
+		2413D7DD1F484470001EA209 /* ChoosingCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2413D7DC1F484470001EA209 /* ChoosingCardView.swift */; };
+		2413D7DF1F499004001EA209 /* GetGameData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2413D7DE1F499004001EA209 /* GetGameData.swift */; };
+		2413D7E31F4B60FA001EA209 /* MememeDynamoDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2413D7E21F4B60FA001EA209 /* MememeDynamoDB.swift */; };
+		2413D7E71F4CC540001EA209 /* MememeDBObjectModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2413D7E61F4CC540001EA209 /* MememeDBObjectModel.swift */; };
+		241C6E5F1F58160700756BA7 /* AvailableRoomFirBModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241C6E5E1F58160700756BA7 /* AvailableRoomFirBModel.swift */; };
+		241C6E651F58983B00756BA7 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241C6E641F58983B00756BA7 /* SignUpViewController.swift */; };
+		241C6E671F58AEFF00756BA7 /* ChangeUserPictureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241C6E661F58AEFF00756BA7 /* ChangeUserPictureViewController.swift */; };
+		241C6E6B1F59F3A200756BA7 /* UserFilesHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241C6E6A1F59F3A200756BA7 /* UserFilesHelper.swift */; };
+		24233F581F61F27E00B2B7EE /* AvailableGamesNoImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24233F571F61F27E00B2B7EE /* AvailableGamesNoImageCell.swift */; };
+		24233F5C1F6312D500B2B7EE /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24233F5B1F6312D500B2B7EE /* Extension.swift */; };
+		24233F5E1F63437300B2B7EE /* DisplayAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24233F5D1F63437300B2B7EE /* DisplayAlert.swift */; };
+		24305C931F2BB46C00B14632 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 24305C911F2BB46C00B14632 /* Model.xcdatamodeld */; };
+		24305CDF1F2E5F5300B14632 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24305CDE1F2E5F5300B14632 /* CoreDataStack.swift */; };
+		24305CE31F2E632B00B14632 /* AvailableGamesExistImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24305CE21F2E632B00B14632 /* AvailableGamesExistImageCell.swift */; };
+		243F208B1F68E70D0003C604 /* FirebaseAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 243F20841F68E70D0003C604 /* FirebaseAnalytics.framework */; };
+		243F208C1F68E70D0003C604 /* FirebaseCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 243F20851F68E70D0003C604 /* FirebaseCore.framework */; };
+		243F208D1F68E70D0003C604 /* FirebaseCoreDiagnostics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 243F20861F68E70D0003C604 /* FirebaseCoreDiagnostics.framework */; };
+		243F208E1F68E70D0003C604 /* FirebaseInstanceID.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 243F20871F68E70D0003C604 /* FirebaseInstanceID.framework */; };
+		243F208F1F68E70D0003C604 /* FirebaseNanoPB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 243F20881F68E70D0003C604 /* FirebaseNanoPB.framework */; };
+		243F20901F68E70D0003C604 /* GoogleToolboxForMac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 243F20891F68E70D0003C604 /* GoogleToolboxForMac.framework */; };
+		243F20911F68E70D0003C604 /* nanopb.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 243F208A1F68E70D0003C604 /* nanopb.framework */; };
+		243F209A1F68E72D0003C604 /* FirebaseDatabase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 243F20981F68E72D0003C604 /* FirebaseDatabase.framework */; };
+		243F209B1F68E72D0003C604 /* leveldb-library.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 243F20991F68E72D0003C604 /* leveldb-library.framework */; };
+		243F209F1F6A1BF50003C604 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 243F209E1F6A1BF40003C604 /* GoogleService-Info.plist */; };
+		243F20A21F6A2C2D0003C604 /* AvailableRoomHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243F20A11F6A2C2D0003C604 /* AvailableRoomHelper.swift */; };
+		245B2B141F4F685500BCF75A /* GameDataFromJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245B2B131F4F685500BCF75A /* GameDataFromJSON.swift */; };
+		245B2B1F1F50F9D100BCF75A /* PrivateRoomTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245B2B1E1F50F9D100BCF75A /* PrivateRoomTableView.swift */; };
+		245B2B221F50FB2D00BCF75A /* PrivateRoomTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245B2B211F50FB2D00BCF75A /* PrivateRoomTableCell.swift */; };
+		245B2B2C1F510B0100BCF75A /* MyPlayerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245B2B2B1F510B0100BCF75A /* MyPlayerData.swift */; };
+		245B2B301F52350900BCF75A /* PlayerDataDBObjectModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245B2B2F1F52350900BCF75A /* PlayerDataDBObjectModel.swift */; };
+		245B2B321F52379600BCF75A /* PlayerDataDynamoDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245B2B311F52379600BCF75A /* PlayerDataDynamoDB.swift */; };
+		2468B02F1F4E59870091EDD0 /* GameDataToJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2468B02E1F4E59870091EDD0 /* GameDataToJSON.swift */; };
+		2468B0321F4E95870091EDD0 /* CardCeasar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2468B0301F4E95870091EDD0 /* CardCeasar.swift */; };
+		2468B0331F4E95870091EDD0 /* CardCeasarCoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2468B0311F4E95870091EDD0 /* CardCeasarCoreDataProperties.swift */; };
+		246B8A731F735B3D0034DC24 /* InGameHelperConversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246B8A721F735B3D0034DC24 /* InGameHelperConversion.swift */; };
+		2474DFFE1F349424006E00AC /* AWSGoogleSignIn.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2474DFFA1F349424006E00AC /* AWSGoogleSignIn.framework */; };
+		2474DFFF1F349424006E00AC /* AWSGoogleSignInResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2474DFFB1F349424006E00AC /* AWSGoogleSignInResources.bundle */; };
+		2474E0001F349424006E00AC /* AWSMobileClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2474DFFC1F349424006E00AC /* AWSMobileClient.swift */; };
+		2474E0011F349424006E00AC /* AWSMobileHubHelper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2474DFFD1F349424006E00AC /* AWSMobileHubHelper.framework */; };
+		24896D541F2A5FA2003B6954 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24896D531F2A5FA2003B6954 /* AppDelegate.swift */; };
+		24896D561F2A5FA2003B6954 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24896D551F2A5FA2003B6954 /* StartViewController.swift */; };
+		24896D591F2A5FA2003B6954 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24896D571F2A5FA2003B6954 /* Main.storyboard */; };
+		24896D5B1F2A5FA2003B6954 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24896D5A1F2A5FA2003B6954 /* Assets.xcassets */; };
+		24896D5E1F2A5FA2003B6954 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24896D5C1F2A5FA2003B6954 /* LaunchScreen.storyboard */; };
+		24896D691F2A5FA2003B6954 /* MememeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24896D681F2A5FA2003B6954 /* MememeTests.swift */; };
+		24896D741F2A5FA2003B6954 /* MememeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24896D731F2A5FA2003B6954 /* MememeUITests.swift */; };
+		24896D871F2A70A9003B6954 /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24896D861F2A70A9003B6954 /* StartView.swift */; };
+		2498F9D81F342E8600B21267 /* CircleImageCutter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2498F9D71F342E8600B21267 /* CircleImageCutter.swift */; };
+		2498F9DB1F3478C500B21267 /* HerChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2498F9DA1F3478C500B21267 /* HerChatTableViewCell.swift */; };
+		2498F9DD1F3478E200B21267 /* MyChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2498F9DC1F3478E200B21267 /* MyChatTableViewCell.swift */; };
+		2498F9E01F347B8F00B21267 /* InGameChatTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2498F9DF1F347B8F00B21267 /* InGameChatTableView.swift */; };
+		2498FA191F3484F900B21267 /* AWSCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2498FA0C1F3484F900B21267 /* AWSCore.framework */; };
+		2498FA1A1F3484F900B21267 /* Amazon_Software_License.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2498FA0E1F3484F900B21267 /* Amazon_Software_License.txt */; };
+		2498FA1B1F3484F900B21267 /* NOTICE in Resources */ = {isa = PBXBuildFile; fileRef = 2498FA0F1F3484F900B21267 /* NOTICE */; };
+		2498FA1C1F3484F900B21267 /* CheckXcodeVersion.sh in Resources */ = {isa = PBXBuildFile; fileRef = 2498FA101F3484F900B21267 /* CheckXcodeVersion.sh */; };
+		2498FA1D1F3484F900B21267 /* GoogleAppUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2498FA121F3484F900B21267 /* GoogleAppUtilities.framework */; };
+		2498FA1E1F3484F900B21267 /* GoogleAuthUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2498FA131F3484F900B21267 /* GoogleAuthUtilities.framework */; };
+		2498FA1F1F3484F900B21267 /* GoogleNetworkingUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2498FA141F3484F900B21267 /* GoogleNetworkingUtilities.framework */; };
+		2498FA201F3484F900B21267 /* GoogleSignIn.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2498FA151F3484F900B21267 /* GoogleSignIn.bundle */; };
+		2498FA211F3484F900B21267 /* GoogleSignIn.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2498FA161F3484F900B21267 /* GoogleSignIn.framework */; };
+		2498FA221F3484F900B21267 /* GoogleSymbolUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2498FA171F3484F900B21267 /* GoogleSymbolUtilities.framework */; };
+		2498FA231F3484F900B21267 /* GoogleUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2498FA181F3484F900B21267 /* GoogleUtilities.framework */; };
+		2498FA251F3484FF00B21267 /* AWSCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2498FA0C1F3484F900B21267 /* AWSCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2498FA2C1F3485CA00B21267 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2498FA2B1F3485CA00B21267 /* AddressBook.framework */; };
+		2498FA2E1F3485D000B21267 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2498FA2D1F3485D000B21267 /* SystemConfiguration.framework */; };
+		2498FA301F3485D500B21267 /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2498FA2F1F3485D500B21267 /* SafariServices.framework */; };
+		2498FA351F3485E800B21267 /* GoogleIdentityProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2498FA321F3485E800B21267 /* GoogleIdentityProfile.swift */; };
+		2498FA361F3485E800B21267 /* SignIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2498FA331F3485E800B21267 /* SignIn.storyboard */; };
+		2498FA371F3485E800B21267 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2498FA341F3485E800B21267 /* SignInViewController.swift */; };
+		249F11A51F6DA4CD00C60059 /* PlayerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249F11A41F6DA4CD00C60059 /* PlayerData.swift */; };
+		24AF9E5A1F30035800D05BFC /* InGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AF9E591F30035800D05BFC /* InGameViewController.swift */; };
+		24AF9E5C1F3018D000D05BFC /* InGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AF9E5B1F3018D000D05BFC /* InGameView.swift */; };
+		24AF9E5E1F30217400D05BFC /* PrivateRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AF9E5D1F30217400D05BFC /* PrivateRoomViewController.swift */; };
+		24AFAD931F73355F00D57762 /* GetGameCoreDataData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AFAD921F73355F00D57762 /* GetGameCoreDataData.swift */; };
+		24C30F421F7441A4007237C1 /* InGameExtensionJudge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C30F411F7441A4007237C1 /* InGameExtensionJudge.swift */; };
+		24C30F441F7441E8007237C1 /* InGameExtensionUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C30F431F7441E8007237C1 /* InGameExtensionUI.swift */; };
+		24C4A7811F2AC94C00A1E277 /* AvailableGamesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C4A7801F2AC94C00A1E277 /* AvailableGamesViewController.swift */; };
+		24E734C01F6DCD8F00218AB1 /* InGameHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E734BF1F6DCD8F00218AB1 /* InGameHelper.swift */; };
+		24E734C81F6E01C200218AB1 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E734C61F6E01C200218AB1 /* Player.swift */; };
+		24E734C91F6E01C200218AB1 /* PlayerCoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E734C71F6E01C200218AB1 /* PlayerCoreDataProperties.swift */; };
+		24E734CB1F6F00F900218AB1 /* AvailableGamesTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E734CA1F6F00F900218AB1 /* AvailableGamesTableView.swift */; };
+		24F6A7701F34E48D000E35DD /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2498FA271F34857100B21267 /* libsqlite3.0.tbd */; };
+		24F6A7711F34E48D000E35DD /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2498FA281F34857100B21267 /* libsqlite3.tbd */; };
+		24F6A7731F34E4C2000E35DD /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 24F6A7721F34E4C2000E35DD /* libz.tbd */; };
+		24FC32DC1F6CB097006CBD62 /* UserOnlineSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FC32DB1F6CB097006CBD62 /* UserOnlineSystem.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		24896D651F2A5FA2003B6954 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 24896D481F2A5FA2003B6954 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 24896D4F1F2A5FA2003B6954;
+			remoteInfo = Mememe;
+		};
+		24896D701F2A5FA2003B6954 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 24896D481F2A5FA2003B6954 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 24896D4F1F2A5FA2003B6954;
+			remoteInfo = Mememe;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		2498FA061F34843E00B21267 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				2498FA251F3484FF00B21267 /* AWSCore.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		2413D78D1F3D58A0001EA209 /* Round.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Round.swift; path = ../Round.swift; sourceTree = "<group>"; };
+		2413D78E1F3D58A0001EA209 /* RoundCoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RoundCoreDataProperties.swift; path = ../RoundCoreDataProperties.swift; sourceTree = "<group>"; };
+		2413D79B1F4204C2001EA209 /* AddEditMyMemeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEditMyMemeViewController.swift; sourceTree = "<group>"; };
+		2413D79D1F42082B001EA209 /* HeartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeartView.swift; sourceTree = "<group>"; };
+		2413D7AB1F42112A001EA209 /* PlayerLove.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlayerLove.swift; path = ../PlayerLove.swift; sourceTree = "<group>"; };
+		2413D7AC1F42112A001EA209 /* PlayerLoveCoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlayerLoveCoreDataProperties.swift; path = ../PlayerLoveCoreDataProperties.swift; sourceTree = "<group>"; };
+		2413D7B41F422838001EA209 /* AddEditMyMemeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEditMyMemeView.swift; sourceTree = "<group>"; };
+		2413D7B71F4263C4001EA209 /* AddEditMyMemeTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEditMyMemeTableView.swift; sourceTree = "<group>"; };
+		2413D7B91F426544001EA209 /* AddEditMyMemeTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEditMyMemeTableCell.swift; sourceTree = "<group>"; };
+		2413D7BB1F427A81001EA209 /* MemeLabelConfigurer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemeLabelConfigurer.swift; sourceTree = "<group>"; };
+		2413D7BD1F43E78C001EA209 /* CardNormal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CardNormal.swift; path = ../CardNormal.swift; sourceTree = "<group>"; };
+		2413D7BE1F43E78C001EA209 /* CardNormalCoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CardNormalCoreDataProperties.swift; path = ../CardNormalCoreDataProperties.swift; sourceTree = "<group>"; };
+		2413D7C91F44D62F001EA209 /* PlayerOrderInGame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlayerOrderInGame.swift; path = ../PlayerOrderInGame.swift; sourceTree = "<group>"; };
+		2413D7CA1F44D62F001EA209 /* PlayerOrderInGameCoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlayerOrderInGameCoreDataProperties.swift; path = ../PlayerOrderInGameCoreDataProperties.swift; sourceTree = "<group>"; };
+		2413D7CB1F44D62F001EA209 /* Game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Game.swift; path = ../Game.swift; sourceTree = "<group>"; };
+		2413D7CC1F44D62F001EA209 /* GameCoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameCoreDataProperties.swift; path = ../GameCoreDataProperties.swift; sourceTree = "<group>"; };
+		2413D7D11F44D85A001EA209 /* InGameBeginingSetup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InGameBeginingSetup.swift; sourceTree = "<group>"; };
+		2413D7D31F45189A001EA209 /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		2413D7D61F461DBD001EA209 /* JudgingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JudgingViewController.swift; sourceTree = "<group>"; };
+		2413D7D81F47D074001EA209 /* JudgingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JudgingView.swift; sourceTree = "<group>"; };
+		2413D7DC1F484470001EA209 /* ChoosingCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChoosingCardView.swift; sourceTree = "<group>"; };
+		2413D7DE1F499004001EA209 /* GetGameData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetGameData.swift; sourceTree = "<group>"; };
+		2413D7E21F4B60FA001EA209 /* MememeDynamoDB.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MememeDynamoDB.swift; sourceTree = "<group>"; };
+		2413D7E61F4CC540001EA209 /* MememeDBObjectModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MememeDBObjectModel.swift; sourceTree = "<group>"; };
+		241C6E5E1F58160700756BA7 /* AvailableRoomFirBModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvailableRoomFirBModel.swift; sourceTree = "<group>"; };
+		241C6E641F58983B00756BA7 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		241C6E661F58AEFF00756BA7 /* ChangeUserPictureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeUserPictureViewController.swift; sourceTree = "<group>"; };
+		241C6E6A1F59F3A200756BA7 /* UserFilesHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserFilesHelper.swift; sourceTree = "<group>"; };
+		24233F571F61F27E00B2B7EE /* AvailableGamesNoImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvailableGamesNoImageCell.swift; sourceTree = "<group>"; };
+		24233F5B1F6312D500B2B7EE /* Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		24233F5D1F63437300B2B7EE /* DisplayAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayAlert.swift; sourceTree = "<group>"; };
+		24305C921F2BB46C00B14632 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		24305CDE1F2E5F5300B14632 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		24305CE21F2E632B00B14632 /* AvailableGamesExistImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvailableGamesExistImageCell.swift; sourceTree = "<group>"; };
+		243F20841F68E70D0003C604 /* FirebaseAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FirebaseAnalytics.framework; sourceTree = "<group>"; };
+		243F20851F68E70D0003C604 /* FirebaseCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FirebaseCore.framework; sourceTree = "<group>"; };
+		243F20861F68E70D0003C604 /* FirebaseCoreDiagnostics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FirebaseCoreDiagnostics.framework; sourceTree = "<group>"; };
+		243F20871F68E70D0003C604 /* FirebaseInstanceID.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FirebaseInstanceID.framework; sourceTree = "<group>"; };
+		243F20881F68E70D0003C604 /* FirebaseNanoPB.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FirebaseNanoPB.framework; sourceTree = "<group>"; };
+		243F20891F68E70D0003C604 /* GoogleToolboxForMac.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleToolboxForMac.framework; sourceTree = "<group>"; };
+		243F208A1F68E70D0003C604 /* nanopb.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = nanopb.framework; sourceTree = "<group>"; };
+		243F20981F68E72D0003C604 /* FirebaseDatabase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FirebaseDatabase.framework; sourceTree = "<group>"; };
+		243F20991F68E72D0003C604 /* leveldb-library.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = "leveldb-library.framework"; sourceTree = "<group>"; };
+		243F209C1F68E7C20003C604 /* Firebase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Firebase.h; sourceTree = "<group>"; };
+		243F209D1F68E7DB0003C604 /* module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
+		243F209E1F6A1BF40003C604 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		243F20A11F6A2C2D0003C604 /* AvailableRoomHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvailableRoomHelper.swift; sourceTree = "<group>"; };
+		245B2B131F4F685500BCF75A /* GameDataFromJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameDataFromJSON.swift; sourceTree = "<group>"; };
+		245B2B1E1F50F9D100BCF75A /* PrivateRoomTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivateRoomTableView.swift; sourceTree = "<group>"; };
+		245B2B211F50FB2D00BCF75A /* PrivateRoomTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivateRoomTableCell.swift; sourceTree = "<group>"; };
+		245B2B2B1F510B0100BCF75A /* MyPlayerData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPlayerData.swift; sourceTree = "<group>"; };
+		245B2B2F1F52350900BCF75A /* PlayerDataDBObjectModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerDataDBObjectModel.swift; sourceTree = "<group>"; };
+		245B2B311F52379600BCF75A /* PlayerDataDynamoDB.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerDataDynamoDB.swift; sourceTree = "<group>"; };
+		2468B02E1F4E59870091EDD0 /* GameDataToJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameDataToJSON.swift; sourceTree = "<group>"; };
+		2468B0301F4E95870091EDD0 /* CardCeasar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CardCeasar.swift; path = ../CardCeasar.swift; sourceTree = "<group>"; };
+		2468B0311F4E95870091EDD0 /* CardCeasarCoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CardCeasarCoreDataProperties.swift; path = ../CardCeasarCoreDataProperties.swift; sourceTree = "<group>"; };
+		246B8A721F735B3D0034DC24 /* InGameHelperConversion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InGameHelperConversion.swift; sourceTree = "<group>"; };
+		247415CE1F3BBEE600973EDE /* Model 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model 2.xcdatamodel"; sourceTree = "<group>"; };
+		247415ED1F3BC4F500973EDE /* Model 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model 3.xcdatamodel"; sourceTree = "<group>"; };
+		247415F21F3BCA1800973EDE /* Model 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model 4.xcdatamodel"; sourceTree = "<group>"; };
+		247415FB1F3C024700973EDE /* Model 5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model 5.xcdatamodel"; sourceTree = "<group>"; };
+		2474DFFA1F349424006E00AC /* AWSGoogleSignIn.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AWSGoogleSignIn.framework; sourceTree = "<group>"; };
+		2474DFFB1F349424006E00AC /* AWSGoogleSignInResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AWSGoogleSignInResources.bundle; sourceTree = "<group>"; };
+		2474DFFC1F349424006E00AC /* AWSMobileClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AWSMobileClient.swift; sourceTree = "<group>"; };
+		2474DFFD1F349424006E00AC /* AWSMobileHubHelper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AWSMobileHubHelper.framework; sourceTree = "<group>"; };
+		24896D501F2A5FA2003B6954 /* Mememe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mememe.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		24896D531F2A5FA2003B6954 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		24896D551F2A5FA2003B6954 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
+		24896D581F2A5FA2003B6954 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		24896D5A1F2A5FA2003B6954 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		24896D5D1F2A5FA2003B6954 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		24896D5F1F2A5FA2003B6954 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		24896D641F2A5FA2003B6954 /* MememeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MememeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		24896D681F2A5FA2003B6954 /* MememeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MememeTests.swift; sourceTree = "<group>"; };
+		24896D6A1F2A5FA2003B6954 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		24896D6F1F2A5FA2003B6954 /* MememeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MememeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		24896D731F2A5FA2003B6954 /* MememeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MememeUITests.swift; sourceTree = "<group>"; };
+		24896D751F2A5FA2003B6954 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		24896D861F2A70A9003B6954 /* StartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
+		2498F9D71F342E8600B21267 /* CircleImageCutter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleImageCutter.swift; sourceTree = "<group>"; };
+		2498F9DA1F3478C500B21267 /* HerChatTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HerChatTableViewCell.swift; sourceTree = "<group>"; };
+		2498F9DC1F3478E200B21267 /* MyChatTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyChatTableViewCell.swift; sourceTree = "<group>"; };
+		2498F9DF1F347B8F00B21267 /* InGameChatTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InGameChatTableView.swift; sourceTree = "<group>"; };
+		2498FA0C1F3484F900B21267 /* AWSCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AWSCore.framework; sourceTree = "<group>"; };
+		2498FA0E1F3484F900B21267 /* Amazon_Software_License.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Amazon_Software_License.txt; sourceTree = "<group>"; };
+		2498FA0F1F3484F900B21267 /* NOTICE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = NOTICE; sourceTree = "<group>"; };
+		2498FA101F3484F900B21267 /* CheckXcodeVersion.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = CheckXcodeVersion.sh; sourceTree = "<group>"; };
+		2498FA121F3484F900B21267 /* GoogleAppUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleAppUtilities.framework; sourceTree = "<group>"; };
+		2498FA131F3484F900B21267 /* GoogleAuthUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleAuthUtilities.framework; sourceTree = "<group>"; };
+		2498FA141F3484F900B21267 /* GoogleNetworkingUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleNetworkingUtilities.framework; sourceTree = "<group>"; };
+		2498FA151F3484F900B21267 /* GoogleSignIn.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = GoogleSignIn.bundle; sourceTree = "<group>"; };
+		2498FA161F3484F900B21267 /* GoogleSignIn.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleSignIn.framework; sourceTree = "<group>"; };
+		2498FA171F3484F900B21267 /* GoogleSymbolUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleSymbolUtilities.framework; sourceTree = "<group>"; };
+		2498FA181F3484F900B21267 /* GoogleUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleUtilities.framework; sourceTree = "<group>"; };
+		2498FA271F34857100B21267 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
+		2498FA281F34857100B21267 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		2498FA2B1F3485CA00B21267 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		2498FA2D1F3485D000B21267 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		2498FA2F1F3485D500B21267 /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
+		2498FA321F3485E800B21267 /* GoogleIdentityProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleIdentityProfile.swift; sourceTree = "<group>"; };
+		2498FA331F3485E800B21267 /* SignIn.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SignIn.storyboard; sourceTree = "<group>"; };
+		2498FA341F3485E800B21267 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		249F11A41F6DA4CD00C60059 /* PlayerData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerData.swift; sourceTree = "<group>"; };
+		24AF9E591F30035800D05BFC /* InGameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InGameViewController.swift; sourceTree = "<group>"; };
+		24AF9E5B1F3018D000D05BFC /* InGameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InGameView.swift; sourceTree = "<group>"; };
+		24AF9E5D1F30217400D05BFC /* PrivateRoomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivateRoomViewController.swift; sourceTree = "<group>"; };
+		24AFAD921F73355F00D57762 /* GetGameCoreDataData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetGameCoreDataData.swift; sourceTree = "<group>"; };
+		24C30F411F7441A4007237C1 /* InGameExtensionJudge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InGameExtensionJudge.swift; sourceTree = "<group>"; };
+		24C30F431F7441E8007237C1 /* InGameExtensionUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InGameExtensionUI.swift; sourceTree = "<group>"; };
+		24C4A7801F2AC94C00A1E277 /* AvailableGamesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvailableGamesViewController.swift; sourceTree = "<group>"; };
+		24E734BF1F6DCD8F00218AB1 /* InGameHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InGameHelper.swift; sourceTree = "<group>"; };
+		24E734C61F6E01C200218AB1 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Player.swift; path = ../Player.swift; sourceTree = "<group>"; };
+		24E734C71F6E01C200218AB1 /* PlayerCoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlayerCoreDataProperties.swift; path = ../PlayerCoreDataProperties.swift; sourceTree = "<group>"; };
+		24E734CA1F6F00F900218AB1 /* AvailableGamesTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvailableGamesTableView.swift; sourceTree = "<group>"; };
+		24F6A7721F34E4C2000E35DD /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		24FC32DB1F6CB097006CBD62 /* UserOnlineSystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserOnlineSystem.swift; sourceTree = "<group>"; };
+		A1EFF53BA25955FB53356C75 /* Pods_Mememe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mememe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A726362B99EE502AE5C81BCB /* Pods-Mememe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mememe.release.xcconfig"; path = "Pods/Target Support Files/Pods-Mememe/Pods-Mememe.release.xcconfig"; sourceTree = "<group>"; };
+		C319D98D1CD23D94BB79B2CE /* Pods-Mememe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mememe.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Mememe/Pods-Mememe.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		24896D4D1F2A5FA2003B6954 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				24F6A7731F34E4C2000E35DD /* libz.tbd in Frameworks */,
+				243F208D1F68E70D0003C604 /* FirebaseCoreDiagnostics.framework in Frameworks */,
+				24F6A7701F34E48D000E35DD /* libsqlite3.0.tbd in Frameworks */,
+				243F20911F68E70D0003C604 /* nanopb.framework in Frameworks */,
+				243F209B1F68E72D0003C604 /* leveldb-library.framework in Frameworks */,
+				243F208C1F68E70D0003C604 /* FirebaseCore.framework in Frameworks */,
+				24F6A7711F34E48D000E35DD /* libsqlite3.tbd in Frameworks */,
+				243F20901F68E70D0003C604 /* GoogleToolboxForMac.framework in Frameworks */,
+				2498FA301F3485D500B21267 /* SafariServices.framework in Frameworks */,
+				2498FA2E1F3485D000B21267 /* SystemConfiguration.framework in Frameworks */,
+				243F208E1F68E70D0003C604 /* FirebaseInstanceID.framework in Frameworks */,
+				2498FA2C1F3485CA00B21267 /* AddressBook.framework in Frameworks */,
+				2474E0011F349424006E00AC /* AWSMobileHubHelper.framework in Frameworks */,
+				243F208B1F68E70D0003C604 /* FirebaseAnalytics.framework in Frameworks */,
+				243F209A1F68E72D0003C604 /* FirebaseDatabase.framework in Frameworks */,
+				2474DFFE1F349424006E00AC /* AWSGoogleSignIn.framework in Frameworks */,
+				243F208F1F68E70D0003C604 /* FirebaseNanoPB.framework in Frameworks */,
+				2498FA231F3484F900B21267 /* GoogleUtilities.framework in Frameworks */,
+				2498FA211F3484F900B21267 /* GoogleSignIn.framework in Frameworks */,
+				2498FA221F3484F900B21267 /* GoogleSymbolUtilities.framework in Frameworks */,
+				2498FA1D1F3484F900B21267 /* GoogleAppUtilities.framework in Frameworks */,
+				2498FA191F3484F900B21267 /* AWSCore.framework in Frameworks */,
+				2498FA1F1F3484F900B21267 /* GoogleNetworkingUtilities.framework in Frameworks */,
+				2498FA1E1F3484F900B21267 /* GoogleAuthUtilities.framework in Frameworks */,
+				19E08B3ED51842C1186BCEDA /* Pods_Mememe.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		24896D611F2A5FA2003B6954 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		24896D6C1F2A5FA2003B6954 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2413D7981F414942001EA209 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				2498F9D71F342E8600B21267 /* CircleImageCutter.swift */,
+				2413D7BB1F427A81001EA209 /* MemeLabelConfigurer.swift */,
+			);
+			name = Helper;
+			sourceTree = "<group>";
+		};
+		2413D7B31F422808001EA209 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				24896D861F2A70A9003B6954 /* StartView.swift */,
+				24AF9E5B1F3018D000D05BFC /* InGameView.swift */,
+				2413D7B41F422838001EA209 /* AddEditMyMemeView.swift */,
+				2413D7D81F47D074001EA209 /* JudgingView.swift */,
+			);
+			name = ViewController;
+			sourceTree = "<group>";
+		};
+		2413D7B61F426399001EA209 /* AddEditMyMeme */ = {
+			isa = PBXGroup;
+			children = (
+				2413D79B1F4204C2001EA209 /* AddEditMyMemeViewController.swift */,
+				2413D7B71F4263C4001EA209 /* AddEditMyMemeTableView.swift */,
+				2413D7B91F426544001EA209 /* AddEditMyMemeTableCell.swift */,
+			);
+			name = AddEditMyMeme;
+			sourceTree = "<group>";
+		};
+		241C6E681F58AF2600756BA7 /* Sign up */ = {
+			isa = PBXGroup;
+			children = (
+				241C6E641F58983B00756BA7 /* SignUpViewController.swift */,
+				241C6E661F58AEFF00756BA7 /* ChangeUserPictureViewController.swift */,
+			);
+			name = "Sign up";
+			sourceTree = "<group>";
+		};
+		241C6E691F59CB6400756BA7 /* S3 */ = {
+			isa = PBXGroup;
+			children = (
+				241C6E6A1F59F3A200756BA7 /* UserFilesHelper.swift */,
+			);
+			name = S3;
+			sourceTree = "<group>";
+		};
+		241C6E6C1F5A2DE300756BA7 /* AWS */ = {
+			isa = PBXGroup;
+			children = (
+				241C6E691F59CB6400756BA7 /* S3 */,
+				2468B0351F4EBEDF0091EDD0 /* DynamoDB */,
+			);
+			name = AWS;
+			sourceTree = "<group>";
+		};
+		24233F561F61F1AC00B2B7EE /* AvailableGames */ = {
+			isa = PBXGroup;
+			children = (
+				24C4A7801F2AC94C00A1E277 /* AvailableGamesViewController.swift */,
+				24E734CA1F6F00F900218AB1 /* AvailableGamesTableView.swift */,
+				24305CE21F2E632B00B14632 /* AvailableGamesExistImageCell.swift */,
+				24233F571F61F27E00B2B7EE /* AvailableGamesNoImageCell.swift */,
+			);
+			name = AvailableGames;
+			sourceTree = "<group>";
+		};
+		24305CB81F2BD34700B14632 /* CoreDataProperties */ = {
+			isa = PBXGroup;
+			children = (
+				2468B0311F4E95870091EDD0 /* CardCeasarCoreDataProperties.swift */,
+				2413D7CA1F44D62F001EA209 /* PlayerOrderInGameCoreDataProperties.swift */,
+				2413D7CC1F44D62F001EA209 /* GameCoreDataProperties.swift */,
+				2413D7BE1F43E78C001EA209 /* CardNormalCoreDataProperties.swift */,
+				2413D7AC1F42112A001EA209 /* PlayerLoveCoreDataProperties.swift */,
+				24E734C71F6E01C200218AB1 /* PlayerCoreDataProperties.swift */,
+				2413D78E1F3D58A0001EA209 /* RoundCoreDataProperties.swift */,
+			);
+			name = CoreDataProperties;
+			sourceTree = "<group>";
+		};
+		24305CC51F2BD4F000B14632 /* CoreDataClass */ = {
+			isa = PBXGroup;
+			children = (
+				2468B0301F4E95870091EDD0 /* CardCeasar.swift */,
+				2413D7BD1F43E78C001EA209 /* CardNormal.swift */,
+				2413D7C91F44D62F001EA209 /* PlayerOrderInGame.swift */,
+				2413D7CB1F44D62F001EA209 /* Game.swift */,
+				2413D7AB1F42112A001EA209 /* PlayerLove.swift */,
+				2413D78D1F3D58A0001EA209 /* Round.swift */,
+				24E734C61F6E01C200218AB1 /* Player.swift */,
+			);
+			name = CoreDataClass;
+			sourceTree = "<group>";
+		};
+		24305CE01F2E5F9F00B14632 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				24305C911F2BB46C00B14632 /* Model.xcdatamodeld */,
+				24305CDE1F2E5F5300B14632 /* CoreDataStack.swift */,
+				24305CC51F2BD4F000B14632 /* CoreDataClass */,
+				24305CB81F2BD34700B14632 /* CoreDataProperties */,
+			);
+			name = CoreData;
+			sourceTree = "<group>";
+		};
+		24305CE11F2E62BD00B14632 /* TableCell */ = {
+			isa = PBXGroup;
+			children = (
+				2498F9D91F3478B100B21267 /* ChatCell */,
+			);
+			name = TableCell;
+			sourceTree = "<group>";
+		};
+		243F20821F68E6FE0003C604 /* Firebase */ = {
+			isa = PBXGroup;
+			children = (
+				243F209E1F6A1BF40003C604 /* GoogleService-Info.plist */,
+				243F209D1F68E7DB0003C604 /* module.modulemap */,
+				243F209C1F68E7C20003C604 /* Firebase.h */,
+				243F20971F68E72D0003C604 /* Database */,
+				243F20831F68E70D0003C604 /* Analytics */,
+			);
+			name = Firebase;
+			sourceTree = "<group>";
+		};
+		243F20831F68E70D0003C604 /* Analytics */ = {
+			isa = PBXGroup;
+			children = (
+				243F20841F68E70D0003C604 /* FirebaseAnalytics.framework */,
+				243F20851F68E70D0003C604 /* FirebaseCore.framework */,
+				243F20861F68E70D0003C604 /* FirebaseCoreDiagnostics.framework */,
+				243F20871F68E70D0003C604 /* FirebaseInstanceID.framework */,
+				243F20881F68E70D0003C604 /* FirebaseNanoPB.framework */,
+				243F20891F68E70D0003C604 /* GoogleToolboxForMac.framework */,
+				243F208A1F68E70D0003C604 /* nanopb.framework */,
+			);
+			path = Analytics;
+			sourceTree = "<group>";
+		};
+		243F20971F68E72D0003C604 /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				243F20981F68E72D0003C604 /* FirebaseDatabase.framework */,
+				243F20991F68E72D0003C604 /* leveldb-library.framework */,
+			);
+			path = Database;
+			sourceTree = "<group>";
+		};
+		243F20A01F6A27D10003C604 /* Firebase */ = {
+			isa = PBXGroup;
+			children = (
+				24E734C11F6DCD9400218AB1 /* In Game */,
+				24FC32DB1F6CB097006CBD62 /* UserOnlineSystem.swift */,
+				245B2B1A1F50E8CE00BCF75A /* AvailableRoom */,
+			);
+			name = Firebase;
+			sourceTree = "<group>";
+		};
+		245B2B191F50E8BD00BCF75A /* JSON */ = {
+			isa = PBXGroup;
+			children = (
+				2468B02E1F4E59870091EDD0 /* GameDataToJSON.swift */,
+				245B2B131F4F685500BCF75A /* GameDataFromJSON.swift */,
+			);
+			name = JSON;
+			sourceTree = "<group>";
+		};
+		245B2B1A1F50E8CE00BCF75A /* AvailableRoom */ = {
+			isa = PBXGroup;
+			children = (
+				241C6E5E1F58160700756BA7 /* AvailableRoomFirBModel.swift */,
+				243F20A11F6A2C2D0003C604 /* AvailableRoomHelper.swift */,
+			);
+			name = AvailableRoom;
+			sourceTree = "<group>";
+		};
+		245B2B201F50F9ED00BCF75A /* PrivateRoom */ = {
+			isa = PBXGroup;
+			children = (
+				24AF9E5D1F30217400D05BFC /* PrivateRoomViewController.swift */,
+				245B2B1E1F50F9D100BCF75A /* PrivateRoomTableView.swift */,
+				245B2B211F50FB2D00BCF75A /* PrivateRoomTableCell.swift */,
+			);
+			name = PrivateRoom;
+			sourceTree = "<group>";
+		};
+		245B2B2D1F5233CC00BCF75A /* Mememe */ = {
+			isa = PBXGroup;
+			children = (
+				2413D7E61F4CC540001EA209 /* MememeDBObjectModel.swift */,
+				2413D7E21F4B60FA001EA209 /* MememeDynamoDB.swift */,
+			);
+			name = Mememe;
+			sourceTree = "<group>";
+		};
+		245B2B2E1F52348D00BCF75A /* PlayerData */ = {
+			isa = PBXGroup;
+			children = (
+				245B2B2F1F52350900BCF75A /* PlayerDataDBObjectModel.swift */,
+				245B2B311F52379600BCF75A /* PlayerDataDynamoDB.swift */,
+			);
+			name = PlayerData;
+			sourceTree = "<group>";
+		};
+		2468B0341F4EBED60091EDD0 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				2413D7DE1F499004001EA209 /* GetGameData.swift */,
+				24233F5D1F63437300B2B7EE /* DisplayAlert.swift */,
+				24AFAD921F73355F00D57762 /* GetGameCoreDataData.swift */,
+			);
+			name = Helper;
+			sourceTree = "<group>";
+		};
+		2468B0351F4EBEDF0091EDD0 /* DynamoDB */ = {
+			isa = PBXGroup;
+			children = (
+				245B2B2D1F5233CC00BCF75A /* Mememe */,
+				245B2B2E1F52348D00BCF75A /* PlayerData */,
+				245B2B191F50E8BD00BCF75A /* JSON */,
+			);
+			name = DynamoDB;
+			sourceTree = "<group>";
+		};
+		2474DFF91F349424006E00AC /* AmazonAws */ = {
+			isa = PBXGroup;
+			children = (
+				2474DFFA1F349424006E00AC /* AWSGoogleSignIn.framework */,
+				2474DFFB1F349424006E00AC /* AWSGoogleSignInResources.bundle */,
+				2474DFFC1F349424006E00AC /* AWSMobileClient.swift */,
+				2474DFFD1F349424006E00AC /* AWSMobileHubHelper.framework */,
+			);
+			path = AmazonAws;
+			sourceTree = "<group>";
+		};
+		24896D471F2A5FA2003B6954 = {
+			isa = PBXGroup;
+			children = (
+				24896D521F2A5FA2003B6954 /* Mememe */,
+				24896D671F2A5FA2003B6954 /* MememeTests */,
+				24896D721F2A5FA2003B6954 /* MememeUITests */,
+				24896D511F2A5FA2003B6954 /* Products */,
+				2498FA261F34857000B21267 /* Frameworks */,
+				5D07B09220716E493D36EB85 /* Pods */,
+			);
+			sourceTree = "<group>";
+		};
+		24896D511F2A5FA2003B6954 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				24896D501F2A5FA2003B6954 /* Mememe.app */,
+				24896D641F2A5FA2003B6954 /* MememeTests.xctest */,
+				24896D6F1F2A5FA2003B6954 /* MememeUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		24896D521F2A5FA2003B6954 /* Mememe */ = {
+			isa = PBXGroup;
+			children = (
+				24896D531F2A5FA2003B6954 /* AppDelegate.swift */,
+				24896D851F2A6C40003B6954 /* Assets */,
+				24896D811F2A5FC3003B6954 /* Model */,
+				24896D821F2A5FCC003B6954 /* View */,
+				24896D831F2A5FD2003B6954 /* Controller */,
+				24896D841F2A6C09003B6954 /* Supporting Files */,
+				24F6A7741F34EBBF000E35DD /* AWS */,
+				243F20821F68E6FE0003C604 /* Firebase */,
+			);
+			path = Mememe;
+			sourceTree = "<group>";
+		};
+		24896D671F2A5FA2003B6954 /* MememeTests */ = {
+			isa = PBXGroup;
+			children = (
+				24896D681F2A5FA2003B6954 /* MememeTests.swift */,
+				24896D6A1F2A5FA2003B6954 /* Info.plist */,
+			);
+			path = MememeTests;
+			sourceTree = "<group>";
+		};
+		24896D721F2A5FA2003B6954 /* MememeUITests */ = {
+			isa = PBXGroup;
+			children = (
+				24896D731F2A5FA2003B6954 /* MememeUITests.swift */,
+				24896D751F2A5FA2003B6954 /* Info.plist */,
+			);
+			path = MememeUITests;
+			sourceTree = "<group>";
+		};
+		24896D811F2A5FC3003B6954 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				243F20A01F6A27D10003C604 /* Firebase */,
+				241C6E6C1F5A2DE300756BA7 /* AWS */,
+				2468B0341F4EBED60091EDD0 /* Helper */,
+				24305CE01F2E5F9F00B14632 /* CoreData */,
+				245B2B2B1F510B0100BCF75A /* MyPlayerData.swift */,
+				24233F5B1F6312D500B2B7EE /* Extension.swift */,
+				249F11A41F6DA4CD00C60059 /* PlayerData.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		24896D821F2A5FCC003B6954 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2413D7B31F422808001EA209 /* ViewController */,
+				24305CE11F2E62BD00B14632 /* TableCell */,
+				2413D7981F414942001EA209 /* Helper */,
+				2413D79D1F42082B001EA209 /* HeartView.swift */,
+				2413D7D31F45189A001EA209 /* CardView.swift */,
+				2413D7DC1F484470001EA209 /* ChoosingCardView.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		24896D831F2A5FD2003B6954 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				24896D551F2A5FA2003B6954 /* StartViewController.swift */,
+				241C6E681F58AF2600756BA7 /* Sign up */,
+				24233F561F61F1AC00B2B7EE /* AvailableGames */,
+				245B2B201F50F9ED00BCF75A /* PrivateRoom */,
+				2498F9DE1F347B7200B21267 /* InGame */,
+				2413D7B61F426399001EA209 /* AddEditMyMeme */,
+				2413D7D61F461DBD001EA209 /* JudgingViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		24896D841F2A6C09003B6954 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				24896D5F1F2A5FA2003B6954 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		24896D851F2A6C40003B6954 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				24896D571F2A5FA2003B6954 /* Main.storyboard */,
+				24896D5A1F2A5FA2003B6954 /* Assets.xcassets */,
+				24896D5C1F2A5FA2003B6954 /* LaunchScreen.storyboard */,
+			);
+			name = Assets;
+			sourceTree = "<group>";
+		};
+		2498F9D91F3478B100B21267 /* ChatCell */ = {
+			isa = PBXGroup;
+			children = (
+				2498F9DA1F3478C500B21267 /* HerChatTableViewCell.swift */,
+				2498F9DC1F3478E200B21267 /* MyChatTableViewCell.swift */,
+			);
+			name = ChatCell;
+			sourceTree = "<group>";
+		};
+		2498F9DE1F347B7200B21267 /* InGame */ = {
+			isa = PBXGroup;
+			children = (
+				24AF9E591F30035800D05BFC /* InGameViewController.swift */,
+				2498F9DF1F347B8F00B21267 /* InGameChatTableView.swift */,
+				2413D7D11F44D85A001EA209 /* InGameBeginingSetup.swift */,
+				24C30F411F7441A4007237C1 /* InGameExtensionJudge.swift */,
+				24C30F431F7441E8007237C1 /* InGameExtensionUI.swift */,
+			);
+			name = InGame;
+			sourceTree = "<group>";
+		};
+		2498FA0A1F3484F900B21267 /* Sdk */ = {
+			isa = PBXGroup;
+			children = (
+				2498FA0B1F3484F900B21267 /* Aws */,
+				2498FA101F3484F900B21267 /* CheckXcodeVersion.sh */,
+				2498FA111F3484F900B21267 /* Google */,
+			);
+			path = Sdk;
+			sourceTree = "<group>";
+		};
+		2498FA0B1F3484F900B21267 /* Aws */ = {
+			isa = PBXGroup;
+			children = (
+				2498FA0C1F3484F900B21267 /* AWSCore.framework */,
+				2498FA0D1F3484F900B21267 /* extras */,
+			);
+			path = Aws;
+			sourceTree = "<group>";
+		};
+		2498FA0D1F3484F900B21267 /* extras */ = {
+			isa = PBXGroup;
+			children = (
+				2498FA0E1F3484F900B21267 /* Amazon_Software_License.txt */,
+				2498FA0F1F3484F900B21267 /* NOTICE */,
+			);
+			path = extras;
+			sourceTree = "<group>";
+		};
+		2498FA111F3484F900B21267 /* Google */ = {
+			isa = PBXGroup;
+			children = (
+				2498FA121F3484F900B21267 /* GoogleAppUtilities.framework */,
+				2498FA131F3484F900B21267 /* GoogleAuthUtilities.framework */,
+				2498FA141F3484F900B21267 /* GoogleNetworkingUtilities.framework */,
+				2498FA151F3484F900B21267 /* GoogleSignIn.bundle */,
+				2498FA161F3484F900B21267 /* GoogleSignIn.framework */,
+				2498FA171F3484F900B21267 /* GoogleSymbolUtilities.framework */,
+				2498FA181F3484F900B21267 /* GoogleUtilities.framework */,
+			);
+			path = Google;
+			sourceTree = "<group>";
+		};
+		2498FA261F34857000B21267 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				24F6A7721F34E4C2000E35DD /* libz.tbd */,
+				2498FA2F1F3485D500B21267 /* SafariServices.framework */,
+				2498FA2D1F3485D000B21267 /* SystemConfiguration.framework */,
+				2498FA2B1F3485CA00B21267 /* AddressBook.framework */,
+				2498FA271F34857100B21267 /* libsqlite3.0.tbd */,
+				2498FA281F34857100B21267 /* libsqlite3.tbd */,
+				A1EFF53BA25955FB53356C75 /* Pods_Mememe.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2498FA311F3485E800B21267 /* SignIn */ = {
+			isa = PBXGroup;
+			children = (
+				2498FA321F3485E800B21267 /* GoogleIdentityProfile.swift */,
+				2498FA331F3485E800B21267 /* SignIn.storyboard */,
+				2498FA341F3485E800B21267 /* SignInViewController.swift */,
+			);
+			path = SignIn;
+			sourceTree = "<group>";
+		};
+		24E734C11F6DCD9400218AB1 /* In Game */ = {
+			isa = PBXGroup;
+			children = (
+				24E734BF1F6DCD8F00218AB1 /* InGameHelper.swift */,
+				246B8A721F735B3D0034DC24 /* InGameHelperConversion.swift */,
+			);
+			name = "In Game";
+			sourceTree = "<group>";
+		};
+		24F6A7741F34EBBF000E35DD /* AWS */ = {
+			isa = PBXGroup;
+			children = (
+				2474DFF91F349424006E00AC /* AmazonAws */,
+				2498FA311F3485E800B21267 /* SignIn */,
+				2498FA0A1F3484F900B21267 /* Sdk */,
+			);
+			name = AWS;
+			sourceTree = "<group>";
+		};
+		5D07B09220716E493D36EB85 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C319D98D1CD23D94BB79B2CE /* Pods-Mememe.debug.xcconfig */,
+				A726362B99EE502AE5C81BCB /* Pods-Mememe.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		24896D4F1F2A5FA2003B6954 /* Mememe */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 24896D781F2A5FA2003B6954 /* Build configuration list for PBXNativeTarget "Mememe" */;
+			buildPhases = (
+				394DF2EE129CA16C9C3529B6 /* [CP] Check Pods Manifest.lock */,
+				24896D4C1F2A5FA2003B6954 /* Sources */,
+				24896D4D1F2A5FA2003B6954 /* Frameworks */,
+				24896D4E1F2A5FA2003B6954 /* Resources */,
+				2498FA061F34843E00B21267 /* Embed Frameworks */,
+				CFFC5F18D12A6D09E76AEA65 /* [CP] Embed Pods Frameworks */,
+				8AB49EB3214D0A02B7B55095 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Mememe;
+			productName = Mememe;
+			productReference = 24896D501F2A5FA2003B6954 /* Mememe.app */;
+			productType = "com.apple.product-type.application";
+		};
+		24896D631F2A5FA2003B6954 /* MememeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 24896D7B1F2A5FA2003B6954 /* Build configuration list for PBXNativeTarget "MememeTests" */;
+			buildPhases = (
+				24896D601F2A5FA2003B6954 /* Sources */,
+				24896D611F2A5FA2003B6954 /* Frameworks */,
+				24896D621F2A5FA2003B6954 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				24896D661F2A5FA2003B6954 /* PBXTargetDependency */,
+			);
+			name = MememeTests;
+			productName = MememeTests;
+			productReference = 24896D641F2A5FA2003B6954 /* MememeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		24896D6E1F2A5FA2003B6954 /* MememeUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 24896D7E1F2A5FA2003B6954 /* Build configuration list for PBXNativeTarget "MememeUITests" */;
+			buildPhases = (
+				24896D6B1F2A5FA2003B6954 /* Sources */,
+				24896D6C1F2A5FA2003B6954 /* Frameworks */,
+				24896D6D1F2A5FA2003B6954 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				24896D711F2A5FA2003B6954 /* PBXTargetDependency */,
+			);
+			name = MememeUITests;
+			productName = MememeUITests;
+			productReference = 24896D6F1F2A5FA2003B6954 /* MememeUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		24896D481F2A5FA2003B6954 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = "Andrew Le";
+				TargetAttributes = {
+					24896D4F1F2A5FA2003B6954 = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = Y692F89PT8;
+						ProvisioningStyle = Automatic;
+					};
+					24896D631F2A5FA2003B6954 = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = Y692F89PT8;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 24896D4F1F2A5FA2003B6954;
+					};
+					24896D6E1F2A5FA2003B6954 = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = Y692F89PT8;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 24896D4F1F2A5FA2003B6954;
+					};
+				};
+			};
+			buildConfigurationList = 24896D4B1F2A5FA2003B6954 /* Build configuration list for PBXProject "Mememe" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 24896D471F2A5FA2003B6954;
+			productRefGroup = 24896D511F2A5FA2003B6954 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				24896D4F1F2A5FA2003B6954 /* Mememe */,
+				24896D631F2A5FA2003B6954 /* MememeTests */,
+				24896D6E1F2A5FA2003B6954 /* MememeUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		24896D4E1F2A5FA2003B6954 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2498FA201F3484F900B21267 /* GoogleSignIn.bundle in Resources */,
+				2498FA1C1F3484F900B21267 /* CheckXcodeVersion.sh in Resources */,
+				2474DFFF1F349424006E00AC /* AWSGoogleSignInResources.bundle in Resources */,
+				24896D5E1F2A5FA2003B6954 /* LaunchScreen.storyboard in Resources */,
+				24896D5B1F2A5FA2003B6954 /* Assets.xcassets in Resources */,
+				2498FA361F3485E800B21267 /* SignIn.storyboard in Resources */,
+				2498FA1B1F3484F900B21267 /* NOTICE in Resources */,
+				243F209F1F6A1BF50003C604 /* GoogleService-Info.plist in Resources */,
+				24896D591F2A5FA2003B6954 /* Main.storyboard in Resources */,
+				2498FA1A1F3484F900B21267 /* Amazon_Software_License.txt in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		24896D621F2A5FA2003B6954 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		24896D6D1F2A5FA2003B6954 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		394DF2EE129CA16C9C3529B6 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Mememe-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8AB49EB3214D0A02B7B55095 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Mememe/Pods-Mememe-resources.sh",
+				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Mememe/Pods-Mememe-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CFFC5F18D12A6D09E76AEA65 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Mememe/Pods-Mememe-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AWSCore/AWSCore.framework",
+				"${BUILT_PRODUCTS_DIR}/AWSDynamoDB/AWSDynamoDB.framework",
+				"${BUILT_PRODUCTS_DIR}/AWSS3/AWSS3.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMOAuth2/GTMOAuth2.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSDynamoDB.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSS3.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMOAuth2.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Mememe/Pods-Mememe-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		24896D4C1F2A5FA2003B6954 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2413D78F1F3D58A0001EA209 /* Round.swift in Sources */,
+				2413D7BA1F426544001EA209 /* AddEditMyMemeTableCell.swift in Sources */,
+				24E734C91F6E01C200218AB1 /* PlayerCoreDataProperties.swift in Sources */,
+				2413D7D71F461DBD001EA209 /* JudgingViewController.swift in Sources */,
+				2413D7DF1F499004001EA209 /* GetGameData.swift in Sources */,
+				2413D79C1F4204C2001EA209 /* AddEditMyMemeViewController.swift in Sources */,
+				2413D7CF1F44D62F001EA209 /* Game.swift in Sources */,
+				2413D7C01F43E78C001EA209 /* CardNormalCoreDataProperties.swift in Sources */,
+				24AF9E5E1F30217400D05BFC /* PrivateRoomViewController.swift in Sources */,
+				245B2B221F50FB2D00BCF75A /* PrivateRoomTableCell.swift in Sources */,
+				24305CE31F2E632B00B14632 /* AvailableGamesExistImageCell.swift in Sources */,
+				241C6E5F1F58160700756BA7 /* AvailableRoomFirBModel.swift in Sources */,
+				24E734C81F6E01C200218AB1 /* Player.swift in Sources */,
+				2413D7CE1F44D62F001EA209 /* PlayerOrderInGameCoreDataProperties.swift in Sources */,
+				243F20A21F6A2C2D0003C604 /* AvailableRoomHelper.swift in Sources */,
+				2413D7D21F44D85A001EA209 /* InGameBeginingSetup.swift in Sources */,
+				2413D7CD1F44D62F001EA209 /* PlayerOrderInGame.swift in Sources */,
+				241C6E6B1F59F3A200756BA7 /* UserFilesHelper.swift in Sources */,
+				2413D7BF1F43E78C001EA209 /* CardNormal.swift in Sources */,
+				24C4A7811F2AC94C00A1E277 /* AvailableGamesViewController.swift in Sources */,
+				24C30F421F7441A4007237C1 /* InGameExtensionJudge.swift in Sources */,
+				245B2B141F4F685500BCF75A /* GameDataFromJSON.swift in Sources */,
+				2468B02F1F4E59870091EDD0 /* GameDataToJSON.swift in Sources */,
+				24305CDF1F2E5F5300B14632 /* CoreDataStack.swift in Sources */,
+				2413D7D41F45189A001EA209 /* CardView.swift in Sources */,
+				2413D7901F3D58A0001EA209 /* RoundCoreDataProperties.swift in Sources */,
+				2474E0001F349424006E00AC /* AWSMobileClient.swift in Sources */,
+				24896D871F2A70A9003B6954 /* StartView.swift in Sources */,
+				2498F9E01F347B8F00B21267 /* InGameChatTableView.swift in Sources */,
+				2413D79E1F42082B001EA209 /* HeartView.swift in Sources */,
+				24233F5E1F63437300B2B7EE /* DisplayAlert.swift in Sources */,
+				245B2B2C1F510B0100BCF75A /* MyPlayerData.swift in Sources */,
+				24233F581F61F27E00B2B7EE /* AvailableGamesNoImageCell.swift in Sources */,
+				2413D7B01F42112A001EA209 /* PlayerLoveCoreDataProperties.swift in Sources */,
+				24C30F441F7441E8007237C1 /* InGameExtensionUI.swift in Sources */,
+				2413D7BC1F427A81001EA209 /* MemeLabelConfigurer.swift in Sources */,
+				2413D7DD1F484470001EA209 /* ChoosingCardView.swift in Sources */,
+				2413D7B51F422838001EA209 /* AddEditMyMemeView.swift in Sources */,
+				2498F9DB1F3478C500B21267 /* HerChatTableViewCell.swift in Sources */,
+				24233F5C1F6312D500B2B7EE /* Extension.swift in Sources */,
+				2498F9D81F342E8600B21267 /* CircleImageCutter.swift in Sources */,
+				24305C931F2BB46C00B14632 /* Model.xcdatamodeld in Sources */,
+				245B2B1F1F50F9D100BCF75A /* PrivateRoomTableView.swift in Sources */,
+				24E734CB1F6F00F900218AB1 /* AvailableGamesTableView.swift in Sources */,
+				24FC32DC1F6CB097006CBD62 /* UserOnlineSystem.swift in Sources */,
+				24AF9E5A1F30035800D05BFC /* InGameViewController.swift in Sources */,
+				245B2B321F52379600BCF75A /* PlayerDataDynamoDB.swift in Sources */,
+				2468B0321F4E95870091EDD0 /* CardCeasar.swift in Sources */,
+				2498F9DD1F3478E200B21267 /* MyChatTableViewCell.swift in Sources */,
+				2413D7E71F4CC540001EA209 /* MememeDBObjectModel.swift in Sources */,
+				241C6E671F58AEFF00756BA7 /* ChangeUserPictureViewController.swift in Sources */,
+				2468B0331F4E95870091EDD0 /* CardCeasarCoreDataProperties.swift in Sources */,
+				2413D7E31F4B60FA001EA209 /* MememeDynamoDB.swift in Sources */,
+				2413D7D01F44D62F001EA209 /* GameCoreDataProperties.swift in Sources */,
+				241C6E651F58983B00756BA7 /* SignUpViewController.swift in Sources */,
+				24AF9E5C1F3018D000D05BFC /* InGameView.swift in Sources */,
+				24896D561F2A5FA2003B6954 /* StartViewController.swift in Sources */,
+				2498FA351F3485E800B21267 /* GoogleIdentityProfile.swift in Sources */,
+				2498FA371F3485E800B21267 /* SignInViewController.swift in Sources */,
+				249F11A51F6DA4CD00C60059 /* PlayerData.swift in Sources */,
+				2413D7AF1F42112A001EA209 /* PlayerLove.swift in Sources */,
+				24AFAD931F73355F00D57762 /* GetGameCoreDataData.swift in Sources */,
+				246B8A731F735B3D0034DC24 /* InGameHelperConversion.swift in Sources */,
+				2413D7B81F4263C4001EA209 /* AddEditMyMemeTableView.swift in Sources */,
+				245B2B301F52350900BCF75A /* PlayerDataDBObjectModel.swift in Sources */,
+				2413D7D91F47D074001EA209 /* JudgingView.swift in Sources */,
+				24896D541F2A5FA2003B6954 /* AppDelegate.swift in Sources */,
+				24E734C01F6DCD8F00218AB1 /* InGameHelper.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		24896D601F2A5FA2003B6954 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				24896D691F2A5FA2003B6954 /* MememeTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		24896D6B1F2A5FA2003B6954 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				24896D741F2A5FA2003B6954 /* MememeUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		24896D661F2A5FA2003B6954 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 24896D4F1F2A5FA2003B6954 /* Mememe */;
+			targetProxy = 24896D651F2A5FA2003B6954 /* PBXContainerItemProxy */;
+		};
+		24896D711F2A5FA2003B6954 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 24896D4F1F2A5FA2003B6954 /* Mememe */;
+			targetProxy = 24896D701F2A5FA2003B6954 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		24896D571F2A5FA2003B6954 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				24896D581F2A5FA2003B6954 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		24896D5C1F2A5FA2003B6954 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				24896D5D1F2A5FA2003B6954 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		24896D761F2A5FA2003B6954 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		24896D771F2A5FA2003B6954 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		24896D791F2A5FA2003B6954 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C319D98D1CD23D94BB79B2CE /* Pods-Mememe.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = Y692F89PT8;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Mememe/Sdk",
+					"$(PROJECT_DIR)/Mememe/Sdk/Aws",
+					"$(PROJECT_DIR)/Mememe/AmazonAws",
+					"$(PROJECT_DIR)/Mememe/Sdk/Google",
+					"$(PROJECT_DIR)/Mememe/Analytics",
+					"$(PROJECT_DIR)/Mememe/Auth",
+					"$(PROJECT_DIR)/Mememe/Database",
+				);
+				INFOPLIST_FILE = Mememe/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"-force_load",
+					"$(PROJECT_DIR)/Mememe/Sdk/Google/GoogleSignIn.framework/GoogleSignIn",
+					"-force_load",
+					"$(PROJECT_DIR)/Mememe/Sdk/Google/GoogleUtilities.framework/GoogleUtilities",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.AndrewLe.Mememe;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Mememe/";
+			};
+			name = Debug;
+		};
+		24896D7A1F2A5FA2003B6954 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A726362B99EE502AE5C81BCB /* Pods-Mememe.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = Y692F89PT8;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Mememe/Sdk",
+					"$(PROJECT_DIR)/Mememe/Sdk/Aws",
+					"$(PROJECT_DIR)/Mememe/AmazonAws",
+					"$(PROJECT_DIR)/Mememe/Sdk/Google",
+					"$(PROJECT_DIR)/Mememe/Analytics",
+					"$(PROJECT_DIR)/Mememe/Auth",
+					"$(PROJECT_DIR)/Mememe/Database",
+				);
+				INFOPLIST_FILE = Mememe/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"-force_load",
+					"$(PROJECT_DIR)/Mememe/Sdk/Google/GoogleSignIn.framework/GoogleSignIn",
+					"-force_load",
+					"$(PROJECT_DIR)/Mememe/Sdk/Google/GoogleUtilities.framework/GoogleUtilities",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.AndrewLe.Mememe;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Mememe/";
+			};
+			name = Release;
+		};
+		24896D7C1F2A5FA2003B6954 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = Y692F89PT8;
+				INFOPLIST_FILE = MememeTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.AndrewLe.MememeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Mememe.app/Mememe";
+			};
+			name = Debug;
+		};
+		24896D7D1F2A5FA2003B6954 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = Y692F89PT8;
+				INFOPLIST_FILE = MememeTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.AndrewLe.MememeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Mememe.app/Mememe";
+			};
+			name = Release;
+		};
+		24896D7F1F2A5FA2003B6954 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = Y692F89PT8;
+				INFOPLIST_FILE = MememeUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.AndrewLe.MememeUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = Mememe;
+			};
+			name = Debug;
+		};
+		24896D801F2A5FA2003B6954 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = Y692F89PT8;
+				INFOPLIST_FILE = MememeUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.AndrewLe.MememeUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = Mememe;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		24896D4B1F2A5FA2003B6954 /* Build configuration list for PBXProject "Mememe" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				24896D761F2A5FA2003B6954 /* Debug */,
+				24896D771F2A5FA2003B6954 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		24896D781F2A5FA2003B6954 /* Build configuration list for PBXNativeTarget "Mememe" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				24896D791F2A5FA2003B6954 /* Debug */,
+				24896D7A1F2A5FA2003B6954 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		24896D7B1F2A5FA2003B6954 /* Build configuration list for PBXNativeTarget "MememeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				24896D7C1F2A5FA2003B6954 /* Debug */,
+				24896D7D1F2A5FA2003B6954 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		24896D7E1F2A5FA2003B6954 /* Build configuration list for PBXNativeTarget "MememeUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				24896D7F1F2A5FA2003B6954 /* Debug */,
+				24896D801F2A5FA2003B6954 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		24305C911F2BB46C00B14632 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				247415FB1F3C024700973EDE /* Model 5.xcdatamodel */,
+				247415F21F3BCA1800973EDE /* Model 4.xcdatamodel */,
+				247415ED1F3BC4F500973EDE /* Model 3.xcdatamodel */,
+				247415CE1F3BBEE600973EDE /* Model 2.xcdatamodel */,
+				24305C921F2BB46C00B14632 /* Model.xcdatamodel */,
+			);
+			currentVersion = 247415FB1F3C024700973EDE /* Model 5.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 24896D481F2A5FA2003B6954 /* Project object */;
+}
