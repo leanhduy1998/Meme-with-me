@@ -20,7 +20,7 @@ class AvailableRoomHelper {
         var onlyYouPlayerInRoom = [String:Any]()
         onlyYouPlayerInRoom[MyPlayerData.id] = MyPlayerData.name
         
-        let room = AvailableRoomFirBModel(leaderId: leaderId, playerInRoom: onlyYouPlayerInRoom, roomType: roomType, roomImageUrl: "noURL")
+        let room = AvailableRoomFirBModel(leaderId: leaderId, playerInRoom: onlyYouPlayerInRoom, roomType: roomType, roomImageUrl: "noURL", roomIsOpen: "true")
         
         let value = getMapStringValueFromRoom(room: room)
         
@@ -39,6 +39,10 @@ class AvailableRoomHelper {
     
     @objc static func updateRoomTimeTimer(timer:Timer){
         updateRoomTime(leaderId: timer.userInfo as! String)
+    }
+    
+    static func makeMyRoomStatusClosed(){
+        availableRoomRef.child(MyPlayerData.id).child("roomIsOpen").setValue("false")
     }
     
     static func getAllRoom(completionHandler: @escaping (_ roomArr: [AvailableRoomFirBModel]) -> Void){
@@ -61,12 +65,12 @@ class AvailableRoomHelper {
         map["playerInRoom"] = room.playerInRoom
         map["roomType"] = room.roomType
         map["roomImageUrl"] = room.roomImageUrl
-        
+        map["roomIsOpen"] = room.roomIsOpen
         return map
     }
     
     static func transferValueFromMapToRoom(leaderId: String, map: [String : AnyObject]) -> AvailableRoomFirBModel{
-        let room = AvailableRoomFirBModel(leaderId: leaderId, playerInRoom: [:], roomType: "", roomImageUrl: "")
+        let room = AvailableRoomFirBModel(leaderId: leaderId, playerInRoom: [:], roomType: "", roomImageUrl: "", roomIsOpen: "false")
         
         for (key,value) in map {
             switch(key){
@@ -79,6 +83,9 @@ class AvailableRoomHelper {
                 case "roomImageUrl":
                     room.roomImageUrl = value as? String
                     break
+                case "roomIsOpen":
+                    room.roomIsOpen = (value as! String)
+                break
                 default:
                     fatalError()
                 break

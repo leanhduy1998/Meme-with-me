@@ -118,9 +118,15 @@ extension AvailableGamesViewController {
         UserOnlineSystem.getUserOnlineStatus(userId: openRooms[indexPath.row].leaderId!) { (isLeaderOnline) in
             DispatchQueue.main.async {
                 if isLeaderOnline {
-                    self.selectedLeaderId = self.openRooms[indexPath.row].leaderId
-                    self.performSegue(withIdentifier: "PrivateRoomViewControllerSegue", sender: self)
-                    
+                    if self.openRooms[indexPath.row].roomIsOpen == "true"{
+                        self.selectedLeaderId = self.openRooms[indexPath.row].leaderId
+                        self.performSegue(withIdentifier: "PrivateRoomViewControllerSegue", sender: self)
+                    }
+                    else {
+                        DisplayAlert.display(controller: self, title: "Room is closed", message: "This room has already started the game!")
+                        self.openRooms.remove(at: indexPath.row)
+                        self.tableview.reloadData()
+                    }
                 }
                 else {
                     var count = 0

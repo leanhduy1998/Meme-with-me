@@ -11,41 +11,14 @@ import CoreData
 import AWSS3
 
 import Firebase
+import AWSGoogleSignIn
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     
-    var stack = CoreDataStack(modelName: "Model")!
     
-    var fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult>!
-    
-
-    
-    func saveContext(completeHandler: @escaping ()-> Void){
-        do {
-            try stack.saveContext()
-        }
-        catch ((let error)){
-            fatalError(error.localizedDescription)
-        }
-        completeHandler()
-    }
-    
-    func initializeFetchedResultsController() {
-        let fr = NSFetchRequest<NSFetchRequestResult>(entityName: "Game")
-        fr.sortDescriptors = [NSSortDescriptor(key: "createdDate", ascending: true),
-                              NSSortDescriptor(key: "gameId", ascending: true)]
-        
-        fetchedResultsController = NSFetchedResultsController(fetchRequest: fr, managedObjectContext: stack.context, sectionNameKeyPath: nil, cacheName: nil)
-        
-        do {
-            try fetchedResultsController.performFetch()
-        } catch {
-            fatalError("Failed to initialize FetchedResultsController: \(error)")
-        }
-    }
 
     func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
         return AWSMobileClient.sharedInstance.withApplication(application, withURL: url, withSourceApplication: sourceApplication, withAnnotation: annotation)
@@ -54,6 +27,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure()
+        
+        AWSGoogleSignInProvider.sharedInstance().setScopes(["profile", "openid"])
+        
+        // Register the sign in provider instances with their unique identifier
+        AWSSignInManager.sharedInstance().register(
+            signInProvider: AWSGoogleSignInProvider.sharedInstance())
+        
+        let didFinishLaunching:
+            Bool = AWSSignInManager.sharedInstance().interceptApplication(
+                application, didFinishLaunchingWithOptions: launchOptions)
         
         return AWSMobileClient.sharedInstance.didFinishLaunching(application, withOptions: launchOptions)
     }

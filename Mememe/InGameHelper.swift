@@ -44,7 +44,6 @@ class InGameHelper{
         inGameRef.child(gameId).setValue(data)
     }
     static func getBeginingGameFromFirB(leaderId:String, completionHandler: @escaping (_ game: Game, _ leaderId:String) -> Void){
-        let delegate = UIApplication.shared.delegate as! AppDelegate
         
         inGameRef.observeSingleEvent(of: DataEventType.value, with: { (snapshot) in
             let gameIdAndValue = snapshot.value as? [String : Any]
@@ -52,7 +51,7 @@ class InGameHelper{
                 if gameId.contains(leaderId) {
                     DispatchQueue.main.async {
                         var leaderId: String!
-                        let game = Game(createdDate: Date(), gameId: gameId, context: delegate.stack.context)
+                        let game = Game(createdDate: Date(), gameId: gameId, context: GameStack.sharedInstance.stack.context)
                         let postDict = value as? [String : AnyObject] ?? [:]
                         
                         var roundImageUrl: String!
@@ -62,7 +61,7 @@ class InGameHelper{
                             case "playerOrderInGame":
                                 let orders = value as? [String : AnyObject] ?? [:]
                                 for (playerId,number) in orders {
-                                    let playerOrder = PlayerOrderInGame(orderNum: Int(number as! String)!, playerId: playerId, context: delegate.stack.context)
+                                    let playerOrder = PlayerOrderInGame(orderNum: Int(number as! String)!, playerId: playerId, context: GameStack.sharedInstance.stack.context)
                                     game.addToPlayersorder(playerOrder)
                                 }
                                 break
@@ -87,7 +86,7 @@ class InGameHelper{
                                 break
                             }
                         }
-                        let round = Round(roundNum: 0, context: delegate.stack.context)
+                        let round = Round(roundNum: 0, context: GameStack.sharedInstance.stack.context)
                         
                         var playerId = ""
                         
@@ -101,11 +100,11 @@ class InGameHelper{
                         let helper = UserFilesHelper()
                         helper.getMemeData(memeName: roundImageUrl, completeHandler: { (imageData) in
                             DispatchQueue.main.async {
-                                let cardCeasar = CardCeasar(cardPic: imageData, playerId: playerId, round: 0, cardPicUrl: roundImageUrl, context: delegate.stack.context)
+                                let cardCeasar = CardCeasar(cardPic: imageData, playerId: playerId, round: 0, cardPicUrl: roundImageUrl, context: GameStack.sharedInstance.stack.context)
                                 round.cardceasar = cardCeasar
                                 game.addToRounds(round)
                                 
-                                delegate.saveContext {
+                                GameStack.sharedInstance.saveContext {
                                     completionHandler(game, leaderId)
                                 }
                             }
@@ -142,7 +141,6 @@ class InGameHelper{
                         let gameValue = value as? [String : Any]
                         for (key,value) in gameValue! {
                             let id = value as? String
-                            print(MyPlayerData.id)
                             if (key == "leaderId") && (id == MyPlayerData.id) {
                                 inGameRef.child(gameId).removeValue()
                                 break
@@ -167,12 +165,26 @@ class InGameHelper{
         )
     }
     
-    static func updateLeaderId(newLeaderId: String, gameId:String){
-        inGameRef.child(gameId).child("leaderId").setValue(newLeaderId)
+    static func updateLeaderId(newLeaderId: String, gameId:String,completionHandler: @escaping () -> Void){
+        inGameRef.child(gameId).child("leaderId").setValue(newLeaderId) { (err, reference) in
+            if(err == nil){
+                completionHandler()
+            }
+            else {
+                print(err)
+            }
+        }
     }
     
-    static func removeYourselfFromGame(gameId:String){
-        inGameRef.child(gameId).child("players").child(MyPlayerData.id).removeValue()
+    static func removeYourselfFromGame(gameId:String,completionHandler: @escaping () -> Void){
+        inGameRef.child(gameId).child("players").child(MyPlayerData.id).removeValue { (err, reference) in
+            if(err == nil){
+                completionHandler()
+            }
+            else {
+                print(err)
+            }
+        }
     }
     
     // judging

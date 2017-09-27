@@ -13,21 +13,21 @@ extension InGameViewController {
         let date = Date()
         GetGameData.getCurrentTimeInt { (currentTimeInt) in
             DispatchQueue.main.async {
-                self.game = Game(createdDate: date, gameId: self.leaderId + "\(currentTimeInt)", context: self.delegate.stack.context)
+                self.game = Game(createdDate: date, gameId: self.leaderId + "\(currentTimeInt)", context: GameStack.sharedInstance.stack.context)
                 
                 for player in self.playersInGame {
-                    self.game.addToPlayers(Player(laughes: 0, playerName: player.userName, playerId: player.userId!, score: 0, context: self.delegate.stack.context))
+                    self.game.addToPlayers(Player(laughes: 0, playerName: player.userName, playerId: player.userId!, score: 0, context: GameStack.sharedInstance.stack.context))
                     
                     // might add image data to Player too!
                 }
                 
-                let round = Round(roundNum: 0, context: self.delegate.stack.context)
+                let round = Round(roundNum: 0, context: GameStack.sharedInstance.stack.context)
                 
                 self.playersInGame = self.playersInGame.shuffled()
                 
                 var counter = 0
                 for player in self.playersInGame {
-                    let order = PlayerOrderInGame(orderNum: counter, playerId: player.userId!, context: self.delegate.stack.context)
+                    let order = PlayerOrderInGame(orderNum: counter, playerId: player.userId!, context: GameStack.sharedInstance.stack.context)
                     self.game.addToPlayersorder(order)
                     counter = counter + 1
                 }
@@ -39,14 +39,14 @@ extension InGameViewController {
                         
                         let ceasarId = self.getCeasarIdForCurrentRound(roundNum: 0)
                         
-                        let ceasarCard = CardCeasar(cardPic: memeData, playerId: ceasarId, round: Int(round.roundNum), cardPicUrl: "ceasarUrl", context: self.delegate.stack.context)
+                        let ceasarCard = CardCeasar(cardPic: memeData, playerId: ceasarId, round: Int(round.roundNum), cardPicUrl: "ceasarUrl", context: GameStack.sharedInstance.stack.context)
                         
                         round.cardceasar = ceasarCard
                         self.game.addToRounds(round)
                         
                         InGameHelper.insertNewGame(memeName: memeName,playerInRoom: self.playersInGame, playerOrder: playerOrders!, gameId: self.game.gameId!)
                         
-                        self.delegate.saveContext(completeHandler: {
+                        GameStack.sharedInstance.saveContext(completeHandler: {
                             DispatchQueue.main.async {
                                 self.reloadCurrentPlayersIcon()
                                 self.reloadPreviewCards()

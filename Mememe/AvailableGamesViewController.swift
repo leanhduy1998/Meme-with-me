@@ -12,11 +12,10 @@ import AWSMobileHubHelper
 import FirebaseDatabase
 
 class AvailableGamesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
-    var openRooms = [AvailableRoomFirBModel]()
-    
+    @IBAction func unwindToAvailableGamesViewController(segue:UIStoryboardSegue) { }
     @IBOutlet weak var tableview: UITableView!
     
+    var openRooms = [AvailableRoomFirBModel]()
     var selectedLeaderId: String!
     let helper = UserFilesHelper()
     
@@ -24,6 +23,7 @@ class AvailableGamesViewController: UIViewController, UITableViewDelegate, UITab
     
     override func viewDidLoad() {
         UserOnlineSystem.updateUserOnlineStatus()
+        tableview.reloadData()
     }
     
     func getNamefromAllPlayerInRoom(playerArr: [String:Any]) -> String{
@@ -45,10 +45,10 @@ class AvailableGamesViewController: UIViewController, UITableViewDelegate, UITab
         AvailableRoomHelper.deleteMyRoom()
         InGameHelper.removeYourInGameRoom()
         getRoomDataFromDB()
+        selectedLeaderId = nil
     }
     
     func getRoomDataFromDB(){
-        
         availableRoomRef.observe(DataEventType.childAdded, with: { (snapshot) in
             let postDict = snapshot.value as? [String : AnyObject] ?? [:]
             
@@ -71,9 +71,6 @@ class AvailableGamesViewController: UIViewController, UITableViewDelegate, UITab
                         DispatchQueue.main.async {
                             self.tableview.reloadData()
                         }
-                    }
-                    else {
-                        
                     }
                 })
             }
@@ -112,6 +109,38 @@ class AvailableGamesViewController: UIViewController, UITableViewDelegate, UITab
                     count = count + 1
                 }
                 self.tableview.reloadData()
+            }
+        })
+    }
+    func updateOpenRoomValue(){
+        availableRoomRef.observeSingleEvent(of: DataEventType.value, with: { (snapshot) in
+            DispatchQueue.main.async {
+                let postDict = snapshot.value as? [String : AnyObject] ?? [:]
+                self.openRooms.removeAll()
+                self.tableview.reloadData()
+                
+                for(leaderId,value) in postDict {
+                    let room = AvailableRoomHelper.transferValueFromMapToRoom(leaderId: leaderId, map: value as! [String : AnyObject])
+                    
+                    UserOnlineSystem.getUserOnlineStatus(userId: room.leaderId!, completionHandler: { (isUserOnline) in
+                        if isUserOnline{
+                            var exist = false
+                            for r in self.openRooms {
+                                if r.leaderId == room.leaderId {
+                                    exist = true
+                                    break
+                                }
+                            }
+                            if exist == false {
+                                self.openRooms.append(room)
+                            }
+                            
+                            DispatchQueue.main.async {
+                                self.tableview.reloadData()
+                            }
+                        }
+                    })
+                }
             }
         })
     }

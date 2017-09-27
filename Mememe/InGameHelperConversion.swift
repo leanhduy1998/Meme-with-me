@@ -16,7 +16,7 @@ class InGameHelperConversion {
     func getPlayerFromDictionary(playerId:String, playerData: [String:Any]) -> Player{
         let delegate = UIApplication.shared.delegate as! AppDelegate
         
-        let p = Player(laughes: 0, playerName: "", playerId: playerId, score: 0, context: delegate.stack.context)
+        let p = Player(laughes: 0, playerName: "", playerId: playerId, score: 0, context: GameStack.sharedInstance.stack.context)
         
         for (key,value) in playerData {
             switch(key){
@@ -56,7 +56,7 @@ class InGameHelperConversion {
     }
     
     func getCardNormalFromDictionary(playerId:String, dictionary:[String:Any]) -> CardNormal{
-        let cardNormal = CardNormal(context: delegate.stack.context)
+        let cardNormal = CardNormal(context: GameStack.sharedInstance.stack.context)
         cardNormal.playerId = playerId
         
         for (key,value) in dictionary {
@@ -74,7 +74,7 @@ class InGameHelperConversion {
                 let playerIdWhoLovedThisCard = value as? [String]
                 
                 for id in playerIdWhoLovedThisCard! {
-                    cardNormal.addToPlayerlove(PlayerLove(playerId: id, context: self.delegate.stack.context))
+                    cardNormal.addToPlayerlove(PlayerLove(playerId: id, context: GameStack.sharedInstance.stack.context))
                 }
                 break
             default:

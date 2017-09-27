@@ -21,11 +21,13 @@ class AvailableRoomFirBModel {
     var playerInRoom: [String:Any]?
     var roomType: String?
     var roomImageUrl: String?
+    var roomIsOpen: String
     
-    init(leaderId: String, playerInRoom: [String:Any], roomType: String, roomImageUrl: String){
+    init(leaderId: String, playerInRoom: [String:Any], roomType: String, roomImageUrl: String, roomIsOpen: String){
         self.leaderId = leaderId
         self.playerInRoom = playerInRoom
         self.roomType = roomType
         self.roomImageUrl = roomImageUrl
+        self.roomIsOpen = roomIsOpen
     }
 }

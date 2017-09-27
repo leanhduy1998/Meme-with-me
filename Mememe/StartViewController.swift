@@ -45,13 +45,13 @@ class StartViewController: UIViewController,UIGestureRecognizerDelegate, AWSSign
         setupMainScreenTap()
         setupGoogleButton()
         
-        
+        /*
         do {
             try delegate.stack.dropAllData()
         }
         catch {
             fatalError()
-        }
+        }*/
     }
 
     private func setupGoogleButton(){
@@ -73,7 +73,6 @@ class StartViewController: UIViewController,UIGestureRecognizerDelegate, AWSSign
         googleButton.isHidden = false
     }
     
-   
 
     func onLogin(signInProvider: AWSSignInProvider, result: Any?, authState: AWSIdentityManagerAuthState, error: Error?) {
         if result != nil {

@@ -39,7 +39,7 @@
 		24233F581F61F27E00B2B7EE /* AvailableGamesNoImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24233F571F61F27E00B2B7EE /* AvailableGamesNoImageCell.swift */; };
 		24233F5C1F6312D500B2B7EE /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24233F5B1F6312D500B2B7EE /* Extension.swift */; };
 		24233F5E1F63437300B2B7EE /* DisplayAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24233F5D1F63437300B2B7EE /* DisplayAlert.swift */; };
-		24305C931F2BB46C00B14632 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 24305C911F2BB46C00B14632 /* Model.xcdatamodeld */; };
+		24305C931F2BB46C00B14632 /* GameModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 24305C911F2BB46C00B14632 /* GameModel.xcdatamodeld */; };
 		24305CDF1F2E5F5300B14632 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24305CDE1F2E5F5300B14632 /* CoreDataStack.swift */; };
 		24305CE31F2E632B00B14632 /* AvailableGamesExistImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24305CE21F2E632B00B14632 /* AvailableGamesExistImageCell.swift */; };
 		243F208B1F68E70D0003C604 /* FirebaseAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 243F20841F68E70D0003C604 /* FirebaseAnalytics.framework */; };
@@ -105,6 +105,7 @@
 		24C30F421F7441A4007237C1 /* InGameExtensionJudge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C30F411F7441A4007237C1 /* InGameExtensionJudge.swift */; };
 		24C30F441F7441E8007237C1 /* InGameExtensionUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C30F431F7441E8007237C1 /* InGameExtensionUI.swift */; };
 		24C4A7811F2AC94C00A1E277 /* AvailableGamesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C4A7801F2AC94C00A1E277 /* AvailableGamesViewController.swift */; };
+		24D2BE2F1F7B6949003B7957 /* GameStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D2BE2E1F7B6949003B7957 /* GameStack.swift */; };
 		24E734C01F6DCD8F00218AB1 /* InGameHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E734BF1F6DCD8F00218AB1 /* InGameHelper.swift */; };
 		24E734C81F6E01C200218AB1 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E734C61F6E01C200218AB1 /* Player.swift */; };
 		24E734C91F6E01C200218AB1 /* PlayerCoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E734C71F6E01C200218AB1 /* PlayerCoreDataProperties.swift */; };
@@ -257,6 +258,7 @@
 		24C30F411F7441A4007237C1 /* InGameExtensionJudge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InGameExtensionJudge.swift; sourceTree = "<group>"; };
 		24C30F431F7441E8007237C1 /* InGameExtensionUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InGameExtensionUI.swift; sourceTree = "<group>"; };
 		24C4A7801F2AC94C00A1E277 /* AvailableGamesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvailableGamesViewController.swift; sourceTree = "<group>"; };
+		24D2BE2E1F7B6949003B7957 /* GameStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStack.swift; sourceTree = "<group>"; };
 		24E734BF1F6DCD8F00218AB1 /* InGameHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InGameHelper.swift; sourceTree = "<group>"; };
 		24E734C61F6E01C200218AB1 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Player.swift; path = ../Player.swift; sourceTree = "<group>"; };
 		24E734C71F6E01C200218AB1 /* PlayerCoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlayerCoreDataProperties.swift; path = ../PlayerCoreDataProperties.swift; sourceTree = "<group>"; };
@@ -416,10 +418,11 @@
 		24305CE01F2E5F9F00B14632 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				24305C911F2BB46C00B14632 /* Model.xcdatamodeld */,
-				24305CDE1F2E5F5300B14632 /* CoreDataStack.swift */,
+				24D2BE2D1F7B6932003B7957 /* CoreDataStack */,
+				24305C911F2BB46C00B14632 /* GameModel.xcdatamodeld */,
 				24305CC51F2BD4F000B14632 /* CoreDataClass */,
 				24305CB81F2BD34700B14632 /* CoreDataProperties */,
+				24D2BE2E1F7B6949003B7957 /* GameStack.swift */,
 			);
 			name = CoreData;
 			sourceTree = "<group>";
@@ -755,6 +758,14 @@
 			path = SignIn;
 			sourceTree = "<group>";
 		};
+		24D2BE2D1F7B6932003B7957 /* CoreDataStack */ = {
+			isa = PBXGroup;
+			children = (
+				24305CDE1F2E5F5300B14632 /* CoreDataStack.swift */,
+			);
+			name = CoreDataStack;
+			sourceTree = "<group>";
+		};
 		24E734C11F6DCD9400218AB1 /* In Game */ = {
 			isa = PBXGroup;
 			children = (
@@ -1039,7 +1050,7 @@
 				2498F9DB1F3478C500B21267 /* HerChatTableViewCell.swift in Sources */,
 				24233F5C1F6312D500B2B7EE /* Extension.swift in Sources */,
 				2498F9D81F342E8600B21267 /* CircleImageCutter.swift in Sources */,
-				24305C931F2BB46C00B14632 /* Model.xcdatamodeld in Sources */,
+				24305C931F2BB46C00B14632 /* GameModel.xcdatamodeld in Sources */,
 				245B2B1F1F50F9D100BCF75A /* PrivateRoomTableView.swift in Sources */,
 				24E734CB1F6F00F900218AB1 /* AvailableGamesTableView.swift in Sources */,
 				24FC32DC1F6CB097006CBD62 /* UserOnlineSystem.swift in Sources */,
@@ -1051,6 +1062,7 @@
 				241C6E671F58AEFF00756BA7 /* ChangeUserPictureViewController.swift in Sources */,
 				2468B0331F4E95870091EDD0 /* CardCeasarCoreDataProperties.swift in Sources */,
 				2413D7E31F4B60FA001EA209 /* MememeDynamoDB.swift in Sources */,
+				24D2BE2F1F7B6949003B7957 /* GameStack.swift in Sources */,
 				2413D7D01F44D62F001EA209 /* GameCoreDataProperties.swift in Sources */,
 				241C6E651F58983B00756BA7 /* SignUpViewController.swift in Sources */,
 				24AF9E5C1F3018D000D05BFC /* InGameView.swift in Sources */,
@@ -1383,7 +1395,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		24305C911F2BB46C00B14632 /* Model.xcdatamodeld */ = {
+		24305C911F2BB46C00B14632 /* GameModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
 				247415FB1F3C024700973EDE /* Model 5.xcdatamodel */,
@@ -1393,7 +1405,7 @@
 				24305C921F2BB46C00B14632 /* Model.xcdatamodel */,
 			);
 			currentVersion = 247415FB1F3C024700973EDE /* Model 5.xcdatamodel */;
-			path = Model.xcdatamodeld;
+			path = GameModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

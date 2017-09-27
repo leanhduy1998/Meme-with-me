@@ -41,7 +41,6 @@ class InGameViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var leaderId = ""
     var crownUserIconIV = UIImageView()
     var game : Game!
-    let delegate = UIApplication.shared.delegate as! AppDelegate
     
     //database
     let inGameRef = Database.database().reference().child("inGame")
@@ -56,6 +55,7 @@ class InGameViewController: UIViewController, UITableViewDelegate, UITableViewDa
         super.viewDidLoad()
         setupUI()
         if leaderId == MyPlayerData.id {
+            AvailableRoomHelper.makeMyRoomStatusClosed()
             createBeginingData()
         }
         else {
@@ -72,6 +72,9 @@ class InGameViewController: UIViewController, UITableViewDelegate, UITableViewDa
             })
         }
         self.automaticallyAdjustsScrollViewInsets = false
+    }
+    @objc private func removeYourAvailableRoom(){
+        AvailableRoomHelper.deleteMyRoom()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -95,7 +98,36 @@ class InGameViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func addObserverForCardNormals(){
-        print(game.gameId!)
+        inGameRef.child(game.gameId!).child("players").observe(DataEventType.childRemoved, with: { (snapshot) in
+
+            DispatchQueue.main.async {
+                var count = 0
+                for p in self.playersInGame {
+                    if(p.userId == snapshot.key){
+                        self.playersInGame.remove(at: count)
+                    }
+                    count = count + 1
+                }
+                var playerOrder = self.game.playersorder?.allObjects as? [PlayerOrderInGame]
+                
+                var orderDeleted = 0
+                for order in playerOrder! {
+                    if order.playerId == snapshot.key {
+                        orderDeleted = Int(order.orderNum)
+                        self.game.removeFromPlayersorder(order)
+                    }
+                }
+                playerOrder = self.game.playersorder?.allObjects as? [PlayerOrderInGame]
+                for order in playerOrder! {
+                    if(order.orderNum>orderDeleted){
+                        order.orderNum = order.orderNum - Int16(1)
+                    }
+                }
+                GameStack.sharedInstance.saveContext {}
+            }
+        })
+
+        
         inGameRef.child(game.gameId!).child("normalCards").observe(DataEventType.childAdded, with: { (snapshot) in
             let playerId = snapshot.key
             
@@ -141,7 +173,7 @@ class InGameViewController: UIViewController, UITableViewDelegate, UITableViewDa
                         break
                     }
                 }
-                self.delegate.saveContext {
+                GameStack.sharedInstance.saveContext {
                     DispatchQueue.main.async {
                         self.reloadPreviewCards()
                     }
@@ -151,26 +183,27 @@ class InGameViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         inGameRef.child(game.gameId!).observe(DataEventType.childChanged, with: { (snapshot) in
             DispatchQueue.main.async {
-                let id = snapshot.value as?  String
-                
-                let oldLeaderId = self.leaderId
-                self.leaderId = id!
-                
-                let playerOrder = self.game.playersorder?.allObjects as? [PlayerOrderInGame]
-                
-                var roundNumRemoved = 0
-                for order in playerOrder! {
-                    if order.playerId == oldLeaderId {
-                        roundNumRemoved = Int(order.orderNum)
-                        self.game.removeFromPlayersorder(order)
-                        break
+                if(snapshot.key == "leaderId"){
+                    let id = snapshot.value as?  String
+                    
+                    let oldLeaderId = self.leaderId
+                    self.leaderId = id!
+                    
+                    let playerOrder = self.game.playersorder?.allObjects as? [PlayerOrderInGame]
+                    
+                    var roundNumRemoved = 0
+                    for order in playerOrder! {
+                        if order.playerId == oldLeaderId {
+                            roundNumRemoved = Int(order.orderNum)
+                            self.game.removeFromPlayersorder(order)
+                            break
+                        }
                     }
-                }
-                
-
-                for order in playerOrder! {
-                    if Int(order.orderNum) > roundNumRemoved {
-                        order.orderNum = order.orderNum - Int16(1)
+                    
+                    for order in playerOrder! {
+                        if Int(order.orderNum) > roundNumRemoved {
+                            order.orderNum = order.orderNum - Int16(1)
+                        }
                     }
                 }
             }
@@ -189,7 +222,7 @@ class InGameViewController: UIViewController, UITableViewDelegate, UITableViewDa
             if(nextRound > (game.playersorder?.count)!-1) {
                 let playerOrder = game.playersorder?.allObjects as? [PlayerOrderInGame]
                 for order in playerOrder! {
-                    let temp = PlayerOrderInGame(orderNum: Int(order.orderNum) + (playerOrder?.count)!, playerId: order.playerId!, context: delegate.stack.context)
+                    let temp = PlayerOrderInGame(orderNum: Int(order.orderNum) + (playerOrder?.count)!, playerId: order.playerId!, context: GameStack.sharedInstance.stack.context)
                     game.addToPlayersorder(temp)
                     print(playerOrder?.count)
                 }
@@ -197,7 +230,8 @@ class InGameViewController: UIViewController, UITableViewDelegate, UITableViewDa
             
             let nextRoundCeasarId = getCeasarIdForCurrentRound(roundNum: nextRound)
             
-            let round = Round(roundNum: nextRound, context: self.delegate.stack.context)
+            let round = Round(roundNum: nextRound, context: GameStack.sharedInstance.stack.context)
+            
             
             if MyPlayerData.id == leaderId {
                 let helper = UserFilesHelper()
@@ -205,13 +239,15 @@ class InGameViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     DispatchQueue.main.async {
                         InGameHelper.updateGameToNextRound(gameId: self.game.gameId!, nextRound: nextRound, nextRoundImageUrl: memeUrl)
                         
-                        round.cardceasar = CardCeasar(cardPic: memeData, playerId: nextRoundCeasarId, round: nextRound, cardPicUrl: memeUrl, context: self.delegate.stack.context)
+                        round.cardceasar = CardCeasar(cardPic: memeData, playerId: nextRoundCeasarId, round: nextRound, cardPicUrl: memeUrl, context: GameStack.sharedInstance.stack.context)
+                        self.playerJudging = nextRoundCeasarId
                         self.game.addToRounds(round)
                         
-                        self.delegate.saveContext {
+                        GameStack.sharedInstance.saveContext {
                             DispatchQueue.main.async {
                                 self.reloadPreviewCards()
                                 self.reloadCurrentPlayersIcon()
+                                self.checkIfYourAreJudge()
                             }
                         }
                     }
@@ -220,13 +256,15 @@ class InGameViewController: UIViewController, UITableViewDelegate, UITableViewDa
             else {
                 InGameHelper.getRoundImage(roundNum: nextRound, gameId: game.gameId!, completionHandler: { (imageData, imageUrl) in
                     DispatchQueue.main.async {
-                        round.cardceasar = CardCeasar(cardPic: imageData, playerId: nextRoundCeasarId, round: nextRound, cardPicUrl: imageUrl, context: self.delegate.stack.context)
+                        round.cardceasar = CardCeasar(cardPic: imageData, playerId: nextRoundCeasarId, round: nextRound, cardPicUrl: imageUrl, context: GameStack.sharedInstance.stack.context)
+                        self.playerJudging = nextRoundCeasarId
                         self.game.addToRounds(round)
                         
-                        self.delegate.saveContext {
+                        GameStack.sharedInstance.saveContext {
                             DispatchQueue.main.async {
                                 self.reloadPreviewCards()
                                 self.reloadCurrentPlayersIcon()
+                                self.checkIfYourAreJudge()
                             }
                         }
                     }
@@ -293,26 +331,36 @@ class InGameViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBAction func optionBtnPressed(_ sender: Any) {
         let roomOptionAlertController = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
         roomOptionAlertController.addAction(UIAlertAction(title: "Leave Room", style: UIAlertActionStyle.default, handler: leaveRoom))
-        roomOptionAlertController.addAction(UIAlertAction(title: "End Game", style: UIAlertActionStyle.default, handler: endGame))
         roomOptionAlertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))
         self.present(roomOptionAlertController, animated: true, completion: nil)
     }
     
     private func leaveRoom(action: UIAlertAction){
-        for player in playersInGame {
-            if player.userId != MyPlayerData.id {
-                InGameHelper.updateLeaderId(newLeaderId: player.userId, gameId: game.gameId!)
-                break
-            }
+        if(playersInGame.count == 1){
+            InGameHelper.removeYourInGameRoom()
+            self.inGameRef.removeAllObservers()
+            self.performSegue(withIdentifier: "unwindToAvailableGamesViewController", sender: self)
         }
-        InGameHelper.removeYourInGameRoom()
-        inGameRef.removeAllObservers()
-        dismiss(animated: true, completion: nil)
+        else {
+            for player in playersInGame {
+                if player.userId != MyPlayerData.id {
+                    InGameHelper.updateLeaderId(newLeaderId: player.userId, gameId: game.gameId!, completionHandler: {
+                        DispatchQueue.main.async {
+                            InGameHelper.removeYourselfFromGame(gameId: self.game.gameId!, completionHandler: {
+                                DispatchQueue.main.async {
+                                    InGameHelper.removeYourInGameRoom()
+                                    self.inGameRef.removeAllObservers()
+                                    self.performSegue(withIdentifier: "unwindToAvailableGamesViewController", sender: self)
+                                }
+                            })
+                        }
+                    })
+                    break
+                }
+            }
+
+        }
     }
-    private func endGame(action: UIAlertAction){
-        
-    }
-    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? AddEditMyMemeViewController {
@@ -326,6 +374,9 @@ class InGameViewController: UIViewController, UITableViewDelegate, UITableViewDa
             destination.playerJudging = playerJudging
             destination.memeImage = thisRoundImage
             destination.leaderId = leaderId
+        }
+        else if let destination = segue.destination as? AvailableGamesViewController{
+            destination.updateOpenRoomValue()
         }
     }
 }

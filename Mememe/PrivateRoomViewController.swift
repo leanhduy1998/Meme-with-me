@@ -94,6 +94,8 @@ class PrivateRoomViewController: UIViewController,UITableViewDelegate, UITableVi
                 self.tableview.reloadData()
             }
         })
+        
+        
         availableRoomRef.child(leaderId).child("playerInRoom").observe(DataEventType.childRemoved, with: { (snapshot) in
             let value = snapshot.value as? String
             let postDict = [snapshot.key:value]
@@ -148,6 +150,10 @@ class PrivateRoomViewController: UIViewController,UITableViewDelegate, UITableVi
             
             inGameRef.removeAllObservers()
             availableRoomRef.removeAllObservers()
+        }
+        else if let destination = segue.destination as? AvailableGamesViewController{
+            destination.selectedLeaderId = nil
+            leaderId = nil
         }
     }
 

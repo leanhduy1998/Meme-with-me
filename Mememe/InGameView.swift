@@ -130,8 +130,8 @@ extension InGameViewController {
             heartView?.addSubview(heartImageView!)
             
             let cardNormal = heartView?.cardNormal
-            cardNormal?.addToPlayerlove(PlayerLove(playerId: MyPlayerData.id, context: delegate.stack.context))
-            delegate.saveContext(completeHandler: {})
+            cardNormal?.addToPlayerlove(PlayerLove(playerId: MyPlayerData.id, context: GameStack.sharedInstance.stack.context))
+            GameStack.sharedInstance.saveContext(completeHandler: {})
         }
         else {
             heartView?.subviews[0].removeFromSuperview()
@@ -140,7 +140,7 @@ extension InGameViewController {
                 let playerLove = pl as? PlayerLove
                 if playerLove?.playerId == MyPlayerData.id {
                     cardNormal?.removeFromPlayerlove(playerLove!)
-                    delegate.saveContext(completeHandler: {})
+                    GameStack.sharedInstance.saveContext(completeHandler: {})
                 }
             }
         }

@@ -14,8 +14,6 @@ class GameDataFromJSON{
     static var delegate: AppDelegate!
     
     static func getGameFromJSON(model: MememeDBObjectModel, completionHandler: @escaping ()-> Void) -> Game {
-        delegate = UIApplication.shared.delegate as! AppDelegate
-        
         let gameJSON = model._game
         
         let json = try? JSONSerialization.jsonObject(with: gameJSON!, options: []) as? [String: Any]
@@ -25,12 +23,12 @@ class GameDataFromJSON{
         formatter.dateFormat = "MM/dd/yyyy hh:mm"
         let createdDate = formatter.date(from: (json!?["createdDate"] as? String)!)
         
-        let game = Game(createdDate: createdDate!, gameId: (json??["gameId"] as? String)!, context: delegate.stack.context)
+        let game = Game(createdDate: createdDate!, gameId: (json??["gameId"] as? String)!, context: GameStack.sharedInstance.stack.context)
         
         self.addPlayerOrderToGame(game: game, gameDic: (json??["playerOrderInGame"] as? [String:Any])!)
         self.addRoundToGame(game: game, roundDic: (json??["rounds"] as? [String:Any])!)
         
-        delegate.saveContext {
+        GameStack.sharedInstance.saveContext {
             completionHandler()
         }
         return game
@@ -40,7 +38,7 @@ class GameDataFromJSON{
         
         for x in 0...roundCount {
             let thisRoundDic = roundDic["\(x)"] as? [String:Any]
-            let roundCoreData = Round(roundNum: x, context: delegate.stack.context)
+            let roundCoreData = Round(roundNum: x, context: GameStack.sharedInstance.stack.context)
             
             addCardCeasarToRound(round: roundCoreData, roundDic: (thisRoundDic?["cardCeasar"] as? [String:Any])!)
             addCardNormalToRound(round: roundCoreData, cardDic: (thisRoundDic?["cardNormals"] as? [String:Any])!)
@@ -49,7 +47,7 @@ class GameDataFromJSON{
         }
     }
     private static func addCardCeasarToRound(round: Round, roundDic: [String:Any]){
-        let cardCeasar = CardCeasar(playerId: roundDic["playerId"] as! String, round: Int(round.roundNum), cardPicUrl: roundDic["cardPicUrl"] as! String, context: delegate.stack.context)
+        let cardCeasar = CardCeasar(playerId: roundDic["playerId"] as! String, round: Int(round.roundNum), cardPicUrl: roundDic["cardPicUrl"] as! String, context: GameStack.sharedInstance.stack.context)
         round.cardceasar = cardCeasar
     }
     private static func addCardNormalToRound(round: Round, cardDic: [String:Any]){
@@ -66,20 +64,20 @@ class GameDataFromJSON{
                 didWin = true
             }
             
-            let cardNormal = CardNormal(bottomText: thisCardDic["bottomText"] as! String, didWin: didWin, playerId: playerId, round: Int(round.roundNum), topText: thisCardDic["topText"] as! String, context: delegate.stack.context)
+            let cardNormal = CardNormal(bottomText: thisCardDic["bottomText"] as! String, didWin: didWin, playerId: playerId, round: Int(round.roundNum), topText: thisCardDic["topText"] as! String, context: GameStack.sharedInstance.stack.context)
             addPlayerLoveToCardNormal(cardNormal: cardNormal, loveDic: thisCardDic["playerlove"] as! [String])
             round.addToCardnormal(cardNormal)
         }
     }
     private static func addPlayerLoveToCardNormal(cardNormal: CardNormal, loveDic: [String]){
         for playerId in loveDic {
-            let playerLove = PlayerLove(playerId: playerId, context: delegate.stack.context)
+            let playerLove = PlayerLove(playerId: playerId, context: GameStack.sharedInstance.stack.context)
             cardNormal.addToPlayerlove(playerLove)
         }
     }
     private static func addPlayerOrderToGame(game:Game, gameDic: [String:Any]) {
         for (roundNum,playerId) in gameDic {
-            let playerOrder = PlayerOrderInGame(orderNum: Int(roundNum)!, playerId: playerId as! String, context: delegate.stack.context)
+            let playerOrder = PlayerOrderInGame(orderNum: Int(roundNum)!, playerId: playerId as! String, context: GameStack.sharedInstance.stack.context)
             game.addToPlayersorder(playerOrder)
         }
     }

@@ -31,8 +31,6 @@ class AddEditMyMemeViewController: UIViewController, UITableViewDelegate, UITabl
     
     var imageviewHeight : CGFloat!
     
-    let delegate = UIApplication.shared.delegate as! AppDelegate
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,14 +55,14 @@ class AddEditMyMemeViewController: UIViewController, UITableViewDelegate, UITabl
         
         
         if !found {
-            let myCard = CardNormal(bottomText: bottomLabel.text!, didWin: false, playerId: myPlayerId, round: Int((latestRound.roundNum)), topText: topLabel.text!, context: delegate.stack.context)
+            let myCard = CardNormal(bottomText: bottomLabel.text!, didWin: false, playerId: myPlayerId, round: Int((latestRound.roundNum)), topText: topLabel.text!, context: GameStack.sharedInstance.stack.context)
             latestRound.addToCardnormal(myCard)
             
             InGameHelper.insertNormalCardIntoGame(gameId: game.gameId!, card: myCard)
         }
         
                 
-        delegate.saveContext(completeHandler: {
+        GameStack.sharedInstance.saveContext(completeHandler: {
             DispatchQueue.main.async {
                 self.performSegue(withIdentifier: "unwindToInGameViewController", sender: self)
             }
