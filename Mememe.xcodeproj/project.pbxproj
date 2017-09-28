@@ -63,6 +63,10 @@
 		2468B0321F4E95870091EDD0 /* CardCeasar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2468B0301F4E95870091EDD0 /* CardCeasar.swift */; };
 		2468B0331F4E95870091EDD0 /* CardCeasarCoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2468B0311F4E95870091EDD0 /* CardCeasarCoreDataProperties.swift */; };
 		246B8A731F735B3D0034DC24 /* InGameHelperConversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246B8A721F735B3D0034DC24 /* InGameHelperConversion.swift */; };
+		246D08E61F7CA4680025DA40 /* MyModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 246D08E41F7CA4680025DA40 /* MyModel.xcdatamodeld */; };
+		246D08EF1F7CAB730025DA40 /* MyDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246D08EE1F7CAB730025DA40 /* MyDataStack.swift */; };
+		246D08F71F7CB18C0025DA40 /* MyCoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246D08F61F7CB14F0025DA40 /* MyCoreData.swift */; };
+		246D08F81F7CB18C0025DA40 /* MyCoreDataCoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246D08F51F7CB14E0025DA40 /* MyCoreDataCoreDataProperties.swift */; };
 		2474DFFE1F349424006E00AC /* AWSGoogleSignIn.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2474DFFA1F349424006E00AC /* AWSGoogleSignIn.framework */; };
 		2474DFFF1F349424006E00AC /* AWSGoogleSignInResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2474DFFB1F349424006E00AC /* AWSGoogleSignInResources.bundle */; };
 		2474E0001F349424006E00AC /* AWSMobileClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2474DFFC1F349424006E00AC /* AWSMobileClient.swift */; };
@@ -205,6 +209,10 @@
 		2468B0301F4E95870091EDD0 /* CardCeasar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CardCeasar.swift; path = ../CardCeasar.swift; sourceTree = "<group>"; };
 		2468B0311F4E95870091EDD0 /* CardCeasarCoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CardCeasarCoreDataProperties.swift; path = ../CardCeasarCoreDataProperties.swift; sourceTree = "<group>"; };
 		246B8A721F735B3D0034DC24 /* InGameHelperConversion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InGameHelperConversion.swift; sourceTree = "<group>"; };
+		246D08E51F7CA4680025DA40 /* MyModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MyModel.xcdatamodel; sourceTree = "<group>"; };
+		246D08EE1F7CAB730025DA40 /* MyDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDataStack.swift; sourceTree = "<group>"; };
+		246D08F51F7CB14E0025DA40 /* MyCoreDataCoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCoreDataCoreDataProperties.swift; sourceTree = "<group>"; };
+		246D08F61F7CB14F0025DA40 /* MyCoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCoreData.swift; sourceTree = "<group>"; };
 		247415CE1F3BBEE600973EDE /* Model 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model 2.xcdatamodel"; sourceTree = "<group>"; };
 		247415ED1F3BC4F500973EDE /* Model 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model 3.xcdatamodel"; sourceTree = "<group>"; };
 		247415F21F3BCA1800973EDE /* Model 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model 4.xcdatamodel"; sourceTree = "<group>"; };
@@ -370,8 +378,8 @@
 		241C6E6C1F5A2DE300756BA7 /* AWS */ = {
 			isa = PBXGroup;
 			children = (
+				246D08F41F7CAFA20025DA40 /* DynamoDB */,
 				241C6E691F59CB6400756BA7 /* S3 */,
-				2468B0351F4EBEDF0091EDD0 /* DynamoDB */,
 			);
 			name = AWS;
 			sourceTree = "<group>";
@@ -418,11 +426,8 @@
 		24305CE01F2E5F9F00B14632 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				24D2BE2D1F7B6932003B7957 /* CoreDataStack */,
-				24305C911F2BB46C00B14632 /* GameModel.xcdatamodeld */,
-				24305CC51F2BD4F000B14632 /* CoreDataClass */,
-				24305CB81F2BD34700B14632 /* CoreDataProperties */,
-				24D2BE2E1F7B6949003B7957 /* GameStack.swift */,
+				246D08E91F7CA96A0025DA40 /* MyData */,
+				246D08E71F7CA5BC0025DA40 /* Game */,
 			);
 			name = CoreData;
 			sourceTree = "<group>";
@@ -473,9 +478,7 @@
 		243F20A01F6A27D10003C604 /* Firebase */ = {
 			isa = PBXGroup;
 			children = (
-				24E734C11F6DCD9400218AB1 /* In Game */,
-				24FC32DB1F6CB097006CBD62 /* UserOnlineSystem.swift */,
-				245B2B1A1F50E8CE00BCF75A /* AvailableRoom */,
+				241C6E5E1F58160700756BA7 /* AvailableRoomFirBModel.swift */,
 			);
 			name = Firebase;
 			sourceTree = "<group>";
@@ -487,15 +490,6 @@
 				245B2B131F4F685500BCF75A /* GameDataFromJSON.swift */,
 			);
 			name = JSON;
-			sourceTree = "<group>";
-		};
-		245B2B1A1F50E8CE00BCF75A /* AvailableRoom */ = {
-			isa = PBXGroup;
-			children = (
-				241C6E5E1F58160700756BA7 /* AvailableRoomFirBModel.swift */,
-				243F20A11F6A2C2D0003C604 /* AvailableRoomHelper.swift */,
-			);
-			name = AvailableRoom;
 			sourceTree = "<group>";
 		};
 		245B2B201F50F9ED00BCF75A /* PrivateRoom */ = {
@@ -512,7 +506,6 @@
 			isa = PBXGroup;
 			children = (
 				2413D7E61F4CC540001EA209 /* MememeDBObjectModel.swift */,
-				2413D7E21F4B60FA001EA209 /* MememeDynamoDB.swift */,
 			);
 			name = Mememe;
 			sourceTree = "<group>";
@@ -521,19 +514,8 @@
 			isa = PBXGroup;
 			children = (
 				245B2B2F1F52350900BCF75A /* PlayerDataDBObjectModel.swift */,
-				245B2B311F52379600BCF75A /* PlayerDataDynamoDB.swift */,
 			);
 			name = PlayerData;
-			sourceTree = "<group>";
-		};
-		2468B0341F4EBED60091EDD0 /* Helper */ = {
-			isa = PBXGroup;
-			children = (
-				2413D7DE1F499004001EA209 /* GetGameData.swift */,
-				24233F5D1F63437300B2B7EE /* DisplayAlert.swift */,
-				24AFAD921F73355F00D57762 /* GetGameCoreDataData.swift */,
-			);
-			name = Helper;
 			sourceTree = "<group>";
 		};
 		2468B0351F4EBEDF0091EDD0 /* DynamoDB */ = {
@@ -541,7 +523,52 @@
 			children = (
 				245B2B2D1F5233CC00BCF75A /* Mememe */,
 				245B2B2E1F52348D00BCF75A /* PlayerData */,
+			);
+			name = DynamoDB;
+			sourceTree = "<group>";
+		};
+		246D08E71F7CA5BC0025DA40 /* Game */ = {
+			isa = PBXGroup;
+			children = (
+				24305C911F2BB46C00B14632 /* GameModel.xcdatamodeld */,
+				24D2BE2E1F7B6949003B7957 /* GameStack.swift */,
+				24305CC51F2BD4F000B14632 /* CoreDataClass */,
+				24305CB81F2BD34700B14632 /* CoreDataProperties */,
+			);
+			name = Game;
+			sourceTree = "<group>";
+		};
+		246D08E81F7CA8B60025DA40 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
 				245B2B191F50E8BD00BCF75A /* JSON */,
+				24FC32DB1F6CB097006CBD62 /* UserOnlineSystem.swift */,
+				2413D7DE1F499004001EA209 /* GetGameData.swift */,
+				24233F5D1F63437300B2B7EE /* DisplayAlert.swift */,
+				24AFAD921F73355F00D57762 /* GetGameCoreDataData.swift */,
+				241C6E6C1F5A2DE300756BA7 /* AWS */,
+				24E734C11F6DCD9400218AB1 /* In Game */,
+				243F20A11F6A2C2D0003C604 /* AvailableRoomHelper.swift */,
+			);
+			name = Helper;
+			sourceTree = "<group>";
+		};
+		246D08E91F7CA96A0025DA40 /* MyData */ = {
+			isa = PBXGroup;
+			children = (
+				246D08F61F7CB14F0025DA40 /* MyCoreData.swift */,
+				246D08F51F7CB14E0025DA40 /* MyCoreDataCoreDataProperties.swift */,
+				246D08E41F7CA4680025DA40 /* MyModel.xcdatamodeld */,
+				246D08EE1F7CAB730025DA40 /* MyDataStack.swift */,
+			);
+			name = MyData;
+			sourceTree = "<group>";
+		};
+		246D08F41F7CAFA20025DA40 /* DynamoDB */ = {
+			isa = PBXGroup;
+			children = (
+				2413D7E21F4B60FA001EA209 /* MememeDynamoDB.swift */,
+				245B2B311F52379600BCF75A /* PlayerDataDynamoDB.swift */,
 			);
 			name = DynamoDB;
 			sourceTree = "<group>";
@@ -615,9 +642,8 @@
 		24896D811F2A5FC3003B6954 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				2468B0351F4EBEDF0091EDD0 /* DynamoDB */,
 				243F20A01F6A27D10003C604 /* Firebase */,
-				241C6E6C1F5A2DE300756BA7 /* AWS */,
-				2468B0341F4EBED60091EDD0 /* Helper */,
 				24305CE01F2E5F9F00B14632 /* CoreData */,
 				245B2B2B1F510B0100BCF75A /* MyPlayerData.swift */,
 				24233F5B1F6312D500B2B7EE /* Extension.swift */,
@@ -642,6 +668,7 @@
 		24896D831F2A5FD2003B6954 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				246D08E81F7CA8B60025DA40 /* Helper */,
 				24896D551F2A5FA2003B6954 /* StartViewController.swift */,
 				241C6E681F58AF2600756BA7 /* Sign up */,
 				24233F561F61F1AC00B2B7EE /* AvailableGames */,
@@ -656,6 +683,7 @@
 		24896D841F2A6C09003B6954 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				24305CDE1F2E5F5300B14632 /* CoreDataStack.swift */,
 				24896D5F1F2A5FA2003B6954 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -756,14 +784,6 @@
 				2498FA341F3485E800B21267 /* SignInViewController.swift */,
 			);
 			path = SignIn;
-			sourceTree = "<group>";
-		};
-		24D2BE2D1F7B6932003B7957 /* CoreDataStack */ = {
-			isa = PBXGroup;
-			children = (
-				24305CDE1F2E5F5300B14632 /* CoreDataStack.swift */,
-			);
-			name = CoreDataStack;
 			sourceTree = "<group>";
 		};
 		24E734C11F6DCD9400218AB1 /* In Game */ = {
@@ -1022,6 +1042,7 @@
 				24305CE31F2E632B00B14632 /* AvailableGamesExistImageCell.swift in Sources */,
 				241C6E5F1F58160700756BA7 /* AvailableRoomFirBModel.swift in Sources */,
 				24E734C81F6E01C200218AB1 /* Player.swift in Sources */,
+				246D08E61F7CA4680025DA40 /* MyModel.xcdatamodeld in Sources */,
 				2413D7CE1F44D62F001EA209 /* PlayerOrderInGameCoreDataProperties.swift in Sources */,
 				243F20A21F6A2C2D0003C604 /* AvailableRoomHelper.swift in Sources */,
 				2413D7D21F44D85A001EA209 /* InGameBeginingSetup.swift in Sources */,
@@ -1042,6 +1063,7 @@
 				24233F5E1F63437300B2B7EE /* DisplayAlert.swift in Sources */,
 				245B2B2C1F510B0100BCF75A /* MyPlayerData.swift in Sources */,
 				24233F581F61F27E00B2B7EE /* AvailableGamesNoImageCell.swift in Sources */,
+				246D08F81F7CB18C0025DA40 /* MyCoreDataCoreDataProperties.swift in Sources */,
 				2413D7B01F42112A001EA209 /* PlayerLoveCoreDataProperties.swift in Sources */,
 				24C30F441F7441E8007237C1 /* InGameExtensionUI.swift in Sources */,
 				2413D7BC1F427A81001EA209 /* MemeLabelConfigurer.swift in Sources */,
@@ -1052,10 +1074,12 @@
 				2498F9D81F342E8600B21267 /* CircleImageCutter.swift in Sources */,
 				24305C931F2BB46C00B14632 /* GameModel.xcdatamodeld in Sources */,
 				245B2B1F1F50F9D100BCF75A /* PrivateRoomTableView.swift in Sources */,
+				246D08F71F7CB18C0025DA40 /* MyCoreData.swift in Sources */,
 				24E734CB1F6F00F900218AB1 /* AvailableGamesTableView.swift in Sources */,
 				24FC32DC1F6CB097006CBD62 /* UserOnlineSystem.swift in Sources */,
 				24AF9E5A1F30035800D05BFC /* InGameViewController.swift in Sources */,
 				245B2B321F52379600BCF75A /* PlayerDataDynamoDB.swift in Sources */,
+				246D08EF1F7CAB730025DA40 /* MyDataStack.swift in Sources */,
 				2468B0321F4E95870091EDD0 /* CardCeasar.swift in Sources */,
 				2498F9DD1F3478E200B21267 /* MyChatTableViewCell.swift in Sources */,
 				2413D7E71F4CC540001EA209 /* MememeDBObjectModel.swift in Sources */,
@@ -1406,6 +1430,16 @@
 			);
 			currentVersion = 247415FB1F3C024700973EDE /* Model 5.xcdatamodel */;
 			path = GameModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		246D08E41F7CA4680025DA40 /* MyModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				246D08E51F7CA4680025DA40 /* MyModel.xcdatamodel */,
+			);
+			currentVersion = 246D08E51F7CA4680025DA40 /* MyModel.xcdatamodel */;
+			path = MyModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

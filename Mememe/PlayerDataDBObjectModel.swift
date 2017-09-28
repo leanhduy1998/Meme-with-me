@@ -11,6 +11,8 @@ import AWSDynamoDB
 
 class PlayerDataDBObjectModel: AWSDynamoDBObjectModel, AWSDynamoDBModeling {
     var _userId: String?
+    var _laughes: NSNumber?
+    var _madeCeasar: NSNumber?
     var _name: String?
     
     class func dynamoDBTableName() -> String {
@@ -23,10 +25,11 @@ class PlayerDataDBObjectModel: AWSDynamoDBObjectModel, AWSDynamoDBModeling {
         return "_userId"
     }
     
-    
     override class func jsonKeyPathsByPropertyKey() -> [AnyHashable: Any] {
         return [
             "_userId" : "userId",
+            "_laughes" : "laughes",
+            "_madeCeasar" : "madeCeasar",
             "_name" : "name",
         ]
     }

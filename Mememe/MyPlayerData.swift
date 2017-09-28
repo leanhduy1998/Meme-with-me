@@ -12,4 +12,6 @@ class MyPlayerData{
     static var name: String!
     static var userImageUrl: String!
     static var id: String!
+    static var laughes: Int!
+    static var madeCeasar: Int!
 }

@@ -23,8 +23,10 @@ class PlayerDataDynamoDB {
         
         let itemForGet: PlayerDataDBObjectModel! = PlayerDataDBObjectModel()
         
-        itemForGet._userId = AWSIdentityManager.default().identityId!
+        itemForGet._userId = MyPlayerData.id
         itemForGet._name = MyPlayerData.name
+        itemForGet._laughes = MyPlayerData.laughes as! NSNumber
+        itemForGet._madeCeasar = MyPlayerData.madeCeasar as! NSNumber
         
         group.enter()
         

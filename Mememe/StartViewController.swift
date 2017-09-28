@@ -36,22 +36,61 @@ class StartViewController: UIViewController,UIGestureRecognizerDelegate, AWSSign
     let redCircleSize = CGFloat(20)
     var iconWidth = CGFloat(0)
     
-    
-    private let delegate = UIApplication.shared.delegate as! AppDelegate
+    let myDataStack = MyDataStack()
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
         setupMainScreenTap()
         setupGoogleButton()
+        myDataStack.initializeFetchedResultsController()
         
-        /*
-        do {
-            try delegate.stack.dropAllData()
+        
+        userIcon.alpha = 0
+        laughingIcon.alpha = 0
+        leftRedNotificationView.alpha = 0
+        leftNotificationLabel.alpha = 0
+        
+        touchToStartLabel.alpha = 0
+        
+        UIView.animate(withDuration: 1) {
+            self.userIcon.frame.origin.y += self.view.frame.height/2
+            
+            self.laughingIcon.frame.origin.x += 100
+            self.leftRedNotificationView.frame.origin.x += 100
+            self.leftNotificationLabel.frame.origin.x += 100
+            
+            self.ceasarIcon.frame.origin.x -= 100
+            self.rightRedNotificationView.frame.origin.x -= 100
+            self.rightNotificationLabel.frame.origin.x -= 100
+            
+            self.userIcon.alpha = 1
+            self.laughingIcon.alpha = 1
+            self.leftRedNotificationView.alpha = 1
+            self.leftNotificationLabel.alpha = 1
+            self.touchToStartLabel.alpha = 1
         }
-        catch {
-            fatalError()
-        }*/
+        
+        UIView.animate(withDuration: 2, delay: 0.0, options:[UIViewAnimationOptions.repeat, UIViewAnimationOptions.autoreverse], animations: {
+            self.laughingIcon.frame.origin.y -= 10
+            self.leftRedNotificationView.frame.origin.y += 10
+            self.leftNotificationLabel.frame.origin.y += 1
+            
+            self.ceasarIcon.frame.origin.y -= 10
+            self.rightRedNotificationView.frame.origin.y += 10
+            self.rightNotificationLabel.frame.origin.y += 1
+            
+            self.userIcon.frame.origin.y += 10
+            
+            self.touchToStartLabel.alpha = 0
+ 
+        }, completion: nil)
+        
+        let fetchedObjects = self.myDataStack.fetchedResultsController.fetchedObjects as? [MyCoreData]
+        if((fetchedObjects?.count)! > 0){
+            userIcon.image = UIImage(data: fetchedObjects![0].imageData as! Data)
+        }
     }
 
     private func setupGoogleButton(){
@@ -69,8 +108,18 @@ class StartViewController: UIViewController,UIGestureRecognizerDelegate, AWSSign
         view.addGestureRecognizer(tap)
     }
     func handleTap(sender: UITapGestureRecognizer) {
-        touchToStartLabel.isHidden = true
         googleButton.isHidden = false
+        googleButton.alpha = 0
+        
+        UIView.animate(withDuration: 1, animations: {
+            self.view.backgroundColor = UIColor(red: 145/255, green: 255/255, blue: 255/255, alpha: 1.0)
+            self.googleButton.alpha = 1
+            self.touchToStartLabel.alpha = 0
+        }) { (completed) in
+            if(completed){
+                self.touchToStartLabel.isHidden = true
+            }
+        }
     }
     
 
@@ -90,8 +139,39 @@ class StartViewController: UIViewController,UIGestureRecognizerDelegate, AWSSign
                             DispatchQueue.main.async {
                                 let data = results?.items[0] as? PlayerDataDBObjectModel
                                 MyPlayerData.name = data?._name
+                                MyPlayerData.laughes = (data?._laughes)! as Int!
+                                MyPlayerData.madeCeasar = (data?._madeCeasar)! as Int!
                                 
-                                self.performSegue(withIdentifier: "mainViewControllerSegue", sender: self)
+                                let helper = UserFilesHelper()
+                                helper.loadUserProfilePicture(userId: MyPlayerData.id) { (imageData) in
+                                    DispatchQueue.main.async {
+                                        let fetchedObjects = self.myDataStack.fetchedResultsController.fetchedObjects as? [MyCoreData]
+                                        if(fetchedObjects?.count == 0){
+                                            let myData = MyCoreData(imageData: imageData, laughes: MyPlayerData.laughes, madeCeasar: MyPlayerData.madeCeasar, context: self.myDataStack.stack.context)
+                                        }
+                                        else {
+                                            fetchedObjects![0].imageData = imageData as NSData
+                                        }
+                                        self.myDataStack.saveContext {
+                                            DispatchQueue.main.async {
+                                                UIView.animate(withDuration: 2, animations: {
+                                                    self.userIcon.alpha = 0
+                                                    self.laughingIcon.alpha = 0
+                                                    self.ceasarIcon.alpha = 0
+                                                    self.leftNotificationLabel.alpha = 0
+                                                    self.leftRedNotificationView.alpha = 0
+                                                    self.rightNotificationLabel.alpha = 0
+                                                    self.rightRedNotificationView.alpha = 0
+                                                }, completion: { (completed) in
+                                                    if(completed){
+                                                        self.performSegue(withIdentifier: "mainViewControllerSegue", sender: self)
+                                                    }
+                                                })
+                                                
+                                            }
+                                        }
+                                    }
+                                }
                             }
                         }
                     }
