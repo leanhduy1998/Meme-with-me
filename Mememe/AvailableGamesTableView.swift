@@ -15,7 +15,8 @@ extension AvailableGamesViewController {
         let room = openRooms[indexPath.row]
         
         if room.roomImageUrl! == "noURL" && (room.playerInRoom?.count)! > 1 {
-            let cell = (tableView.dequeueReusableCell(withIdentifier: "AvailableGamesNoImageCell") as? AvailableGamesNoImageCell)!
+            var cell = (tableView.dequeueReusableCell(withIdentifier: "AvailableGamesNoImageCell") as? AvailableGamesNoImageCell)!
+            cell = CellAnimator.add(cell: cell)
             cell.nameLabel.text = getNamefromAllPlayerInRoom(playerArr: room.playerInRoom!)
             cell.activityIndicator.startAnimating()
             
@@ -73,7 +74,8 @@ extension AvailableGamesViewController {
             return cell
         }
         else if room.roomImageUrl! == "noURL" && (room.playerInRoom?.count)! == 1 {
-            let cell = (tableView.dequeueReusableCell(withIdentifier: "AvailableGamesExistImageCell") as? AvailableGamesExistImageCell)!
+            var cell = (tableView.dequeueReusableCell(withIdentifier: "AvailableGamesExistImageCell") as? AvailableGamesExistImageCell)!
+            cell = CellAnimator.add(cell: cell)
             cell.nameLabel.text = getNamefromAllPlayerInRoom(playerArr: room.playerInRoom!)
             cell.activityIndicator.startAnimating()
             
@@ -90,6 +92,7 @@ extension AvailableGamesViewController {
                 return cell
             }
         }
+        /*
         else if room.roomImageUrl! == "noURL" {
             let cell = (tableView.dequeueReusableCell(withIdentifier: "AvailableGamesExistImageCell") as? AvailableGamesExistImageCell)!
             cell.nameLabel.text = getNamefromAllPlayerInRoom(playerArr: room.playerInRoom!)
@@ -99,12 +102,9 @@ extension AvailableGamesViewController {
             print("not configer yet")
             //remember to
             cell.activityIndicator.stopAnimating()
-            
-            
-            
-            
+    
             return cell
-        }
+        }*/
         else {
             DisplayAlert.display(controller: self, title: "Error loading Available Games Table View Cell", message: "")
             return UITableViewCell()

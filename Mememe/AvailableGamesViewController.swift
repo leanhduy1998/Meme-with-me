@@ -45,6 +45,7 @@ class AvailableGamesViewController: UIViewController, UITableViewDelegate, UITab
         AvailableRoomHelper.deleteMyRoom()
         InGameHelper.removeYourInGameRoom()
         getRoomDataFromDB()
+        updateOpenRoomValue()
         selectedLeaderId = nil
     }
     

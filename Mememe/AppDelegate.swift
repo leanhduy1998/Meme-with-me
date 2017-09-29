@@ -19,7 +19,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     
-
     func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
         return AWSMobileClient.sharedInstance.withApplication(application, withURL: url, withSourceApplication: sourceApplication, withAnnotation: annotation)
     }
@@ -58,13 +57,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillEnterForeground(_ application: UIApplication)
     {
-        
-        /*
-        let storyboard = UIStoryboard(name: "Main", bundle: nil);
-        let viewController: AvailableGamesViewController = storyboard.instantiateViewController(withIdentifier: "AvailableGamesViewController") as! AvailableGamesViewController;
-        
-        let rootViewController = self.window!.rootViewController as! UINavigationController;
-        rootViewController.pushViewController(viewController, animated: true);*/
+        UserOnlineSystem.updateUserOnlineStatus()
         
         // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
     }

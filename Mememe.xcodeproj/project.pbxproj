@@ -113,6 +113,7 @@
 		24E734CB1F6F00F900218AB1 /* AvailableGamesTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E734CA1F6F00F900218AB1 /* AvailableGamesTableView.swift */; };
 		24E8597A1F7EFA4300856BA3 /* MyCoreDataCoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E859781F7EF9FB00856BA3 /* MyCoreDataCoreDataClass.swift */; };
 		24E8597B1F7EFA4300856BA3 /* MyCoreDataCoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E859791F7EF9FB00856BA3 /* MyCoreDataCoreDataProperties.swift */; };
+		24E8597D1F7EFE5700856BA3 /* CellAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E8597C1F7EFE5700856BA3 /* CellAnimator.swift */; };
 		24F6A7701F34E48D000E35DD /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2498FA271F34857100B21267 /* libsqlite3.0.tbd */; };
 		24F6A7711F34E48D000E35DD /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2498FA281F34857100B21267 /* libsqlite3.tbd */; };
 		24F6A7731F34E4C2000E35DD /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 24F6A7721F34E4C2000E35DD /* libz.tbd */; };
@@ -270,6 +271,7 @@
 		24E859771F7EF94800856BA3 /* Model 6.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model 6.xcdatamodel"; sourceTree = "<group>"; };
 		24E859781F7EF9FB00856BA3 /* MyCoreDataCoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCoreDataCoreDataClass.swift; sourceTree = "<group>"; };
 		24E859791F7EF9FB00856BA3 /* MyCoreDataCoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCoreDataCoreDataProperties.swift; sourceTree = "<group>"; };
+		24E8597C1F7EFE5700856BA3 /* CellAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellAnimator.swift; sourceTree = "<group>"; };
 		24F6A7721F34E4C2000E35DD /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		24FC32DB1F6CB097006CBD62 /* UserOnlineSystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserOnlineSystem.swift; sourceTree = "<group>"; };
 		A1EFF53BA25955FB53356C75 /* Pods_Mememe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mememe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -332,6 +334,7 @@
 			children = (
 				2498F9D71F342E8600B21267 /* CircleImageCutter.swift */,
 				2413D7BB1F427A81001EA209 /* MemeLabelConfigurer.swift */,
+				24E8597C1F7EFE5700856BA3 /* CellAnimator.swift */,
 			);
 			name = Helper;
 			sourceTree = "<group>";
@@ -1086,6 +1089,7 @@
 				24D2BE2F1F7B6949003B7957 /* GameStack.swift in Sources */,
 				2413D7D01F44D62F001EA209 /* GameCoreDataProperties.swift in Sources */,
 				241C6E651F58983B00756BA7 /* SignUpViewController.swift in Sources */,
+				24E8597D1F7EFE5700856BA3 /* CellAnimator.swift in Sources */,
 				24AF9E5C1F3018D000D05BFC /* InGameView.swift in Sources */,
 				24896D561F2A5FA2003B6954 /* StartViewController.swift in Sources */,
 				2498FA351F3485E800B21267 /* GoogleIdentityProfile.swift in Sources */,
