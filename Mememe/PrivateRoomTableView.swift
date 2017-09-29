@@ -12,7 +12,8 @@ import UIKit
 extension PrivateRoomViewController {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "PrivateRoomTableCell") as? PrivateRoomTableCell
+        var cell = tableView.dequeueReusableCell(withIdentifier: "PrivateRoomTableCell") as? PrivateRoomTableCell
+        cell = CellAnimator.add(cell: cell!)
         helper.loadUserProfilePicture(userId: userInRoom[indexPath.row].userId) { (imageData) in
             DispatchQueue.main.async {
                 cell?.imageview.image = UIImage(data: imageData)

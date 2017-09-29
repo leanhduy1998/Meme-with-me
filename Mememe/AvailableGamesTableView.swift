@@ -120,7 +120,21 @@ extension AvailableGamesViewController {
                 if isLeaderOnline {
                     if self.openRooms[indexPath.row].roomIsOpen == "true"{
                         self.selectedLeaderId = self.openRooms[indexPath.row].leaderId
-                        self.performSegue(withIdentifier: "PrivateRoomViewControllerSegue", sender: self)
+                        
+                        UIView.animate(withDuration: 1, animations: {
+                            tableView.backgroundColor = UIColor.black
+                            tableView.visibleCells[indexPath.row].frame.origin.x = self.view.frame.midX 
+                            tableView.visibleCells[indexPath.row].frame.origin.y = self.view.frame.midY - tableView.visibleCells[indexPath.row].frame.height
+                            tableView.visibleCells[indexPath.row].transform = CGAffineTransform(scaleX: 2, y: 2)
+                            self.tabBarController?.tabBar.barTintColor = UIColor.black
+                            self.view.backgroundColor = UIColor.black
+                        }, completion: { (completed) in
+                            if completed {
+                                DispatchQueue.main.async {
+                                    self.performSegue(withIdentifier: "PrivateRoomViewControllerSegue", sender: self)
+                                }
+                            }
+                        })
                     }
                     else {
                         DisplayAlert.display(controller: self, title: "Room is closed", message: "This room has already started the game!")
