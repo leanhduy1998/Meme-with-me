@@ -41,6 +41,7 @@ class StartViewController: UIViewController,UIGestureRecognizerDelegate, AWSSign
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setupUI()
         setupMainScreenTap()
         setupGoogleButton()

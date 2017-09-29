@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreData
+import UIKit
 
 class GameStack{
     static let sharedInstance = GameStack()
@@ -17,6 +18,7 @@ class GameStack{
     
     func saveContext(completeHandler: @escaping ()-> Void){
         do {
+         //   try stack.dropAllData()
             try stack.saveContext()
         }
         catch ((let error)){

@@ -2,7 +2,7 @@
 //  MyCoreData+CoreDataClass.swift
 //  
 //
-//  Created by Duy Le on 9/28/17.
+//  Created by Duy Le on 9/29/17.
 //
 //
 

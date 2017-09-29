@@ -130,6 +130,9 @@ class AvailableGamesViewController: UIViewController, UITableViewDelegate, UITab
                                     exist = true
                                     break
                                 }
+                                if r.roomIsOpen == "false" {
+                                    exist = true
+                                }
                             }
                             if exist == false {
                                 self.openRooms.append(room)

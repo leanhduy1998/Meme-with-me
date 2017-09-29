@@ -11,7 +11,7 @@ import CoreData
 
 class MyDataStack{
     static let sharedInstance = GameStack()
-    var stack = CoreDataStack(modelName: "MyModel")!
+    var stack = CoreDataStack(modelName: "GameModel")!
     
     var fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult>!
     
