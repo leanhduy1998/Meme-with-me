@@ -15,6 +15,7 @@ class AvailableGamesViewController: UIViewController, UITableViewDelegate, UITab
     @IBAction func unwindToAvailableGamesViewController(segue:UIStoryboardSegue) { }
     @IBOutlet weak var tableview: UITableView!
     
+    
     var openRooms = [AvailableRoomFirBModel]()
     var selectedLeaderId: String!
     let helper = UserFilesHelper()

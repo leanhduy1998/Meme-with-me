@@ -12,20 +12,42 @@ import UIKit
 extension PrivateRoomViewController {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        var cell = tableView.dequeueReusableCell(withIdentifier: "PrivateRoomTableCell") as? PrivateRoomTableCell
-        cell = CellAnimator.add(cell: cell!)
-        helper.loadUserProfilePicture(userId: userInRoom[indexPath.row].userId) { (imageData) in
-            DispatchQueue.main.async {
-                cell?.imageview.image = UIImage(data: imageData)
+        if(tableView == chatTableView){
+            let message = chatHelper.messages[indexPath.row]
+            if(message.senderId == MyPlayerData.id){
+                var cell = tableView.dequeueReusableCell(withIdentifier: "MyChatTableViewCell") as? MyChatTableViewCell
+                cell = CellAnimator.add(cell: cell!)
+                cell?.textLabel?.text = message.text
+                return cell!
+            }
+            else {
+                var cell = tableView.dequeueReusableCell(withIdentifier: "HerChatTableViewCell") as? HerChatTableViewCell
+                cell = CellAnimator.add(cell: cell!)
+                cell?.textLabel?.text = message.text
+                return cell!
             }
         }
-        
-        cell?.nameLabel.text = userInRoom[indexPath.row].userName
-        
-        return cell!
+        else {
+            var cell = tableView.dequeueReusableCell(withIdentifier: "PrivateRoomTableCell") as? PrivateRoomTableCell
+            cell = CellAnimator.add(cell: cell!)
+            helper.loadUserProfilePicture(userId: userInRoom[indexPath.row].userId) { (imageData) in
+                DispatchQueue.main.async {
+                    cell?.imageview.image = UIImage(data: imageData)
+                }
+            }
+            
+            cell?.nameLabel.text = userInRoom[indexPath.row].userName
+            
+            return cell!
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return userInRoom.count
+        if(tableView == chatTableView){
+            return chatHelper.messages.count
+        }
+        else {
+            return userInRoom.count
+        }
     }
 }

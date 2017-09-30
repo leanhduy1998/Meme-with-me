@@ -68,6 +68,9 @@
 		2474DFFF1F349424006E00AC /* AWSGoogleSignInResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2474DFFB1F349424006E00AC /* AWSGoogleSignInResources.bundle */; };
 		2474E0001F349424006E00AC /* AWSMobileClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2474DFFC1F349424006E00AC /* AWSMobileClient.swift */; };
 		2474E0011F349424006E00AC /* AWSMobileHubHelper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2474DFFD1F349424006E00AC /* AWSMobileHubHelper.framework */; };
+		247A55C71F7F350A004D1701 /* ChatHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247A55C61F7F350A004D1701 /* ChatHelper.swift */; };
+		247A55C91F7F3EE3004D1701 /* ChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247A55C81F7F3EE3004D1701 /* ChatModel.swift */; };
+		247A55CB1F7F5FBC004D1701 /* PrivateRoomChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247A55CA1F7F5FBC004D1701 /* PrivateRoomChat.swift */; };
 		24896D541F2A5FA2003B6954 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24896D531F2A5FA2003B6954 /* AppDelegate.swift */; };
 		24896D561F2A5FA2003B6954 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24896D551F2A5FA2003B6954 /* StartViewController.swift */; };
 		24896D591F2A5FA2003B6954 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24896D571F2A5FA2003B6954 /* Main.storyboard */; };
@@ -218,6 +221,9 @@
 		2474DFFB1F349424006E00AC /* AWSGoogleSignInResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AWSGoogleSignInResources.bundle; sourceTree = "<group>"; };
 		2474DFFC1F349424006E00AC /* AWSMobileClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AWSMobileClient.swift; sourceTree = "<group>"; };
 		2474DFFD1F349424006E00AC /* AWSMobileHubHelper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AWSMobileHubHelper.framework; sourceTree = "<group>"; };
+		247A55C61F7F350A004D1701 /* ChatHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatHelper.swift; sourceTree = "<group>"; };
+		247A55C81F7F3EE3004D1701 /* ChatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatModel.swift; sourceTree = "<group>"; };
+		247A55CA1F7F5FBC004D1701 /* PrivateRoomChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateRoomChat.swift; sourceTree = "<group>"; };
 		24896D501F2A5FA2003B6954 /* Mememe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mememe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		24896D531F2A5FA2003B6954 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		24896D551F2A5FA2003B6954 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
@@ -500,6 +506,7 @@
 				24AF9E5D1F30217400D05BFC /* PrivateRoomViewController.swift */,
 				245B2B1E1F50F9D100BCF75A /* PrivateRoomTableView.swift */,
 				245B2B211F50FB2D00BCF75A /* PrivateRoomTableCell.swift */,
+				247A55CA1F7F5FBC004D1701 /* PrivateRoomChat.swift */,
 			);
 			name = PrivateRoom;
 			sourceTree = "<group>";
@@ -543,6 +550,7 @@
 		246D08E81F7CA8B60025DA40 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				247A55C61F7F350A004D1701 /* ChatHelper.swift */,
 				245B2B191F50E8BD00BCF75A /* JSON */,
 				24FC32DB1F6CB097006CBD62 /* UserOnlineSystem.swift */,
 				2413D7DE1F499004001EA209 /* GetGameData.swift */,
@@ -649,6 +657,7 @@
 				245B2B2B1F510B0100BCF75A /* MyPlayerData.swift */,
 				24233F5B1F6312D500B2B7EE /* Extension.swift */,
 				249F11A41F6DA4CD00C60059 /* PlayerData.swift */,
+				247A55C81F7F3EE3004D1701 /* ChatModel.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1084,11 +1093,14 @@
 				2498F9DD1F3478E200B21267 /* MyChatTableViewCell.swift in Sources */,
 				2413D7E71F4CC540001EA209 /* MememeDBObjectModel.swift in Sources */,
 				241C6E671F58AEFF00756BA7 /* ChangeUserPictureViewController.swift in Sources */,
+				247A55CB1F7F5FBC004D1701 /* PrivateRoomChat.swift in Sources */,
 				2468B0331F4E95870091EDD0 /* CardCeasarCoreDataProperties.swift in Sources */,
 				2413D7E31F4B60FA001EA209 /* MememeDynamoDB.swift in Sources */,
 				24D2BE2F1F7B6949003B7957 /* GameStack.swift in Sources */,
 				2413D7D01F44D62F001EA209 /* GameCoreDataProperties.swift in Sources */,
 				241C6E651F58983B00756BA7 /* SignUpViewController.swift in Sources */,
+				247A55C91F7F3EE3004D1701 /* ChatModel.swift in Sources */,
+				247A55C71F7F350A004D1701 /* ChatHelper.swift in Sources */,
 				24E8597D1F7EFE5700856BA3 /* CellAnimator.swift in Sources */,
 				24AF9E5C1F3018D000D05BFC /* InGameView.swift in Sources */,
 				24896D561F2A5FA2003B6954 /* StartViewController.swift in Sources */,

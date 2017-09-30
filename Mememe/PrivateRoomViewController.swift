@@ -10,11 +10,17 @@ import UIKit
 import AWSMobileHubHelper
 import FirebaseDatabase
 
-class PrivateRoomViewController: UIViewController,UITableViewDelegate, UITableViewDataSource {
+class PrivateRoomViewController: UIViewController,UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
     private let availableRoomRef = Database.database().reference().child("availableRoom")
     private let inGameRef = Database.database().reference().child("inGame")
+    let chatRef = Database.database().reference().child("chat")
     
     @IBOutlet weak var tableview: UITableView!
+    @IBOutlet weak var chatTableView: UITableView!
+    
+    @IBOutlet weak var chatTextField: UITextField!
+    
+    let chatHelper = ChatHelper()
     
     var userInRoom = [PlayerData]()
     var leaderId: String!
@@ -26,6 +32,16 @@ class PrivateRoomViewController: UIViewController,UITableViewDelegate, UITableVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if(leaderId == nil){
+             chatHelper.id = MyPlayerData.id
+        }
+        else {
+            chatHelper.id = leaderId
+        }
+       
+        chatHelper.initializeChatObserver(controller: self)
+        
+        
         // if main room got removed
         availableRoomRef.observe(DataEventType.childRemoved, with: { (snapshot) in
             if snapshot.key == self.leaderId && self.leaderId != MyPlayerData.id {
@@ -127,6 +143,11 @@ class PrivateRoomViewController: UIViewController,UITableViewDelegate, UITableVi
         })
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        subscribeToKeyboardNotifications()
+    }
+    
     @IBAction func startGameBtnPressed(_ sender: Any) {
         performSegue(withIdentifier: "InGameViewControllerSegue", sender: self)
     }
@@ -143,7 +164,12 @@ class PrivateRoomViewController: UIViewController,UITableViewDelegate, UITableVi
         dismiss(animated: true, completion: nil)
     }
     
+    @IBAction func chatSendBtnPressed(_ sender: Any) {
+        chatHelper.insertMessage(text: chatTextField.text!)
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        unsubscribeFromKeyboardNotifications()
         if let destination = segue.destination as? InGameViewController {
             destination.playersInGame = userInRoom
             destination.leaderId = leaderId

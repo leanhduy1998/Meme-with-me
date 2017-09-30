@@ -92,19 +92,6 @@ extension AvailableGamesViewController {
                 return cell
             }
         }
-        /*
-        else if room.roomImageUrl! == "noURL" {
-            let cell = (tableView.dequeueReusableCell(withIdentifier: "AvailableGamesExistImageCell") as? AvailableGamesExistImageCell)!
-            cell.nameLabel.text = getNamefromAllPlayerInRoom(playerArr: room.playerInRoom!)
-            cell.activityIndicator.startAnimating()
-            
-            
-            print("not configer yet")
-            //remember to
-            cell.activityIndicator.stopAnimating()
-    
-            return cell
-        }*/
         else {
             DisplayAlert.display(controller: self, title: "Error loading Available Games Table View Cell", message: "")
             return UITableViewCell()
