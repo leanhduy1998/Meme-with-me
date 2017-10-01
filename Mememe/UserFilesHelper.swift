@@ -114,7 +114,7 @@ class UserFilesHelper {
         loadMoreContents(directory: "public/compressedProfileImage/") { (contents) in
             for content in contents {
                 if self.getOnlyFileNameNotDirectory(directory: content.key) == userId {
-                    content.download(with: AWSContentDownloadType.ifNewerExists, pinOnCompletion: false, progressBlock: { (content, progress) in
+                    content.download(with: AWSContentDownloadType.ifNotCached, pinOnCompletion: false, progressBlock: { (content, progress) in
                     }, completionHandler: { (localContent, data, error) in
                         if error != nil {
                             print(error.debugDescription)

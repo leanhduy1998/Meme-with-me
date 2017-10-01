@@ -17,13 +17,23 @@ extension PrivateRoomViewController {
             if(message.senderId == MyPlayerData.id){
                 var cell = tableView.dequeueReusableCell(withIdentifier: "MyChatTableViewCell") as? MyChatTableViewCell
                 cell = CellAnimator.add(cell: cell!)
-                cell?.textLabel?.text = message.text
+                cell?.messageTF.text = message.text
+                helper.loadUserProfilePicture(userId: message.senderId) { (imageData) in
+                    DispatchQueue.main.async {
+                        cell?.userIV.image = UIImage(data: imageData)
+                    }
+                }
                 return cell!
             }
             else {
                 var cell = tableView.dequeueReusableCell(withIdentifier: "HerChatTableViewCell") as? HerChatTableViewCell
                 cell = CellAnimator.add(cell: cell!)
-                cell?.textLabel?.text = message.text
+                cell?.messageTF.text = message.text
+                helper.loadUserProfilePicture(userId: message.senderId) { (imageData) in
+                    DispatchQueue.main.async {
+                        cell?.userIV.image = UIImage(data: imageData)
+                    }
+                }
                 return cell!
             }
         }

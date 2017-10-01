@@ -24,10 +24,21 @@ extension PrivateRoomViewController{
     func keyboardWillShow(_ notification:Notification) {
         if chatTextField.isEditing {
             view.frame.origin.y -=  getKeyboardHeight(notification)
+            DispatchQueue.main.async {
+                if(self.chatHelper.messages.count > 0){
+                    let indexPath = IndexPath(row: self.chatHelper.messages.count-1, section: 0)
+                    self.chatTableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+                }
+            }
+
         }
     }
     func keyboardWillHide(_ notification:Notification){
         view.frame.origin.y = 0
+        DispatchQueue.main.async {
+            let indexPath = IndexPath(row: self.chatHelper.messages.count-1, section: 0)
+            self.chatTableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+        }
     }
     func subscribeToKeyboardNotifications() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: .UIKeyboardWillShow, object: nil)

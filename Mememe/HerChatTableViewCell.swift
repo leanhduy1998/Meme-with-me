@@ -9,7 +9,11 @@
 import UIKit
 
 class HerChatTableViewCell: UITableViewCell {
-
+    @IBOutlet weak var messageTF: UITextField!
+    
+    @IBOutlet weak var userIV: UIImageView!
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

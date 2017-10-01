@@ -45,7 +45,16 @@ class ChatHelper {
                 }
                 self.messages.append(message)
                 controller.chatTableView.reloadData()
+                DispatchQueue.main.async {
+                    if(controller.chatHelper.messages.count > 0){
+                        let indexPath = IndexPath(row: controller.chatHelper.messages.count-1, section: 0)
+                        controller.chatTableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+                    }
+                }
             }
         })
+    }
+    func removeYourChatRoom(){
+        chatRef.child(MyPlayerData.id).removeValue()
     }
 }

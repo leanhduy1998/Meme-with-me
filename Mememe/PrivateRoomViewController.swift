@@ -17,21 +17,27 @@ class PrivateRoomViewController: UIViewController,UITableViewDelegate, UITableVi
     
     @IBOutlet weak var tableview: UITableView!
     @IBOutlet weak var chatTableView: UITableView!
-    
     @IBOutlet weak var chatTextField: UITextField!
+    
+    @IBOutlet weak var chatView: UIView!
+    
+    @IBOutlet weak var startBtn: UIBarButtonItem!
     
     let chatHelper = ChatHelper()
     
     var userInRoom = [PlayerData]()
     var leaderId: String!
     
+    var userImages = [String:UIImage]()
     
-    @IBOutlet weak var startBtn: UIButton!
+    
     
     let helper = UserFilesHelper()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        chatTableView.separatorStyle = UITableViewCellSeparatorStyle.none
+        
         if(leaderId == nil){
              chatHelper.id = MyPlayerData.id
         }
@@ -54,6 +60,7 @@ class PrivateRoomViewController: UIViewController,UITableViewDelegate, UITableVi
         // if there is no leader, the user created this room will be leader
         if leaderId == nil || leaderId == AWSIdentityManager.default().identityId! {
             leaderId = AWSIdentityManager.default().identityId!
+            chatHelper.removeYourChatRoom()
             startBtn.isEnabled = false
             
             AvailableRoomHelper.uploadEmptyRoomToFirB(leaderId: MyPlayerData.id, roomType: "private")
@@ -84,8 +91,8 @@ class PrivateRoomViewController: UIViewController,UITableViewDelegate, UITableVi
                     }
                 }
             })
-            
-            startBtn.isHidden = true
+            startBtn.title = ""
+            startBtn.isEnabled = false
         }
         availableRoomRef.child(leaderId).child("playerInRoom").observe(DataEventType.childAdded, with: { (snapshot) in
             let value = snapshot.value as? String
@@ -146,6 +153,10 @@ class PrivateRoomViewController: UIViewController,UITableViewDelegate, UITableVi
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         subscribeToKeyboardNotifications()
+        if(self.chatHelper.messages.count > 0){
+            let indexPath = IndexPath(row: self.chatHelper.messages.count-1, section: 0)
+            self.chatTableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+        }
     }
     
     @IBAction func startGameBtnPressed(_ sender: Any) {
@@ -166,6 +177,7 @@ class PrivateRoomViewController: UIViewController,UITableViewDelegate, UITableVi
     
     @IBAction func chatSendBtnPressed(_ sender: Any) {
         chatHelper.insertMessage(text: chatTextField.text!)
+        chatTextField.text = ""
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -176,10 +188,12 @@ class PrivateRoomViewController: UIViewController,UITableViewDelegate, UITableVi
             
             inGameRef.removeAllObservers()
             availableRoomRef.removeAllObservers()
+            chatHelper.removeChatObserver()
         }
         else if let destination = segue.destination as? AvailableGamesViewController{
             destination.selectedLeaderId = nil
             leaderId = nil
+            chatHelper.removeChatObserver()
         }
     }
 
