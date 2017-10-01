@@ -145,33 +145,44 @@ class StartViewController: UIViewController,UIGestureRecognizerDelegate, AWSSign
                                 let helper = UserFilesHelper()
                                 helper.loadUserProfilePicture(userId: MyPlayerData.id) { (imageData) in
                                     DispatchQueue.main.async {
+                                        var statChanged = false
                                         let fetchedObjects = self.myDataStack.fetchedResultsController.fetchedObjects as? [MyCoreData]
                                         if(fetchedObjects?.count == 0){
                                             let _ = MyCoreData(imageData: imageData, laughes: Int((data?._laughes)!), madeCeasar: Int((data?._madeCeasar)!), context: self.myDataStack.stack.context)
                                         }
                                         else {
                                             fetchedObjects![0].imageData = imageData as NSData
+                                            if(fetchedObjects![0].laughes != (data?._laughes as! Int16)){
+                                                statChanged = true
+                                            }
+                                            if(fetchedObjects![0].madeCeasar != Int16((data?._madeCeasar)!)){
+                                                statChanged = true
+                                            }
                                             fetchedObjects![0].laughes = (data?._laughes as! Int16)
                                             fetchedObjects![0].madeCeasar = Int16((data?._madeCeasar)!)
                                         }
-                                        self.myDataStack.saveContext {
-                                            DispatchQueue.main.async {
-                                                UIView.animate(withDuration: 2, animations: {
-                                                    self.userIcon.alpha = 0
-                                                    self.laughingIcon.alpha = 0
-                                                    self.ceasarIcon.alpha = 0
-                                                    self.leftNotificationLabel.alpha = 0
-                                                    self.leftRedNotificationView.alpha = 0
-                                                    self.rightNotificationLabel.alpha = 0
-                                                    self.rightRedNotificationView.alpha = 0
-                                                }, completion: { (completed) in
-                                                    if(completed){
-                                                        self.performSegue(withIdentifier: "mainViewControllerSegue", sender: self)
+                                        if(statChanged){
+                                            
+                                            UIView.animate(withDuration: 0.5, delay: 0, options: [.autoreverse], animations: {
+                                                self.leftNotificationLabel.text = "\(Int((data?._laughes)!))"
+                                                self.rightNotificationLabel.text = "\(Int((data?._madeCeasar)!))"
+                                                self.leftNotificationLabel.transform = CGAffineTransform(scaleX: 1.25, y: 1.25)
+                                                self.leftNotificationLabel.textColor = UIColor.yellow
+                                                self.rightNotificationLabel.transform = CGAffineTransform(scaleX: 1.25, y: 1.25)
+                                                self.rightNotificationLabel.textColor = UIColor.yellow
+                                            }, completion: { (completed) in
+                                                if(completed){
+                                                    DispatchQueue.main.async {
+                                                        self.saveAndGoToAvailableGamesController()
                                                     }
-                                                })
-                                                
-                                            }
+                                                }
+                                            })
                                         }
+                                        else{
+                                            self.saveAndGoToAvailableGamesController()
+                                        }
+                                        
+                                        
                                     }
                                 }
                             }
@@ -184,6 +195,26 @@ class StartViewController: UIViewController,UIGestureRecognizerDelegate, AWSSign
             }
         } else {
             DisplayAlert.display(controller: self, title: "Login Error!", message: (error?.localizedDescription)!)
+        }
+    }
+    func saveAndGoToAvailableGamesController(){
+        myDataStack.saveContext {
+            DispatchQueue.main.async {
+                UIView.animate(withDuration: 2, animations: {
+                    self.userIcon.alpha = 0
+                    self.laughingIcon.alpha = 0
+                    self.ceasarIcon.alpha = 0
+                    self.leftNotificationLabel.alpha = 0
+                    self.leftRedNotificationView.alpha = 0
+                    self.rightNotificationLabel.alpha = 0
+                    self.rightRedNotificationView.alpha = 0
+                }, completion: { (completed) in
+                    if(completed){
+                        self.performSegue(withIdentifier: "mainViewControllerSegue", sender: self)
+                    }
+                })
+                
+            }
         }
     }
 

@@ -84,9 +84,6 @@ extension InGameViewController {
     }
     
     func reloadPreviewCards(){
-
-       // clearPreviewCardsData()
-        
         var contentWidth = space + cardWidth
         
         let latestRound = GetGameCoreDataData.getLatestRound(game: game)
@@ -138,7 +135,6 @@ extension InGameViewController {
             }
             else {
                 contentWidth = 0
-                
                 var counter = 0
                 for card in currentPlayersCards! {
                     if card.didWin {
@@ -177,10 +173,15 @@ extension InGameViewController {
                         cardUIView.bringSubview(toFront: heartView)
                     }
                     
+                    if(MyPlayerData.id != playerJudging){
+                        getUserIconView(frame: memeImageView.frame, playerCard: (currentPlayersCards?[x])!, completeHandler: { (IV) in
+                            cardUIView.addSubview(IV)
+                            cardUIView.bringSubview(toFront: IV)
+                        })
+                    }
                     
                     var found = false
                     var changed = false
-                    
                     
                     for v in previewScrollView.subviews{
                         if let vi = v as? CardView {
@@ -199,9 +200,7 @@ extension InGameViewController {
                             }
                         }
                     }
-                
-                    
-                    
+        
                     if !found{
                         previewScrollView.addSubview(cardUIView)
                         cardUIView.alpha = 0
@@ -210,7 +209,6 @@ extension InGameViewController {
                         })
                     }
                     else if(changed){
-                        
                         previewScrollView.addSubview(cardUIView)
                         cardUIView.alpha = 0
                         UIView.animate(withDuration: 0.5, animations: {

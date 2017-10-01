@@ -17,7 +17,6 @@ class InGameViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var previewScrollView: UIScrollView!
     @IBOutlet weak var chatView: UIView!
     @IBOutlet weak var currentPlayersScrollView: UIScrollView!
-   // @IBOutlet weak var chatTextView: UITextView!
     @IBOutlet weak var AddEditJudgeMemeBtn: UIBarButtonItem!
     @IBOutlet weak var navigationBar: UINavigationBar!
     @IBOutlet weak var nextRoundStatus: UILabel!
@@ -253,9 +252,7 @@ class InGameViewController: UIViewController, UITableViewDelegate, UITableViewDa
                             break
                         }
                     }
-                    GameStack.sharedInstance.saveContext {
-                        
-                    }
+                    GameStack.sharedInstance.saveContext {}
                 }
             }
         })
@@ -277,22 +274,19 @@ class InGameViewController: UIViewController, UITableViewDelegate, UITableViewDa
             timeTillNextRoundTimer.invalidate()
             nextRoundStatus.isHidden = true
             
+            // create next Round data
             let nextRound = Int(GetGameCoreDataData.getLatestRound(game: self.game).roundNum) + 1
-            
             if(nextRound > (game.playersorder?.count)!-1) {
                 let playerOrder = game.playersorder?.allObjects as? [PlayerOrderInGame]
                 for order in playerOrder! {
                     let temp = PlayerOrderInGame(orderNum: Int(order.orderNum) + (playerOrder?.count)!, playerId: order.playerId!, context: GameStack.sharedInstance.stack.context)
                     game.addToPlayersorder(temp)
-                    print(playerOrder?.count)
                 }
             }
-            
             let nextRoundCeasarId = getCeasarIdForCurrentRound(roundNum: nextRound)
-            
             let round = Round(roundNum: nextRound, context: GameStack.sharedInstance.stack.context)
             
-            
+            // if I am leader
             if MyPlayerData.id == leaderId {
                 let helper = UserFilesHelper()
                 helper.getRandomMemeData(completeHandler: { (memeData, memeUrl) in

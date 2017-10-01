@@ -117,6 +117,15 @@ extension InGameViewController {
         
         return heartView
     }
+    func getUserIconView(frame: CGRect, playerCard: CardNormal,completeHandler: @escaping (_ IV: UIImageView)-> Void){
+        s3Helper.loadUserProfilePicture(userId: playerCard.playerId!) { (imageData) in
+            DispatchQueue.main.async {
+                let imageview = UIImageView(image: UIImage(data: imageData))
+                imageview.frame = CGRect(x: frame.minX, y: frame.maxY-self.cardHeight/6, width: self.cardHeight/6, height: self.cardHeight/6)
+                completeHandler(imageview)
+            }
+        }
+    }
     
     func loveMemeDoubleTap(sender: UITapGestureRecognizer) {
         let heartView = sender.view as? HeartView
