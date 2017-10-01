@@ -11,6 +11,7 @@ import UIKit
 
 class HeartView: UIView {
     var cardNormal: CardNormal!
+    var liked = false
     
     func get(heartWidth: CGFloat, heartHeight: CGFloat,x: CGFloat, y: CGFloat) -> UIImageView{
         let heartImageView = UIImageView(image: #imageLiteral(resourceName: "heart"))

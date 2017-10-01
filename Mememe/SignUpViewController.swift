@@ -136,8 +136,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate{
     private func finishUploading(){
         finishBtn.isEnabled = true
         MyPlayerData.userImageUrl = compressedProfileImageURL.absoluteString
-        MyPlayerData.madeCeasar = 0
-        MyPlayerData.laughes = 0
         
         MyPlayerData.name = nameTextField.text
         PlayerDataDynamoDB.insertMyUserDataWithCompletionHandler({ (err) in

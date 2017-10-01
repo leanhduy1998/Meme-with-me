@@ -17,6 +17,8 @@ extension InGameViewController {
         setupCurrentPlayersScrollViewConstraints()
         chatTableView.separatorStyle = UITableViewCellSeparatorStyle.none
         setupNavigationBar()
+        previewScrollView.alwaysBounceHorizontal = true
+        currentPlayersScrollView.alwaysBounceHorizontal = true
     }
     
     
@@ -50,7 +52,6 @@ extension InGameViewController {
         var previewScrollViewConstraintArr = [NSLayoutConstraint]()
         previewScrollViewConstraintArr.append(NSLayoutConstraint(item: previewScrollView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .width, multiplier: 1, constant: screenWidth))
         previewScrollViewConstraintArr.append(NSLayoutConstraint(item: previewScrollView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1, constant: previewScrollHeight))
-        
         NSLayoutConstraint.activate(previewScrollViewConstraintArr)
     }
     
@@ -118,29 +119,48 @@ extension InGameViewController {
     }
     
     func loveMemeDoubleTap(sender: UITapGestureRecognizer) {
-        
         let heartView = sender.view as? HeartView
         
-        if heartView?.subviews.count == 0 {
-            let heartWidth = cardHeight/5
-            let heartHeight = cardHeight*2/5
-            
-            let heartImageView = heartView?.get(heartWidth: heartWidth, heartHeight: heartHeight, x: (heartView?.frame.width)!/2 - heartWidth/2, y: (heartView?.frame.height)!/2 - heartHeight/2)
-            
-            heartView?.addSubview(heartImageView!)
-            
-            let cardNormal = heartView?.cardNormal
-            cardNormal?.addToPlayerlove(PlayerLove(playerId: MyPlayerData.id, context: GameStack.sharedInstance.stack.context))
-            GameStack.sharedInstance.saveContext(completeHandler: {})
-        }
-        else {
-            heartView?.subviews[0].removeFromSuperview()
-            let cardNormal = heartView?.cardNormal
-            for pl in (cardNormal?.playerlove?.allObjects)! {
-                let playerLove = pl as? PlayerLove
-                if playerLove?.playerId == MyPlayerData.id {
-                    cardNormal?.removeFromPlayerlove(playerLove!)
-                    GameStack.sharedInstance.saveContext(completeHandler: {})
+        InGameHelper.checkIfYouLikedSomeonesCard(gameId: game.gameId!, cardId: (heartView?.cardNormal.playerId)!) { (youLiked) in
+            DispatchQueue.main.async {
+                if !youLiked {
+                    let heartWidth = self.cardHeight/5
+                    let heartHeight = self.cardHeight*2/5
+                    
+                    let heartImageView = heartView?.get(heartWidth: heartWidth, heartHeight: heartHeight, x: (heartView?.frame.width)!/2 - heartWidth/2, y: (heartView?.frame.height)!/2 - heartHeight/2)
+                    
+                    heartView?.liked = true
+                    heartView?.addSubview(heartImageView!)
+                    
+                    let cardNormal = heartView?.cardNormal
+                    cardNormal?.addToPlayerlove(PlayerLove(playerId: MyPlayerData.id, context: GameStack.sharedInstance.stack.context))
+                    
+                    GameStack.sharedInstance.saveContext(completeHandler: {
+                        DispatchQueue.main.async {
+                            InGameHelper.likeSomeoOneCard(gameId: self.game.gameId!, cardId: (cardNormal?.playerId)!)
+                        }
+                    })
+                }
+                else {
+                    if((heartView?.subviews.count)! > 0){
+                        heartView?.subviews[0].removeFromSuperview()
+                        let cardNormal = heartView?.cardNormal
+                        
+                        InGameHelper.unlikeSomeoOneCard(gameId: self.game.gameId!, cardId: (cardNormal?.playerId)!)
+                        
+                        for pl in (cardNormal?.playerlove?.allObjects)! {
+                            let playerLove = pl as? PlayerLove
+                            if playerLove?.playerId == MyPlayerData.id {
+                                cardNormal?.removeFromPlayerlove(playerLove!)
+                                
+                                GameStack.sharedInstance.saveContext(completeHandler: {
+                                    DispatchQueue.main.async {
+                                        
+                                    }
+                                })
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -162,7 +182,7 @@ extension InGameViewController {
             AddEditJudgeMemeBtn.isEnabled = false
         }
         else {
-            AddEditJudgeMemeBtn.isEnabled = true
+            checkIfYourAreJudge()
         }
     }
     

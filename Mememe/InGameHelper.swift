@@ -187,6 +187,28 @@ class InGameHelper{
         }
     }
     
+    static func likeSomeoOneCard(gameId:String, cardId: String){
+        inGameRef.child(gameId).child("normalCards").child(cardId).child("peopleLiked").child(MyPlayerData.id).setValue("liked")
+    }
+    static func unlikeSomeoOneCard(gameId:String, cardId: String){
+        inGameRef.child(gameId).child("normalCards").child(cardId).child("peopleLiked").child(MyPlayerData.id).removeValue()
+    }
+    static func checkIfYouLikedSomeonesCard(gameId:String, cardId: String,completionHandler: @escaping (_ liked: Bool) -> Void){
+        inGameRef.child(gameId).child("normalCards").child(cardId).child("peopleLiked").child(MyPlayerData.id).observeSingleEvent(of: DataEventType.value, with: { (snapshot) in
+            
+            let string = snapshot.value as? String
+            if(string == nil){
+                completionHandler(false)
+            }
+            else if(string! == "liked"){
+                completionHandler(true)
+            }
+            else{
+                completionHandler(false)
+            }
+        })
+    }
+    
     // judging
     static func updateWinnerCard(gameId: String, cardPlayerId: String){
     inGameRef.child(gameId).child("normalCards").child(cardPlayerId).child("didWin").setValue(true)

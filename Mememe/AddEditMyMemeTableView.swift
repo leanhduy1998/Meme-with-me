@@ -44,9 +44,8 @@ extension AddEditMyMemeViewController {
         case .ended:
             if (dragLabel == nil) {return}
             
+            dragLabel?.removeFromSuperview()
             if topUIView.frame.intersects(dragLabel.frame) {
-                dragLabel?.removeFromSuperview()
-                
                 // for some reason, the text need to have a space in it to make the animation works
                 if bottomLabel.text == dragLabel.text {
                     bottomLabel.text = " "
@@ -54,8 +53,6 @@ extension AddEditMyMemeViewController {
                 MemeLabelConfigurer.configureMemeLabel(topLabel, defaultText: dragLabel.text!)
             }
             if bottomUIView.frame.intersects(dragLabel.frame) {
-                dragLabel?.removeFromSuperview()
-                
                 // for some reason, the text need to have a space in it to make the animation works
                 if topLabel.text == dragLabel.text {
                     topLabel.text = " "

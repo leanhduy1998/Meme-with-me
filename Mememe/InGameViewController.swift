@@ -58,7 +58,6 @@ class InGameViewController: UIViewController, UITableViewDelegate, UITableViewDa
     //chat
     let chatHelper = ChatHelper()
     let s3Helper = UserFilesHelper()
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -139,7 +138,6 @@ class InGameViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 GameStack.sharedInstance.saveContext {}
             }
         })
-
         
         inGameRef.child(game.gameId!).child("normalCards").observe(DataEventType.childAdded, with: { (snapshot) in
             let playerId = snapshot.key
@@ -151,12 +149,18 @@ class InGameViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     
                     GetGameCoreDataData.getLatestRound(game: self.game).addToCardnormal(cardNormal)
                     self.reloadPreviewCards()
+                    
+                    if(MyPlayerData.id == self.playerJudging){
+                        self.checkIfAllPlayersHaveInsertCard()
+                    }
                 }
             }
             else {
                 self.AddEditJudgeMemeBtn.title = "Edit Your Meme"
             }
         })
+        
+        
         inGameRef.child(game.gameId!).child("normalCards").observe(DataEventType.childChanged, with: { (snapshot) in
             let postDict = snapshot.value as?  [String:Any]
             DispatchQueue.main.async {
@@ -180,6 +184,10 @@ class InGameViewController: UIViewController, UITableViewDelegate, UITableViewDa
                             
                             self.timeTillNextRoundTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.countDownTillNextRound), userInfo: nil, repeats: true)
                             self.timeTillNextRoundTimer.fire()
+                            self.savePeopleWhoLikedYou()
+                            if(temp.playerId! == MyPlayerData.id){
+                                self.updateNumberOfTimesYouAreCeasar()
+                            }
                             
                         }
                         card.playerlove? = (temp.playerlove)!
@@ -223,10 +231,49 @@ class InGameViewController: UIViewController, UITableViewDelegate, UITableViewDa
         })
     }
     
+    func savePeopleWhoLikedYou(){
+    inGameRef.child(game.gameId!).child("normalCards").child(MyPlayerData.id).child("peopleLiked").observeSingleEvent(of: DataEventType.value, with: { (snapshot) in
+            DispatchQueue.main.async {
+                let postDict = snapshot.value as? [String:Any]
+                if(postDict != nil){
+                    let cardNormals = GetGameCoreDataData.getLatestRound(game: self.game).cardnormal?.allObjects as? [CardNormal]
+                    
+                    for card in cardNormals! {
+                        if(card.playerId == MyPlayerData.id){
+                            var count = 0
+                            for(id,_) in postDict!{
+                                card.addToPlayerlove(PlayerLove(playerId: id, context: GameStack.sharedInstance.stack.context))
+                                count = count + 1
+                            }
+                            PlayerDataDynamoDB.updateLaughes(laughes: count, completionHandler: { (error) in
+                                if(error != nil){
+                                    print(error?.description)
+                                }
+                            })
+                            break
+                        }
+                    }
+                    GameStack.sharedInstance.saveContext {
+                        
+                    }
+                }
+            }
+        })
+    }
+    func updateNumberOfTimesYouAreCeasar(){
+        PlayerDataDynamoDB.updateMadeCeasar(madeCeasar: 1) { (error) in
+            if(error != nil){
+                print(error?.description)
+            }
+        }
+    }
+    
     func countDownTillNextRound(){
         nextRoundStatus.text = "Time till next round: \(countDownNumber) second(s)"
         
         if(countDownNumber == 0){
+            clearPreviewCardsData()
+            
             timeTillNextRoundTimer.invalidate()
             nextRoundStatus.isHidden = true
             

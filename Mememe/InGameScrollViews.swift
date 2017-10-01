@@ -77,14 +77,15 @@ extension InGameViewController {
         currentPlayersScrollView.contentSize = CGSize(width: contentWidth, height: iconSize)
     }
 
-    private func clearPreviewCardsData(){
+    func clearPreviewCardsData(){
         for v in previewScrollView.subviews {
             v.removeFromSuperview()
         }
     }
     
     func reloadPreviewCards(){
-        clearPreviewCardsData()
+
+       // clearPreviewCardsData()
         
         var contentWidth = space + cardWidth
         
@@ -156,12 +157,11 @@ extension InGameViewController {
             
             if (currentPlayersCards?.count)! > 0 {
                 for x in 0...(((currentPlayersCards?.count)! - 1)) {
-                    contentWidth += space + cardWidth
                     
+                    contentWidth += space + cardWidth
                     let newX = getNewXForPreviewScroll(x: x, haveWinner: haveWinner)
                     
                     let upLabel = getTopLabel(text: (currentPlayersCards?[x].topText)!)
-                    
                     let downLabel = getBottomLabel(text: (currentPlayersCards?[x].bottomText)!)
                     
                     let memeImageView = getMemeIV(image: image!)
@@ -170,13 +170,53 @@ extension InGameViewController {
                     let cardUIView = CardView(frame: CGRect(x: newX, y: space/2, width: cardWidth, height: cardHeight))
                     cardUIView.initCardView(topLabel: upLabel, bottomLabel: downLabel, playerId: (currentPlayersCards?[x].playerId)!, memeIV: memeImageView)
                     
-                    
+          
                     if currentPlayersCards?[x].playerId != MyPlayerData.id {
                         let heartView = getHeartView(frame: memeImageView.frame, playerCard: (currentPlayersCards?[x])!)
                         cardUIView.addSubview(heartView)
                         cardUIView.bringSubview(toFront: heartView)
                     }
-                    previewScrollView.addSubview(cardUIView)
+                    
+                    
+                    var found = false
+                    var changed = false
+                    
+                    
+                    for v in previewScrollView.subviews{
+                        if let vi = v as? CardView {
+                            if(vi.playerId != nil){
+                                if vi.playerId == cardUIView.playerId {
+                                    found = true
+                                }
+                                if vi.bottomText != cardUIView.bottomText {
+                                    changed = true
+                                    break
+                                }
+                                if vi.topText != cardUIView.topText {
+                                    changed = true
+                                    break
+                                }
+                            }
+                        }
+                    }
+                
+                    
+                    
+                    if !found{
+                        previewScrollView.addSubview(cardUIView)
+                        cardUIView.alpha = 0
+                        UIView.animate(withDuration: 0.5, animations: {
+                            cardUIView.alpha = 1
+                        })
+                    }
+                    else if(changed){
+                        
+                        previewScrollView.addSubview(cardUIView)
+                        cardUIView.alpha = 0
+                        UIView.animate(withDuration: 0.5, animations: {
+                            cardUIView.alpha = 1
+                        })
+                    }
                 }
             }
         }

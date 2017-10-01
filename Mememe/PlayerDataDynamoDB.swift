@@ -25,8 +25,8 @@ class PlayerDataDynamoDB {
         
         itemForGet._userId = MyPlayerData.id
         itemForGet._name = MyPlayerData.name
-        itemForGet._laughes = MyPlayerData.laughes as! NSNumber
-        itemForGet._madeCeasar = MyPlayerData.madeCeasar as! NSNumber
+        itemForGet._laughes = 0
+        itemForGet._madeCeasar = 0
         
         group.enter()
         
@@ -66,18 +66,52 @@ class PlayerDataDynamoDB {
         }
     }
     
-    static func updateItem(newName: String, newImageUrl: String, _ item: AWSDynamoDBObjectModel, completionHandler: @escaping (_ error: NSError?) -> Void) {
-        let objectMapper = AWSDynamoDBObjectMapper.default()
-        let itemToUpdate: PlayerDataDBObjectModel = item as! PlayerDataDBObjectModel
-        
-        itemToUpdate._name = newName
-        
-        objectMapper.save(itemToUpdate, completionHandler: {(error: Error?) in
-            DispatchQueue.main.async(execute: {
-                completionHandler(error as NSError?)
-            })
-        })
+    
+    static func updateLaughes(laughes: Int,completionHandler: @escaping (_ error: NSError?) -> Void) {
+        queryWithPartitionKeyWithCompletionHandler(userId: MyPlayerData.id) { (results, error) in
+            DispatchQueue.main.async {
+                if(error == nil){
+                    let data = results?.items[0] as? PlayerDataDBObjectModel
+                    
+                    let currentLaughes = (data?._laughes)! as Int!
+                    
+                    let objectMapper = AWSDynamoDBObjectMapper.default()
+                    let itemToUpdate: PlayerDataDBObjectModel = data!
+                    
+                    itemToUpdate._laughes = currentLaughes! + laughes as NSNumber
+                    
+                    objectMapper.save(itemToUpdate, completionHandler: {(error: Error?) in
+                        DispatchQueue.main.async(execute: {
+                            completionHandler(error as NSError?)
+                        })
+                    })
+                }
+            }
+        }
     }
+    static func updateMadeCeasar(madeCeasar: Int,completionHandler: @escaping (_ error: NSError?) -> Void) {
+        queryWithPartitionKeyWithCompletionHandler(userId: MyPlayerData.id) { (results, error) in
+            DispatchQueue.main.async {
+                if(error == nil){
+                    let data = results?.items[0] as? PlayerDataDBObjectModel
+                    
+                    let currentMadeCeasar = (data?._madeCeasar)! as Int!
+                    
+                    let objectMapper = AWSDynamoDBObjectMapper.default()
+                    let itemToUpdate: PlayerDataDBObjectModel = data!
+                    
+                    itemToUpdate._madeCeasar = currentMadeCeasar! + madeCeasar as NSNumber
+                    
+                    objectMapper.save(itemToUpdate, completionHandler: {(error: Error?) in
+                        DispatchQueue.main.async(execute: {
+                            completionHandler(error as NSError?)
+                        })
+                    })
+                }
+            }
+        }
+    }
+    
     
 }
 

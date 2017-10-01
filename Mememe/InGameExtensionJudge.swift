@@ -11,9 +11,9 @@ import FirebaseDatabase
 
 extension InGameViewController {
     func checkIfAllPlayersHaveInsertCard(){
-        inGameRef.child(leaderId).child("normalCards").observeSingleEvent(of: DataEventType.value, with: { (snapshot) in
+        inGameRef.child(game.gameId!).child("normalCards").observeSingleEvent(of: DataEventType.value, with: { (snapshot) in
             let postDict = snapshot.value as? [String : [String:Any]]
-            if postDict?.count == self.playersInGame.count {
+            if postDict?.count == self.playersInGame.count - 1 {
                 if self.playerJudging == MyPlayerData.id {
                     DispatchQueue.main.async {
                         self.AddEditJudgeMemeBtn.isEnabled = true

@@ -47,7 +47,6 @@ class StartViewController: UIViewController,UIGestureRecognizerDelegate, AWSSign
         setupGoogleButton()
         myDataStack.initializeFetchedResultsController()
         
-        
         userIcon.alpha = 0
         laughingIcon.alpha = 0
         leftRedNotificationView.alpha = 0
@@ -74,15 +73,15 @@ class StartViewController: UIViewController,UIGestureRecognizerDelegate, AWSSign
         }
         
         UIView.animate(withDuration: 2, delay: 0.0, options:[UIViewAnimationOptions.repeat, UIViewAnimationOptions.autoreverse], animations: {
-            self.laughingIcon.frame.origin.y -= 10
+            self.laughingIcon.frame.origin.y += 5
             self.leftRedNotificationView.frame.origin.y += 10
             self.leftNotificationLabel.frame.origin.y += 1
             
-            self.ceasarIcon.frame.origin.y -= 10
+            self.ceasarIcon.frame.origin.y += 5
             self.rightRedNotificationView.frame.origin.y += 10
             self.rightNotificationLabel.frame.origin.y += 1
             
-            self.userIcon.frame.origin.y += 10
+            self.userIcon.transform = CGAffineTransform(scaleX: 1.10, y: 1.10)
             
             self.touchToStartLabel.alpha = 0
  
@@ -91,6 +90,8 @@ class StartViewController: UIViewController,UIGestureRecognizerDelegate, AWSSign
         let fetchedObjects = self.myDataStack.fetchedResultsController.fetchedObjects as? [MyCoreData]
         if((fetchedObjects?.count)! > 0){
             userIcon.image = UIImage(data: fetchedObjects![0].imageData as! Data)
+            leftNotificationLabel.text = "\(Int(fetchedObjects![0].laughes))"
+            rightNotificationLabel.text = "\(Int(fetchedObjects![0].madeCeasar))"
         }
     }
 
@@ -140,18 +141,18 @@ class StartViewController: UIViewController,UIGestureRecognizerDelegate, AWSSign
                             DispatchQueue.main.async {
                                 let data = results?.items[0] as? PlayerDataDBObjectModel
                                 MyPlayerData.name = data?._name
-                                MyPlayerData.laughes = (data?._laughes)! as Int!
-                                MyPlayerData.madeCeasar = (data?._madeCeasar)! as Int!
-                                
+
                                 let helper = UserFilesHelper()
                                 helper.loadUserProfilePicture(userId: MyPlayerData.id) { (imageData) in
                                     DispatchQueue.main.async {
                                         let fetchedObjects = self.myDataStack.fetchedResultsController.fetchedObjects as? [MyCoreData]
                                         if(fetchedObjects?.count == 0){
-                                            let myData = MyCoreData(imageData: imageData, laughes: MyPlayerData.laughes, madeCeasar: MyPlayerData.madeCeasar, context: self.myDataStack.stack.context)
+                                            let _ = MyCoreData(imageData: imageData, laughes: Int((data?._laughes)!), madeCeasar: Int((data?._madeCeasar)!), context: self.myDataStack.stack.context)
                                         }
                                         else {
                                             fetchedObjects![0].imageData = imageData as NSData
+                                            fetchedObjects![0].laughes = (data?._laughes as! Int16)
+                                            fetchedObjects![0].madeCeasar = Int16((data?._madeCeasar)!)
                                         }
                                         self.myDataStack.saveContext {
                                             DispatchQueue.main.async {
