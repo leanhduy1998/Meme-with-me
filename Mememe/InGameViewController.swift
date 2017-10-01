@@ -12,15 +12,19 @@ import AWSMobileHubHelper
 
 import FirebaseDatabase
 
-class InGameViewController: UIViewController, UITableViewDelegate, UITableViewDataSource,UIGestureRecognizerDelegate {
+class InGameViewController: UIViewController, UITableViewDelegate, UITableViewDataSource,UIGestureRecognizerDelegate, UITextFieldDelegate {
     
     @IBOutlet weak var previewScrollView: UIScrollView!
     @IBOutlet weak var chatView: UIView!
     @IBOutlet weak var currentPlayersScrollView: UIScrollView!
-    @IBOutlet weak var chatTextView: UITextView!
+   // @IBOutlet weak var chatTextView: UITextView!
     @IBOutlet weak var AddEditJudgeMemeBtn: UIBarButtonItem!
     @IBOutlet weak var navigationBar: UINavigationBar!
     @IBOutlet weak var nextRoundStatus: UILabel!
+    
+    @IBOutlet weak var chatTextField: UITextField!
+    
+    @IBOutlet weak var chatTableView: UITableView!
     
     
     @IBAction func unwindToInGameViewController(segue:UIStoryboardSegue) { }
@@ -51,6 +55,10 @@ class InGameViewController: UIViewController, UITableViewDelegate, UITableViewDa
     private var timeTillNextRoundTimer = Timer()
     private var countDownNumber = 15
     
+    //chat
+    let chatHelper = ChatHelper()
+    let s3Helper = UserFilesHelper()
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,6 +77,9 @@ class InGameViewController: UIViewController, UITableViewDelegate, UITableViewDa
      
                     self.addObserverForCardNormals()
                     self.checkIfYourAreJudge()
+                    
+                    self.chatHelper.id = game.gameId
+                    self.chatHelper.initializeChatObserver(controller: self)
                 }
             })
         }
@@ -84,6 +95,7 @@ class InGameViewController: UIViewController, UITableViewDelegate, UITableViewDa
         if game != nil {
             reloadPreviewCards()
         }
+        subscribeToKeyboardNotifications()
     }
     
     func checkIfYourAreJudge(){
@@ -340,6 +352,7 @@ class InGameViewController: UIViewController, UITableViewDelegate, UITableViewDa
         if(playersInGame.count == 1){
             InGameHelper.removeYourInGameRoom()
             self.inGameRef.removeAllObservers()
+            self.chatHelper.removeChatRoom(id: game.gameId!)
             self.performSegue(withIdentifier: "unwindToAvailableGamesViewController", sender: self)
         }
         else {
@@ -363,7 +376,14 @@ class InGameViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
     }
     
+    @IBAction func chatSendBtnPressed(_ sender: Any) {
+        chatHelper.insertMessage(text: chatTextField.text!)
+        chatTextField.text = ""
+    }
+    
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        unsubscribeFromKeyboardNotifications()
         if let destination = segue.destination as? AddEditMyMemeViewController {
             destination.myPlayerId = MyPlayerData.id
             destination.memeImage = thisRoundImage

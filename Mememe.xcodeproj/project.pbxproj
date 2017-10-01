@@ -117,6 +117,7 @@
 		24E8597A1F7EFA4300856BA3 /* MyCoreDataCoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E859781F7EF9FB00856BA3 /* MyCoreDataCoreDataClass.swift */; };
 		24E8597B1F7EFA4300856BA3 /* MyCoreDataCoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E859791F7EF9FB00856BA3 /* MyCoreDataCoreDataProperties.swift */; };
 		24E8597D1F7EFE5700856BA3 /* CellAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E8597C1F7EFE5700856BA3 /* CellAnimator.swift */; };
+		24F237B11F807FCF00616F3C /* InGameChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F237B01F807FCF00616F3C /* InGameChat.swift */; };
 		24F6A7701F34E48D000E35DD /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2498FA271F34857100B21267 /* libsqlite3.0.tbd */; };
 		24F6A7711F34E48D000E35DD /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2498FA281F34857100B21267 /* libsqlite3.tbd */; };
 		24F6A7731F34E4C2000E35DD /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 24F6A7721F34E4C2000E35DD /* libz.tbd */; };
@@ -278,6 +279,7 @@
 		24E859781F7EF9FB00856BA3 /* MyCoreDataCoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCoreDataCoreDataClass.swift; sourceTree = "<group>"; };
 		24E859791F7EF9FB00856BA3 /* MyCoreDataCoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCoreDataCoreDataProperties.swift; sourceTree = "<group>"; };
 		24E8597C1F7EFE5700856BA3 /* CellAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellAnimator.swift; sourceTree = "<group>"; };
+		24F237B01F807FCF00616F3C /* InGameChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InGameChat.swift; sourceTree = "<group>"; };
 		24F6A7721F34E4C2000E35DD /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		24FC32DB1F6CB097006CBD62 /* UserOnlineSystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserOnlineSystem.swift; sourceTree = "<group>"; };
 		A1EFF53BA25955FB53356C75 /* Pods_Mememe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mememe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -726,6 +728,7 @@
 				2413D7D11F44D85A001EA209 /* InGameBeginingSetup.swift */,
 				24C30F411F7441A4007237C1 /* InGameExtensionJudge.swift */,
 				24C30F431F7441E8007237C1 /* InGameExtensionUI.swift */,
+				24F237B01F807FCF00616F3C /* InGameChat.swift */,
 			);
 			name = InGame;
 			sourceTree = "<group>";
@@ -1112,6 +1115,7 @@
 				246B8A731F735B3D0034DC24 /* InGameHelperConversion.swift in Sources */,
 				2413D7B81F4263C4001EA209 /* AddEditMyMemeTableView.swift in Sources */,
 				245B2B301F52350900BCF75A /* PlayerDataDBObjectModel.swift in Sources */,
+				24F237B11F807FCF00616F3C /* InGameChat.swift in Sources */,
 				2413D7D91F47D074001EA209 /* JudgingView.swift in Sources */,
 				24896D541F2A5FA2003B6954 /* AppDelegate.swift in Sources */,
 				24E734C01F6DCD8F00218AB1 /* InGameHelper.swift in Sources */,

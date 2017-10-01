@@ -15,7 +15,7 @@ extension InGameViewController {
         setupPreviewScrollViewConstraints()
         setupChatViewConstraints()
         setupCurrentPlayersScrollViewConstraints()
-        chatTextView.layer.cornerRadius = space
+        chatTableView.separatorStyle = UITableViewCellSeparatorStyle.none
         setupNavigationBar()
     }
     

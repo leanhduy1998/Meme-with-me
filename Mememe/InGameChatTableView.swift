@@ -11,17 +11,32 @@ import UIKit
 
 extension InGameViewController {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row % 2 == 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "HerChatTableViewCell") as? HerChatTableViewCell
+        let message = chatHelper.messages[indexPath.row]
+        if(message.senderId == MyPlayerData.id){
+            var cell = tableView.dequeueReusableCell(withIdentifier: "MyChatTableViewCell") as? MyChatTableViewCell
+            cell = CellAnimator.add(cell: cell!)
+            cell?.messageTF.text = message.text
+            s3Helper.loadUserProfilePicture(userId: message.senderId) { (imageData) in
+                DispatchQueue.main.async {
+                    cell?.userIV.image = UIImage(data: imageData)
+                }
+            }
             return cell!
         }
         else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "MyChatTableViewCell") as? MyChatTableViewCell
+            var cell = tableView.dequeueReusableCell(withIdentifier: "HerChatTableViewCell") as? HerChatTableViewCell
+            cell = CellAnimator.add(cell: cell!)
+            cell?.messageTF.text = message.text
+            s3Helper.loadUserProfilePicture(userId: message.senderId) { (imageData) in
+                DispatchQueue.main.async {
+                    cell?.userIV.image = UIImage(data: imageData)
+                }
+            }
             return cell!
         }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return chatHelper.messages.count
     }
 }

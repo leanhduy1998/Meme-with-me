@@ -53,6 +53,11 @@ extension InGameViewController {
                                 
                                 self.addObserverForCardNormals()
                                 self.checkIfYourAreJudge()
+                                
+                                self.chatHelper.removeChatRoom(id: MyPlayerData.id)
+                                
+                                self.chatHelper.id = self.game.gameId
+                                self.chatHelper.initializeChatObserver(controller: self)
                             }
                         })
                         

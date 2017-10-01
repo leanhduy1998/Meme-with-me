@@ -1,5 +1,5 @@
 //
-//  PrivateRoomChat.swift
+//  InGameChat.swift
 //  Mememe
 //
 //  Created by Duy Le on 9/30/17.
@@ -8,9 +8,8 @@
 
 import Foundation
 import UIKit
-import Firebase
 
-extension PrivateRoomViewController{
+extension InGameViewController{
     func textFieldDidBeginEditing(_ textField: UITextField) {
         textField.text = ""
     }

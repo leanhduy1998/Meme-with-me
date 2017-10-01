@@ -54,7 +54,35 @@ class ChatHelper {
             }
         })
     }
-    func removeYourChatRoom(){
-        chatRef.child(MyPlayerData.id).removeValue()
+    func initializeChatObserver(controller: InGameViewController){
+        let chatRef = Database.database().reference().child("chat")
+        chatRef.child(id!).observe(DataEventType.childAdded, with: { (snapshot) in
+            DispatchQueue.main.async {
+                let messageDict = snapshot.value as? [String:String]
+                let message = ChatModel()
+                for(key,value) in messageDict! {
+                    if(key == "senderId"){
+                        message.senderId = value
+                    }
+                    else if(key == "senderName"){
+                        message.senderName = value
+                    }
+                    else{
+                        message.text = value
+                    }
+                }
+                self.messages.append(message)
+                controller.chatTableView.reloadData()
+                DispatchQueue.main.async {
+                    if(controller.chatHelper.messages.count > 0){
+                        let indexPath = IndexPath(row: controller.chatHelper.messages.count-1, section: 0)
+                        controller.chatTableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+                    }
+                }
+            }
+        })
+    }
+    func removeChatRoom(id: String){
+        chatRef.child(id).removeValue()
     }
 }

@@ -60,7 +60,7 @@ class PrivateRoomViewController: UIViewController,UITableViewDelegate, UITableVi
         // if there is no leader, the user created this room will be leader
         if leaderId == nil || leaderId == AWSIdentityManager.default().identityId! {
             leaderId = AWSIdentityManager.default().identityId!
-            chatHelper.removeYourChatRoom()
+            chatHelper.removeChatRoom(id: MyPlayerData.id)
             startBtn.isEnabled = false
             
             AvailableRoomHelper.uploadEmptyRoomToFirB(leaderId: MyPlayerData.id, roomType: "private")
@@ -117,7 +117,6 @@ class PrivateRoomViewController: UIViewController,UITableViewDelegate, UITableVi
                 self.tableview.reloadData()
             }
         })
-        
         
         availableRoomRef.child(leaderId).child("playerInRoom").observe(DataEventType.childRemoved, with: { (snapshot) in
             let value = snapshot.value as? String
