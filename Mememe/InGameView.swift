@@ -78,7 +78,7 @@ extension InGameViewController {
     func getCrownIVForCard() -> UIImageView{
         let crownImage = #imageLiteral(resourceName: "ceasarCrown")
         let crownIV = UIImageView(image: crownImage)
-        crownIV.frame = CGRect(x: -space, y: cardHeight*4/5, width: cardWidth + space*2, height: cardHeight/4)
+        crownIV.frame = CGRect(x: cardWidth - cardHeight/6, y: cardHeight - cardHeight/6, width: cardHeight/6, height: cardHeight/6)
         return crownIV
     }
     func getCrownIVForIcon(newX: CGFloat) -> UIImageView{
