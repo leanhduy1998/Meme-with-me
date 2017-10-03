@@ -18,7 +18,7 @@ extension InGameViewController {
         
         var contentWidth = CGFloat(0)
         // never use currentPlayersScrollView.frame.height, because it uses the height of its storyboard
-        iconSize = currentPlayerScrollHeight - space
+        iconSize = currentPlayerScrollHeight - space/2
         
         let players = game.players?.allObjects as? [Player]
         
@@ -39,7 +39,7 @@ extension InGameViewController {
                         self.currentPlayersScrollView.addSubview(imageView)
                         self.currentPlayersScrollView.sendSubview(toBack: imageView)
                         
-                        imageView.frame = CGRect(x: newX, y: self.space/2, width: self.iconSize, height: self.iconSize)
+                        imageView.frame = CGRect(x: newX/2, y: self.space/2, width: self.iconSize, height: self.iconSize)
                         contentWidth += self.space + self.iconSize
                         counter = counter + 1
                         
@@ -94,20 +94,20 @@ extension InGameViewController {
             let haveWinner = checkIfWinnerExist(cards: (latestRound.cardnormal?.allObjects as? [CardNormal])!)
             let myCardExist = checkIfMyCardExist(cards: (latestRound.cardnormal?.allObjects as? [CardNormal])!)
             
-            let ceasarCardUIView = CardView(frame: CGRect(x: space, y: space/2, width: cardWidth, height: cardHeight))
+            
             
             let image = UIImage(data: latestRound.cardceasar?.cardPic! as! Data)
             thisRoundImage = image
-            
-            
-            let crownIV = getCrownIVForCard()
-            ceasarCardUIView.addSubview(crownIV)
-            ceasarCardUIView.bringSubview(toFront: crownIV)
             
             playerJudging = GetGameCoreDataData.getLatestRound(game: game).cardceasar?.playerId
             
             
             if !haveWinner {
+                let ceasarCardUIView = CardView(frame: CGRect(x: space/2, y: space/2, width: cardWidth, height: cardHeight))
+                let crownIV = getCrownIVForCard()
+                ceasarCardUIView.addSubview(crownIV)
+                ceasarCardUIView.bringSubview(toFront: crownIV)
+                
                 let ceasarIV = UIImageView(frame: CGRect(x: 0, y: 0, width: cardWidth, height: cardHeight))
                 ceasarIV.image = image
                 ceasarCardUIView.addSubview(ceasarIV)
@@ -124,96 +124,98 @@ extension InGameViewController {
                     }
                     AddEditJudgeMemeBtn.title = "Edit Your Meme"
                 }
-                else {
-                    if MyPlayerData.id == playerJudging {
-                        AddEditJudgeMemeBtn.title = "Judge Your People!"
-                    }
-                    else {
-                        AddEditJudgeMemeBtn.title = "Add Your Meme"
-                    }
-                }
-            }
-            else {
-                contentWidth = 0
-                var counter = 0
-                for card in currentPlayersCards! {
-                    if card.didWin {
-                        currentPlayersCards?.insert((currentPlayersCards?.remove(at: counter))!, at: 0)
-                        break
-                    }
-                    counter = counter + 1
-                }
-            }
-            previewScrollView.addSubview(ceasarCardUIView)
-            
-            
-            let ceasarCard = latestRound.cardceasar
-            
-            setAddEditJudgeMemeBtnUI(ceasarId: (ceasarCard?.playerId)!, haveWinner: haveWinner)
-            
-            if (currentPlayersCards?.count)! > 0 {
-                for x in 0...(((currentPlayersCards?.count)! - 1)) {
-                    
-                    contentWidth += space + cardWidth
-                    let newX = getNewXForPreviewScroll(x: x, haveWinner: haveWinner)
-                    
-                    let upLabel = getTopLabel(text: (currentPlayersCards?[x].topText)!)
-                    let downLabel = getBottomLabel(text: (currentPlayersCards?[x].bottomText)!)
-                    
-                    let memeImageView = getMemeIV(image: image!)
-                    
-                    
-                    let cardUIView = CardView(frame: CGRect(x: newX, y: space/2, width: cardWidth, height: cardHeight))
-                    cardUIView.initCardView(topLabel: upLabel, bottomLabel: downLabel, playerId: (currentPlayersCards?[x].playerId)!, memeIV: memeImageView)
-                    
-          
-                    if currentPlayersCards?[x].playerId != MyPlayerData.id {
-                        let heartView = getHeartView(frame: memeImageView.frame, playerCard: (currentPlayersCards?[x])!)
-                        cardUIView.addSubview(heartView)
-                        cardUIView.bringSubview(toFront: heartView)
-                    }
-                    
-                    if(MyPlayerData.id != playerJudging){
-                        getUserIconView(frame: memeImageView.frame, playerCard: (currentPlayersCards?[x])!, completeHandler: { (IV) in
-                            cardUIView.addSubview(IV)
-                            cardUIView.bringSubview(toFront: IV)
-                        })
-                    }
-                    
-                    var found = false
-                    var changed = false
-                    
-                    for v in previewScrollView.subviews{
-                        if let vi = v as? CardView {
-                            if(vi.playerId != nil){
-                                if vi.playerId == cardUIView.playerId {
-                                    found = true
-                                }
-                                if vi.bottomText != cardUIView.bottomText {
-                                    changed = true
-                                    break
-                                }
-                                if vi.topText != cardUIView.topText {
-                                    changed = true
-                                    break
+                
+
+                previewScrollView.addSubview(ceasarCardUIView)
+                
+                let memeImageView = getMemeIV(image: image!)
+                
+                if (currentPlayersCards?.count)! > 0 {
+                    for x in 0...(((currentPlayersCards?.count)! - 1)) {
+                        
+                        contentWidth += space + cardWidth
+                        let newX = getNewXForPreviewScroll(x: x, haveWinner: haveWinner)
+                        
+                        let upLabel = getTopLabel(text: (currentPlayersCards?[x].topText)!)
+                        let downLabel = getBottomLabel(text: (currentPlayersCards?[x].bottomText)!)
+                        
+                        let cardUIView = CardView(frame: CGRect(x: newX, y: space/2, width: cardWidth, height: cardHeight))
+                        cardUIView.initCardView(topLabel: upLabel, bottomLabel: downLabel, playerId: (currentPlayersCards?[x].playerId)!, memeIV: memeImageView)
+                        
+                        
+                        if currentPlayersCards?[x].playerId != MyPlayerData.id {
+                            let heartView = getHeartView(frame: memeImageView.frame, playerCard: (currentPlayersCards?[x])!)
+                            cardUIView.addSubview(heartView)
+                            cardUIView.bringSubview(toFront: heartView)
+                        }
+                        
+                        var found = false
+                        var changed = false
+                        
+                        for v in previewScrollView.subviews{
+                            if let vi = v as? CardView {
+                                if(vi.playerId != nil){
+                                    if vi.playerId == cardUIView.playerId {
+                                        found = true
+                                    }
+                                    if vi.bottomText != cardUIView.bottomText {
+                                        changed = true
+                                        break
+                                    }
+                                    if vi.topText != cardUIView.topText {
+                                        changed = true
+                                        break
+                                    }
                                 }
                             }
                         }
+                        
+                        if !found{
+                            previewScrollView.addSubview(cardUIView)
+                            cardUIView.alpha = 0
+                            UIView.animate(withDuration: 0.5, animations: {
+                                cardUIView.alpha = 1
+                            })
+                        }
+                        else if(changed){
+                            previewScrollView.addSubview(cardUIView)
+                            cardUIView.alpha = 0
+                            UIView.animate(withDuration: 0.5, animations: {
+                                cardUIView.alpha = 1
+                            })
+                        }
                     }
-        
-                    if !found{
-                        previewScrollView.addSubview(cardUIView)
-                        cardUIView.alpha = 0
-                        UIView.animate(withDuration: 0.5, animations: {
-                            cardUIView.alpha = 1
+                }
+            
+                let ceasarCard = latestRound.cardceasar
+                setAddEditJudgeMemeBtnUI(ceasarId: (ceasarCard?.playerId)!, haveWinner: haveWinner)
+            }
+            
+            else {
+                clearPreviewCardsData()
+                
+                contentWidth = screenWidth
+                let newX = getNewXForPreviewScroll(x: 0, haveWinner: haveWinner)
+                
+                let memeImageView = getMemeIV(image: image!)
+                
+                for card in currentPlayersCards! {
+                    if card.didWin {
+                        let cardUIView = CardView(frame: CGRect(x: newX, y: space/2, width: cardWidth, height: cardHeight))
+                        let upLabel = getTopLabel(text: card.topText!)
+                        let downLabel = getBottomLabel(text: card.bottomText!)
+                        cardUIView.initCardView(topLabel: upLabel, bottomLabel: downLabel, playerId: card.playerId!, memeIV: memeImageView)
+                        
+                        let crownIV = getCrownIVForWinningCard(newX: newX)
+                        cardUIView.addSubview(crownIV)
+                        
+                        getUserIconView(frame: memeImageView.frame, playerCard: card, completeHandler: { (IV) in
+                            cardUIView.addSubview(IV)
+                            cardUIView.bringSubview(toFront: IV)
                         })
-                    }
-                    else if(changed){
+                        
                         previewScrollView.addSubview(cardUIView)
-                        cardUIView.alpha = 0
-                        UIView.animate(withDuration: 0.5, animations: {
-                            cardUIView.alpha = 1
-                        })
+                        break
                     }
                 }
             }

@@ -182,7 +182,6 @@ class StartViewController: UIViewController,UIGestureRecognizerDelegate, AWSSign
                                             self.saveAndGoToAvailableGamesController()
                                         }
                                         
-                                        
                                     }
                                 }
                             }

@@ -108,6 +108,10 @@ extension AvailableGamesViewController {
                     if self.openRooms[indexPath.row].roomIsOpen == "true"{
                         self.selectedLeaderId = self.openRooms[indexPath.row].leaderId
                         
+                        self.plusBtnView.isHidden = true
+                        self.tableview.separatorStyle = UITableViewCellSeparatorStyle.none
+                        self.availableRoomRef.removeAllObservers()
+                        
                         UIView.animate(withDuration: 1, animations: {
                             tableView.backgroundColor = UIColor.black
                             tableView.visibleCells[indexPath.row].frame.origin.x = self.view.frame.midX 

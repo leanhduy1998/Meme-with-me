@@ -15,12 +15,14 @@ class AvailableGamesViewController: UIViewController, UITableViewDelegate, UITab
     @IBAction func unwindToAvailableGamesViewController(segue:UIStoryboardSegue) { }
     @IBOutlet weak var tableview: UITableView!
     
+    @IBOutlet weak var plusBtnView: UIView!
+    
     
     var openRooms = [AvailableRoomFirBModel]()
     var selectedLeaderId: String!
     let helper = UserFilesHelper()
     
-    private let availableRoomRef = Database.database().reference().child("availableRoom")
+    let availableRoomRef = Database.database().reference().child("availableRoom")
     
     @IBOutlet weak var addBtn: UIButton!
     
@@ -57,6 +59,8 @@ class AvailableGamesViewController: UIViewController, UITableViewDelegate, UITab
         tableview.backgroundColor = UIColor.white
         self.tabBarController?.tabBar.barTintColor = UIColor.white
         view.backgroundColor = UIColor.white
+        plusBtnView.isHidden = false
+        tableview.separatorStyle = UITableViewCellSeparatorStyle.singleLine
     }
     
     func getRoomDataFromDB(){

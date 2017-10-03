@@ -26,8 +26,10 @@ extension InGameViewController {
         screenWidth = view.frame.size.width
         screenHeight = view.frame.size.height - navigationBar.frame.height
 
-        cardWidth = (screenWidth / 2) - (space * 2)
+        space = screenWidth/24
+        
         cardHeight = screenHeight/2 - space
+        cardWidth = cardHeight*9/16
         
         previewScrollHeight = cardHeight + space
         chatViewHeight = (screenHeight/2)*3/4
@@ -82,6 +84,12 @@ extension InGameViewController {
         crownIV.frame = CGRect(x: cardWidth - cardHeight/6, y: cardHeight - cardHeight/6, width: cardHeight/6, height: cardHeight/6)
         return crownIV
     }
+    func getCrownIVForWinningCard(newX: CGFloat) -> UIImageView{
+        let crownImage = #imageLiteral(resourceName: "ceasarCrown")
+        let crownIV = UIImageView(image: crownImage)
+        crownIV.frame = CGRect(x: newX  + cardHeight/9, y: cardHeight - cardHeight/6, width: cardHeight/6, height: cardHeight/6)
+        return crownIV
+    }
     func getCrownIVForIcon(newX: CGFloat) -> UIImageView{
         let crownImage = #imageLiteral(resourceName: "ceasarCrown")
         let crownIV = UIImageView(image: crownImage)
@@ -121,7 +129,8 @@ extension InGameViewController {
         s3Helper.loadUserProfilePicture(userId: playerCard.playerId!) { (imageData) in
             DispatchQueue.main.async {
                 let imageview = UIImageView(image: UIImage(data: imageData))
-                imageview.frame = CGRect(x: frame.minX, y: frame.maxY-self.cardHeight/6, width: self.cardHeight/6, height: self.cardHeight/6)
+                imageview.frame = CGRect(x: frame.maxX - self.cardHeight/20, y: frame.minY, width: self.cardHeight/10, height: self.cardHeight/10)
+                imageview.alpha = 0.75
                 completeHandler(imageview)
             }
         }
@@ -177,11 +186,12 @@ extension InGameViewController {
     
     func getNewXForPreviewScroll(x: Int, haveWinner: Bool) -> CGFloat{
         var newX = CGFloat(0)
+        
         if haveWinner {
-            newX = (space * CGFloat(x+1))  + CGFloat(x) * cardWidth
+            newX = screenWidth/2 - cardWidth/2
         }
         else {
-            newX = space + cardWidth + (space * CGFloat(x+1))  + CGFloat(x) * cardWidth
+            newX = space/2 + cardWidth + (space * CGFloat(x+1))  + CGFloat(x) * cardWidth
         }
         return newX
     }

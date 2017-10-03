@@ -30,7 +30,7 @@ class InGameViewController: UIViewController, UITableViewDelegate, UITableViewDa
     //ui
     var screenWidth : CGFloat!
     var screenHeight : CGFloat!
-    let space = CGFloat(10)
+    var space : CGFloat!
     var cardWidth : CGFloat!
     var cardHeight: CGFloat!
     var iconSize: CGFloat!
@@ -83,9 +83,7 @@ class InGameViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
         self.automaticallyAdjustsScrollViewInsets = false
     }
-    @objc private func removeYourAvailableRoom(){
-        AvailableRoomHelper.deleteMyRoom()
-    }
+
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -102,13 +100,28 @@ class InGameViewController: UIViewController, UITableViewDelegate, UITableViewDa
             AddEditJudgeMemeBtn.isEnabled = false
             AddEditJudgeMemeBtn.title = "Judge Your People!"
         }
+            
         else {
             AddEditJudgeMemeBtn.isEnabled = true
             AddEditJudgeMemeBtn.title = "Add Your Meme!"
         }
     }
     
+    var playerJoinedFirebaseCount = 0
+    
     func addObserverForCardNormals(){
+        if(MyPlayerData.id == leaderId){
+            inGameRef.child(game.gameId!).child("players").observe(DataEventType.childAdded, with: { (snapshot) in
+                DispatchQueue.main.async {
+                    self.playerJoinedFirebaseCount = self.playerJoinedFirebaseCount + 1
+                    if(self.playerJoinedFirebaseCount == self.playersInGame.count){
+                        AvailableRoomHelper.deleteMyRoom()
+                    }
+                }
+            })
+        }
+        
+        
         inGameRef.child(game.gameId!).child("players").observe(DataEventType.childRemoved, with: { (snapshot) in
 
             DispatchQueue.main.async {
