@@ -27,7 +27,6 @@
 		2413D7D21F44D85A001EA209 /* InGameBeginingSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2413D7D11F44D85A001EA209 /* InGameBeginingSetup.swift */; };
 		2413D7D41F45189A001EA209 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2413D7D31F45189A001EA209 /* CardView.swift */; };
 		2413D7D71F461DBD001EA209 /* JudgingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2413D7D61F461DBD001EA209 /* JudgingViewController.swift */; };
-		2413D7D91F47D074001EA209 /* JudgingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2413D7D81F47D074001EA209 /* JudgingView.swift */; };
 		2413D7DD1F484470001EA209 /* ChoosingCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2413D7DC1F484470001EA209 /* ChoosingCardView.swift */; };
 		2413D7DF1F499004001EA209 /* GetGameData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2413D7DE1F499004001EA209 /* GetGameData.swift */; };
 		2413D7E31F4B60FA001EA209 /* MememeDynamoDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2413D7E21F4B60FA001EA209 /* MememeDynamoDB.swift */; };
@@ -175,7 +174,6 @@
 		2413D7D11F44D85A001EA209 /* InGameBeginingSetup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InGameBeginingSetup.swift; sourceTree = "<group>"; };
 		2413D7D31F45189A001EA209 /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		2413D7D61F461DBD001EA209 /* JudgingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JudgingViewController.swift; sourceTree = "<group>"; };
-		2413D7D81F47D074001EA209 /* JudgingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JudgingView.swift; sourceTree = "<group>"; };
 		2413D7DC1F484470001EA209 /* ChoosingCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChoosingCardView.swift; sourceTree = "<group>"; };
 		2413D7DE1F499004001EA209 /* GetGameData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetGameData.swift; sourceTree = "<group>"; };
 		2413D7E21F4B60FA001EA209 /* MememeDynamoDB.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MememeDynamoDB.swift; sourceTree = "<group>"; };
@@ -353,7 +351,6 @@
 				24896D861F2A70A9003B6954 /* StartView.swift */,
 				24AF9E5B1F3018D000D05BFC /* InGameView.swift */,
 				2413D7B41F422838001EA209 /* AddEditMyMemeView.swift */,
-				2413D7D81F47D074001EA209 /* JudgingView.swift */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -366,6 +363,14 @@
 				2413D7B91F426544001EA209 /* AddEditMyMemeTableCell.swift */,
 			);
 			name = AddEditMyMeme;
+			sourceTree = "<group>";
+		};
+		24182C271F8405AE00904A86 /* Judging */ = {
+			isa = PBXGroup;
+			children = (
+				2413D7D61F461DBD001EA209 /* JudgingViewController.swift */,
+			);
+			name = Judging;
 			sourceTree = "<group>";
 		};
 		241C6E681F58AF2600756BA7 /* Sign up */ = {
@@ -695,7 +700,7 @@
 				245B2B201F50F9ED00BCF75A /* PrivateRoom */,
 				2498F9DE1F347B7200B21267 /* InGame */,
 				2413D7B61F426399001EA209 /* AddEditMyMeme */,
-				2413D7D61F461DBD001EA209 /* JudgingViewController.swift */,
+				24182C271F8405AE00904A86 /* Judging */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -1124,7 +1129,6 @@
 				2413D7B81F4263C4001EA209 /* AddEditMyMemeTableView.swift in Sources */,
 				245B2B301F52350900BCF75A /* PlayerDataDBObjectModel.swift in Sources */,
 				24F237B11F807FCF00616F3C /* InGameChat.swift in Sources */,
-				2413D7D91F47D074001EA209 /* JudgingView.swift in Sources */,
 				24896D541F2A5FA2003B6954 /* AppDelegate.swift in Sources */,
 				24E734C01F6DCD8F00218AB1 /* InGameHelper.swift in Sources */,
 			);

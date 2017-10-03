@@ -24,7 +24,8 @@ extension InGameViewController {
     
     func setupDimensions(){
         screenWidth = view.frame.size.width
-        screenHeight = view.frame.size.height - navigationBar.frame.height
+        // for some reason, the ratio of navigation bar has to be 6/5 for it to not be shorten
+        screenHeight = view.frame.size.height - navigationBar.frame.height*6/5
 
         space = screenWidth/24
         
@@ -93,7 +94,7 @@ extension InGameViewController {
     func getCrownIVForIcon(newX: CGFloat) -> UIImageView{
         let crownImage = #imageLiteral(resourceName: "ceasarCrown")
         let crownIV = UIImageView(image: crownImage)
-        crownIV.frame = CGRect(x: newX, y: iconSize*4/5, width: iconSize + space*2, height: iconSize/4)
+        crownIV.frame = CGRect(x: newX + iconSize - iconSize/8, y: space/4, width: iconSize/4, height: iconSize/4)
         return crownIV
     }
     func getTopLabel(text: String) -> UILabel {
@@ -125,16 +126,6 @@ extension InGameViewController {
         
         return heartView
     }
-    func getUserIconView(frame: CGRect, playerCard: CardNormal,completeHandler: @escaping (_ IV: UIImageView)-> Void){
-        s3Helper.loadUserProfilePicture(userId: playerCard.playerId!) { (imageData) in
-            DispatchQueue.main.async {
-                let imageview = UIImageView(image: UIImage(data: imageData))
-                imageview.frame = CGRect(x: frame.maxX - self.cardHeight/20, y: frame.minY, width: self.cardHeight/10, height: self.cardHeight/10)
-                imageview.alpha = 0.75
-                completeHandler(imageview)
-            }
-        }
-    }
     
     func loveMemeDoubleTap(sender: UITapGestureRecognizer) {
         let heartView = sender.view as? HeartView
@@ -146,6 +137,11 @@ extension InGameViewController {
                     let heartHeight = self.cardHeight*2/5
                     
                     let heartImageView = heartView?.get(heartWidth: heartWidth, heartHeight: heartHeight, x: (heartView?.frame.width)!/2 - heartWidth/2, y: (heartView?.frame.height)!/2 - heartHeight/2)
+                    heartImageView?.alpha = 0
+                    UIView.animate(withDuration: 0.5, delay: 1, options: [.autoreverse, .repeat], animations: {
+                        heartImageView?.alpha = 1
+                        heartImageView?.transform = CGAffineTransform(scaleX: 0.80, y: 0.80)
+                    }, completion: nil)
                     
                     heartView?.liked = true
                     heartView?.addSubview(heartImageView!)
@@ -180,6 +176,17 @@ extension InGameViewController {
                         }
                     }
                 }
+            }
+        }
+    }
+    
+    func getUserIconView(frame: CGRect, playerCard: CardNormal,completeHandler: @escaping (_ IV: UIImageView)-> Void){
+        s3Helper.loadUserProfilePicture(userId: playerCard.playerId!) { (imageData) in
+            DispatchQueue.main.async {
+                let imageview = UIImageView(image: UIImage(data: imageData))
+                imageview.frame = CGRect(x: frame.maxX - self.cardHeight/20, y: frame.minY, width: self.cardHeight/10, height: self.cardHeight/10)
+                imageview.alpha = 0.75
+                completeHandler(imageview)
             }
         }
     }

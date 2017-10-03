@@ -18,7 +18,6 @@ class HeartView: UIView {
         
         heartImageView.frame = CGRect(x: x, y: y, width: heartWidth, height: heartHeight)
         heartImageView.clipsToBounds = true
-        heartImageView.alpha = 0.4
         
         return heartImageView
     }

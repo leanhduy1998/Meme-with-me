@@ -39,7 +39,7 @@ extension InGameViewController {
                         self.currentPlayersScrollView.addSubview(imageView)
                         self.currentPlayersScrollView.sendSubview(toBack: imageView)
                         
-                        imageView.frame = CGRect(x: newX/2, y: self.space/2, width: self.iconSize, height: self.iconSize)
+                        imageView.frame = CGRect(x: newX, y: self.space/4, width: self.iconSize, height: self.iconSize)
                         contentWidth += self.space + self.iconSize
                         counter = counter + 1
                         
@@ -48,6 +48,7 @@ extension InGameViewController {
                         if x.playerId == ceasarCard?.playerId {
                             self.crownUserIconIV = self.getCrownIVForIcon(newX: newX)
                             self.currentPlayersScrollView.addSubview(self.crownUserIconIV)
+                            self.currentPlayersScrollView.bringSubview(toFront: self.crownUserIconIV)
                         }
                     }
                     
@@ -69,6 +70,7 @@ extension InGameViewController {
                 if x.playerId == ceasarCard?.playerId {
                     crownUserIconIV = getCrownIVForIcon(newX: newX)
                     currentPlayersScrollView.addSubview(crownUserIconIV)
+                    self.currentPlayersScrollView.bringSubview(toFront: crownUserIconIV)
                 }
             }
         

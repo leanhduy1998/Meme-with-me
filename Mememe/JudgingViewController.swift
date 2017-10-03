@@ -33,10 +33,12 @@ class JudgingViewController: UIViewController,UIGestureRecognizerDelegate {
     }
     
     override func viewDidLoad() {
+        self.view.setNeedsLayout()
+        self.view.layoutIfNeeded()
+        cardHeight = memeScrollView.frame.height
+        cardWidth = cardHeight * 9 / 16
+        
         super.viewDidLoad()
-        
-        setupUI()
-        
         var contentWidth = CGFloat(space)
         
         let latestRound = GetGameCoreDataData.getLatestRound(game: game)
@@ -105,97 +107,56 @@ class JudgingViewController: UIViewController,UIGestureRecognizerDelegate {
             }
         }
         
+        // if no card is selected
         if selectedCard == nil {
             currentCardView?.isSelecting = !(currentCardView?.isSelecting)!
-            for x in 0...(memeScrollView.subviews.count-1) {
-                let card = memeScrollView.subviews[x] as? ChoosingCardView
-                if card != nil && card?.playerId != currentCardView?.playerId {
-                    card?.memeIV.alpha = 0.3
-                    card?.bottomLabel.alpha = 0.3
-                    card?.topLabel.alpha = 0.3
-                }
-            }
+            
             let chooseIV = UIImageView(frame: CGRect(x: cardWidth/3, y: cardHeight/2 - (cardWidth/3)/2, width: cardWidth/3, height: cardWidth/3))
             chooseIV.image = CircleImageCutter.getCircleImage(image: #imageLiteral(resourceName: "ichooseyou"), radius: 10)
             
-            chooseIV.alpha = 0.7
-            
             currentCardView?.choosingIV = chooseIV
-            
             currentCardView?.addSubview(chooseIV)
             
-            memeScrollView.backgroundColor = UIColor.gray
-            view.backgroundColor = UIColor.gray
-            
-            finishBtn.isEnabled = true
-        }
-        
-        if selectedCard != nil && currentCardView?.playerId == selectedCard.playerId {
-            finishBtn.isEnabled = false
-            if (currentCardView?.isSelecting)! {
-                currentCardView?.isSelecting = !(currentCardView?.isSelecting)!
+            chooseIV.alpha = 0
+            UIView.animate(withDuration: 0.5, delay: 0, options: [], animations: {
+                chooseIV.alpha = 0.7
+                self.memeScrollView.backgroundColor = UIColor.gray
+                self.view.backgroundColor = UIColor.gray
                 
-                for x in 0...(memeScrollView.subviews.count-1) {
-                    let card = memeScrollView.subviews[x] as? CardView
-                    card?.memeIV.alpha = 1
-                    card?.bottomLabel.alpha = 1
-                    card?.topLabel.alpha = 1
-                }
-                
-                currentCardView?.choosingIV.isHidden = true
-                
-                memeScrollView.backgroundColor = UIColor.white
-                view.backgroundColor = UIColor.white
-            }
-            else {
-                currentCardView?.isSelecting = !(currentCardView?.isSelecting)!
-                for x in 0...(memeScrollView.subviews.count-1) {
-                    let card = memeScrollView.subviews[x] as? ChoosingCardView
+                for x in 0...(self.memeScrollView.subviews.count-1) {
+                    let card = self.self.memeScrollView.subviews[x] as? ChoosingCardView
                     if card != nil && card?.playerId != currentCardView?.playerId {
                         card?.memeIV.alpha = 0.3
                         card?.bottomLabel.alpha = 0.3
                         card?.topLabel.alpha = 0.3
+                        card?.memeIV.isUserInteractionEnabled = false
                     }
                 }
-                currentCardView?.choosingIV.isHidden = false
-                
-                memeScrollView.backgroundColor = UIColor.gray
-                view.backgroundColor = UIColor.gray
-            }
-            
-            
+            }, completion: { (completed) in
+                if(completed){
+                    self.finishBtn.isEnabled = true
+                }
+            })
         }
-        else if selectedCard != nil && currentCardView?.playerId != selectedCard.playerId {
-            memeScrollView.backgroundColor = UIColor.gray
-            view.backgroundColor = UIColor.gray
+        
+        // if a card is selected
+        if selectedCard != nil {
+            finishBtn.isEnabled = false
+           
+            currentCardView?.isSelecting = !(currentCardView?.isSelecting)!
             
-            for x in 0...(memeScrollView.subviews.count-1) {
-                let card = memeScrollView.subviews[x] as? ChoosingCardView
-                
-                if card?.playerId == currentCardView?.playerId {
-                    let chooseIV = UIImageView(frame: CGRect(x: cardWidth/3, y: cardHeight/2 - (cardWidth/3)/2, width: cardWidth/3, height: cardWidth/3))
-                    chooseIV.image = CircleImageCutter.getCircleImage(image: #imageLiteral(resourceName: "ichooseyou"), radius: 10)
-                    
-                    chooseIV.alpha = 0.7
-                    
-                    card?.choosingIV = chooseIV
-                    
-                    card?.addSubview(chooseIV)
-                    
+            UIView.animate(withDuration: 0.5, delay: 0, options: [], animations: {
+                for x in 0...(self.memeScrollView.subviews.count-1) {
+                    let card = self.memeScrollView.subviews[x] as? CardView
                     card?.memeIV.alpha = 1
                     card?.bottomLabel.alpha = 1
                     card?.topLabel.alpha = 1
-                    
-                    card?.isSelecting = true
+                    card?.memeIV.isUserInteractionEnabled = true
                 }
-                else if card != nil {
-                    card?.choosingIV.isHidden = true
-                    card?.isSelecting = false
-                    card?.memeIV.alpha = 0.3
-                    card?.bottomLabel.alpha = 0.3
-                    card?.topLabel.alpha = 0.3
-                }
-            }
+                self.memeScrollView.backgroundColor = UIColor.white
+                self.view.backgroundColor = UIColor.white
+                currentCardView?.choosingIV.isHidden = true
+            }, completion: nil)
         }
         
     }

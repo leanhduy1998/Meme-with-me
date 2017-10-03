@@ -81,7 +81,7 @@ class StartViewController: UIViewController,UIGestureRecognizerDelegate, AWSSign
             self.rightRedNotificationView.frame.origin.y += 10
             self.rightNotificationLabel.frame.origin.y += 1
             
-            self.userIcon.transform = CGAffineTransform(scaleX: 1.10, y: 1.10)
+            self.userIcon.transform = CGAffineTransform(scaleX: 0.90, y: 0.90)
             
             self.touchToStartLabel.alpha = 0
  
