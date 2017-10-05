@@ -170,11 +170,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Mememe/InGameHelper.swift"
-            timestampString = "528746674.527236"
+            timestampString = "528877000.951821"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "174"
-            endingLineNumber = "174"
+            startingLineNumber = "176"
+            endingLineNumber = "176"
             landmarkName = "updateLeaderId(newLeaderId:gameId:completionHandler:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -186,11 +186,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Mememe/InGameHelper.swift"
-            timestampString = "528746674.527689"
+            timestampString = "528877000.951885"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "185"
-            endingLineNumber = "185"
+            startingLineNumber = "187"
+            endingLineNumber = "187"
             landmarkName = "removeYourselfFromGame(gameId:completionHandler:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -234,11 +234,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Mememe/InGameExtensionJudge.swift"
-            timestampString = "528588585.919179"
+            timestampString = "528870480.27074"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "14"
-            endingLineNumber = "14"
+            startingLineNumber = "18"
+            endingLineNumber = "18"
             landmarkName = "checkIfAllPlayersHaveInsertCard()"
             landmarkType = "7">
             <Locations>
@@ -282,11 +282,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Mememe/InGameScrollViews.swift"
-            timestampString = "528747383.060184"
+            timestampString = "528870480.271052"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "107"
-            endingLineNumber = "107"
+            startingLineNumber = "109"
+            endingLineNumber = "109"
             landmarkName = "reloadPreviewCards()"
             landmarkType = "7">
          </BreakpointContent>
@@ -298,12 +298,76 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Mememe/InGameView.swift"
-            timestampString = "528747383.060251"
+            timestampString = "528870480.271328"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "91"
             endingLineNumber = "91"
             landmarkName = "getCrownIVForWinningCard(newX:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Mememe/InGameViewController.swift"
+            timestampString = "528877000.952006"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "268"
+            endingLineNumber = "268"
+            landmarkName = "addObserverForCardNormals()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in closure #6 (__ObjC.DataSnapshot) -&gt; () in Mememe.InGameViewController.addObserverForCardNormals() -&gt; ()"
+                  moduleName = "Mememe"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/duyle/Desktop/ios/Mememe/Mememe/InGameViewController.swift"
+                  timestampString = "528877001.177507"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "268"
+                  endingLineNumber = "268"
+                  offsetFromSymbolStart = "21">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in closure #6 (__ObjC.DataSnapshot) -&gt; () in Mememe.InGameViewController.addObserverForCardNormals() -&gt; ()"
+                  moduleName = "Mememe"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/duyle/Desktop/ios/Mememe/Mememe/InGameViewController.swift"
+                  timestampString = "528877001.179846"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "268"
+                  endingLineNumber = "268"
+                  offsetFromSymbolStart = "1951">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Mememe/InGameViewController.swift"
+            timestampString = "528877000.952567"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "503"
+            endingLineNumber = "503"
+            landmarkName = "leaveRoom(action:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

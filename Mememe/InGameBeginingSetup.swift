@@ -25,12 +25,9 @@ extension InGameViewController {
                 
                 self.playersInGame = self.playersInGame.shuffled()
                 
-                var counter = 0
-                for player in self.playersInGame {
-                    let order = PlayerOrderInGame(orderNum: counter, playerId: player.userId!, context: GameStack.sharedInstance.stack.context)
+                let order = PlayerOrderInGame(orderNum: 0, playerId: self.playersInGame[0].userId, context: GameStack.sharedInstance.stack.context)
                     self.game.addToPlayersorder(order)
-                    counter = counter + 1
-                }
+
                 
                 let helper = UserFilesHelper()
                 helper.getRandomMemeData(completeHandler: { (memeData, memeName) in
@@ -44,7 +41,7 @@ extension InGameViewController {
                         round.cardceasar = ceasarCard
                         self.game.addToRounds(round)
                         
-                        InGameHelper.insertNewGame(memeName: memeName,playerInRoom: self.playersInGame, playerOrder: playerOrders!, gameId: self.game.gameId!)
+                        InGameHelper.insertNewGame(memeName: memeName,playerInRoom: self.playersInGame, playerOrder: order, gameId: self.game.gameId!)
                         
                         GameStack.sharedInstance.saveContext(completeHandler: {
                             DispatchQueue.main.async {

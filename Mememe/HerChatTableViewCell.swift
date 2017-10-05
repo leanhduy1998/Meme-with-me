@@ -9,13 +9,16 @@
 import UIKit
 
 class HerChatTableViewCell: UITableViewCell {
-    @IBOutlet weak var messageTF: UITextField!
+    
+    @IBOutlet weak var messageTF: UILabel!
     
     @IBOutlet weak var userIV: UIImageView!
     
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        messageTF.numberOfLines = 0
+        messageTF.lineBreakMode = NSLineBreakMode.byWordWrapping
         // Initialization code
     }
 

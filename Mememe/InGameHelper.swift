@@ -15,7 +15,7 @@ class InGameHelper{
     private static let inGameRef = Database.database().reference().child("inGame")
     private static let conversion = InGameHelperConversion()
     
-    static func insertNewGame(memeName: String, playerInRoom:[PlayerData], playerOrder:[PlayerOrderInGame], gameId: String){
+    static func insertNewGame(memeName: String, playerInRoom:[PlayerData], playerOrder:PlayerOrderInGame, gameId: String){
         var data = [String:Any]()
         
         var players = [String:Any]()
@@ -34,12 +34,12 @@ class InGameHelper{
         data["rounds"] = roundMemeUrl
         
         var orders = [String:String]()
-        for o in playerOrder {
-            orders[o.playerId!] = "\(Int(o.orderNum))"
-        }
+
+        orders[playerOrder.playerId!] = "\(Int(playerOrder.orderNum))"
         
         data["playerOrderInGame"] = orders
         data["leaderId"] = MyPlayerData.id
+        data["nextRoundStarting"] = "false"
         
         inGameRef.child(gameId).setValue(data)
     }
@@ -117,9 +117,11 @@ class InGameHelper{
     }
     
     
-    static func updateGameToNextRound(gameId:String, nextRound: Int, nextRoundImageUrl:String){
+    static func updateGameToNextRound(nextRoundJudgeId:String, gameId:String, nextRound: Int, nextRoundImageUrl:String){
         inGameRef.child(gameId).child("normalCards").removeValue()
         inGameRef.child(gameId).child("rounds").setValue(nextRoundImageUrl)
+        let playerOrder = [nextRoundJudgeId:"\(nextRound)"]
+        inGameRef.child(gameId).child("playerOrderInGame").setValue(playerOrder)
     }
     
     static func insertNormalCardIntoGame(gameId:String, card:CardNormal){

@@ -12,7 +12,7 @@ class MyChatTableViewCell: UITableViewCell {
     
     @IBOutlet weak var userIV: UIImageView!
     
-    @IBOutlet weak var messageTF: UITextField!
+    @IBOutlet weak var messageTF: UILabel!
     
     
     override func awakeFromNib() {

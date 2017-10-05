@@ -124,12 +124,12 @@ class JudgingViewController: UIViewController,UIGestureRecognizerDelegate {
                 self.view.backgroundColor = UIColor.gray
                 
                 for x in 0...(self.memeScrollView.subviews.count-1) {
-                    let card = self.self.memeScrollView.subviews[x] as? ChoosingCardView
+                    let card = self.memeScrollView.subviews[x] as? ChoosingCardView
                     if card != nil && card?.playerId != currentCardView?.playerId {
                         card?.memeIV.alpha = 0.3
                         card?.bottomLabel.alpha = 0.3
                         card?.topLabel.alpha = 0.3
-                        card?.memeIV.isUserInteractionEnabled = false
+                        self.memeScrollView.subviews[x].isUserInteractionEnabled = false
                     }
                 }
             }, completion: { (completed) in
@@ -151,7 +151,7 @@ class JudgingViewController: UIViewController,UIGestureRecognizerDelegate {
                     card?.memeIV.alpha = 1
                     card?.bottomLabel.alpha = 1
                     card?.topLabel.alpha = 1
-                    card?.memeIV.isUserInteractionEnabled = true
+                    self.memeScrollView.subviews[x].isUserInteractionEnabled = true
                 }
                 self.memeScrollView.backgroundColor = UIColor.white
                 self.view.backgroundColor = UIColor.white
