@@ -23,7 +23,6 @@ extension InGameViewController {
         let players = game.players?.allObjects as? [Player]
         
         let lastRound = GetGameCoreDataData.getLatestRound(game: game)
-        let ceasarCard = lastRound.cardceasar as? CardCeasar
         
         var counter = 0
         for x in players!{
@@ -33,6 +32,8 @@ extension InGameViewController {
             contentWidth += self.space + self.iconSize
             
             if x.userImageData == nil {
+                counter = counter + 1
+                
                 let helper = UserFilesHelper()
                 helper.loadUserProfilePicture(userId: x.playerId!, completeHandler: { (imageData) in
                     DispatchQueue.main.async {
@@ -42,11 +43,9 @@ extension InGameViewController {
                         self.currentPlayersScrollView.addSubview(imageView)
                         self.currentPlayersScrollView.sendSubview(toBack: imageView)
                         
-                        counter = counter + 1
-                        
                         x.userImageData = imageData as NSData
                         
-                        if x.playerId == ceasarCard?.playerId {
+                        if x.playerId == self.userWhoWon {
                             self.crownUserIconIV = self.getCrownIVForIcon(newX: newX)
                             self.currentPlayersScrollView.addSubview(self.crownUserIconIV)
                             self.currentPlayersScrollView.bringSubview(toFront: self.crownUserIconIV)
@@ -65,7 +64,7 @@ extension InGameViewController {
                 
                 counter = counter + 1
                 
-                if x.playerId == ceasarCard?.playerId {
+                if x.playerId == userWhoWon {
                     crownUserIconIV = getCrownIVForIcon(newX: newX)
                     currentPlayersScrollView.addSubview(crownUserIconIV)
                     self.currentPlayersScrollView.bringSubview(toFront: crownUserIconIV)

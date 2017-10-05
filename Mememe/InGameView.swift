@@ -94,7 +94,7 @@ extension InGameViewController {
     func getCrownIVForIcon(newX: CGFloat) -> UIImageView{
         let crownImage = #imageLiteral(resourceName: "ceasarCrown")
         let crownIV = UIImageView(image: crownImage)
-        crownIV.frame = CGRect(x: newX + iconSize - iconSize/8, y: space/4, width: iconSize/4, height: iconSize/4)
+        crownIV.frame = CGRect(x: newX + iconSize/2 - iconSize/4, y: 0, width: iconSize/2, height: iconSize/2)
         return crownIV
     }
     func getTopLabel(text: String) -> UILabel {

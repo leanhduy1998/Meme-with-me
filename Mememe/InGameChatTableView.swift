@@ -41,7 +41,6 @@ extension InGameViewController {
             cell?.messageTF.text = message.text
             cell?.messageTF.numberOfLines = 0
             cell?.messageTF.lineBreakMode = NSLineBreakMode.byWordWrapping
-            cell?.frame = (cell?.messageTF.frame)!
             
             s3Helper.loadUserProfilePicture(userId: message.senderId) { (imageData) in
                 DispatchQueue.main.async {
@@ -56,7 +55,6 @@ extension InGameViewController {
             cell?.messageTF.text = message.text
             cell?.messageTF.numberOfLines = 0
             cell?.messageTF.lineBreakMode = NSLineBreakMode.byWordWrapping
-            cell?.frame = (cell?.messageTF.frame)!
             
             s3Helper.loadUserProfilePicture(userId: message.senderId) { (imageData) in
                 DispatchQueue.main.async {

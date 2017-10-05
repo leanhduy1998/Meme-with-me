@@ -45,6 +45,7 @@ class InGameViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var crownUserIconIV = UIImageView()
     var game : Game!
     var myCardInserted = false
+    var userWhoWon = ""
     
     //database
     let inGameRef = Database.database().reference().child("inGame")
@@ -55,7 +56,7 @@ class InGameViewController: UIViewController, UITableViewDelegate, UITableViewDa
     let chatHelper = ChatHelper()
     let s3Helper = UserFilesHelper()
     
-    
+    // conditions for leaving room
     var nextRoundStarting = false
     var currentRoundFinished = false
     var leftRoom = false
@@ -135,22 +136,20 @@ class InGameViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     }
                     count = count + 1
                 }
-                var playerOrder = self.game.playersorder?.allObjects as? [PlayerOrderInGame]
-                
-                var orderDeleted = 0
+                let playerOrder = self.game.playersorder?.allObjects as? [PlayerOrderInGame]
                 for order in playerOrder! {
                     if order.playerId == snapshot.key {
-                        orderDeleted = Int(order.orderNum)
                         self.game.removeFromPlayersorder(order)
                     }
                 }
-                playerOrder = self.game.playersorder?.allObjects as? [PlayerOrderInGame]
-                for order in playerOrder! {
-                    if(order.orderNum>orderDeleted){
-                        order.orderNum = order.orderNum - Int16(1)
+                if(self.playersInGame.count == 1){
+                    self.AddEditJudgeMemeBtn.isEnabled = false
+                }
+                GameStack.sharedInstance.saveContext {
+                    DispatchQueue.main.async {
+                        self.reloadCurrentPlayersIcon()
                     }
                 }
-                GameStack.sharedInstance.saveContext {}
             }
         })
         
@@ -191,6 +190,8 @@ class InGameViewController: UIViewController, UITableViewDelegate, UITableViewDa
                         card.topText = temp.topText
                         card.didWin = temp.didWin
                         if(temp.didWin){
+                            self.userWhoWon = temp.playerId!
+                            
                             self.AddEditJudgeMemeBtn.isEnabled = false
                             self.currentRoundFinished = true
                             
@@ -501,18 +502,18 @@ class InGameViewController: UIViewController, UITableViewDelegate, UITableViewDa
                         self.inGameRef.child(self.game.gameId!).child("playerOrderInGame").observeSingleEvent(of: DataEventType.value, with: { (snapshot) in
                                     let postDict = snapshot.value as? [String:String]
                                     for(playerId,roundNumber) in postDict!{
-                                    DispatchQueue.main.async {
-                                        let playerOrder = [player.userId:"\(roundNumber)"]
-                                    self.inGameRef.child(self.game.gameId!).child("playerOrderInGame").setValue(playerOrder, withCompletionBlock: { (error, reference) in
                                         DispatchQueue.main.async {
-                                            InGameHelper.removeYourInGameRoom()
-                                            self.leftRoom = true
+                                            let playerOrder = [player.userId:"\(roundNumber)"]
+                                            self.inGameRef.child(self.game.gameId!).child("playerOrderInGame").setValue(playerOrder, withCompletionBlock: { (error, reference) in
+                                                DispatchQueue.main.async {
+                                                    InGameHelper.removeYourInGameRoom()
+                                                    self.leftRoom = true
                                                     
-                                            self.performSegue(withIdentifier: "unwindToAvailableGamesViewController", sender: self)
-                                            }
-                                        })
+                                                    self.performSegue(withIdentifier: "unwindToAvailableGamesViewController", sender: self)
+                                                }
+                                            })
+                                        }
                                     }
-                                }
                                 })
                                 }
                             })
