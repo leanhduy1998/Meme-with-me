@@ -58,6 +58,7 @@ class InGameViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     var nextRoundStarting = false
     var currentRoundFinished = false
+    var leftRoom = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -317,10 +318,13 @@ class InGameViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func getNextRoundData(completeHandler: @escaping (_ roundJudgeId:String, _ roundNumber: Int)-> Void){
-        // create next Round data
-        if self.parent == nil {
-            return;
+        
+        // for some reason, this function is still being
+        if leftRoom {
+            return
         }
+        
+        // create next Round data
         let currentRoundNumber = Int(GetGameCoreDataData.getLatestRound(game: self.game).roundNum)
         let nextRoundNumber = currentRoundNumber + 1
         var nextRoundJudgingId: String!
@@ -486,32 +490,35 @@ class InGameViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
         else {
             for player in playersInGame {
-                if player.userId != MyPlayerData.id {
-                    InGameHelper.updateLeaderId(newLeaderId: player.userId, gameId: game.gameId!, completionHandler: {
+                if player.userId == MyPlayerData.id {
+                    continue
+                }
+                InGameHelper.updateLeaderId(newLeaderId: player.userId, gameId: game.gameId!, completionHandler: {
+                        
+                    DispatchQueue.main.async {
+                    InGameHelper.removeYourselfFromGame(gameId: self.game.gameId!, completionHandler: {
                         DispatchQueue.main.async {
-                            InGameHelper.removeYourselfFromGame(gameId: self.game.gameId!, completionHandler: {
-                                DispatchQueue.main.async {
-                                self.inGameRef.child(self.game.gameId!).child("playerOrderInGame").observeSingleEvent(of: DataEventType.value, with: { (snapshot) in
-                                        let postDict = snapshot.value as? [String:String]
-                                        for(playerId,roundNumber) in postDict!{
-                                            DispatchQueue.main.async {
-                                                let playerOrder = [player.userId:"\(roundNumber)"]
-                                                self.inGameRef.child(self.game.gameId!).child("playerOrderInGame").setValue(playerOrder, withCompletionBlock: { (error, reference) in
-                                                    DispatchQueue.main.async {
-                                                        InGameHelper.removeYourInGameRoom()
-                                                        
-                                                        self.performSegue(withIdentifier: "unwindToAvailableGamesViewController", sender: self)
-                                                    }
-                                                })
+                        self.inGameRef.child(self.game.gameId!).child("playerOrderInGame").observeSingleEvent(of: DataEventType.value, with: { (snapshot) in
+                                    let postDict = snapshot.value as? [String:String]
+                                    for(playerId,roundNumber) in postDict!{
+                                    DispatchQueue.main.async {
+                                        let playerOrder = [player.userId:"\(roundNumber)"]
+                                    self.inGameRef.child(self.game.gameId!).child("playerOrderInGame").setValue(playerOrder, withCompletionBlock: { (error, reference) in
+                                        DispatchQueue.main.async {
+                                            InGameHelper.removeYourInGameRoom()
+                                            self.leftRoom = true
+                                                    
+                                            self.performSegue(withIdentifier: "unwindToAvailableGamesViewController", sender: self)
                                             }
-                                        }
-                                    })
+                                        })
+                                    }
+                                }
+                                })
                                 }
                             })
                         }
                     })
-                    break
-                }
+                break
             }
 
         }

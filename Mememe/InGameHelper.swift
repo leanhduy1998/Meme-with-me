@@ -48,68 +48,70 @@ class InGameHelper{
         inGameRef.observeSingleEvent(of: DataEventType.value, with: { (snapshot) in
             let gameIdAndValue = snapshot.value as? [String : Any]
             for (gameId,value) in gameIdAndValue! {
-                if gameId.contains(leaderId) {
-                    DispatchQueue.main.async {
-                        var leaderId: String!
-                        let game = Game(createdDate: Date(), gameId: gameId, context: GameStack.sharedInstance.stack.context)
-                        let postDict = value as? [String : AnyObject] ?? [:]
+                if(!gameId.contains(leaderId)){
+                    continue
+                }
+       
+                DispatchQueue.main.async {
+                    var leaderId: String!
+                    let game = Game(createdDate: Date(), gameId: gameId, context: GameStack.sharedInstance.stack.context)
+                    let postDict = value as? [String : AnyObject] ?? [:]
                         
-                        var roundImageUrl: String!
+                    var roundImageUrl: String!
                         
-                        for(key,value) in postDict {
-                            switch(key) {
-                            case "playerOrderInGame":
-                                let orders = value as? [String : AnyObject] ?? [:]
-                                for (playerId,number) in orders {
-                                    let playerOrder = PlayerOrderInGame(orderNum: Int(number as! String)!, playerId: playerId, context: GameStack.sharedInstance.stack.context)
-                                    game.addToPlayersorder(playerOrder)
-                                }
-                                break
-                                
-                            case "players":
-                                let players = value as? [String : AnyObject] ?? [:]
-                                
-                                for (playerId,playerData) in players {
-                                    let player = conversion.getPlayerFromDictionary(playerId: playerId, playerData: playerData as! [String : Any])
-                                    game.addToPlayers(player)
-                                }
-                                break
-                                
-                            case "rounds":
-                                roundImageUrl = value as? String
-                                break
-                            case "leaderId":
-                                leaderId = value as? String
-                                break
-                                
-                            default:
-                                break
+                    for(key,value) in postDict {
+                        switch(key) {
+                        case "playerOrderInGame":
+                            let orders = value as? [String : AnyObject] ?? [:]
+                            for (playerId,number) in orders {
+                                let playerOrder = PlayerOrderInGame(orderNum: Int(number as! String)!, playerId: playerId, context: GameStack.sharedInstance.stack.context)
+                                game.addToPlayersorder(playerOrder)
                             }
+                            break
+                                
+                        case "players":
+                            let players = value as? [String : AnyObject] ?? [:]
+                                
+                            for (playerId,playerData) in players {
+                                let player = conversion.getPlayerFromDictionary(playerId: playerId, playerData: playerData as! [String : Any])
+                                game.addToPlayers(player)
+                            }
+                            break
+                                
+                        case "rounds":
+                            roundImageUrl = value as? String
+                            break
+                        case "leaderId":
+                            leaderId = value as? String
+                            break
+                                
+                        default:
+                            break
                         }
-                        let round = Round(roundNum: 0, context: GameStack.sharedInstance.stack.context)
-                        
-                        var playerId = ""
-                        
-                        for order in (game.playersorder?.allObjects as? [PlayerOrderInGame])! {
-                            if order.orderNum == round.roundNum {
-                                playerId = order.playerId!
-                                break
-                            }
-                        }
-                        
-                        let helper = UserFilesHelper()
-                        helper.getMemeData(memeName: roundImageUrl, completeHandler: { (imageData) in
-                            DispatchQueue.main.async {
-                                let cardCeasar = CardCeasar(cardPic: imageData, playerId: playerId, round: 0, cardPicUrl: roundImageUrl, context: GameStack.sharedInstance.stack.context)
-                                round.cardceasar = cardCeasar
-                                game.addToRounds(round)
-                                
-                                GameStack.sharedInstance.saveContext {
-                                    completionHandler(game, leaderId)
-                                }
-                            }
-                        })
                     }
+                    let round = Round(roundNum: 0, context: GameStack.sharedInstance.stack.context)
+                        
+                    var playerId = ""
+                        
+                    for order in (game.playersorder?.allObjects as? [PlayerOrderInGame])! {
+                        if order.orderNum == round.roundNum {
+                            playerId = order.playerId!
+                            break
+                        }
+                    }
+                        
+                    let helper = UserFilesHelper()
+                    helper.getMemeData(memeName: roundImageUrl, completeHandler: { (imageData) in
+                        DispatchQueue.main.async {
+                            let cardCeasar = CardCeasar(cardPic: imageData, playerId: playerId, round: 0, cardPicUrl: roundImageUrl, context: GameStack.sharedInstance.stack.context)
+                            round.cardceasar = cardCeasar
+                            game.addToRounds(round)
+                                
+                            GameStack.sharedInstance.saveContext {
+                                completionHandler(game, leaderId)
+                            }
+                        }
+                    })
                 }
             }
             
@@ -138,15 +140,16 @@ class InGameHelper{
         inGameRef.observeSingleEvent(of: DataEventType.value, with: { (snapshot) in
             DispatchQueue.main.async {
                 let gameIdAndValue = snapshot.value as? [String : Any]
-                if (gameIdAndValue != nil) {
-                    for (gameId,value) in gameIdAndValue! {
-                        let gameValue = value as? [String : Any]
-                        for (key,value) in gameValue! {
-                            let id = value as? String
-                            if (key == "leaderId") && (id == MyPlayerData.id) {
-                                inGameRef.child(gameId).removeValue()
-                                break
-                            }
+                if (gameIdAndValue == nil) {
+                    return
+                }
+                for (gameId,value) in gameIdAndValue! {
+                    let gameValue = value as? [String : Any]
+                    for (key,value) in gameValue! {
+                        let id = value as? String
+                        if (key == "leaderId") && (id == MyPlayerData.id) {
+                            inGameRef.child(gameId).removeValue()
+                            break
                         }
                     }
                 }

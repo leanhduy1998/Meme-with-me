@@ -138,7 +138,7 @@ extension InGameViewController {
                     
                     let heartImageView = heartView?.get(heartWidth: heartWidth, heartHeight: heartHeight, x: (heartView?.frame.width)!/2 - heartWidth/2, y: (heartView?.frame.height)!/2 - heartHeight/2)
                     heartImageView?.alpha = 0
-                    UIView.animate(withDuration: 0.5, delay: 1, options: [.autoreverse, .repeat], animations: {
+                    UIView.animate(withDuration: 0.5, delay: 0, options: [.autoreverse, .repeat], animations: {
                         heartImageView?.alpha = 1
                         heartImageView?.transform = CGAffineTransform(scaleX: 0.80, y: 0.80)
                     }, completion: nil)
@@ -198,7 +198,8 @@ extension InGameViewController {
             newX = screenWidth/2 - cardWidth/2
         }
         else {
-            newX = space/2 + cardWidth + (space * CGFloat(x+1))  + CGFloat(x) * cardWidth
+            //newX = space/2 + cardWidth + (space * CGFloat(x+1))  + CGFloat(x) * cardWidth
+            newX =  (space/2 * CGFloat(x+1))  + CGFloat(x) * cardWidth
         }
         return newX
     }
