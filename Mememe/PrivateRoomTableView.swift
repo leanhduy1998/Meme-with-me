@@ -35,7 +35,7 @@ extension PrivateRoomViewController {
                 return 40
             }
         }
-        return 120
+        return 80
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

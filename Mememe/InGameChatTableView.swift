@@ -27,7 +27,7 @@ extension InGameViewController {
             if(calculateHeight(inString: chatHelper.messages[indexPath.row].text) > 40){
                 let smallestHeight =  calculateHeight(inString: "a")
                 var mulpipliter = calculateHeight(inString: chatHelper.messages[indexPath.row].text) / smallestHeight
-                mulpipliter = mulpipliter/13 + mulpipliter
+                mulpipliter = mulpipliter/2 + mulpipliter
                 return smallestHeight * (mulpipliter)
             }
             else{
