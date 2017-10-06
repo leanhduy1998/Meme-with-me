@@ -9,10 +9,11 @@
 import UIKit
 import AWSDynamoDB
 import AWSMobileHubHelper
+import AVFoundation
 
 import FirebaseDatabase
 
-class InGameViewController: UIViewController, UITableViewDelegate, UITableViewDataSource,UIGestureRecognizerDelegate, UITextFieldDelegate {
+class InGameViewController: UIViewController, UITableViewDelegate, UITableViewDataSource,UIGestureRecognizerDelegate, UITextFieldDelegate, AVAudioPlayerDelegate {
     
     @IBOutlet weak var previewScrollView: UIScrollView!
     @IBOutlet weak var chatView: UIView!
@@ -42,7 +43,7 @@ class InGameViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var playerJudging: String!
     var playersInGame = [PlayerData]()
     var leaderId = ""
-    var crownUserIconIV = UIImageView()
+    var borderForUserIconIV = UIImageView()
     var game : Game!
     var myCardInserted = false
     var userWhoWon = ""
@@ -60,9 +61,15 @@ class InGameViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var nextRoundStarting = false
     var currentRoundFinished = false
     var leftRoom = false
+    
+    //sound player
+    var backgroundPlayer:AVAudioPlayer!
+    var effectPlayer:AVAudioPlayer!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        SoundPlayer.sharedInstance.audioPlayer.stop()
+        
         setupUI()
         if leaderId == MyPlayerData.id {
             AvailableRoomHelper.makeMyRoomStatusClosed()
@@ -94,7 +101,7 @@ class InGameViewController: UIViewController, UITableViewDelegate, UITableViewDa
             reloadPreviewCards()
         }
         subscribeToKeyboardNotifications()
-        SoundPlayer.playInGameMusic()
+        playBackground()
     }
     
     func checkIfYourAreJudge(){
@@ -191,6 +198,7 @@ class InGameViewController: UIViewController, UITableViewDelegate, UITableViewDa
                         card.topText = temp.topText
                         card.didWin = temp.didWin
                         if(temp.didWin){
+                            self.playWinningSound()
                             self.userWhoWon = temp.playerId!
                             
                             self.AddEditJudgeMemeBtn.isEnabled = false

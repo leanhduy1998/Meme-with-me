@@ -14,7 +14,7 @@ extension InGameViewController {
         for v in currentPlayersScrollView.subviews {
             v.removeFromSuperview()
         }
-        crownUserIconIV.removeFromSuperview()
+        borderForUserIconIV.removeFromSuperview()
         
         var contentWidth = CGFloat(0)
         // never use currentPlayersScrollView.frame.height, because it uses the height of its storyboard
@@ -27,8 +27,8 @@ extension InGameViewController {
         var counter = 0
         for x in players!{
             let newX = (self.space * CGFloat(counter+1))  + CGFloat(counter) * self.iconSize
-            let imageView = UIImageView()
-            imageView.frame = CGRect(x: newX, y: self.space/4, width: self.iconSize, height: self.iconSize)
+            let userIconIV = UIImageView()
+            userIconIV.frame = CGRect(x: newX, y: self.space/4, width: self.iconSize, height: self.iconSize)
             contentWidth += self.space + self.iconSize
             
             if x.userImageData == nil {
@@ -38,17 +38,17 @@ extension InGameViewController {
                 helper.loadUserProfilePicture(userId: x.playerId!, completeHandler: { (imageData) in
                     DispatchQueue.main.async {
                         let image = UIImage(data: imageData)!
-                        imageView.image = CircleImageCutter.getCircleImage(image: image, radius: Float(self.iconSize))
+                        userIconIV.image = CircleImageCutter.getCircleImage(image: image, radius: Float(self.iconSize))
                         
-                        self.currentPlayersScrollView.addSubview(imageView)
-                        self.currentPlayersScrollView.sendSubview(toBack: imageView)
+                        self.currentPlayersScrollView.addSubview(userIconIV)
+                        self.currentPlayersScrollView.sendSubview(toBack: userIconIV)
                         
                         x.userImageData = imageData as NSData
                         
                         if x.playerId == self.userWhoWon {
-                            self.crownUserIconIV = self.getCrownIVForIcon(newX: newX)
-                            self.currentPlayersScrollView.addSubview(self.crownUserIconIV)
-                            self.currentPlayersScrollView.bringSubview(toFront: self.crownUserIconIV)
+                            self.borderForUserIconIV = self.getBorderIVForIcon(iconSize: self.iconSize)
+                            userIconIV.addSubview(self.borderForUserIconIV)
+                            userIconIV.bringSubview(toFront: self.borderForUserIconIV)
                         }
                     }
                     
@@ -57,21 +57,21 @@ extension InGameViewController {
                 
             else {
                 let image =  UIImage(data: (x.userImageData as Data?)!)!
-                imageView.image = CircleImageCutter.getCircleImage(image: image, radius: Float(iconSize))
+                userIconIV.image = CircleImageCutter.getCircleImage(image: image, radius: Float(iconSize))
                 
-                currentPlayersScrollView.addSubview(imageView)
-                currentPlayersScrollView.sendSubview(toBack: imageView)
+                currentPlayersScrollView.addSubview(userIconIV)
+                currentPlayersScrollView.sendSubview(toBack: userIconIV)
                 
                 counter = counter + 1
                 
                 if x.playerId == userWhoWon {
-                    crownUserIconIV = getCrownIVForIcon(newX: newX)
-                    currentPlayersScrollView.addSubview(crownUserIconIV)
-                    self.currentPlayersScrollView.bringSubview(toFront: crownUserIconIV)
+                    borderForUserIconIV = getBorderIVForIcon(iconSize: iconSize)
+                    userIconIV.addSubview(borderForUserIconIV)
+                    userIconIV.bringSubview(toFront: borderForUserIconIV)
                 }
             }
         
-            currentPlayersScrollView.bringSubview(toFront: crownUserIconIV)
+            currentPlayersScrollView.bringSubview(toFront: borderForUserIconIV)
         }
         currentPlayersScrollView.contentSize = CGSize(width: contentWidth, height: iconSize)
     }
@@ -196,8 +196,8 @@ extension InGameViewController {
                 let downLabel = getBottomLabel(text: card.bottomText!)
                 cardUIView.initCardView(topLabel: upLabel, bottomLabel: downLabel,playerId: card.playerId!, memeIV: memeImageView)
                     
-                let crownIV = getCrownIVForWinningCard(newX: newX)
-                cardUIView.addSubview(crownIV)
+                let borderIV = getBorderForWinningCard()
+                cardUIView.addSubview(borderIV)
                     
                 getUserIconView(frame: memeImageView.frame, playerCard: card,completeHandler: { (IV) in
                     cardUIView.addSubview(IV)

@@ -8,11 +8,14 @@
 
 import Foundation
 import AVFoundation
+import UIKit
 
-class SoundPlayer{
-    static var audioPlayer:AVAudioPlayer!
+class SoundPlayer: NSObject{
+    var audioPlayer:AVAudioPlayer!
     
-    private static func play(songName:String){
+    static let sharedInstance = SoundPlayer()
+    
+    private func play(songName:String, loop: Bool){
         let audioFilePath = Bundle.main.path(forResource: songName, ofType: "mp3")
         
         if audioFilePath != nil {
@@ -21,7 +24,12 @@ class SoundPlayer{
             
             do{
                 try audioPlayer = AVAudioPlayer(contentsOf: audioFileUrl)
-                audioPlayer.numberOfLoops = -1
+                if(loop == true){
+                    audioPlayer.numberOfLoops = -1
+                }
+                else{
+                    audioPlayer.numberOfLoops = 1
+                }
                 audioPlayer.play()
             }
             catch {
@@ -34,22 +42,22 @@ class SoundPlayer{
         }
     }
     
-    static func playStartMusic(){
-        play(songName: "startMusic")
+    func playStartMusic(){
+        play(songName: "startMusic", loop: true)
     }
-    static func playAvailableRoomMusic(){
-        play(songName: "availableRoomMusic")
+    func playAvailableRoomMusic(){
+        play(songName: "availableRoomMusic", loop: true)
     }
-    static func playInGameMusic(){
+    func playPrivateRoomMusic(){
         let random = Int(arc4random_uniform(2))
         if(random == 0){
-            play(songName: "inGame")
+            play(songName: "privateRoomMusic", loop: true)
         }
         else{
-            play(songName: "inGame2")
+            play(songName: "privateRoomMusic2", loop: true)
         }
     }
-    static func playMessageReceivedSound(){
-        play(songName: "availableRoomMusic")
+    func playMessageReceivedSound(){
+        play(songName: "messagereceived", loop: false)
     }
 }

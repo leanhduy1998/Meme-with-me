@@ -45,6 +45,7 @@ class ChatHelper {
                 }
                 self.messages.append(message)
                 controller.chatTableView.reloadData()
+                SoundPlayer.sharedInstance.playMessageReceivedSound()
                 DispatchQueue.main.async {
                     if(controller.chatHelper.messages.count > 0){
                         let indexPath = IndexPath(row: controller.chatHelper.messages.count-1, section: 0)

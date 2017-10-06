@@ -156,8 +156,7 @@ class PrivateRoomViewController: UIViewController,UITableViewDelegate, UITableVi
             let indexPath = IndexPath(row: self.chatHelper.messages.count-1, section: 0)
             self.chatTableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
         }
-        //chatTableView.rowHeight = 5000
-        //chatTableView.reloadData()
+        SoundPlayer.sharedInstance.playPrivateRoomMusic()
     }
     
     @IBAction func startGameBtnPressed(_ sender: Any) {

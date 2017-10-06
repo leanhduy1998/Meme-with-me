@@ -40,7 +40,7 @@ class AvailableGamesViewController: UIViewController, UITableViewDelegate, UITab
         selectedLeaderId = nil
         setupUI()
         
-        SoundPlayer.playAvailableRoomMusic()
+        SoundPlayer.sharedInstance.playAvailableRoomMusic()
     }
     
     func getNamefromAllPlayerInRoom(playerArr: [String:Any]) -> String{

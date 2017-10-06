@@ -41,7 +41,7 @@ class StartViewController: UIViewController,UIGestureRecognizerDelegate, AWSSign
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        SoundPlayer.playStartMusic()
+        SoundPlayer.sharedInstance.playStartMusic()
         
         setupUI()
         setupGoogleButton()

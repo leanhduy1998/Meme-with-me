@@ -31,6 +31,7 @@
 		2413D7DF1F499004001EA209 /* GetGameData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2413D7DE1F499004001EA209 /* GetGameData.swift */; };
 		2413D7E31F4B60FA001EA209 /* MememeDynamoDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2413D7E21F4B60FA001EA209 /* MememeDynamoDB.swift */; };
 		2413D7E71F4CC540001EA209 /* MememeDBObjectModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2413D7E61F4CC540001EA209 /* MememeDBObjectModel.swift */; };
+		24193BB21F8813BA00B8AA96 /* InGameSound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24193BB11F8813BA00B8AA96 /* InGameSound.swift */; };
 		241C6E5F1F58160700756BA7 /* AvailableRoomFirBModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241C6E5E1F58160700756BA7 /* AvailableRoomFirBModel.swift */; };
 		241C6E651F58983B00756BA7 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241C6E641F58983B00756BA7 /* SignUpViewController.swift */; };
 		241C6E671F58AEFF00756BA7 /* ChangeUserPictureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241C6E661F58AEFF00756BA7 /* ChangeUserPictureViewController.swift */; };
@@ -129,6 +130,9 @@
 		24E8597B1F7EFA4300856BA3 /* MyCoreDataCoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E859791F7EF9FB00856BA3 /* MyCoreDataCoreDataProperties.swift */; };
 		24E8597D1F7EFE5700856BA3 /* CellAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E8597C1F7EFE5700856BA3 /* CellAnimator.swift */; };
 		24F237B11F807FCF00616F3C /* InGameChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F237B01F807FCF00616F3C /* InGameChat.swift */; };
+		24F5C7EA1F87F9340095B2C5 /* InGameUserIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F5C7E91F87F9340095B2C5 /* InGameUserIcon.swift */; };
+		24F5C7EC1F87F9830095B2C5 /* InGameAddMeme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F5C7EB1F87F9830095B2C5 /* InGameAddMeme.swift */; };
+		24F5C7EE1F87FD380095B2C5 /* heartbeat.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 24F5C7ED1F87FC750095B2C5 /* heartbeat.mp3 */; };
 		24F6A7701F34E48D000E35DD /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2498FA271F34857100B21267 /* libsqlite3.0.tbd */; };
 		24F6A7711F34E48D000E35DD /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2498FA281F34857100B21267 /* libsqlite3.tbd */; };
 		24F6A7731F34E4C2000E35DD /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 24F6A7721F34E4C2000E35DD /* libz.tbd */; };
@@ -190,6 +194,7 @@
 		2413D7DE1F499004001EA209 /* GetGameData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetGameData.swift; sourceTree = "<group>"; };
 		2413D7E21F4B60FA001EA209 /* MememeDynamoDB.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MememeDynamoDB.swift; sourceTree = "<group>"; };
 		2413D7E61F4CC540001EA209 /* MememeDBObjectModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MememeDBObjectModel.swift; sourceTree = "<group>"; };
+		24193BB11F8813BA00B8AA96 /* InGameSound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InGameSound.swift; sourceTree = "<group>"; };
 		241C6E5E1F58160700756BA7 /* AvailableRoomFirBModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvailableRoomFirBModel.swift; sourceTree = "<group>"; };
 		241C6E641F58983B00756BA7 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		241C6E661F58AEFF00756BA7 /* ChangeUserPictureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeUserPictureViewController.swift; sourceTree = "<group>"; };
@@ -302,6 +307,9 @@
 		24E859791F7EF9FB00856BA3 /* MyCoreDataCoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCoreDataCoreDataProperties.swift; sourceTree = "<group>"; };
 		24E8597C1F7EFE5700856BA3 /* CellAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellAnimator.swift; sourceTree = "<group>"; };
 		24F237B01F807FCF00616F3C /* InGameChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InGameChat.swift; sourceTree = "<group>"; };
+		24F5C7E91F87F9340095B2C5 /* InGameUserIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InGameUserIcon.swift; sourceTree = "<group>"; };
+		24F5C7EB1F87F9830095B2C5 /* InGameAddMeme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InGameAddMeme.swift; sourceTree = "<group>"; };
+		24F5C7ED1F87FC750095B2C5 /* heartbeat.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = heartbeat.mp3; sourceTree = "<group>"; };
 		24F6A7721F34E4C2000E35DD /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		24FC32DB1F6CB097006CBD62 /* UserOnlineSystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserOnlineSystem.swift; sourceTree = "<group>"; };
 		A1EFF53BA25955FB53356C75 /* Pods_Mememe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mememe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -528,6 +536,8 @@
 			children = (
 				24AF9E5B1F3018D000D05BFC /* InGameView.swift */,
 				244F2CF61F86DF0C00547AB2 /* InGameCards.swift */,
+				24F5C7E91F87F9340095B2C5 /* InGameUserIcon.swift */,
+				24F5C7EB1F87F9830095B2C5 /* InGameAddMeme.swift */,
 			);
 			name = InGame;
 			sourceTree = "<group>";
@@ -642,6 +652,7 @@
 			isa = PBXGroup;
 			children = (
 				247A34AE1F87116D00E2C9E0 /* availableRoomMusic.mp3 */,
+				24F5C7ED1F87FC750095B2C5 /* heartbeat.mp3 */,
 				247A34B41F87116F00E2C9E0 /* inGame.mp3 */,
 				247A34AF1F87116D00E2C9E0 /* inGame2.mp3 */,
 				247A34B61F87116F00E2C9E0 /* messagereceived.mp3 */,
@@ -802,6 +813,7 @@
 				24C30F411F7441A4007237C1 /* InGameExtensionJudge.swift */,
 				24C30F431F7441E8007237C1 /* InGameScrollViews.swift */,
 				24F237B01F807FCF00616F3C /* InGameChat.swift */,
+				24193BB11F8813BA00B8AA96 /* InGameSound.swift */,
 			);
 			name = InGame;
 			sourceTree = "<group>";
@@ -1014,6 +1026,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24F5C7EE1F87FD380095B2C5 /* heartbeat.mp3 in Resources */,
 				247A34B71F87127E00E2C9E0 /* availableRoomMusic.mp3 in Resources */,
 				247A34B81F87127E00E2C9E0 /* inGame.mp3 in Resources */,
 				247A34B91F87127E00E2C9E0 /* inGame2.mp3 in Resources */,
@@ -1145,13 +1158,16 @@
 				241C6E6B1F59F3A200756BA7 /* UserFilesHelper.swift in Sources */,
 				2413D7BF1F43E78C001EA209 /* CardNormal.swift in Sources */,
 				24C4A7811F2AC94C00A1E277 /* AvailableGamesViewController.swift in Sources */,
+				24F5C7EC1F87F9830095B2C5 /* InGameAddMeme.swift in Sources */,
 				24C30F421F7441A4007237C1 /* InGameExtensionJudge.swift in Sources */,
 				245B2B141F4F685500BCF75A /* GameDataFromJSON.swift in Sources */,
 				2468B02F1F4E59870091EDD0 /* GameDataToJSON.swift in Sources */,
+				24F5C7EA1F87F9340095B2C5 /* InGameUserIcon.swift in Sources */,
 				24305CDF1F2E5F5300B14632 /* CoreDataStack.swift in Sources */,
 				2413D7D41F45189A001EA209 /* CardView.swift in Sources */,
 				2413D7901F3D58A0001EA209 /* RoundCoreDataProperties.swift in Sources */,
 				2474E0001F349424006E00AC /* AWSMobileClient.swift in Sources */,
+				24193BB21F8813BA00B8AA96 /* InGameSound.swift in Sources */,
 				24896D871F2A70A9003B6954 /* StartView.swift in Sources */,
 				2498F9E01F347B8F00B21267 /* InGameChatTableView.swift in Sources */,
 				2413D79E1F42082B001EA209 /* HeartView.swift in Sources */,
