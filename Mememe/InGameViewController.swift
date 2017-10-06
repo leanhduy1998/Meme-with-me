@@ -94,6 +94,7 @@ class InGameViewController: UIViewController, UITableViewDelegate, UITableViewDa
             reloadPreviewCards()
         }
         subscribeToKeyboardNotifications()
+        SoundPlayer.playInGameMusic()
     }
     
     func checkIfYourAreJudge(){

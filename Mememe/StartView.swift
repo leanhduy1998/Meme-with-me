@@ -17,8 +17,80 @@ extension StartViewController {
         setupLaughingIcon()
         setupLeftRedNotificationView()
         setupRightRedNotificationView()
+        
+        setupMainScreenTap()
+        
         setupTouchToStartLabel()
-        setupMememeLabel()
+        addFadeInAnimation()
+    }
+    
+    private func addFadeInAnimation(){
+        userIcon.alpha = 0
+        laughingIcon.alpha = 0
+        leftRedNotificationView.alpha = 0
+        leftNotificationLabel.alpha = 0
+        
+        touchToStartLabel.backgroundColor = UIColor.white
+        touchToStartLabel.alpha = 0
+        
+        UIView.animate(withDuration: 1, delay: 0, options: [], animations: {
+            self.userIcon.frame.origin.y += self.view.frame.height/2
+            
+            self.laughingIcon.frame.origin.x += 100
+            self.leftRedNotificationView.frame.origin.x += 100
+            self.leftNotificationLabel.frame.origin.x += 100
+            
+            self.ceasarIcon.frame.origin.x -= 100
+            self.rightRedNotificationView.frame.origin.x -= 100
+            self.rightNotificationLabel.frame.origin.x -= 100
+            
+            self.userIcon.alpha = 1
+            self.laughingIcon.alpha = 1
+            self.leftRedNotificationView.alpha = 1
+            self.leftNotificationLabel.alpha = 1
+            self.touchToStartLabel.alpha = 1
+        }) { (completed) in
+            if completed{
+                self.addLoopingAnimation()
+            }
+        }
+    }
+    
+    private func setupMainScreenTap(){
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(sender:)))
+        tap.delegate = self
+        view.addGestureRecognizer(tap)
+    }
+    @objc private func handleTap(sender: UITapGestureRecognizer) {
+        googleButton.isHidden = false
+        googleButton.alpha = 0
+        
+        UIView.animate(withDuration: 0.5, animations: {
+      //      self.view.backgroundColor = UIColor(red: 145/255, green: 255/255, blue: 255/255, alpha: 1.0)
+            self.googleButton.alpha = 1
+            self.touchToStartLabel.alpha = 0
+        }) { (completed) in
+            if(completed){
+                self.touchToStartLabel.isHidden = true
+            }
+        }
+    }
+    
+    private func addLoopingAnimation(){
+        UIView.animate(withDuration: 2, delay: 0.0, options:[UIViewAnimationOptions.repeat, UIViewAnimationOptions.autoreverse], animations: {
+            self.laughingIcon.frame.origin.y += 5
+            self.leftRedNotificationView.frame.origin.y += 10
+            self.leftNotificationLabel.frame.origin.y += 1
+            
+            self.ceasarIcon.frame.origin.y += 5
+            self.rightRedNotificationView.frame.origin.y += 10
+            self.rightNotificationLabel.frame.origin.y += 1
+            
+            self.userIcon.transform = CGAffineTransform(scaleX: 0.90, y: 0.90)
+            
+            self.touchToStartLabel.alpha = 0
+            
+        }, completion: nil)
     }
     
     private func setupDimensions(){
@@ -91,20 +163,6 @@ extension StartViewController {
         touchToStartLabelConstraintArr.append(NSLayoutConstraint(item: touchToStartLabel, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1, constant: -screenHeight/12
         ))
         NSLayoutConstraint.activate(touchToStartLabelConstraintArr)
-    }
-    
-    private func setupMememeLabel(){
-        mememeLabel.translatesAutoresizingMaskIntoConstraints = false
-        
-        var mememeLabelConstraintArr = [NSLayoutConstraint]()
-        mememeLabelConstraintArr.append(NSLayoutConstraint(item: mememeLabel, attribute: .left, relatedBy: .equal, toItem: view, attribute: .left, multiplier: 1, constant: margin
-        ))
-        mememeLabelConstraintArr.append(NSLayoutConstraint(item: mememeLabel, attribute: .right, relatedBy: .equal, toItem: view, attribute: .right, multiplier: 1, constant: -margin
-        ))
-        
-        mememeLabelConstraintArr.append(NSLayoutConstraint(item: mememeLabel, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: screenHeight/12
-        ))
-        NSLayoutConstraint.activate(mememeLabelConstraintArr)
     }
     
 }

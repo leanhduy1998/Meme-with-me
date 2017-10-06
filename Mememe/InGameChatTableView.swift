@@ -23,14 +23,18 @@ extension InGameViewController {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension;
-    }
-    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         if(tableView == chatTableView){
-            let heightOfRow = calculateHeight(inString: chatHelper.messages[indexPath.row].text)
-            return (heightOfRow + 40.0)
+            if(calculateHeight(inString: chatHelper.messages[indexPath.row].text) > 40){
+                let smallestHeight =  calculateHeight(inString: "a")
+                var mulpipliter = calculateHeight(inString: chatHelper.messages[indexPath.row].text) / smallestHeight
+                mulpipliter = mulpipliter/13 + mulpipliter
+                return smallestHeight * (mulpipliter)
+            }
+            else{
+                return 40
+            }
         }
-        return 60
+        return 120
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

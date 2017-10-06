@@ -8,11 +8,12 @@
 
 import Foundation
 import UIKit
+import QuartzCore
 
 extension PrivateRoomViewController {
     func calculateHeight(inString:String) -> CGFloat {
         let messageString = inString
-        let attributes : [String : Any] = [NSFontAttributeName : UIFont.systemFont(ofSize: 15.0)]
+        let attributes : [String : Any] = [NSFontAttributeName : UIFont.systemFont(ofSize: 17.0)]
         
         let attributedString : NSAttributedString = NSAttributedString(string: messageString, attributes: attributes)
         
@@ -21,16 +22,20 @@ extension PrivateRoomViewController {
         let requredSize:CGRect = rect
         return requredSize.height
     }
-    
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension;
-    }
-    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         if(tableView == chatTableView){
-            let heightOfRow = calculateHeight(inString: chatHelper.messages[indexPath.row].text)
-            return (heightOfRow + 40.0)
+            if(calculateHeight(inString: chatHelper.messages[indexPath.row].text) > 40){
+                let smallestHeight =  calculateHeight(inString: "a")
+                var mulpipliter = calculateHeight(inString: chatHelper.messages[indexPath.row].text) / smallestHeight
+                mulpipliter = mulpipliter/13 + mulpipliter
+                return smallestHeight * (mulpipliter)
+            }
+            else{
+                return 40
+            }
         }
-        return 60
+        return 120
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -40,8 +45,11 @@ extension PrivateRoomViewController {
                 var cell = tableView.dequeueReusableCell(withIdentifier: "MyChatTableViewCell") as? MyChatTableViewCell
                 cell = CellAnimator.add(cell: cell!)
                 cell?.messageTF.text = message.text
-                cell?.messageTF.numberOfLines = 0
-                cell?.messageTF.lineBreakMode = NSLineBreakMode.byWordWrapping
+                
+                cell?.messageTF.layer.masksToBounds = true
+                cell?.messageTF.layer.cornerRadius = 5
+                
+                
                 
                 helper.loadUserProfilePicture(userId: message.senderId) { (imageData) in
                     DispatchQueue.main.async {
@@ -56,6 +64,9 @@ extension PrivateRoomViewController {
                 cell?.messageTF.text = message.text
                 cell?.messageTF.numberOfLines = 0
                 cell?.messageTF.lineBreakMode = NSLineBreakMode.byWordWrapping
+                
+                cell?.messageTF.layer.masksToBounds = true
+                cell?.messageTF.layer.cornerRadius = 5
                 
                 helper.loadUserProfilePicture(userId: message.senderId) { (imageData) in
                     DispatchQueue.main.async {

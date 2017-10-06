@@ -52,6 +52,7 @@
 		243F209B1F68E72D0003C604 /* leveldb-library.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 243F20991F68E72D0003C604 /* leveldb-library.framework */; };
 		243F209F1F6A1BF50003C604 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 243F209E1F6A1BF40003C604 /* GoogleService-Info.plist */; };
 		243F20A21F6A2C2D0003C604 /* AvailableRoomHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243F20A11F6A2C2D0003C604 /* AvailableRoomHelper.swift */; };
+		244F2CF71F86DF0C00547AB2 /* InGameCards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244F2CF61F86DF0C00547AB2 /* InGameCards.swift */; };
 		245B2B141F4F685500BCF75A /* GameDataFromJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245B2B131F4F685500BCF75A /* GameDataFromJSON.swift */; };
 		245B2B1F1F50F9D100BCF75A /* PrivateRoomTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245B2B1E1F50F9D100BCF75A /* PrivateRoomTableView.swift */; };
 		245B2B221F50FB2D00BCF75A /* PrivateRoomTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245B2B211F50FB2D00BCF75A /* PrivateRoomTableCell.swift */; };
@@ -67,6 +68,16 @@
 		2474DFFF1F349424006E00AC /* AWSGoogleSignInResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2474DFFB1F349424006E00AC /* AWSGoogleSignInResources.bundle */; };
 		2474E0001F349424006E00AC /* AWSMobileClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2474DFFC1F349424006E00AC /* AWSMobileClient.swift */; };
 		2474E0011F349424006E00AC /* AWSMobileHubHelper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2474DFFD1F349424006E00AC /* AWSMobileHubHelper.framework */; };
+		247A349D1F87070300E2C9E0 /* AsimovDistIt.otf in Resources */ = {isa = PBXBuildFile; fileRef = 247A349C1F8706A800E2C9E0 /* AsimovDistIt.otf */; };
+		247A34A41F870F4700E2C9E0 /* SoundPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247A34A31F870F4700E2C9E0 /* SoundPlayer.swift */; };
+		247A34B71F87127E00E2C9E0 /* availableRoomMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 247A34AE1F87116D00E2C9E0 /* availableRoomMusic.mp3 */; };
+		247A34B81F87127E00E2C9E0 /* inGame.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 247A34B41F87116F00E2C9E0 /* inGame.mp3 */; };
+		247A34B91F87127E00E2C9E0 /* inGame2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 247A34AF1F87116D00E2C9E0 /* inGame2.mp3 */; };
+		247A34BA1F87127E00E2C9E0 /* messagereceived.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 247A34B61F87116F00E2C9E0 /* messagereceived.mp3 */; };
+		247A34BB1F87127E00E2C9E0 /* privateRoomMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 247A34B31F87116E00E2C9E0 /* privateRoomMusic.mp3 */; };
+		247A34BC1F87127E00E2C9E0 /* privateRoomMusic2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 247A34B51F87116F00E2C9E0 /* privateRoomMusic2.mp3 */; };
+		247A34BD1F87127E00E2C9E0 /* startMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 247A34B01F87116D00E2C9E0 /* startMusic.mp3 */; };
+		247A34BE1F87127E00E2C9E0 /* winning.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 247A34B11F87116D00E2C9E0 /* winning.mp3 */; };
 		247A55C71F7F350A004D1701 /* ChatHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247A55C61F7F350A004D1701 /* ChatHelper.swift */; };
 		247A55C91F7F3EE3004D1701 /* ChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247A55C81F7F3EE3004D1701 /* ChatModel.swift */; };
 		247A55CB1F7F5FBC004D1701 /* PrivateRoomChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247A55CA1F7F5FBC004D1701 /* PrivateRoomChat.swift */; };
@@ -108,6 +119,7 @@
 		24C30F421F7441A4007237C1 /* InGameExtensionJudge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C30F411F7441A4007237C1 /* InGameExtensionJudge.swift */; };
 		24C30F441F7441E8007237C1 /* InGameScrollViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C30F431F7441E8007237C1 /* InGameScrollViews.swift */; };
 		24C4A7811F2AC94C00A1E277 /* AvailableGamesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C4A7801F2AC94C00A1E277 /* AvailableGamesViewController.swift */; };
+		24CD58681F86DB42005DCA0C /* AvailableGamesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CD58671F86DB42005DCA0C /* AvailableGamesView.swift */; };
 		24D2BE2F1F7B6949003B7957 /* GameStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D2BE2E1F7B6949003B7957 /* GameStack.swift */; };
 		24E734C01F6DCD8F00218AB1 /* InGameHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E734BF1F6DCD8F00218AB1 /* InGameHelper.swift */; };
 		24E734C81F6E01C200218AB1 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E734C61F6E01C200218AB1 /* Player.swift */; };
@@ -201,6 +213,7 @@
 		243F209D1F68E7DB0003C604 /* module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
 		243F209E1F6A1BF40003C604 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		243F20A11F6A2C2D0003C604 /* AvailableRoomHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvailableRoomHelper.swift; sourceTree = "<group>"; };
+		244F2CF61F86DF0C00547AB2 /* InGameCards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InGameCards.swift; sourceTree = "<group>"; };
 		245B2B131F4F685500BCF75A /* GameDataFromJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameDataFromJSON.swift; sourceTree = "<group>"; };
 		245B2B1E1F50F9D100BCF75A /* PrivateRoomTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivateRoomTableView.swift; sourceTree = "<group>"; };
 		245B2B211F50FB2D00BCF75A /* PrivateRoomTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivateRoomTableCell.swift; sourceTree = "<group>"; };
@@ -220,6 +233,16 @@
 		2474DFFB1F349424006E00AC /* AWSGoogleSignInResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AWSGoogleSignInResources.bundle; sourceTree = "<group>"; };
 		2474DFFC1F349424006E00AC /* AWSMobileClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AWSMobileClient.swift; sourceTree = "<group>"; };
 		2474DFFD1F349424006E00AC /* AWSMobileHubHelper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AWSMobileHubHelper.framework; sourceTree = "<group>"; };
+		247A349C1F8706A800E2C9E0 /* AsimovDistIt.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = AsimovDistIt.otf; sourceTree = "<group>"; };
+		247A34A31F870F4700E2C9E0 /* SoundPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundPlayer.swift; sourceTree = "<group>"; };
+		247A34AE1F87116D00E2C9E0 /* availableRoomMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = availableRoomMusic.mp3; sourceTree = "<group>"; };
+		247A34AF1F87116D00E2C9E0 /* inGame2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = inGame2.mp3; sourceTree = "<group>"; };
+		247A34B01F87116D00E2C9E0 /* startMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = startMusic.mp3; sourceTree = "<group>"; };
+		247A34B11F87116D00E2C9E0 /* winning.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = winning.mp3; sourceTree = "<group>"; };
+		247A34B31F87116E00E2C9E0 /* privateRoomMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = privateRoomMusic.mp3; sourceTree = "<group>"; };
+		247A34B41F87116F00E2C9E0 /* inGame.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = inGame.mp3; sourceTree = "<group>"; };
+		247A34B51F87116F00E2C9E0 /* privateRoomMusic2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = privateRoomMusic2.mp3; sourceTree = "<group>"; };
+		247A34B61F87116F00E2C9E0 /* messagereceived.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = messagereceived.mp3; sourceTree = "<group>"; };
 		247A55C61F7F350A004D1701 /* ChatHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatHelper.swift; sourceTree = "<group>"; };
 		247A55C81F7F3EE3004D1701 /* ChatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatModel.swift; sourceTree = "<group>"; };
 		247A55CA1F7F5FBC004D1701 /* PrivateRoomChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateRoomChat.swift; sourceTree = "<group>"; };
@@ -268,6 +291,7 @@
 		24C30F411F7441A4007237C1 /* InGameExtensionJudge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InGameExtensionJudge.swift; sourceTree = "<group>"; };
 		24C30F431F7441E8007237C1 /* InGameScrollViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InGameScrollViews.swift; sourceTree = "<group>"; };
 		24C4A7801F2AC94C00A1E277 /* AvailableGamesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvailableGamesViewController.swift; sourceTree = "<group>"; };
+		24CD58671F86DB42005DCA0C /* AvailableGamesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableGamesView.swift; sourceTree = "<group>"; };
 		24D2BE2E1F7B6949003B7957 /* GameStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStack.swift; sourceTree = "<group>"; };
 		24E734BF1F6DCD8F00218AB1 /* InGameHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InGameHelper.swift; sourceTree = "<group>"; };
 		24E734C61F6E01C200218AB1 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Player.swift; path = ../Player.swift; sourceTree = "<group>"; };
@@ -349,7 +373,8 @@
 			isa = PBXGroup;
 			children = (
 				24896D861F2A70A9003B6954 /* StartView.swift */,
-				24AF9E5B1F3018D000D05BFC /* InGameView.swift */,
+				24CD58671F86DB42005DCA0C /* AvailableGamesView.swift */,
+				244F2CF51F86DE6F00547AB2 /* InGame */,
 				2413D7B41F422838001EA209 /* AddEditMyMemeView.swift */,
 			);
 			name = ViewController;
@@ -498,6 +523,15 @@
 			name = Firebase;
 			sourceTree = "<group>";
 		};
+		244F2CF51F86DE6F00547AB2 /* InGame */ = {
+			isa = PBXGroup;
+			children = (
+				24AF9E5B1F3018D000D05BFC /* InGameView.swift */,
+				244F2CF61F86DF0C00547AB2 /* InGameCards.swift */,
+			);
+			name = InGame;
+			sourceTree = "<group>";
+		};
 		245B2B191F50E8BD00BCF75A /* JSON */ = {
 			isa = PBXGroup;
 			children = (
@@ -557,13 +591,11 @@
 		246D08E81F7CA8B60025DA40 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
-				247A55C61F7F350A004D1701 /* ChatHelper.swift */,
 				245B2B191F50E8BD00BCF75A /* JSON */,
 				2413D7DE1F499004001EA209 /* GetGameData.swift */,
 				24233F5D1F63437300B2B7EE /* DisplayAlert.swift */,
 				24AFAD921F73355F00D57762 /* GetGameCoreDataData.swift */,
-				2484DBA51F81933000D43178 /* Firebase */,
-				241C6E6C1F5A2DE300756BA7 /* AWS */,
+				247A34A31F870F4700E2C9E0 /* SoundPlayer.swift */,
 			);
 			name = Helper;
 			sourceTree = "<group>";
@@ -598,9 +630,33 @@
 			path = AmazonAws;
 			sourceTree = "<group>";
 		};
+		247A349B1F87068900E2C9E0 /* font */ = {
+			isa = PBXGroup;
+			children = (
+				247A349C1F8706A800E2C9E0 /* AsimovDistIt.otf */,
+			);
+			name = font;
+			sourceTree = "<group>";
+		};
+		247A349E1F8709AF00E2C9E0 /* sound */ = {
+			isa = PBXGroup;
+			children = (
+				247A34AE1F87116D00E2C9E0 /* availableRoomMusic.mp3 */,
+				247A34B41F87116F00E2C9E0 /* inGame.mp3 */,
+				247A34AF1F87116D00E2C9E0 /* inGame2.mp3 */,
+				247A34B61F87116F00E2C9E0 /* messagereceived.mp3 */,
+				247A34B31F87116E00E2C9E0 /* privateRoomMusic.mp3 */,
+				247A34B51F87116F00E2C9E0 /* privateRoomMusic2.mp3 */,
+				247A34B01F87116D00E2C9E0 /* startMusic.mp3 */,
+				247A34B11F87116D00E2C9E0 /* winning.mp3 */,
+			);
+			name = sound;
+			sourceTree = "<group>";
+		};
 		2484DBA51F81933000D43178 /* Firebase */ = {
 			isa = PBXGroup;
 			children = (
+				247A55C61F7F350A004D1701 /* ChatHelper.swift */,
 				243F20A11F6A2C2D0003C604 /* AvailableRoomHelper.swift */,
 				24E734C11F6DCD9400218AB1 /* In Game */,
 				24FC32DB1F6CB097006CBD62 /* UserOnlineSystem.swift */,
@@ -667,6 +723,8 @@
 		24896D811F2A5FC3003B6954 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				2484DBA51F81933000D43178 /* Firebase */,
+				241C6E6C1F5A2DE300756BA7 /* AWS */,
 				2468B0351F4EBEDF0091EDD0 /* DynamoDB */,
 				243F20A01F6A27D10003C604 /* Firebase */,
 				24305CE01F2E5F9F00B14632 /* CoreData */,
@@ -717,6 +775,8 @@
 		24896D851F2A6C40003B6954 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				247A349E1F8709AF00E2C9E0 /* sound */,
+				247A349B1F87068900E2C9E0 /* font */,
 				24896D571F2A5FA2003B6954 /* Main.storyboard */,
 				24896D5A1F2A5FA2003B6954 /* Assets.xcassets */,
 				24896D5C1F2A5FA2003B6954 /* LaunchScreen.storyboard */,
@@ -954,6 +1014,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				247A34B71F87127E00E2C9E0 /* availableRoomMusic.mp3 in Resources */,
+				247A34B81F87127E00E2C9E0 /* inGame.mp3 in Resources */,
+				247A34B91F87127E00E2C9E0 /* inGame2.mp3 in Resources */,
+				247A34BA1F87127E00E2C9E0 /* messagereceived.mp3 in Resources */,
+				247A34BB1F87127E00E2C9E0 /* privateRoomMusic.mp3 in Resources */,
+				247A34BC1F87127E00E2C9E0 /* privateRoomMusic2.mp3 in Resources */,
+				247A34BD1F87127E00E2C9E0 /* startMusic.mp3 in Resources */,
+				247A34BE1F87127E00E2C9E0 /* winning.mp3 in Resources */,
 				2498FA201F3484F900B21267 /* GoogleSignIn.bundle in Resources */,
 				2498FA1C1F3484F900B21267 /* CheckXcodeVersion.sh in Resources */,
 				2474DFFF1F349424006E00AC /* AWSGoogleSignInResources.bundle in Resources */,
@@ -961,6 +1029,7 @@
 				24896D5B1F2A5FA2003B6954 /* Assets.xcassets in Resources */,
 				2498FA361F3485E800B21267 /* SignIn.storyboard in Resources */,
 				2498FA1B1F3484F900B21267 /* NOTICE in Resources */,
+				247A349D1F87070300E2C9E0 /* AsimovDistIt.otf in Resources */,
 				243F209F1F6A1BF50003C604 /* GoogleService-Info.plist in Resources */,
 				24896D591F2A5FA2003B6954 /* Main.storyboard in Resources */,
 				2498FA1A1F3484F900B21267 /* Amazon_Software_License.txt in Resources */,
@@ -1095,6 +1164,7 @@
 				2413D7DD1F484470001EA209 /* ChoosingCardView.swift in Sources */,
 				2413D7B51F422838001EA209 /* AddEditMyMemeView.swift in Sources */,
 				2498F9DB1F3478C500B21267 /* HerChatTableViewCell.swift in Sources */,
+				244F2CF71F86DF0C00547AB2 /* InGameCards.swift in Sources */,
 				24233F5C1F6312D500B2B7EE /* Extension.swift in Sources */,
 				2498F9D81F342E8600B21267 /* CircleImageCutter.swift in Sources */,
 				24305C931F2BB46C00B14632 /* GameModel.xcdatamodeld in Sources */,
@@ -1107,8 +1177,10 @@
 				246D08EF1F7CAB730025DA40 /* MyDataStack.swift in Sources */,
 				2468B0321F4E95870091EDD0 /* CardCeasar.swift in Sources */,
 				2498F9DD1F3478E200B21267 /* MyChatTableViewCell.swift in Sources */,
+				24CD58681F86DB42005DCA0C /* AvailableGamesView.swift in Sources */,
 				2413D7E71F4CC540001EA209 /* MememeDBObjectModel.swift in Sources */,
 				241C6E671F58AEFF00756BA7 /* ChangeUserPictureViewController.swift in Sources */,
+				247A34A41F870F4700E2C9E0 /* SoundPlayer.swift in Sources */,
 				247A55CB1F7F5FBC004D1701 /* PrivateRoomChat.swift in Sources */,
 				2468B0331F4E95870091EDD0 /* CardCeasarCoreDataProperties.swift in Sources */,
 				2413D7E31F4B60FA001EA209 /* MememeDynamoDB.swift in Sources */,

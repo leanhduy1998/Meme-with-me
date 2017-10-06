@@ -12,7 +12,7 @@ import AWSMobileHubHelper
 class SignUpViewController: UIViewController, UITextFieldDelegate{
 
     @IBOutlet weak var nameTextField: UITextField!
-    
+
     @IBOutlet weak var userImageView: UIImageView!
     
     @IBOutlet weak var finishBtn: UIButton!

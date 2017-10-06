@@ -31,6 +31,18 @@ class AvailableGamesViewController: UIViewController, UITableViewDelegate, UITab
         tableview.reloadData()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        AvailableRoomHelper.deleteMyRoom()
+        InGameHelper.removeYourInGameRoom()
+        getRoomDataFromDB()
+        updateOpenRoomValue()
+        selectedLeaderId = nil
+        setupUI()
+        
+        SoundPlayer.playAvailableRoomMusic()
+    }
+    
     func getNamefromAllPlayerInRoom(playerArr: [String:Any]) -> String{
         var string = ""
         
@@ -44,24 +56,6 @@ class AvailableGamesViewController: UIViewController, UITableViewDelegate, UITab
         }
         return string
     }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        AvailableRoomHelper.deleteMyRoom()
-        InGameHelper.removeYourInGameRoom()
-        getRoomDataFromDB()
-        updateOpenRoomValue()
-        selectedLeaderId = nil
-        UIView.animate(withDuration: 1.0, delay: 0, usingSpringWithDamping: 0.2, initialSpringVelocity: 6.0, options: [.allowUserInteraction, .autoreverse, UIViewAnimationOptions.repeat], animations: {
-            self.addBtn.transform = CGAffineTransform(scaleX: 0.95, y: 1)
-            
-        },completion: nil)
-        tableview.backgroundColor = UIColor.white
-        self.tabBarController?.tabBar.barTintColor = UIColor.white
-        view.backgroundColor = UIColor.white
-        plusBtnView.isHidden = false
-        tableview.separatorStyle = UITableViewCellSeparatorStyle.singleLine
-    }
     
     func getRoomDataFromDB(){
         availableRoomRef.observe(DataEventType.childAdded, with: { (snapshot) in
@@ -71,22 +65,7 @@ class AvailableGamesViewController: UIViewController, UITableViewDelegate, UITab
             
             DispatchQueue.main.async {
                 UserOnlineSystem.getUserOnlineStatus(userId: room.leaderId!, completionHandler: { (isUserOnline) in
-                    if isUserOnline{
-                        var exist = false
-                        for r in self.openRooms {
-                            if r.leaderId == room.leaderId {
-                                exist = true
-                                break
-                            }
-                        }
-                        if exist == false {
-                            self.openRooms.append(room)
-                        }
-                        
-                        DispatchQueue.main.async {
-                            self.tableview.reloadData()
-                        }
-                    }
+                    self.appendRoomIfRoomIsOpen(isUserOnline: isUserOnline, room: room)
                 })
             }
         })
@@ -138,29 +117,33 @@ class AvailableGamesViewController: UIViewController, UITableViewDelegate, UITab
                     let room = AvailableRoomHelper.transferValueFromMapToRoom(leaderId: leaderId, map: value as! [String : AnyObject])
                     
                     UserOnlineSystem.getUserOnlineStatus(userId: room.leaderId!, completionHandler: { (isUserOnline) in
-                        if isUserOnline{
-                            var exist = false
-                            for r in self.openRooms {
-                                if r.leaderId == room.leaderId {
-                                    exist = true
-                                    break
-                                }
-                                if r.roomIsOpen == "false" {
-                                    exist = true
-                                }
-                            }
-                            if exist == false {
-                                self.openRooms.append(room)
-                            }
-                            
-                            DispatchQueue.main.async {
-                                self.tableview.reloadData()
-                            }
-                        }
+                        self.appendRoomIfRoomIsOpen(isUserOnline: isUserOnline, room: room)
                     })
                 }
             }
         })
+    }
+    
+    func appendRoomIfRoomIsOpen(isUserOnline: Bool, room: AvailableRoomFirBModel){
+        if isUserOnline{
+            var exist = false
+            for r in self.openRooms {
+                if r.leaderId == room.leaderId {
+                    exist = true
+                    break
+                }
+                if r.roomIsOpen == "false" {
+                    exist = true
+                }
+            }
+            if exist == false {
+                self.openRooms.append(room)
+            }
+            
+            DispatchQueue.main.async {
+                self.tableview.reloadData()
+            }
+        }
     }
     
     

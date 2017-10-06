@@ -79,18 +79,7 @@ extension InGameViewController {
         NSLayoutConstraint.activate(currentPlayersScrollViewConstraintArr)
     }
     
-    func getCrownIVForCard() -> UIImageView{
-        let crownImage = #imageLiteral(resourceName: "ceasarCrown")
-        let crownIV = UIImageView(image: crownImage)
-        crownIV.frame = CGRect(x: cardWidth - cardHeight/6, y: cardHeight - cardHeight/6, width: cardHeight/6, height: cardHeight/6)
-        return crownIV
-    }
-    func getCrownIVForWinningCard(newX: CGFloat) -> UIImageView{
-        let crownImage = #imageLiteral(resourceName: "ceasarCrown")
-        let crownIV = UIImageView(image: crownImage)
-        crownIV.frame = CGRect(x: newX  + cardHeight/9, y: cardHeight - cardHeight/6, width: cardHeight/6, height: cardHeight/6)
-        return crownIV
-    }
+    
     func getCrownIVForIcon(newX: CGFloat) -> UIImageView{
         let crownImage = #imageLiteral(resourceName: "ceasarCrown")
         let crownIV = UIImageView(image: crownImage)
@@ -156,23 +145,24 @@ extension InGameViewController {
                     })
                 }
                 else {
-                    if((heartView?.subviews.count)! > 0){
-                        heartView?.subviews[0].removeFromSuperview()
-                        let cardNormal = heartView?.cardNormal
+                    if((heartView?.subviews.count)! == 0){
+                        return
+                    }
+                
+                    heartView?.subviews[0].removeFromSuperview()
+                    let cardNormal = heartView?.cardNormal
                         
-                        InGameHelper.unlikeSomeoOneCard(gameId: self.game.gameId!, cardId: (cardNormal?.playerId)!)
+                    InGameHelper.unlikeSomeoOneCard(gameId: self.game.gameId!, cardId: (cardNormal?.playerId)!)
                         
-                        for pl in (cardNormal?.playerlove?.allObjects)! {
-                            let playerLove = pl as? PlayerLove
-                            if playerLove?.playerId == MyPlayerData.id {
-                                cardNormal?.removeFromPlayerlove(playerLove!)
+                    for pl in (cardNormal?.playerlove?.allObjects)! {
+                        let playerLove = pl as? PlayerLove
+                        if playerLove?.playerId == MyPlayerData.id {
+                            cardNormal?.removeFromPlayerlove(playerLove!)
                                 
-                                GameStack.sharedInstance.saveContext(completeHandler: {
-                                    DispatchQueue.main.async {
-                                        
-                                    }
-                                })
-                            }
+                            GameStack.sharedInstance.saveContext(completeHandler: {
+                                DispatchQueue.main.async {
+                                }
+                            })
                         }
                     }
                 }
@@ -193,12 +183,10 @@ extension InGameViewController {
     
     func getNewXForPreviewScroll(x: Int, haveWinner: Bool) -> CGFloat{
         var newX = CGFloat(0)
-        
         if haveWinner {
             newX = screenWidth/2 - cardWidth/2
         }
         else {
-            //newX = space/2 + cardWidth + (space * CGFloat(x+1))  + CGFloat(x) * cardWidth
             newX =  (space/2 * CGFloat(x+1))  + CGFloat(x) * cardWidth
         }
         return newX
