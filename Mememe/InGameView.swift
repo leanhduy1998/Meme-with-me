@@ -19,8 +19,21 @@ extension InGameViewController {
         setupNavigationBar()
         previewScrollView.alwaysBounceHorizontal = true
         currentPlayersScrollView.alwaysBounceHorizontal = true
+        setFloorBackground()
+        
     }
     
+    func setFloorBackground(){
+        var random = Int(arc4random_uniform(UInt32(11)))
+        random += 1
+        let previewImageName = "floor\(random)"
+        previewScrollView.backgroundColor = UIColor(patternImage: UIImage(named:previewImageName)!)
+        
+        random = Int(arc4random_uniform(UInt32(5)))
+        random += 1
+        let userFloorImageName = "userFloor\(random)"
+        currentPlayersScrollView.backgroundColor = UIColor(patternImage: UIImage(named:userFloorImageName)!)
+    }
     
     func setupDimensions(){
         screenWidth = view.frame.size.width

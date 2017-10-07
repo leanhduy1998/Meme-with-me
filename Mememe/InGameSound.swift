@@ -69,6 +69,9 @@ extension InGameViewController{
     func playHeartSound(){
         playEffect(songName: "heartbeat", loop: 2, volume: 2)
     }
+    func playEndRoundSound(){
+        playEffect(songName: "endRound", loop: 1, volume: 1)
+    }
     func playWinningSound(){
         playEffect(songName: "winning", loop: 0, volume: 0.2)
     }

@@ -23,9 +23,6 @@ extension InGameViewController {
                 
                 let round = Round(roundNum: 0, context: GameStack.sharedInstance.stack.context)
                 
-                self.playersInGame = self.playersInGame.shuffled()
-
-                
                 let helper = UserFilesHelper()
                 helper.getRandomMemeData(completeHandler: { (memeData, memeName) in
                     DispatchQueue.main.async {

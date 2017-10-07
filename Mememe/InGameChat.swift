@@ -10,6 +10,10 @@ import Foundation
 import UIKit
 
 extension InGameViewController{
+    @IBAction func chatSendBtnPressed(_ sender: Any) {
+        chatHelper.insertMessage(text: chatTextField.text!)
+        chatTextField.text = ""
+    }
     func textFieldDidBeginEditing(_ textField: UITextField) {
         textField.text = ""
     }
