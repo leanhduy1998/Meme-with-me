@@ -24,24 +24,20 @@ extension InGameViewController {
                 let round = Round(roundNum: 0, context: GameStack.sharedInstance.stack.context)
                 
                 self.playersInGame = self.playersInGame.shuffled()
-                
-                let order = PlayerOrderInGame(orderNum: 0, playerId: self.playersInGame[0].userId, context: GameStack.sharedInstance.stack.context)
-                    self.game.addToPlayersorder(order)
 
                 
                 let helper = UserFilesHelper()
                 helper.getRandomMemeData(completeHandler: { (memeData, memeName) in
                     DispatchQueue.main.async {
-                        let playerOrders = self.game.playersorder?.allObjects as? [PlayerOrderInGame]
                         
-                        let ceasarId = self.getCeasarIdForCurrentRound(roundNum: 0)
+                        self.playerJudging = self.self.playersInGame[0].userId
                         
-                        let ceasarCard = CardCeasar(cardPic: memeData, playerId: ceasarId, round: Int(round.roundNum), cardPicUrl: "ceasarUrl", context: GameStack.sharedInstance.stack.context)
+                        let ceasarCard = CardCeasar(cardPic: memeData, playerId: self.playerJudging, round: Int(round.roundNum), cardPicUrl: "ceasarUrl", context: GameStack.sharedInstance.stack.context)
                         
                         round.cardceasar = ceasarCard
                         self.game.addToRounds(round)
                         
-                        InGameHelper.insertNewGame(memeName: memeName,playerInRoom: self.playersInGame, playerOrder: order, gameId: self.game.gameId!)
+                        InGameHelper.insertNewGame(memeName: memeName,playerInRoom: self.playersInGame, gameId: self.game.gameId!)
                         
                         GameStack.sharedInstance.saveContext(completeHandler: {
                             DispatchQueue.main.async {

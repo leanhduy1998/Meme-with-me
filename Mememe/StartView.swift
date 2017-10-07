@@ -66,7 +66,6 @@ extension StartViewController {
         googleButton.alpha = 0
         
         UIView.animate(withDuration: 0.5, animations: {
-      //      self.view.backgroundColor = UIColor(red: 145/255, green: 255/255, blue: 255/255, alpha: 1.0)
             self.googleButton.alpha = 1
             self.touchToStartLabel.alpha = 0
         }) { (completed) in

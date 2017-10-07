@@ -15,7 +15,7 @@ class InGameHelper{
     private static let inGameRef = Database.database().reference().child("inGame")
     private static let conversion = InGameHelperConversion()
     
-    static func insertNewGame(memeName: String, playerInRoom:[PlayerData], playerOrder:PlayerOrderInGame, gameId: String){
+    static func insertNewGame(memeName: String, playerInRoom:[PlayerData], gameId: String){
         var data = [String:Any]()
         
         var players = [String:Any]()
@@ -33,11 +33,7 @@ class InGameHelper{
         let roundMemeUrl = memeName
         data["rounds"] = roundMemeUrl
         
-        var orders = [String:String]()
-
-        orders[playerOrder.playerId!] = "\(Int(playerOrder.orderNum))"
-        
-        data["playerOrderInGame"] = orders
+        data["playerOrderInGame"] = playerInRoom[0].userId
         data["leaderId"] = MyPlayerData.id
         data["nextRoundStarting"] = "false"
         
@@ -54,6 +50,8 @@ class InGameHelper{
        
                 DispatchQueue.main.async {
                     var leaderId: String!
+                    var judgingId:String!
+                    
                     let game = Game(createdDate: Date(), gameId: gameId, context: GameStack.sharedInstance.stack.context)
                     let postDict = value as? [String : AnyObject] ?? [:]
                         
@@ -62,11 +60,7 @@ class InGameHelper{
                     for(key,value) in postDict {
                         switch(key) {
                         case "playerOrderInGame":
-                            let orders = value as? [String : AnyObject] ?? [:]
-                            for (playerId,number) in orders {
-                                let playerOrder = PlayerOrderInGame(orderNum: Int(number as! String)!, playerId: playerId, context: GameStack.sharedInstance.stack.context)
-                                game.addToPlayersorder(playerOrder)
-                            }
+                            judgingId = value as? String
                             break
                                 
                         case "players":
@@ -90,20 +84,12 @@ class InGameHelper{
                         }
                     }
                     let round = Round(roundNum: 0, context: GameStack.sharedInstance.stack.context)
-                        
-                    var playerId = ""
-                        
-                    for order in (game.playersorder?.allObjects as? [PlayerOrderInGame])! {
-                        if order.orderNum == round.roundNum {
-                            playerId = order.playerId!
-                            break
-                        }
-                    }
+                    
                         
                     let helper = UserFilesHelper()
                     helper.getMemeData(memeName: roundImageUrl, completeHandler: { (imageData) in
                         DispatchQueue.main.async {
-                            let cardCeasar = CardCeasar(cardPic: imageData, playerId: playerId, round: 0, cardPicUrl: roundImageUrl, context: GameStack.sharedInstance.stack.context)
+                            let cardCeasar = CardCeasar(cardPic: imageData, playerId: judgingId, round: 0, cardPicUrl: roundImageUrl, context: GameStack.sharedInstance.stack.context)
                             round.cardceasar = cardCeasar
                             game.addToRounds(round)
                                 
@@ -122,8 +108,7 @@ class InGameHelper{
     static func updateGameToNextRound(nextRoundJudgeId:String, gameId:String, nextRound: Int, nextRoundImageUrl:String){
         inGameRef.child(gameId).child("normalCards").removeValue()
         inGameRef.child(gameId).child("rounds").setValue(nextRoundImageUrl)
-        let playerOrder = [nextRoundJudgeId:"\(nextRound)"]
-        inGameRef.child(gameId).child("playerOrderInGame").setValue(playerOrder)
+        inGameRef.child(gameId).child("playerOrderInGame").setValue(nextRoundJudgeId)
     }
     
     static func insertNormalCardIntoGame(gameId:String, card:CardNormal){
@@ -157,7 +142,7 @@ class InGameHelper{
         })
     }
     
-    static func getRoundImage(roundNum: Int, gameId: String, completionHandler: @escaping (_ imageData: Data, _ imageUrl: String) -> Void){
+    static func getRoundImage(gameId: String, completionHandler: @escaping (_ imageData: Data, _ imageUrl: String) -> Void){
         inGameRef.child(gameId).child("rounds").observeSingleEvent(of: DataEventType.value, with: { (snapshot) in
 
             let postValue = snapshot.value as? String

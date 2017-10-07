@@ -16,7 +16,6 @@ extension AddEditMyMemeViewController {
         setupImageView()
         imageview.image = memeImage
         
-        
         // for width, change the constraint in storyboard instead for labels
         topLabel.frame = CGRect(x: 10, y: 10, width: imageview.frame.width, height: imageviewHeight/8)
         bottomLabel.frame = CGRect(x: 10, y: 10 + imageviewHeight * 2/3, width: imageview.frame.width, height: imageviewHeight/8)
@@ -35,9 +34,6 @@ extension AddEditMyMemeViewController {
                 MemeLabelConfigurer.configureMemeLabel(bottomLabel, defaultText: card.bottomText!)
             }
         }
-        
-        //topLabel.backgroundColor = UIColor.blue
-        //bottomLabel.backgroundColor = UIColor.green
         
         setupTwoHalfImageUIView()
         
@@ -60,5 +56,13 @@ extension AddEditMyMemeViewController {
         bottomUIView = UIView(frame: CGRect(x: 10, y: 10 + imageviewHeight/2 + navigationBar.frame.height, width: view.frame.width - 20, height: imageviewHeight/2))
         view.addSubview(bottomUIView)
         view.bringSubview(toFront: bottomUIView)
+        
+        let topTap = UITapGestureRecognizer(target: self, action: #selector(self.topUIViewTouched(sender:)))
+        topTap.delegate = self
+        topUIView.addGestureRecognizer(topTap)
+        
+        let bottomTap = UITapGestureRecognizer(target: self, action: #selector(self.bottomUIViewTouched(sender:)))
+        bottomTap.delegate = self
+        bottomUIView.addGestureRecognizer(bottomTap)
     }
 }

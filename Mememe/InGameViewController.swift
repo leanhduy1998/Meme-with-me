@@ -144,12 +144,7 @@ class InGameViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     }
                     count = count + 1
                 }
-                let playerOrder = self.game.playersorder?.allObjects as? [PlayerOrderInGame]
-                for order in playerOrder! {
-                    if order.playerId == snapshot.key {
-                        self.game.removeFromPlayersorder(order)
-                    }
-                }
+                
                 if(self.playersInGame.count == 1){
                     self.AddEditJudgeMemeBtn.isEnabled = false
                 }
@@ -256,36 +251,15 @@ class InGameViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 else if(snapshot.key == "nextRoundStarting"){
                     let value = snapshot.value as? String
                     if(value! == "true"){
-                    self.inGameRef.child(self.game.gameId!).child("playerOrderInGame").observeSingleEvent(of: DataEventType.value, with: { (snapshot) in
-                            let postDict = snapshot.value as? [String:String]
-                            for(playerId,roundNumber) in postDict!{
-                                DispatchQueue.main.async {
-                                    let orderNumber = Int((roundNumber as? String)!)
-                                    self.game.addToPlayersorder(PlayerOrderInGame(orderNum: orderNumber!, playerId: playerId, context: GameStack.sharedInstance.stack.context))
-                                    GameStack.sharedInstance.saveContext {
-                                        self.loadNextRound()
-                                    }
-                                }
-                            }
-                        })
+                       self.loadNextRound()
+                        
+                        
                         
                     }
                 }
-            }
-        })
-        
-        inGameRef.child(self.game.gameId!).child("playerOrderInGame").observe(DataEventType.childChanged, with: { (snapshot) in
-            DispatchQueue.main.async {
-                let roundNumber = Int((snapshot.value as? String)!)
-                let playerId = snapshot.key as? String
-                
-                for order in (self.game.playersorder?.allObjects as? [PlayerOrderInGame])!{
-                    if(Int(order.orderNum) == roundNumber){
-                        order.playerId = playerId
-                    }
-                }
-                
-                GameStack.sharedInstance.saveContext {
+                else if(snapshot.key == "playerOrderInGame"){
+                    let playerId = snapshot.value as? String
+                    self.playerJudging = playerId
                 }
             }
         })
@@ -327,38 +301,30 @@ class InGameViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
     }
     
-    func getNextRoundData(completeHandler: @escaping (_ roundJudgeId:String, _ roundNumber: Int)-> Void){
-        
-        // for some reason, this function is still being
-        if leftRoom {
-            return
-        }
-        
-        // create next Round data
-        let currentRoundNumber = Int(GetGameCoreDataData.getLatestRound(game: self.game).roundNum)
-        let nextRoundNumber = currentRoundNumber + 1
-        var nextRoundJudgingId: String!
-
-        for order in (self.game.playersorder?.allObjects as? [PlayerOrderInGame])! {
-            if order.orderNum == nextRoundNumber {
-                nextRoundJudgingId = order.playerId
-            }
-        }
-        
-        GameStack.sharedInstance.saveContext {
-            completeHandler(nextRoundJudgingId, nextRoundNumber)
-        }
-    }
     
     func getNextRoundDataLeader(completeHandler: @escaping (_ roundJudgeId:String, _ roundNumber: Int)-> Void){
         // create next Round data
         let currentRoundNumber = Int(GetGameCoreDataData.getLatestRound(game: self.game).roundNum)
         let nextRoundNumber = currentRoundNumber + 1
         
-        playersInGame = playersInGame.shuffled()
+        var nextRoundJudgingId: String!
         
-        let nextRoundJudgingId = playersInGame[0].userId
+        var count = 0
         
+        for x in 0...(playersInGame.count - 1){
+            print(x)
+            if(playersInGame[x].userId == playerJudging){
+                if(x == playersInGame.count-1){
+                    nextRoundJudgingId = playersInGame[0].userId
+                    break
+                }
+                else{
+                    nextRoundJudgingId = playersInGame[x+1].userId
+                    break
+                }
+            }
+        }
+  
         GameStack.sharedInstance.saveContext {
             completeHandler(nextRoundJudgingId!, nextRoundNumber)
         }
@@ -377,13 +343,12 @@ class InGameViewController: UIViewController, UITableViewDelegate, UITableViewDa
                         
                         let nextRound = Round(roundNum: nextRoundNumber, context: GameStack.sharedInstance.stack.context)
                         nextRound.cardceasar = CardCeasar(cardPic: memeData, playerId: nextRoundJudgeId, round: nextRoundNumber, cardPicUrl: memeUrl, context: GameStack.sharedInstance.stack.context)
-                        self.playerJudging = nextRoundJudgeId
                         self.game.addToRounds(nextRound)
                         
                         GameStack.sharedInstance.saveContext {
-                            DispatchQueue.main.async {
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 5.0, execute: {
                                 self.AddEditJudgeMemeBtn.isEnabled = true
-                            }
+                            })
                         }
                     }
                 })
@@ -402,28 +367,32 @@ class InGameViewController: UIViewController, UITableViewDelegate, UITableViewDa
             self.checkIfYourAreJudge()
         }
         else {
-            getNextRoundData(completeHandler: { (nextRoundCeasarId, nextRoundNumber) in
+           setupNextRound()
+        }
+    }
+    
+    private func setupNextRound(){
+        let nextRoundNumber = Int(GetGameCoreDataData.getLatestRound(game: game).roundNum) + 1
+      
+        InGameHelper.getRoundImage( gameId: self.game.gameId!, completionHandler: { (imageData, imageUrl) in
                 DispatchQueue.main.async {
-                    InGameHelper.getRoundImage(roundNum: nextRoundNumber, gameId: self.game.gameId!, completionHandler: { (imageData, imageUrl) in
+                    let nextRound = Round(roundNum: nextRoundNumber, context: GameStack.sharedInstance.stack.context)
+                    nextRound.cardceasar = CardCeasar(cardPic: imageData, playerId: self.playerJudging, round: nextRoundNumber, cardPicUrl: imageUrl, context: GameStack.sharedInstance.stack.context)
+                        
+                    self.game.addToRounds(nextRound)
+                        
+                    GameStack.sharedInstance.saveContext {
                         DispatchQueue.main.async {
-                            let nextRound = Round(roundNum: nextRoundNumber, context: GameStack.sharedInstance.stack.context)
-                            nextRound.cardceasar = CardCeasar(cardPic: imageData, playerId: nextRoundCeasarId, round: nextRoundNumber, cardPicUrl: imageUrl, context: GameStack.sharedInstance.stack.context)
-                            self.playerJudging = nextRoundCeasarId
-                            
-                            self.game.addToRounds(nextRound)
-                            
-                            GameStack.sharedInstance.saveContext {
-                                DispatchQueue.main.async {
-                                    self.reloadPreviewCards()
-                                    self.reloadCurrentPlayersIcon()
-                                    self.checkIfYourAreJudge()
-                                }
-                            }
+                            self.reloadPreviewCards()
+                            self.reloadCurrentPlayersIcon()
+                            self.checkIfYourAreJudge()
                         }
-                    })
+                    }
                 }
             })
-        }
+    }
+    private func setupNextRoundOnFinish(){
+        
     }
     
     
@@ -438,15 +407,6 @@ class InGameViewController: UIViewController, UITableViewDelegate, UITableViewDa
         else if(AddEditJudgeMemeBtn.title == "Start Next Round!"){
             inGameRef.child(game.gameId!).child("nextRoundStarting").setValue("true")
         }
-    }
-    
-    func getCeasarIdForCurrentRound(roundNum: Int) -> String{
-        for order in (self.game.playersorder?.allObjects as? [PlayerOrderInGame])! {
-            if order.orderNum == roundNum {
-                return order.playerId!
-            }
-        }
-        return ""
     }
     
     
@@ -509,19 +469,16 @@ class InGameViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     InGameHelper.removeYourselfFromGame(gameId: self.game.gameId!, completionHandler: {
                         DispatchQueue.main.async {
                         self.inGameRef.child(self.game.gameId!).child("playerOrderInGame").observeSingleEvent(of: DataEventType.value, with: { (snapshot) in
-                                    let postDict = snapshot.value as? [String:String]
-                                    for(playerId,roundNumber) in postDict!{
+                                    let playerId = snapshot.value as? String
                                         DispatchQueue.main.async {
-                                            let playerOrder = [player.userId:"\(roundNumber)"]
-                                            self.inGameRef.child(self.game.gameId!).child("playerOrderInGame").setValue(playerOrder, withCompletionBlock: { (error, reference) in
-                                                DispatchQueue.main.async {
-                                                    InGameHelper.removeYourInGameRoom()
-                                                    self.leftRoom = true
+                                        self.inGameRef.child(self.game.gameId!).child("playerOrderInGame").setValue(playerId, withCompletionBlock: { (error, reference) in
+                                            DispatchQueue.main.async {
+                                                InGameHelper.removeYourInGameRoom()
+                                                self.leftRoom = true
                                                     
-                                                    self.performSegue(withIdentifier: "unwindToAvailableGamesViewController", sender: self)
-                                                }
-                                            })
-                                        }
+                                                self.performSegue(withIdentifier: "unwindToAvailableGamesViewController", sender: self)
+                                            }
+                                        })
                                     }
                                 })
                                 }

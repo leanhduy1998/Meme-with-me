@@ -50,14 +50,20 @@ extension AddEditMyMemeViewController {
                 if bottomLabel.text == dragLabel.text {
                     bottomLabel.text = " "
                 }
-                MemeLabelConfigurer.configureMemeLabel(topLabel, defaultText: dragLabel.text!)
+                DispatchQueue.main.async {
+                    MemeLabelConfigurer.configureMemeLabel(self.topLabel, defaultText: self.dragLabel.text!)
+                }
+                
             }
             if bottomUIView.frame.intersects(dragLabel.frame) {
                 // for some reason, the text need to have a space in it to make the animation works
                 if topLabel.text == dragLabel.text {
                     topLabel.text = " "
                 }
-                MemeLabelConfigurer.configureMemeLabel(bottomLabel, defaultText: dragLabel.text!)
+                DispatchQueue.main.async {
+                    MemeLabelConfigurer.configureMemeLabel(self.bottomLabel, defaultText: self.dragLabel.text!)
+                }
+                
             }
         default:
             print("Any other action?")

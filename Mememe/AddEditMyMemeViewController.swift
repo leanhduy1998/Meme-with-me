@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AddEditMyMemeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class AddEditMyMemeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate {
 
     @IBOutlet weak var imageview: UIImageView!
     @IBOutlet weak var tableview: UITableView!
@@ -17,7 +17,6 @@ class AddEditMyMemeViewController: UIViewController, UITableViewDelegate, UITabl
     @IBOutlet weak var bottomLabel: UILabel!
     
     @IBOutlet weak var navigationBar: UINavigationBar!
-    
     
     var topUIView : UIView!
     var bottomUIView : UIView!
@@ -36,6 +35,14 @@ class AddEditMyMemeViewController: UIViewController, UITableViewDelegate, UITabl
         super.viewDidLoad()
         setupUI()
     }
+    
+    func topUIViewTouched(sender: UITapGestureRecognizer){
+        topLabel.text = ""
+    }
+    func bottomUIViewTouched(sender: UITapGestureRecognizer){
+        bottomLabel.text = ""
+    }
+    
 
     @IBAction func finishBtnPressed(_ sender: Any) {
         let latestRound = GetGameCoreDataData.getLatestRound(game: game)

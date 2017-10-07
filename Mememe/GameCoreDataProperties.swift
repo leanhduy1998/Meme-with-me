@@ -2,7 +2,7 @@
 //  Game+CoreDataProperties.swift
 //  
 //
-//  Created by Duy Le on 8/16/17.
+//  Created by Duy Le on 10/6/17.
 //
 //
 
@@ -20,7 +20,6 @@ extension Game {
     @NSManaged public var gameId: String?
     @NSManaged public var players: NSSet?
     @NSManaged public var rounds: NSSet?
-    @NSManaged public var playersorder: NSSet?
 
 }
 
@@ -55,22 +54,5 @@ extension Game {
 
     @objc(removeRounds:)
     @NSManaged public func removeFromRounds(_ values: NSSet)
-
-}
-
-// MARK: Generated accessors for playersorder
-extension Game {
-
-    @objc(addPlayersorderObject:)
-    @NSManaged public func addToPlayersorder(_ value: PlayerOrderInGame)
-
-    @objc(removePlayersorderObject:)
-    @NSManaged public func removeFromPlayersorder(_ value: PlayerOrderInGame)
-
-    @objc(addPlayersorder:)
-    @NSManaged public func addToPlayersorder(_ values: NSSet)
-
-    @objc(removePlayersorder:)
-    @NSManaged public func removeFromPlayersorder(_ values: NSSet)
 
 }

@@ -25,7 +25,6 @@ class GameDataFromJSON{
         
         let game = Game(createdDate: createdDate!, gameId: (json??["gameId"] as? String)!, context: GameStack.sharedInstance.stack.context)
         
-        self.addPlayerOrderToGame(game: game, gameDic: (json??["playerOrderInGame"] as? [String:Any])!)
         self.addRoundToGame(game: game, roundDic: (json??["rounds"] as? [String:Any])!)
         
         GameStack.sharedInstance.saveContext {
@@ -73,12 +72,6 @@ class GameDataFromJSON{
         for playerId in loveDic {
             let playerLove = PlayerLove(playerId: playerId, context: GameStack.sharedInstance.stack.context)
             cardNormal.addToPlayerlove(playerLove)
-        }
-    }
-    private static func addPlayerOrderToGame(game:Game, gameDic: [String:Any]) {
-        for (roundNum,playerId) in gameDic {
-            let playerOrder = PlayerOrderInGame(orderNum: Int(roundNum)!, playerId: playerId as! String, context: GameStack.sharedInstance.stack.context)
-            game.addToPlayersorder(playerOrder)
         }
     }
 }

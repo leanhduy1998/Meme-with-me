@@ -20,7 +20,6 @@ class GameDataToJSON {
         jsonDic["createdDate"] = getDateString()
         jsonDic["players"] = getPlayersDic()
         jsonDic["rounds"] = getRoundsString()
-        jsonDic["playerOrderInGame"] = getPlayerOrderInGame()
         jsonDic["gameId"] = game.gameId
         
         return getJSONfromData(data: jsonDic)
@@ -100,17 +99,6 @@ class GameDataToJSON {
         ceasarArr["playerId"] = cardCeasar?.playerId
         
         return ceasarArr
-    }
-    private func getPlayerOrderInGame() -> [String:Any] {
-        var orderDic = [String:Any]()
-        
-        let playerOrders = game.playersorder?.allObjects as? [PlayerOrderInGame]
-        
-        for order in playerOrders! {
-            orderDic["\(Int(order.orderNum))"] = order.playerId!
-        }
-        
-        return orderDic
     }
     
     func getGameCreatedDate() -> Int {
