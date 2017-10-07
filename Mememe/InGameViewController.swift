@@ -148,18 +148,11 @@ class InGameViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 if(self.playersInGame.count == 1){
                     self.AddEditJudgeMemeBtn.isEnabled = false
                 }
-                GameStack.sharedInstance.saveContext {
-                    DispatchQueue.main.async {
-                        self.reloadCurrentPlayersIcon()
-                    }
-                }
+                self.reloadCurrentPlayersIcon()
             }
         })
         
         inGameRef.child(game.gameId!).child("normalCards").observe(DataEventType.childAdded, with: { (snapshot) in
-            
-            
-            
             let playerId = snapshot.key
             
             if playerId != MyPlayerData.id {

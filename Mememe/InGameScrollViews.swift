@@ -20,58 +20,53 @@ extension InGameViewController {
         // never use currentPlayersScrollView.frame.height, because it uses the height of its storyboard
         iconSize = currentPlayerScrollHeight - space/2
         
-        let players = game.players?.allObjects as? [Player]
-        
-        let lastRound = GetGameCoreDataData.getLatestRound(game: game)
-        
         var counter = 0
-        for x in players!{
+        for player in playersInGame{
+            var userCoreData = Player()
+            
+            for pCore in (game.players?.allObjects as? [Player])! {
+                if(pCore.playerId == player.userId){
+                    userCoreData = pCore
+                    break
+                }
+            }
+            
             let newX = (self.space * CGFloat(counter+1))  + CGFloat(counter) * self.iconSize
             let userIconIV = UIImageView()
             userIconIV.frame = CGRect(x: newX, y: self.space/4, width: self.iconSize, height: self.iconSize)
             contentWidth += self.space + self.iconSize
-            
-            if x.userImageData == nil {
-                counter = counter + 1
+    
+            counter = counter + 1
                 
-                let helper = UserFilesHelper()
-                helper.loadUserProfilePicture(userId: x.playerId!, completeHandler: { (imageData) in
-                    DispatchQueue.main.async {
-                        let image = UIImage(data: imageData)!
-                        userIconIV.image = CircleImageCutter.getCircleImage(image: image, radius: Float(self.iconSize))
+            let helper = UserFilesHelper()
+            helper.loadUserProfilePicture(userId: player.userId, completeHandler: { (imageData) in
+                DispatchQueue.main.async {
+                    let image = UIImage(data: imageData)!
+                    userIconIV.image = CircleImageCutter.getCircleImage(image: image, radius: Float(self.iconSize))
                         
-                        self.currentPlayersScrollView.addSubview(userIconIV)
-                        self.currentPlayersScrollView.sendSubview(toBack: userIconIV)
+                    self.currentPlayersScrollView.addSubview(userIconIV)
+                    self.currentPlayersScrollView.sendSubview(toBack: userIconIV)
                         
-                        x.userImageData = imageData as NSData
-                        
-                        if x.playerId == self.userWhoWon {
-                            self.borderForUserIconIV = self.getBorderIVForIcon(iconSize: self.iconSize)
-                            userIconIV.addSubview(self.borderForUserIconIV)
-                            userIconIV.bringSubview(toFront: self.borderForUserIconIV)
-                        }
-                    }
+                    userCoreData.userImageData = imageData as NSData
                     
-                })
-            }
-                
-            else {
-                let image =  UIImage(data: (x.userImageData as Data?)!)!
-                userIconIV.image = CircleImageCutter.getCircleImage(image: image, radius: Float(iconSize))
-                
-                currentPlayersScrollView.addSubview(userIconIV)
-                currentPlayersScrollView.sendSubview(toBack: userIconIV)
-                
-                counter = counter + 1
-                
-                if x.playerId == userWhoWon {
-                    borderForUserIconIV = getBorderIVForIcon(iconSize: iconSize)
-                    userIconIV.addSubview(borderForUserIconIV)
-                    userIconIV.bringSubview(toFront: borderForUserIconIV)
+                    if userCoreData.playerId == self.userWhoWon {
+                        self.borderForUserIconIV = self.getBorderIVForIcon(iconSize: self.iconSize)
+                        userIconIV.addSubview(self.borderForUserIconIV)
+                        userIconIV.bringSubview(toFront: self.borderForUserIconIV)
+                    }
                 }
-            }
-        
+            })
+            
             currentPlayersScrollView.bringSubview(toFront: borderForUserIconIV)
+        }
+        
+        
+        let players = game.players?.allObjects as? [Player]
+        
+        
+        
+        for x in players!{
+            
         }
         currentPlayersScrollView.contentSize = CGSize(width: contentWidth, height: iconSize)
     }
@@ -83,7 +78,7 @@ extension InGameViewController {
     }
     
     func reloadPreviewCards(){
-        var contentWidth = space + cardWidth
+        var contentWidth = 0 + space
         
         let latestRound = GetGameCoreDataData.getLatestRound(game: game)
         

@@ -45,6 +45,20 @@ class AddEditMyMemeViewController: UIViewController, UITableViewDelegate, UITabl
     
 
     @IBAction func finishBtnPressed(_ sender: Any) {
+        var topEmpty = false
+        if(topLabel.text == nil || topLabel.text == "" || topLabel.text == " "){
+            topEmpty = true
+        }
+        var bottomEmpty = false
+        if(bottomLabel.text == nil || bottomLabel.text == "" || bottomLabel.text == " "){
+            bottomEmpty = true
+        }
+        
+        if(topEmpty && bottomEmpty){
+            DisplayAlert.display(controller: self, title: "Empty memes are boring!", message: "Please fill in your meme!")
+            return
+        }
+        
         let latestRound = GetGameCoreDataData.getLatestRound(game: game)
         let cardNormals = latestRound.cardnormal?.allObjects as? [CardNormal]
         
