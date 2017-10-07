@@ -37,10 +37,10 @@ class AddEditMyMemeViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     func topUIViewTouched(sender: UITapGestureRecognizer){
-        topLabel.text = ""
+        topLabel.text = " "
     }
     func bottomUIViewTouched(sender: UITapGestureRecognizer){
-        bottomLabel.text = ""
+        bottomLabel.text = " "
     }
     
 
