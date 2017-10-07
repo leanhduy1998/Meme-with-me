@@ -93,6 +93,12 @@ extension PrivateRoomViewController {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if(tableView == chatTableView){
+            if(chatHelper.messages.count > 0){
+                emptyChatLabel.isHidden = true
+            }
+            else{
+                emptyChatLabel.isHidden = false
+            }
             return chatHelper.messages.count
         }
         else {

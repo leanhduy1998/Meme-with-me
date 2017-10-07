@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AWSGoogleSignIn
 
 extension StartViewController {
     
@@ -22,7 +23,19 @@ extension StartViewController {
         
         setupTouchToStartLabel()
         addFadeInAnimation()
+        setupGoogleButton()
     }
+    
+    private func setupGoogleButton(){
+        googleButton.isHidden = true
+        AWSGoogleSignInProvider.sharedInstance().setScopes(["profile", "openid"])
+        AWSGoogleSignInProvider.sharedInstance().setViewControllerForGoogleSignIn(self)
+        
+        googleButton.buttonStyle = .large
+        googleButton.delegate = self
+    }
+    
+  
     
     private func addFadeInAnimation(){
         userIcon.alpha = 0

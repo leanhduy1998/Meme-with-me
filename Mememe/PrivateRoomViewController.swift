@@ -23,6 +23,9 @@ class PrivateRoomViewController: UIViewController,UITableViewDelegate, UITableVi
     
     @IBOutlet weak var startBtn: UIBarButtonItem!
     
+    @IBOutlet weak var emptyChatLabel: UILabel!
+    
+    
     let chatHelper = ChatHelper()
     
     var userInRoom = [PlayerData]()

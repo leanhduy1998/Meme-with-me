@@ -37,6 +37,8 @@ class StartViewController: UIViewController,UIGestureRecognizerDelegate, AWSSign
     var iconWidth = CGFloat(0)
     
     let myDataStack = MyDataStack()
+    
+    var googleBtnClicked = false
 
 
     override func viewDidLoad() {
@@ -44,8 +46,7 @@ class StartViewController: UIViewController,UIGestureRecognizerDelegate, AWSSign
         SoundPlayer.sharedInstance.playStartMusic()
         
         setupUI()
-        setupGoogleButton()
-        
+    
         myDataStack.initializeFetchedResultsController()
         let fetchedObjects = self.myDataStack.fetchedResultsController.fetchedObjects as? [MyCoreData]
         if((fetchedObjects?.count)! > 0){
@@ -54,21 +55,19 @@ class StartViewController: UIViewController,UIGestureRecognizerDelegate, AWSSign
             rightNotificationLabel.text = "\(Int(fetchedObjects![0].madeCeasar))"
         }
     }
-
-    private func setupGoogleButton(){
-        googleButton.isHidden = true
-        AWSGoogleSignInProvider.sharedInstance().setScopes(["profile", "openid"])
-        AWSGoogleSignInProvider.sharedInstance().setViewControllerForGoogleSignIn(self)
-        
-        googleButton.buttonStyle = .large
-        googleButton.delegate = self
-    }
     
     func onLogin(signInProvider: AWSSignInProvider, result: Any?, authState: AWSIdentityManagerAuthState, error: Error?) {
+
         if result == nil {
             DisplayAlert.display(controller: self, title: "Login Error!", message: (error?.localizedDescription)!)
+            googleBtnClicked = false
             return
         }
+        if(googleBtnClicked){
+            return
+        }
+        
+        googleBtnClicked = true
      
         MyPlayerData.id = AWSIdentityManager.default().identityId
         // handle success here

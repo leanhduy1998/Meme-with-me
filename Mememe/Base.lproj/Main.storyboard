@@ -266,7 +266,7 @@
                                                     <rect key="frame" x="20" y="-0.6666666666666643" width="111" height="127.66666666666666"/>
                                                     <subviews>
                                                         <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="aFv-2R-g2J">
-                                                            <rect key="frame" x="46" y="53.666666666666664" width="20" height="19.999999999999993"/>
+                                                            <rect key="frame" x="45.666666666666671" y="53.666666666666664" width="20" height="19.999999999999993"/>
                                                         </activityIndicatorView>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -565,12 +565,20 @@
                                             <constraint firstAttribute="trailing" secondItem="BWq-eN-N5l" secondAttribute="trailing" constant="8" id="xL1-QB-RGE"/>
                                         </constraints>
                                     </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No one talked to each other :(" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SRf-dZ-Ooe">
+                                        <rect key="frame" x="73.333333333333314" y="40" width="227.33333333333337" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="5bi-Vf-lID" firstAttribute="leading" secondItem="ptA-8Z-cu6" secondAttribute="leading" id="0dz-pu-2uz"/>
                                     <constraint firstAttribute="bottom" secondItem="rck-a3-DJw" secondAttribute="bottom" id="Far-iV-eHv"/>
                                     <constraint firstAttribute="trailing" secondItem="rck-a3-DJw" secondAttribute="trailing" id="GNX-30-Dn7"/>
                                     <constraint firstItem="5bi-Vf-lID" firstAttribute="top" secondItem="ptA-8Z-cu6" secondAttribute="top" constant="26" id="bJr-Ff-yfO"/>
+                                    <constraint firstItem="SRf-dZ-Ooe" firstAttribute="centerX" secondItem="ptA-8Z-cu6" secondAttribute="centerX" id="clW-7j-7l5"/>
+                                    <constraint firstItem="SRf-dZ-Ooe" firstAttribute="top" secondItem="ptA-8Z-cu6" secondAttribute="top" constant="40" id="jr3-UL-MCo"/>
                                     <constraint firstItem="rck-a3-DJw" firstAttribute="leading" secondItem="ptA-8Z-cu6" secondAttribute="leading" id="qhb-n0-bRs"/>
                                     <constraint firstItem="rck-a3-DJw" firstAttribute="top" secondItem="5bi-Vf-lID" secondAttribute="bottom" constant="10" id="tPq-7Y-zsU"/>
                                     <constraint firstAttribute="trailing" secondItem="5bi-Vf-lID" secondAttribute="trailing" id="trx-DM-Kz5"/>
@@ -596,6 +604,7 @@
                         <outlet property="chatTableView" destination="5bi-Vf-lID" id="qCZ-Wl-fg6"/>
                         <outlet property="chatTextField" destination="KtV-GV-Vwu" id="GVm-gN-w0q"/>
                         <outlet property="chatView" destination="ptA-8Z-cu6" id="VKh-oa-3RL"/>
+                        <outlet property="emptyChatLabel" destination="SRf-dZ-Ooe" id="sQo-tU-hvP"/>
                         <outlet property="startBtn" destination="IgH-ho-Ap1" id="HsC-zL-1eO"/>
                         <outlet property="tableview" destination="xZy-lK-dau" id="U1C-07-g5b"/>
                         <segue destination="oea-MV-6D3" kind="show" identifier="InGameViewControllerSegue" id="Dl8-JB-hUE"/>
