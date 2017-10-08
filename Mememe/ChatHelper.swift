@@ -8,6 +8,7 @@
 
 import Foundation
 import Firebase
+import AVFoundation
 
 class ChatHelper {
     private let chatRef = Database.database().reference().child("chat")
@@ -45,7 +46,22 @@ class ChatHelper {
                 }
                 self.messages.append(message)
                 controller.chatTableView.reloadData()
-                SoundPlayer.sharedInstance.playMessageReceivedSound()
+                
+                let audioFilePath = Bundle.main.path(forResource: "messagereceived", ofType: "mp3")
+                if audioFilePath != nil {
+                    let audioFileUrl = NSURL.fileURL(withPath: audioFilePath!)
+                    var effectPlayer: AVAudioPlayer!
+                    do{
+                        try effectPlayer = AVAudioPlayer(contentsOf: audioFileUrl)
+                        effectPlayer.play()
+                    }
+                    catch {
+                        print("???")
+                    }
+                } else {
+                    print("audio file is not found")
+                }
+
                 DispatchQueue.main.async {
                     if(controller.chatHelper.messages.count > 0){
                         let indexPath = IndexPath(row: controller.chatHelper.messages.count-1, section: 0)

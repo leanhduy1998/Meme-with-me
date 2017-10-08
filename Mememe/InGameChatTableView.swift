@@ -46,6 +46,9 @@ extension InGameViewController {
             cell?.messageTF.numberOfLines = 0
             cell?.messageTF.lineBreakMode = NSLineBreakMode.byWordWrapping
             
+            cell?.messageTF.layer.masksToBounds = true
+            cell?.messageTF.layer.cornerRadius = 5
+            
             s3Helper.loadUserProfilePicture(userId: message.senderId) { (imageData) in
                 DispatchQueue.main.async {
                     cell?.userIV.image = UIImage(data: imageData)
@@ -60,6 +63,9 @@ extension InGameViewController {
             cell?.messageTF.numberOfLines = 0
             cell?.messageTF.lineBreakMode = NSLineBreakMode.byWordWrapping
             
+            cell?.messageTF.layer.masksToBounds = true
+            cell?.messageTF.layer.cornerRadius = 5
+            
             s3Helper.loadUserProfilePicture(userId: message.senderId) { (imageData) in
                 DispatchQueue.main.async {
                     cell?.userIV.image = UIImage(data: imageData)
@@ -70,6 +76,12 @@ extension InGameViewController {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if(chatHelper.messages.count == 0){
+            emptyMessageLabel.isHidden = false
+        }
+        else{
+            emptyMessageLabel.isHidden = true
+        }
         return chatHelper.messages.count
     }
 }

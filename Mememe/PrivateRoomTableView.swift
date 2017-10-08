@@ -44,12 +44,11 @@ extension PrivateRoomViewController {
             if(message.senderId == MyPlayerData.id){
                 var cell = tableView.dequeueReusableCell(withIdentifier: "MyChatTableViewCell") as? MyChatTableViewCell
                 cell = CellAnimator.add(cell: cell!)
+                
                 cell?.messageTF.text = message.text
                 
                 cell?.messageTF.layer.masksToBounds = true
                 cell?.messageTF.layer.cornerRadius = 5
-                
-                
                 
                 helper.loadUserProfilePicture(userId: message.senderId) { (imageData) in
                     DispatchQueue.main.async {
@@ -61,6 +60,7 @@ extension PrivateRoomViewController {
             else {
                 var cell = tableView.dequeueReusableCell(withIdentifier: "HerChatTableViewCell") as? HerChatTableViewCell
                 cell = CellAnimator.add(cell: cell!)
+                
                 cell?.messageTF.text = message.text
                 cell?.messageTF.numberOfLines = 0
                 cell?.messageTF.lineBreakMode = NSLineBreakMode.byWordWrapping

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		19E08B3ED51842C1186BCEDA /* Pods_Mememe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1EFF53BA25955FB53356C75 /* Pods_Mememe.framework */; };
 		2402C2301F89696300457B36 /* InGameObservers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2402C22F1F89696300457B36 /* InGameObservers.swift */; };
+		2402C2321F89A9DF00457B36 /* InsetLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2402C2311F89A9DF00457B36 /* InsetLabel.swift */; };
 		24059D121F88601E007F524F /* GameCoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24059D111F885FFF007F524F /* GameCoreDataClass.swift */; };
 		24059D131F886023007F524F /* GameCoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24059D101F885FFF007F524F /* GameCoreDataProperties.swift */; };
 		2413D78F1F3D58A0001EA209 /* Round.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2413D78D1F3D58A0001EA209 /* Round.swift */; };
@@ -175,6 +176,7 @@
 
 /* Begin PBXFileReference section */
 		2402C22F1F89696300457B36 /* InGameObservers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InGameObservers.swift; sourceTree = "<group>"; };
+		2402C2311F89A9DF00457B36 /* InsetLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsetLabel.swift; sourceTree = "<group>"; };
 		24059D101F885FFF007F524F /* GameCoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCoreDataProperties.swift; sourceTree = "<group>"; };
 		24059D111F885FFF007F524F /* GameCoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCoreDataClass.swift; sourceTree = "<group>"; };
 		2413D78D1F3D58A0001EA209 /* Round.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Round.swift; path = ../Round.swift; sourceTree = "<group>"; };
@@ -380,6 +382,7 @@
 				2498F9D71F342E8600B21267 /* CircleImageCutter.swift */,
 				2413D7BB1F427A81001EA209 /* MemeLabelConfigurer.swift */,
 				24E8597C1F7EFE5700856BA3 /* CellAnimator.swift */,
+				2402C2311F89A9DF00457B36 /* InsetLabel.swift */,
 			);
 			name = Helper;
 			sourceTree = "<group>";
@@ -1188,6 +1191,7 @@
 				24E3289D1F89668B00A2A2FE /* InGameConditions.swift in Sources */,
 				24305C931F2BB46C00B14632 /* GameModel.xcdatamodeld in Sources */,
 				245B2B1F1F50F9D100BCF75A /* PrivateRoomTableView.swift in Sources */,
+				2402C2321F89A9DF00457B36 /* InsetLabel.swift in Sources */,
 				24E734CB1F6F00F900218AB1 /* AvailableGamesTableView.swift in Sources */,
 				24059D121F88601E007F524F /* GameCoreDataClass.swift in Sources */,
 				24FC32DC1F6CB097006CBD62 /* UserOnlineSystem.swift in Sources */,

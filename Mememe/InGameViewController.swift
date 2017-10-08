@@ -25,6 +25,8 @@ class InGameViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     @IBOutlet weak var chatTableView: UITableView!
     
+    @IBOutlet weak var floorBackground: UIImageView!
+    
     
     @IBAction func unwindToInGameViewController(segue:UIStoryboardSegue) { }
     //ui
@@ -56,6 +58,7 @@ class InGameViewController: UIViewController, UITableViewDelegate, UITableViewDa
     //chat
     let chatHelper = ChatHelper()
     let s3Helper = UserFilesHelper()
+    @IBOutlet weak var emptyMessageLabel: UILabel!
     
     // conditions for leaving room
     var nextRoundStarting = false

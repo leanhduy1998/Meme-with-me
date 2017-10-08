@@ -57,7 +57,4 @@ class SoundPlayer: NSObject{
             play(songName: "privateRoomMusic2", loop: true)
         }
     }
-    func playMessageReceivedSound(){
-        play(songName: "messagereceived", loop: false)
-    }
 }

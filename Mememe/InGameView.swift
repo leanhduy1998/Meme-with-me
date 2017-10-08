@@ -21,13 +21,14 @@ extension InGameViewController {
         currentPlayersScrollView.alwaysBounceHorizontal = true
         setFloorBackground()
         
+        chatTableView.backgroundColor = UIColor.clear
     }
     
     func setFloorBackground(){
         var random = Int(arc4random_uniform(UInt32(11)))
         random += 1
-        let previewImageName = "floor\(random)"
-        previewScrollView.backgroundColor = UIColor(patternImage: UIImage(named:previewImageName)!)
+        let floorImageName = "floor\(random)"
+        floorBackground.image = UIImage(named: floorImageName)
         
         random = Int(arc4random_uniform(UInt32(5)))
         random += 1

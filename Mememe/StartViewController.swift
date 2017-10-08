@@ -84,51 +84,56 @@ class StartViewController: UIViewController,UIGestureRecognizerDelegate, AWSSign
                         return
                     }
                 }
-           
-                DispatchQueue.main.async {
-                    let data = results?.items[0] as? PlayerDataDBObjectModel
-                    MyPlayerData.name = data?._name
-
-                    let helper = UserFilesHelper()
-                    helper.loadUserProfilePicture(userId: MyPlayerData.id) { (imageData) in
-                        DispatchQueue.main.async {
-                            var statChanged = false
-                            let fetchedObjects = self.myDataStack.fetchedResultsController.fetchedObjects as? [MyCoreData]
-                            if(fetchedObjects?.count == 0){
-                                let _ = MyCoreData(imageData: imageData, laughes: Int((data?._laughes)!), madeCeasar: Int((data?._madeCeasar)!), context: self.myDataStack.stack.context)
-                            }
-                            else {
-                                fetchedObjects![0].imageData = imageData as NSData
-                                if(fetchedObjects![0].laughes != (data?._laughes as! Int16)){
-                                    statChanged = true
-                                }
-                                if(fetchedObjects![0].madeCeasar != Int16((data?._madeCeasar)!)){
-                                    statChanged = true
-                                }
-                                fetchedObjects![0].laughes = (data?._laughes as! Int16)
-                                fetchedObjects![0].madeCeasar = Int16((data?._madeCeasar)!)
-                            }
-                            if(statChanged){
-                                UIView.animate(withDuration: 0.5, delay: 0, options: [.autoreverse], animations: {
-                                    self.leftNotificationLabel.text = "\(Int((data?._laughes)!))"
-                                    self.rightNotificationLabel.text = "\(Int((data?._madeCeasar)!))"
-                                    self.leftNotificationLabel.transform = CGAffineTransform(scaleX: 1.25, y: 1.25)
-                                    self.leftNotificationLabel.textColor = UIColor.yellow
-                                    self.rightNotificationLabel.transform = CGAffineTransform(scaleX: 1.25, y: 1.25)
-                                    self.rightNotificationLabel.textColor = UIColor.yellow
-                                }, completion: { (completed) in
-                                    if(completed){
-                                        DispatchQueue.main.async {
-                                            self.saveAndGoToAvailableGamesController()
-                                        }
-                                    }
-                                })
-                            }
-                            else{
+                else{
+                    DispatchQueue.main.async {
+                        self.handleLoginData(results: results?.items as! [PlayerDataDBObjectModel])
+                    }
+                }
+            }
+        }
+    }
+    
+    private func handleLoginData(results: [PlayerDataDBObjectModel]){
+        let data = results[0] as? PlayerDataDBObjectModel
+        MyPlayerData.name = data?._name
+        
+        let helper = UserFilesHelper()
+        helper.loadUserProfilePicture(userId: MyPlayerData.id) { (imageData) in
+            DispatchQueue.main.async {
+                var statChanged = false
+                let fetchedObjects = self.myDataStack.fetchedResultsController.fetchedObjects as? [MyCoreData]
+                if(fetchedObjects?.count == 0){
+                    let _ = MyCoreData(imageData: imageData, laughes: Int((data?._laughes)!), madeCeasar: Int((data?._madeCeasar)!), context: self.myDataStack.stack.context)
+                }
+                else {
+                    fetchedObjects![0].imageData = imageData as NSData
+                    if(fetchedObjects![0].laughes != (data?._laughes as! Int16)){
+                        statChanged = true
+                    }
+                    if(fetchedObjects![0].madeCeasar != Int16((data?._madeCeasar)!)){
+                        statChanged = true
+                    }
+                    fetchedObjects![0].laughes = (data?._laughes as! Int16)
+                    fetchedObjects![0].madeCeasar = Int16((data?._madeCeasar)!)
+                }
+                if(statChanged){
+                    UIView.animate(withDuration: 0.5, delay: 0, options: [.autoreverse], animations: {
+                        self.leftNotificationLabel.text = "\(Int((data?._laughes)!))"
+                        self.rightNotificationLabel.text = "\(Int((data?._madeCeasar)!))"
+                        self.leftNotificationLabel.transform = CGAffineTransform(scaleX: 1.25, y: 1.25)
+                        self.leftNotificationLabel.textColor = UIColor.yellow
+                        self.rightNotificationLabel.transform = CGAffineTransform(scaleX: 1.25, y: 1.25)
+                        self.rightNotificationLabel.textColor = UIColor.yellow
+                    }, completion: { (completed) in
+                        if(completed){
+                            DispatchQueue.main.async {
                                 self.saveAndGoToAvailableGamesController()
                             }
                         }
-                    }
+                    })
+                }
+                else{
+                    self.saveAndGoToAvailableGamesController()
                 }
             }
         }
