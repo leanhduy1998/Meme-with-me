@@ -40,6 +40,7 @@ extension InGameViewController{
                     
                     GetGameCoreDataData.getLatestRound(game: self.game).addToCardnormal(cardNormal)
                     self.reloadPreviewCards()
+                    self.playCardPlacedDown()
                     
                     if(MyPlayerData.id == self.playerJudging){
                         self.checkIfAllPlayersHaveInsertCard()
@@ -49,6 +50,7 @@ extension InGameViewController{
             else {
                 self.myCardInserted = true
                 self.AddEditJudgeMemeBtn.title = "Edit Your Meme"
+                self.playCardPlacedDown()
             }
         })
     }

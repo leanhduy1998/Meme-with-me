@@ -10,6 +10,22 @@ import Foundation
 import AVFoundation
 
 extension InGameViewController{
+    func playHeartSound(){
+        playEffect(songName: "heartbeat", loop: 2, volume: 3, reduceBackgroundVolume: true)
+    }
+    func playEndRoundSound(){
+        playEffect(songName: "endRound", loop: 0, volume: 1, reduceBackgroundVolume: true)
+    }
+    func playWinningSound(){
+        playEffect(songName: "winning", loop: 0, volume: 0.2, reduceBackgroundVolume: true)
+    }
+    func playMessageReceivedSound(){
+        playEffect(songName: "messagereceived", loop: 0, volume: 1, reduceBackgroundVolume: false)
+    }
+    func playCardPlacedDown(){
+        playEffect(songName: "cardPlacedDown", loop: 0, volume: 1, reduceBackgroundVolume: false)
+    }
+    
     func playBackground(){
         if(backgroundPlayer != nil && backgroundPlayer.isPlaying){
             return
@@ -44,7 +60,7 @@ extension InGameViewController{
         }
     }
     
-    private func playEffect(songName: String, loop: Int, volume: Float){
+    private func playEffect(songName: String, loop: Int, volume: Float, reduceBackgroundVolume: Bool){
         let audioFilePath = Bundle.main.path(forResource: songName, ofType: "mp3")
         if audioFilePath != nil {
             let audioFileUrl = NSURL.fileURL(withPath: audioFilePath!)
@@ -52,7 +68,11 @@ extension InGameViewController{
             do{
                 try effectPlayer = AVAudioPlayer(contentsOf: audioFileUrl)
                 effectPlayer.delegate = self
-                backgroundPlayer.volume = 0.3
+                
+                if(reduceBackgroundVolume){
+                    backgroundPlayer.volume = 0.3
+                }
+                
                 effectPlayer.numberOfLoops = loop
                 effectPlayer.volume = volume
                 effectPlayer.play()
@@ -65,18 +85,7 @@ extension InGameViewController{
         }
     }
     
-    func playHeartSound(){
-        playEffect(songName: "heartbeat", loop: 2, volume: 3)
-    }
-    func playEndRoundSound(){
-        playEffect(songName: "endRound", loop: 0, volume: 1)
-    }
-    func playWinningSound(){
-        playEffect(songName: "winning", loop: 0, volume: 0.2)
-    }
-    func playMessageReceivedSound(){
-        playEffect(songName: "messagereceived", loop: 0, volume: 1)
-    }
+    
     
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
         if(player == effectPlayer){

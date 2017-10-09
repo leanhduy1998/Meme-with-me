@@ -36,6 +36,8 @@
 		241C6E651F58983B00756BA7 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241C6E641F58983B00756BA7 /* SignUpViewController.swift */; };
 		241C6E671F58AEFF00756BA7 /* ChangeUserPictureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241C6E661F58AEFF00756BA7 /* ChangeUserPictureViewController.swift */; };
 		241C6E6B1F59F3A200756BA7 /* UserFilesHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241C6E6A1F59F3A200756BA7 /* UserFilesHelper.swift */; };
+		2420885D1F8B50D800BFFD1B /* winning.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2420885C1F8B50C600BFFD1B /* winning.mp3 */; };
+		2420885F1F8B50E400BFFD1B /* cardPlacedDown.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2420885E1F8B50E100BFFD1B /* cardPlacedDown.mp3 */; };
 		24233F581F61F27E00B2B7EE /* AvailableGamesNoImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24233F571F61F27E00B2B7EE /* AvailableGamesNoImageCell.swift */; };
 		24233F5C1F6312D500B2B7EE /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24233F5B1F6312D500B2B7EE /* Extension.swift */; };
 		24233F5E1F63437300B2B7EE /* DisplayAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24233F5D1F63437300B2B7EE /* DisplayAlert.swift */; };
@@ -78,7 +80,6 @@
 		247A34BB1F87127E00E2C9E0 /* privateRoomMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 247A34B31F87116E00E2C9E0 /* privateRoomMusic.mp3 */; };
 		247A34BC1F87127E00E2C9E0 /* privateRoomMusic2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 247A34B51F87116F00E2C9E0 /* privateRoomMusic2.mp3 */; };
 		247A34BD1F87127E00E2C9E0 /* startMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 247A34B01F87116D00E2C9E0 /* startMusic.mp3 */; };
-		247A34BE1F87127E00E2C9E0 /* winning.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 247A34B11F87116D00E2C9E0 /* winning.mp3 */; };
 		247A55C71F7F350A004D1701 /* ChatHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247A55C61F7F350A004D1701 /* ChatHelper.swift */; };
 		247A55C91F7F3EE3004D1701 /* ChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247A55C81F7F3EE3004D1701 /* ChatModel.swift */; };
 		247A55CB1F7F5FBC004D1701 /* PrivateRoomChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247A55CA1F7F5FBC004D1701 /* PrivateRoomChat.swift */; };
@@ -203,6 +204,8 @@
 		241C6E641F58983B00756BA7 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		241C6E661F58AEFF00756BA7 /* ChangeUserPictureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeUserPictureViewController.swift; sourceTree = "<group>"; };
 		241C6E6A1F59F3A200756BA7 /* UserFilesHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserFilesHelper.swift; sourceTree = "<group>"; };
+		2420885C1F8B50C600BFFD1B /* winning.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = winning.mp3; path = ../../../../Downloads/winning.mp3; sourceTree = "<group>"; };
+		2420885E1F8B50E100BFFD1B /* cardPlacedDown.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = cardPlacedDown.mp3; sourceTree = "<group>"; };
 		24233F571F61F27E00B2B7EE /* AvailableGamesNoImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvailableGamesNoImageCell.swift; sourceTree = "<group>"; };
 		24233F5B1F6312D500B2B7EE /* Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		24233F5D1F63437300B2B7EE /* DisplayAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayAlert.swift; sourceTree = "<group>"; };
@@ -248,7 +251,6 @@
 		247A34AE1F87116D00E2C9E0 /* availableRoomMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = availableRoomMusic.mp3; sourceTree = "<group>"; };
 		247A34AF1F87116D00E2C9E0 /* inGame2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = inGame2.mp3; sourceTree = "<group>"; };
 		247A34B01F87116D00E2C9E0 /* startMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = startMusic.mp3; sourceTree = "<group>"; };
-		247A34B11F87116D00E2C9E0 /* winning.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = winning.mp3; sourceTree = "<group>"; };
 		247A34B31F87116E00E2C9E0 /* privateRoomMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = privateRoomMusic.mp3; sourceTree = "<group>"; };
 		247A34B41F87116F00E2C9E0 /* inGame.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = inGame.mp3; sourceTree = "<group>"; };
 		247A34B51F87116F00E2C9E0 /* privateRoomMusic2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = privateRoomMusic2.mp3; sourceTree = "<group>"; };
@@ -661,7 +663,8 @@
 				247A34B51F87116F00E2C9E0 /* privateRoomMusic2.mp3 */,
 				247A34B01F87116D00E2C9E0 /* startMusic.mp3 */,
 				24E3289A1F8964FB00A2A2FE /* endRound.mp3 */,
-				247A34B11F87116D00E2C9E0 /* winning.mp3 */,
+				2420885E1F8B50E100BFFD1B /* cardPlacedDown.mp3 */,
+				2420885C1F8B50C600BFFD1B /* winning.mp3 */,
 			);
 			name = sound;
 			sourceTree = "<group>";
@@ -1031,6 +1034,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2420885F1F8B50E400BFFD1B /* cardPlacedDown.mp3 in Resources */,
+				2420885D1F8B50D800BFFD1B /* winning.mp3 in Resources */,
 				24E3289B1F89650900A2A2FE /* endRound.mp3 in Resources */,
 				24F5C7EE1F87FD380095B2C5 /* heartbeat.mp3 in Resources */,
 				247A34B71F87127E00E2C9E0 /* availableRoomMusic.mp3 in Resources */,
@@ -1040,7 +1045,6 @@
 				247A34BB1F87127E00E2C9E0 /* privateRoomMusic.mp3 in Resources */,
 				247A34BC1F87127E00E2C9E0 /* privateRoomMusic2.mp3 in Resources */,
 				247A34BD1F87127E00E2C9E0 /* startMusic.mp3 in Resources */,
-				247A34BE1F87127E00E2C9E0 /* winning.mp3 in Resources */,
 				2498FA201F3484F900B21267 /* GoogleSignIn.bundle in Resources */,
 				2498FA1C1F3484F900B21267 /* CheckXcodeVersion.sh in Resources */,
 				2474DFFF1F349424006E00AC /* AWSGoogleSignInResources.bundle in Resources */,
