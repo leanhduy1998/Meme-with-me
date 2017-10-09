@@ -47,7 +47,6 @@ extension InGameViewController{
     private func playEffect(songName: String, loop: Int, volume: Float){
         let audioFilePath = Bundle.main.path(forResource: songName, ofType: "mp3")
         if audioFilePath != nil {
-            
             let audioFileUrl = NSURL.fileURL(withPath: audioFilePath!)
             
             do{
@@ -74,6 +73,9 @@ extension InGameViewController{
     }
     func playWinningSound(){
         playEffect(songName: "winning", loop: 0, volume: 0.2)
+    }
+    func playMessageReceivedSound(){
+        playEffect(songName: "messagereceived", loop: 0, volume: 1)
     }
     
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {

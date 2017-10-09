@@ -47,19 +47,11 @@ class ChatHelper {
                 self.messages.append(message)
                 controller.chatTableView.reloadData()
                 
-                let audioFilePath = Bundle.main.path(forResource: "messagereceived", ofType: "mp3")
-                if audioFilePath != nil {
-                    let audioFileUrl = NSURL.fileURL(withPath: audioFilePath!)
-                    var effectPlayer: AVAudioPlayer!
-                    do{
-                        try effectPlayer = AVAudioPlayer(contentsOf: audioFileUrl)
-                        effectPlayer.play()
-                    }
-                    catch {
-                        print("???")
-                    }
-                } else {
-                    print("audio file is not found")
+                if let c = controller as? PrivateRoomViewController {
+                    c.chatSoundPlayer.play()
+                }
+                if let c = controller as? InGameViewController {
+                    c.playMessageReceivedSound()
                 }
 
                 DispatchQueue.main.async {

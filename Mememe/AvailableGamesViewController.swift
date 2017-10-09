@@ -8,7 +8,7 @@
 
 import UIKit
 import AWSMobileHubHelper
-
+import AVFoundation
 import FirebaseDatabase
 
 class AvailableGamesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
@@ -17,18 +17,20 @@ class AvailableGamesViewController: UIViewController, UITableViewDelegate, UITab
     
     @IBOutlet weak var plusBtnView: UIView!
     
-    
     var openRooms = [AvailableRoomFirBModel]()
     var selectedLeaderId: String!
     let helper = UserFilesHelper()
     
     let availableRoomRef = Database.database().reference().child("availableRoom")
     
+    var backgroundPlayer: AVAudioPlayer!
+    
     @IBOutlet weak var addBtn: UIButton!
     
     override func viewDidLoad() {
         UserOnlineSystem.updateUserOnlineStatus()
         tableview.reloadData()
+        backgroundPlayer = SoundPlayerHelper.getAudioPlayer(songName: "availableRoomMusic", loop: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -39,8 +41,7 @@ class AvailableGamesViewController: UIViewController, UITableViewDelegate, UITab
         updateOpenRoomValue()
         selectedLeaderId = nil
         setupUI()
-        
-        SoundPlayer.sharedInstance.playAvailableRoomMusic()
+        backgroundPlayer.play()
     }
     
     func getNamefromAllPlayerInRoom(playerArr: [String:Any]) -> String{
@@ -170,6 +171,7 @@ class AvailableGamesViewController: UIViewController, UITableViewDelegate, UITab
         if let destination = segue.destination as? PrivateRoomViewController {
             availableRoomRef.removeAllObservers()
             destination.leaderId = selectedLeaderId
+            backgroundPlayer.stop()
         }
     }
     

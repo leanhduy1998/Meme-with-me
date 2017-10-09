@@ -68,10 +68,12 @@ class InGameViewController: UIViewController, UITableViewDelegate, UITableViewDa
     //sound player
     var backgroundPlayer:AVAudioPlayer!
     var effectPlayer:AVAudioPlayer!
+    
+    // animation
+    var cardInitialYBeforeAnimation: CGFloat!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        SoundPlayer.sharedInstance.audioPlayer.stop()
         
         setupUI()
         if leaderId == MyPlayerData.id {

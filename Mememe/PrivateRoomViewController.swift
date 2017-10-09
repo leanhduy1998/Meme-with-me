@@ -9,6 +9,7 @@
 import UIKit
 import AWSMobileHubHelper
 import FirebaseDatabase
+import AVFoundation
 
 class PrivateRoomViewController: UIViewController,UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
     private let availableRoomRef = Database.database().reference().child("availableRoom")
@@ -18,16 +19,10 @@ class PrivateRoomViewController: UIViewController,UITableViewDelegate, UITableVi
     @IBOutlet weak var tableview: UITableView!
     @IBOutlet weak var chatTableView: UITableView!
     @IBOutlet weak var chatTextField: UITextField!
-    
     @IBOutlet weak var chatView: UIView!
-    
     @IBOutlet weak var startBtn: UIBarButtonItem!
-    
     @IBOutlet weak var emptyChatLabel: UILabel!
-    
     @IBOutlet weak var backgroundIV: UIImageView!
-    
-    
     
     let chatHelper = ChatHelper()
     
@@ -38,10 +33,29 @@ class PrivateRoomViewController: UIViewController,UITableViewDelegate, UITableVi
     
     let helper = UserFilesHelper()
     
+    var backgroundPlayer:AVAudioPlayer!
+    var chatSoundPlayer:AVAudioPlayer!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setBackground()
         chatTableView.separatorStyle = UITableViewCellSeparatorStyle.none
+        
+        emptyChatLabel.layer.masksToBounds = true
+        emptyChatLabel.layer.cornerRadius = 5
+        emptyChatLabel.backgroundColor = UIColor.white
+        
+        let random = Int(arc4random_uniform(2))
+        if(random == 0){
+            backgroundPlayer = SoundPlayerHelper.getAudioPlayer(songName: "privateRoomMusic", loop: true)
+        }
+        else{
+            backgroundPlayer = SoundPlayerHelper.getAudioPlayer(songName: "privateRoomMusic2", loop: true)
+        }
+        chatSoundPlayer = SoundPlayerHelper.getAudioPlayer(songName: "messagereceived", loop: false)
+        
+        tableview.allowsSelection = false
+        chatTableView.allowsSelection = false
         
         if(leaderId == nil){
              chatHelper.id = MyPlayerData.id
@@ -153,6 +167,8 @@ class PrivateRoomViewController: UIViewController,UITableViewDelegate, UITableVi
         })
     }
     
+    
+    
     func setBackground(){
         var random = Int(arc4random_uniform(UInt32(11)))
         random += 1
@@ -170,7 +186,7 @@ class PrivateRoomViewController: UIViewController,UITableViewDelegate, UITableVi
             let indexPath = IndexPath(row: self.chatHelper.messages.count-1, section: 0)
             self.chatTableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
         }
-        SoundPlayer.sharedInstance.playPrivateRoomMusic()
+        backgroundPlayer.play()
     }
     
     @IBAction func startGameBtnPressed(_ sender: Any) {
@@ -197,6 +213,7 @@ class PrivateRoomViewController: UIViewController,UITableViewDelegate, UITableVi
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         unsubscribeFromKeyboardNotifications()
+        backgroundPlayer.stop()
         if let destination = segue.destination as? InGameViewController {
             destination.playersInGame = userInRoom
             destination.leaderId = leaderId

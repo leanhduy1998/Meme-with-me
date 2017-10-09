@@ -22,6 +22,12 @@ extension InGameViewController {
         setFloorBackground()
         
         chatTableView.backgroundColor = UIColor.clear
+        
+        emptyMessageLabel.layer.masksToBounds = true
+        emptyMessageLabel.layer.cornerRadius = 5
+        emptyMessageLabel.backgroundColor = UIColor.white
+        
+        chatTableView.allowsSelection = false
     }
     
     func setFloorBackground(){
@@ -49,6 +55,8 @@ extension InGameViewController {
         previewScrollHeight = cardHeight + space
         chatViewHeight = (screenHeight/2)*3/4
         currentPlayerScrollHeight = (screenHeight/2)/4
+        
+        cardInitialYBeforeAnimation = cardHeight/2
     }
     
     override var prefersStatusBarHidden: Bool {
@@ -110,7 +118,7 @@ extension InGameViewController {
             newX = screenWidth/2 - cardWidth/2
         }
         else {
-            newX =  (space/2 * CGFloat(x+1))  + CGFloat(x) * cardWidth
+            newX =  (space * CGFloat(x+1))  + CGFloat(x) * cardWidth
         }
         return newX
     }

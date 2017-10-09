@@ -70,7 +70,7 @@
 		2474E0001F349424006E00AC /* AWSMobileClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2474DFFC1F349424006E00AC /* AWSMobileClient.swift */; };
 		2474E0011F349424006E00AC /* AWSMobileHubHelper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2474DFFD1F349424006E00AC /* AWSMobileHubHelper.framework */; };
 		247A349D1F87070300E2C9E0 /* AsimovDistIt.otf in Resources */ = {isa = PBXBuildFile; fileRef = 247A349C1F8706A800E2C9E0 /* AsimovDistIt.otf */; };
-		247A34A41F870F4700E2C9E0 /* SoundPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247A34A31F870F4700E2C9E0 /* SoundPlayer.swift */; };
+		247A34A41F870F4700E2C9E0 /* SoundPlayerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247A34A31F870F4700E2C9E0 /* SoundPlayerHelper.swift */; };
 		247A34B71F87127E00E2C9E0 /* availableRoomMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 247A34AE1F87116D00E2C9E0 /* availableRoomMusic.mp3 */; };
 		247A34B81F87127E00E2C9E0 /* inGame.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 247A34B41F87116F00E2C9E0 /* inGame.mp3 */; };
 		247A34B91F87127E00E2C9E0 /* inGame2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 247A34AF1F87116D00E2C9E0 /* inGame2.mp3 */; };
@@ -244,7 +244,7 @@
 		2474DFFC1F349424006E00AC /* AWSMobileClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AWSMobileClient.swift; sourceTree = "<group>"; };
 		2474DFFD1F349424006E00AC /* AWSMobileHubHelper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AWSMobileHubHelper.framework; sourceTree = "<group>"; };
 		247A349C1F8706A800E2C9E0 /* AsimovDistIt.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = AsimovDistIt.otf; sourceTree = "<group>"; };
-		247A34A31F870F4700E2C9E0 /* SoundPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundPlayer.swift; sourceTree = "<group>"; };
+		247A34A31F870F4700E2C9E0 /* SoundPlayerHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundPlayerHelper.swift; sourceTree = "<group>"; };
 		247A34AE1F87116D00E2C9E0 /* availableRoomMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = availableRoomMusic.mp3; sourceTree = "<group>"; };
 		247A34AF1F87116D00E2C9E0 /* inGame2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = inGame2.mp3; sourceTree = "<group>"; };
 		247A34B01F87116D00E2C9E0 /* startMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = startMusic.mp3; sourceTree = "<group>"; };
@@ -605,7 +605,8 @@
 				2413D7DE1F499004001EA209 /* GetGameData.swift */,
 				24233F5D1F63437300B2B7EE /* DisplayAlert.swift */,
 				24AFAD921F73355F00D57762 /* GetGameCoreDataData.swift */,
-				247A34A31F870F4700E2C9E0 /* SoundPlayer.swift */,
+				247A34A31F870F4700E2C9E0 /* SoundPlayerHelper.swift */,
+				247A55C61F7F350A004D1701 /* ChatHelper.swift */,
 			);
 			name = Helper;
 			sourceTree = "<group>";
@@ -669,7 +670,6 @@
 			isa = PBXGroup;
 			children = (
 				241C6E5E1F58160700756BA7 /* AvailableRoomFirBModel.swift */,
-				247A55C61F7F350A004D1701 /* ChatHelper.swift */,
 				243F20A11F6A2C2D0003C604 /* AvailableRoomHelper.swift */,
 				24E734C11F6DCD9400218AB1 /* In Game */,
 				24FC32DB1F6CB097006CBD62 /* UserOnlineSystem.swift */,
@@ -1206,7 +1206,7 @@
 				24CD58681F86DB42005DCA0C /* AvailableGamesView.swift in Sources */,
 				2413D7E71F4CC540001EA209 /* MememeDBObjectModel.swift in Sources */,
 				241C6E671F58AEFF00756BA7 /* ChangeUserPictureViewController.swift in Sources */,
-				247A34A41F870F4700E2C9E0 /* SoundPlayer.swift in Sources */,
+				247A34A41F870F4700E2C9E0 /* SoundPlayerHelper.swift in Sources */,
 				247A55CB1F7F5FBC004D1701 /* PrivateRoomChat.swift in Sources */,
 				2468B0331F4E95870091EDD0 /* CardCeasarCoreDataProperties.swift in Sources */,
 				2413D7E31F4B60FA001EA209 /* MememeDynamoDB.swift in Sources */,

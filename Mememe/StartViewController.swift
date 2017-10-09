@@ -12,6 +12,7 @@ import UIKit
 import AWSMobileHubHelper
 import AWSGoogleSignIn
 import AWSCore
+import AVFoundation
 
 import FirebaseDatabase
 
@@ -40,12 +41,14 @@ class StartViewController: UIViewController,UIGestureRecognizerDelegate, AWSSign
     
     var googleBtnClicked = false
 
+    var backgroundPlayer: AVAudioPlayer!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        SoundPlayer.sharedInstance.playStartMusic()
-        
         setupUI()
+        
+        backgroundPlayer = SoundPlayerHelper.getAudioPlayer(songName: "startMusic", loop: true)
+        backgroundPlayer.play()
     
         myDataStack.initializeFetchedResultsController()
         let fetchedObjects = self.myDataStack.fetchedResultsController.fetchedObjects as? [MyCoreData]
@@ -159,6 +162,9 @@ class StartViewController: UIViewController,UIGestureRecognizerDelegate, AWSSign
                 
             }
         }
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        backgroundPlayer.stop()
     }
 
 }

@@ -91,12 +91,9 @@ extension InGameViewController {
         let haveWinner = checkIfWinnerExist(cards: (latestRound.cardnormal?.allObjects as? [CardNormal])!)
         let myCardExist = checkIfMyCardExist(cards: (latestRound.cardnormal?.allObjects as? [CardNormal])!)
         
-            
         let image = UIImage(data: latestRound.cardceasar?.cardPic! as! Data)
             thisRoundImage = image
-            
         playerJudging = GetGameCoreDataData.getLatestRound(game: game).cardceasar?.playerId
-            
             
         if !haveWinner {
             if myCardExist {
@@ -116,14 +113,25 @@ extension InGameViewController {
             setAddEditJudgeMemeBtnUI(ceasarId: (ceasarCard?.playerId)!, haveWinner: haveWinner)
                 
             if (currentPlayersCards?.count)! == 0 {
-                let emptyCardUIView = CardView(frame: CGRect(x: space/2, y: space/2, width: cardWidth, height: cardHeight))
+                // -40 is for animation
+                let emptyCardUIView = CardView(frame: CGRect(x: space, y: space/2 - cardInitialYBeforeAnimation, width: cardWidth, height: cardHeight))
                 let emptyIV = UIImageView(frame: CGRect(x: 0, y: 0, width: cardWidth, height: cardHeight))
                 emptyIV.image = image
                 emptyCardUIView.addSubview(emptyIV)
                 emptyCardUIView.sendSubview(toBack: emptyIV)
                 
                 previewScrollView.addSubview(emptyCardUIView)
+                
+                emptyCardUIView.alpha = 0.5
+                UIView.animate(withDuration: 1, animations: {
+                    emptyCardUIView.frame = CGRect(x: emptyCardUIView.frame.origin.x, y: emptyCardUIView.frame.origin.y + self.cardInitialYBeforeAnimation, width: self.cardWidth, height: self.cardHeight)
+                    emptyCardUIView.alpha = 1
+                })
+                
                 return
+            }
+            else if (currentPlayersCards?.count)! == 1 {
+                clearPreviewCardsData()
             }
             for x in 0...(((currentPlayersCards?.count)! - 1)) {
                 contentWidth += space + cardWidth
@@ -131,8 +139,9 @@ extension InGameViewController {
                         
                 let upLabel = getTopLabel(text: (currentPlayersCards?[x].topText)!)
                 let downLabel = getBottomLabel(text: (currentPlayersCards?[x].bottomText)!)
-                        
-                let cardUIView = CardView(frame: CGRect(x: newX, y: space/2, width: cardWidth, height: cardHeight))
+                
+                // -40 is for animation
+                let cardUIView = CardView(frame: CGRect(x: newX, y: space/2-cardInitialYBeforeAnimation, width: cardWidth, height: cardHeight))
                 cardUIView.initCardView(topLabel: upLabel, bottomLabel: downLabel, playerId: (currentPlayersCards?[x].playerId)!, memeIV: memeImageView)
                         
                         
@@ -169,8 +178,10 @@ extension InGameViewController {
                     previewScrollView.addSubview(cardUIView)
                     previewScrollView.bringSubview(toFront: cardUIView)
                     
-                    cardUIView.alpha = 0
-                    UIView.animate(withDuration: 0.5, animations: {
+                    cardUIView.alpha = 0.5
+                    
+                    UIView.animate(withDuration: 1, animations: {
+                        cardUIView.frame = CGRect(x: cardUIView.frame.origin.x, y: cardUIView.frame.origin.y + self.cardInitialYBeforeAnimation, width: self.cardWidth, height: self.cardHeight)
                         cardUIView.alpha = 1
                     })
                 }
@@ -186,7 +197,7 @@ extension InGameViewController {
                 if !card.didWin {
                     continue
                 }
-                let cardUIView = CardView(frame: CGRect(x: newX, y: space/2, width:cardWidth, height: cardHeight))
+                let cardUIView = CardView(frame: CGRect(x: newX, y: space/2 - cardInitialYBeforeAnimation, width:cardWidth, height: cardHeight))
                 let upLabel = getTopLabel(text: card.topText!)
                 let downLabel = getBottomLabel(text: card.bottomText!)
                 cardUIView.initCardView(topLabel: upLabel, bottomLabel: downLabel,playerId: card.playerId!, memeIV: memeImageView)
@@ -200,6 +211,14 @@ extension InGameViewController {
                 })
                     
                 previewScrollView.addSubview(cardUIView)
+                
+                cardUIView.alpha = 0.5
+                
+                UIView.animate(withDuration: 1, animations: {
+                    cardUIView.frame = CGRect(x: cardUIView.frame.origin.x, y: cardUIView.frame.origin.y + self.cardInitialYBeforeAnimation, width: self.cardWidth, height: self.cardHeight)
+                    cardUIView.alpha = 1
+                })
+                
                 break
         }
     }
