@@ -14,7 +14,7 @@ import FirebaseDatabase
 class AvailableGamesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBAction func unwindToAvailableGamesViewController(segue:UIStoryboardSegue) { }
     @IBOutlet weak var tableview: UITableView!
-    
+    @IBOutlet weak var addBtn: UIButton!
     @IBOutlet weak var plusBtnView: UIView!
     
     var openRooms = [AvailableRoomFirBModel]()
@@ -25,7 +25,7 @@ class AvailableGamesViewController: UIViewController, UITableViewDelegate, UITab
     
     var backgroundPlayer: AVAudioPlayer!
     
-    @IBOutlet weak var addBtn: UIButton!
+    
     
     override func viewDidLoad() {
         UserOnlineSystem.updateUserOnlineStatus()
@@ -150,9 +150,9 @@ class AvailableGamesViewController: UIViewController, UITableViewDelegate, UITab
     
     @IBAction func plusButtonPressed(_ sender: Any) {
         let roomOptionAlertController = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
-        roomOptionAlertController.addAction(UIAlertAction(title: "Create/Join a random game", style: UIAlertActionStyle.default, handler: createARandomGame))
-        roomOptionAlertController.addAction(UIAlertAction(title: "Create an open mixed game", style: UIAlertActionStyle.default, handler: createAMixedGame))
-        roomOptionAlertController.addAction(UIAlertAction(title: "Create a private game", style: UIAlertActionStyle.default, handler: createAPrivateGame))
+      //  roomOptionAlertController.addAction(UIAlertAction(title: "Create/Join a random game", style: UIAlertActionStyle.default, handler: createARandomGame))
+    //    roomOptionAlertController.addAction(UIAlertAction(title: "Create an open mixed game", style: UIAlertActionStyle.default, handler: createAMixedGame))
+        roomOptionAlertController.addAction(UIAlertAction(title: "Create a room", style: UIAlertActionStyle.default, handler: createAPrivateGame))
         roomOptionAlertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))
         self.present(roomOptionAlertController, animated: true, completion: nil)
     }
