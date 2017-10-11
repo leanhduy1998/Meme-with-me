@@ -76,7 +76,7 @@ extension RoomTutorialController {
             var cell = tableView.dequeueReusableCell(withIdentifier: "PrivateRoomTableCell") as? PrivateRoomTableCell
             cell = CellAnimator.add(cell: cell!)
             
-            if(indexPath.row == 0){
+            if(indexPath.row == 1){
                 helper.loadUserProfilePicture(userId: userInRoom[indexPath.row].userId) { (imageData) in
                     DispatchQueue.main.async {
                         cell?.imageview.image = UIImage(data: imageData)

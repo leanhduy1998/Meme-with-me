@@ -62,8 +62,10 @@ class StartViewController: UIViewController,UIGestureRecognizerDelegate, AWSSign
     func onLogin(signInProvider: AWSSignInProvider, result: Any?, authState: AWSIdentityManagerAuthState, error: Error?) {
 
         if result == nil {
-            DisplayAlert.display(controller: self, title: "Login Error!", message: (error?.localizedDescription)!)
             googleBtnClicked = false
+            if(error != nil){
+                DisplayAlert.display(controller: self, title: "Login Error!", message: (error?.localizedDescription)!)
+            }
             return
         }
         if(googleBtnClicked){

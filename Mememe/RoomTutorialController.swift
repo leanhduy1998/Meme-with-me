@@ -77,14 +77,19 @@ class RoomTutorialController: UIViewController,UITableViewDelegate, UITableViewD
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        if(!step4IsReady){
-            alertController = UIAlertController(title: "You can send and receive message here.", message: "Try to say Hi to your bots!", preferredStyle: UIAlertControllerStyle.alert)
-            alertController.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.cancel, handler: nil))
-            present(alertController, animated: true, completion: nil)
-            chatTextField.isEnabled = true
+        if self.isBeingPresented || self.isMovingToParentViewController {
+            if(!step4IsReady){
+                alertController = UIAlertController(title: "You can send and receive message here.", message: "Try to say Hi to your bots!", preferredStyle: UIAlertControllerStyle.alert)
+                alertController.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
+                alertController.addAction(UIAlertAction(title: "Say no more! I'll figure things out myself", style: UIAlertActionStyle.default, handler: letUserTakeOver))
+                present(alertController, animated: true, completion: nil)
+                chatTextField.isEnabled = true
+            }
         }
-        
+    }
+    func letUserTakeOver(action: UIAlertAction){
+        startBtn.isEnabled = true
+        leaveRoomBtn.isEnabled = true
     }
     
     func step2(){
@@ -94,7 +99,7 @@ class RoomTutorialController: UIViewController,UITableViewDelegate, UITableViewD
         }
         alertController = UIAlertController(title: "Nice job!", message: "The table on top shows how many users are in your room.", preferredStyle: UIAlertControllerStyle.alert)
         alertController.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: step3))
-        alertController.addAction(UIAlertAction(title: "Say no more! I'll figure things out myself", style: UIAlertActionStyle.cancel, handler: nil))
+        alertController.addAction(UIAlertAction(title: "Say no more! I'll figure things out myself", style: UIAlertActionStyle.default, handler: letUserTakeOver))
         present(alertController, animated: true, completion: nil)
     }
     func step3(action: UIAlertAction){

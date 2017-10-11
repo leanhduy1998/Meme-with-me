@@ -174,6 +174,7 @@ class JudgingTutController: UIViewController,UIGestureRecognizerDelegate {
             for card in (latestRound.cardnormal?.allObjects as? [CardNormal])! {
                 if wonCard.playerId == card.playerId {
                     card.didWin = true
+                    destination.userWhoWon = card.playerId!
                     break
                 }
             }

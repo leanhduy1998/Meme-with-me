@@ -11,7 +11,6 @@ import UIKit
 import AVFoundation
 
 class AvailableGameTutorialController: UIViewController, UITableViewDelegate, UITableViewDataSource{
-    @IBAction func unwindToAvailableGamesViewController(segue:UIStoryboardSegue) { }
     @IBOutlet weak var tableview: UITableView!
     @IBOutlet weak var addBtn: UIButton!
     @IBOutlet weak var plusBtnView: UIView!
@@ -24,19 +23,23 @@ class AvailableGameTutorialController: UIViewController, UITableViewDelegate, UI
     
     var step3OfRoomTut = false
     
+    var canStart = false
+    
     override func viewDidLoad() {
         tableview.reloadData()
         backgroundPlayer = SoundPlayerHelper.getAudioPlayer(songName: "availableRoomMusic", loop: true)
-        
+        canStart = true
         
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        if(!step3OfRoomTut){
-            alertController = UIAlertController(title: "Thank you for playing Mememe!", message: "I will walk you through a few things in this game.", preferredStyle: UIAlertControllerStyle.alert)
-            alertController.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: step2))
-            alertController.addAction(UIAlertAction(title: "Say no more! I'll figure things out myself", style: UIAlertActionStyle.cancel, handler: nil))
-            self.present(alertController, animated: true, completion: nil)
+        if self.isBeingPresented || self.isMovingToParentViewController {
+            if(!step3OfRoomTut){
+                alertController = UIAlertController(title: "Thank you for playing Mememe!", message: "I will walk you through a few things in this game.", preferredStyle: UIAlertControllerStyle.alert)
+                alertController.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: step2))
+                alertController.addAction(UIAlertAction(title: "Say no more! I'll figure things out myself", style: UIAlertActionStyle.cancel, handler: nil))
+                self.present(alertController, animated: true, completion: nil)
+            }
         }
     }
     
