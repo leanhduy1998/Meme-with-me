@@ -37,6 +37,23 @@ extension InGameViewController {
             contentWidth += self.space + self.iconSize
     
             counter = counter + 1
+            
+            let redDotSize = iconSize/4
+            let redDotIV = UIImageView(image: #imageLiteral(resourceName: "redCircle"))
+            redDotIV.frame = CGRect(x: iconSize/2 - (redDotSize)/2, y: -5, width: redDotSize, height: redDotSize)
+            let whiteLabel = UILabel()
+            
+            let num = winnerTracker[player.userId]
+            
+            whiteLabel.text = "\(num!)"
+            whiteLabel.frame = CGRect(x: 0, y: 0, width: redDotSize, height: redDotSize)
+            whiteLabel.textAlignment = .center
+            whiteLabel.textColor = UIColor.white
+            redDotIV.addSubview(whiteLabel)
+            
+            userIconIV.addSubview(redDotIV)
+            userIconIV.bringSubview(toFront: redDotIV)
+            
                 
             let helper = UserFilesHelper()
             helper.loadUserProfilePicture(userId: player.userId, completeHandler: { (imageData) in

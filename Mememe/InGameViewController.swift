@@ -49,6 +49,7 @@ class InGameViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var game : Game!
     var myCardInserted = false
     var userWhoWon = ""
+    var winnerTracker = [String:Int]()
     
     //database
     let inGameRef = Database.database().reference().child("inGame")
@@ -74,8 +75,12 @@ class InGameViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupUI()
+        
+        for player in playersInGame{
+            winnerTracker[player.userId] = 0
+        }
+        
         if leaderId == MyPlayerData.id {
             AvailableRoomHelper.makeMyRoomStatusClosed()
             createBeginingData()
@@ -96,6 +101,7 @@ class InGameViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 }
             })
         }
+        
         self.automaticallyAdjustsScrollViewInsets = false
     }
 

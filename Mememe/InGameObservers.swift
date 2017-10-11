@@ -80,6 +80,8 @@ extension InGameViewController{
                         
                         self.userWhoWon = temp.playerId!
                         
+                        self.winnerTracker[temp.playerId!] = self.winnerTracker[temp.playerId!]! + 1
+                        
                         self.AddEditJudgeMemeBtn.isEnabled = false
                         self.currentRoundFinished = true
                         
