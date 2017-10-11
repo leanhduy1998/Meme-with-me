@@ -149,12 +149,14 @@ class AvailableGamesViewController: UIViewController, UITableViewDelegate, UITab
     
     
     @IBAction func plusButtonPressed(_ sender: Any) {
+        /*
         let roomOptionAlertController = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
-      //  roomOptionAlertController.addAction(UIAlertAction(title: "Create/Join a random game", style: UIAlertActionStyle.default, handler: createARandomGame))
-    //    roomOptionAlertController.addAction(UIAlertAction(title: "Create an open mixed game", style: UIAlertActionStyle.default, handler: createAMixedGame))
+        roomOptionAlertController.addAction(UIAlertAction(title: "Create/Join a random game", style: UIAlertActionStyle.default, handler: createARandomGame))
+        roomOptionAlertController.addAction(UIAlertAction(title: "Create an open mixed game", style: UIAlertActionStyle.default, handler: createAMixedGame))
         roomOptionAlertController.addAction(UIAlertAction(title: "Create a room", style: UIAlertActionStyle.default, handler: createAPrivateGame))
         roomOptionAlertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))
-        self.present(roomOptionAlertController, animated: true, completion: nil)
+        self.present(roomOptionAlertController, animated: true, completion: nil)*/
+        performSegue(withIdentifier: "PrivateRoomViewControllerSegue", sender: self)
     }
     
     func createARandomGame(action: UIAlertAction){
@@ -168,10 +170,10 @@ class AvailableGamesViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        backgroundPlayer.stop()
         if let destination = segue.destination as? PrivateRoomViewController {
             availableRoomRef.removeAllObservers()
             destination.leaderId = selectedLeaderId
-            backgroundPlayer.stop()
         }
     }
     

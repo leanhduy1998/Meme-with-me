@@ -1,15 +1,15 @@
 //
-//  InGameExtensionUI.swift
+//  File.swift
 //  Mememe
 //
-//  Created by Duy Le on 9/21/17.
+//  Created by Duy Le on 10/10/17.
 //  Copyright © 2017 Andrew Le. All rights reserved.
 //
 
 import Foundation
 import UIKit
 
-extension InGameViewController {
+extension InGameTutController{
     func reloadCurrentPlayersIcon(){
         for v in currentPlayersScrollView.subviews {
             v.removeFromSuperview()
@@ -22,55 +22,46 @@ extension InGameViewController {
         
         var counter = 0
         for player in playersInGame{
-            var userCoreData = Player()
-            
-            for pCore in (game.players?.allObjects as? [Player])! {
-                if(pCore.playerId == player.userId){
-                    userCoreData = pCore
-                    break
-                }
-            }
-            
             let newX = (self.space * CGFloat(counter+1))  + CGFloat(counter) * self.iconSize
+            
             let userIconIV = UIImageView()
             userIconIV.frame = CGRect(x: newX, y: self.space/4, width: self.iconSize, height: self.iconSize)
             contentWidth += self.space + self.iconSize
-    
+            
             counter = counter + 1
+            
+            if(player.userId == MyPlayerData.id){
                 
-            let helper = UserFilesHelper()
-            helper.loadUserProfilePicture(userId: player.userId, completeHandler: { (imageData) in
-                DispatchQueue.main.async {
-                    let image = UIImage(data: imageData)!
-                    userIconIV.image = CircleImageCutter.getRoundEdgeImage(image: image, radius: Float(self.iconSize))
+                let helper = UserFilesHelper()
+                helper.loadUserProfilePicture(userId: player.userId, completeHandler: { (imageData) in
+                    DispatchQueue.main.async {
+                        let image = UIImage(data: imageData)!
+                        userIconIV.image = CircleImageCutter.getRoundEdgeImage(image: image, radius: Float(self.iconSize))
                         
-                    self.currentPlayersScrollView.addSubview(userIconIV)
-                    self.currentPlayersScrollView.sendSubview(toBack: userIconIV)
-                        
-                    userCoreData.userImageData = imageData as NSData
-                    
-                    if userCoreData.playerId == self.userWhoWon {
-                        self.borderForUserIconIV = self.getBorderIVForIcon(iconSize: self.iconSize)
-                        userIconIV.addSubview(self.borderForUserIconIV)
-                        userIconIV.bringSubview(toFront: self.borderForUserIconIV)
+                        self.currentPlayersScrollView.addSubview(userIconIV)
+                        self.currentPlayersScrollView.sendSubview(toBack: userIconIV)
                     }
-                }
-            })
+                })
+            }
+            else {
+                let image = #imageLiteral(resourceName: "ichooseyou")
+                userIconIV.image = CircleImageCutter.getRoundEdgeImage(image: image, radius: Float(self.iconSize))
+                self.currentPlayersScrollView.addSubview(userIconIV)
+                self.currentPlayersScrollView.sendSubview(toBack: userIconIV)
+            }
+            
+            if player.userId == self.userWhoWon {
+                self.borderForUserIconIV = self.getBorderIVForIcon(iconSize: self.iconSize)
+                userIconIV.addSubview(self.borderForUserIconIV)
+                userIconIV.bringSubview(toFront: self.borderForUserIconIV)
+            }
+            
             
             currentPlayersScrollView.bringSubview(toFront: borderForUserIconIV)
         }
-        
-        
-        let players = game.players?.allObjects as? [Player]
-        
-        
-        
-        for x in players!{
-            
-        }
         currentPlayersScrollView.contentSize = CGSize(width: contentWidth, height: iconSize)
     }
-
+    
     func clearPreviewCardsData(){
         for v in previewScrollView.subviews {
             v.removeFromSuperview()
@@ -87,14 +78,12 @@ extension InGameViewController {
         }
         
         var currentPlayersCards = latestRound.cardnormal?.allObjects as? [CardNormal]
-            
+        
         let haveWinner = checkIfWinnerExist(cards: (latestRound.cardnormal?.allObjects as? [CardNormal])!)
         let myCardExist = checkIfMyCardExist(cards: (latestRound.cardnormal?.allObjects as? [CardNormal])!)
         
-        let image = UIImage(data: latestRound.cardceasar?.cardPic! as! Data)
-            thisRoundImage = image
         playerJudging = GetGameCoreDataData.getLatestRound(game: game).cardceasar?.playerId
-            
+        
         if !haveWinner {
             if myCardExist {
                 var counter = 0
@@ -106,19 +95,15 @@ extension InGameViewController {
                     counter = counter + 1
                 }
             }
-
-            let memeImageView = getMemeIV(image: image!)
+            
             
             let ceasarCard = latestRound.cardceasar
             setAddEditJudgeMemeBtnUI(ceasarId: (ceasarCard?.playerId)!, haveWinner: haveWinner)
-                
+            
             if (currentPlayersCards?.count)! == 0 {
                 // -40 is for animation
                 let emptyCardUIView = CardView(frame: CGRect(x: space, y: space/2 - cardInitialYBeforeAnimation, width: cardWidth, height: cardHeight))
-                let emptyIV = UIImageView(frame: CGRect(x: 0, y: 0, width: cardWidth, height: cardHeight))
-                emptyIV.image = image
-                emptyCardUIView.addSubview(emptyIV)
-                emptyCardUIView.sendSubview(toBack: emptyIV)
+                emptyCardUIView.backgroundColor = UIColor.gray
                 
                 previewScrollView.addSubview(emptyCardUIView)
                 
@@ -130,61 +115,35 @@ extension InGameViewController {
                 
                 return
             }
-            else if (currentPlayersCards?.count)! == 1 {
-                clearPreviewCardsData()
-            }
             for x in 0...(((currentPlayersCards?.count)! - 1)) {
                 contentWidth += space + cardWidth
                 let newX = getNewXForPreviewScroll(x: x, haveWinner: haveWinner)
-                        
+                
                 let upLabel = getTopLabel(text: (currentPlayersCards?[x].topText)!)
                 let downLabel = getBottomLabel(text: (currentPlayersCards?[x].bottomText)!)
                 
                 // -40 is for animation
-                let cardUIView = CardView(frame: CGRect(x: newX, y: space/2-cardInitialYBeforeAnimation, width: cardWidth, height: cardHeight))
-                cardUIView.initCardView(topLabel: upLabel, bottomLabel: downLabel, playerId: (currentPlayersCards?[x].playerId)!, memeIV: memeImageView)
-                        
-                        
+                let cardUIView = CardView(frame: CGRect(x: newX, y: 10, width: cardWidth, height: cardHeight))
+    
+                
+                
+                cardUIView.addSubview(upLabel)
+                cardUIView.bringSubview(toFront: upLabel)
+                cardUIView.addSubview(downLabel)
+                cardUIView.bringSubview(toFront: downLabel)
+                
+                
+                
                 if currentPlayersCards?[x].playerId != MyPlayerData.id {
-                    let heartView = getHeartView(frame: memeImageView.frame, playerCard: (currentPlayersCards?[x])!)
+                    let heartView = getHeartView(frame: CGRect(x: 0, y: 0, width: cardWidth, height: cardHeight), playerCard: (currentPlayersCards?[x])!)
                     cardUIView.addSubview(heartView)
                     cardUIView.bringSubview(toFront: heartView)
                 }
-                        
-                var found = false
-                var changed = false
-                        
-                for v in previewScrollView.subviews{
-                    guard let vi = v as? CardView else{
-                        continue
-                    }
-               
-                    if(vi.playerId != nil){
-                        if vi.playerId == cardUIView.playerId {
-                            found = true
-                        }
-                        if vi.bottomText != cardUIView.bottomText {
-                            changed = true
-                            break
-                        }
-                        if vi.topText != cardUIView.topText {
-                            changed = true
-                            break
-                        }
-                    }
-                }
-                    
-                if !found || changed{
-                    previewScrollView.addSubview(cardUIView)
-                    previewScrollView.bringSubview(toFront: cardUIView)
-                    
-                    cardUIView.alpha = 0.5
-                    
-                    UIView.animate(withDuration: 1, animations: {
-                        cardUIView.frame = CGRect(x: cardUIView.frame.origin.x, y: cardUIView.frame.origin.y + self.cardInitialYBeforeAnimation, width: self.cardWidth, height: self.cardHeight)
-                        cardUIView.alpha = 1
-                    })
-                }
+                
+                cardUIView.backgroundColor = UIColor.gray
+                
+                previewScrollView.addSubview(cardUIView)
+                previewScrollView.bringSubview(toFront: cardUIView)
             }
         }
         else {
@@ -192,7 +151,7 @@ extension InGameViewController {
             
             contentWidth = screenWidth
             let newX = getNewXForPreviewScroll(x: 0, haveWinner: haveWinner)
-            let memeImageView = getMemeIV(image: image!)
+
             for card in currentPlayersCards! {
                 if !card.didWin {
                     continue
@@ -200,16 +159,22 @@ extension InGameViewController {
                 let cardUIView = CardView(frame: CGRect(x: newX, y: space/2 - cardInitialYBeforeAnimation, width:cardWidth, height: cardHeight))
                 let upLabel = getTopLabel(text: card.topText!)
                 let downLabel = getBottomLabel(text: card.bottomText!)
-                cardUIView.initCardView(topLabel: upLabel, bottomLabel: downLabel,playerId: card.playerId!, memeIV: memeImageView)
-                    
+                
+                cardUIView.addSubview(upLabel)
+                cardUIView.bringSubview(toFront: upLabel)
+                cardUIView.addSubview(downLabel)
+                cardUIView.bringSubview(toFront: downLabel)
+                
+                cardUIView.backgroundColor = UIColor.gray
+                
                 let borderIV = getBorderForWinningCard()
                 cardUIView.addSubview(borderIV)
-                    
-                getUserIconView(frame: memeImageView.frame, playerCard: card,completeHandler: { (IV) in
+                
+                getUserIconView(frame: cardUIView.frame, playerCard: card,completeHandler: { (IV) in
                     cardUIView.addSubview(IV)
                     cardUIView.bringSubview(toFront: IV)
                 })
-                    
+                
                 previewScrollView.addSubview(cardUIView)
                 
                 cardUIView.alpha = 0.5
@@ -220,9 +185,32 @@ extension InGameViewController {
                 })
                 
                 break
+            }
         }
-    }
         previewScrollView.contentSize = CGSize(width: contentWidth, height: cardHeight)
         
     }
+    func checkIfWinnerExist(cards: [CardNormal]) -> Bool{
+        var haveWinner = false
+        for card in cards {
+            if card.didWin {
+                haveWinner = true
+                break
+            }
+        }
+        return haveWinner
+    }
+    func checkIfMyCardExist(cards: [CardNormal]) -> Bool{
+        var myCardExist = false
+        for card in cards {
+            if card.playerId == MyPlayerData.id {
+                myCardExist = true
+                break
+            }
+        }
+        return myCardExist
+    }
+    
+    
+    
 }

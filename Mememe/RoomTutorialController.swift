@@ -22,6 +22,8 @@ class RoomTutorialController: UIViewController,UITableViewDelegate, UITableViewD
     @IBOutlet weak var emptyChatLabel: UILabel!
     @IBOutlet weak var backgroundIV: UIImageView!
     
+    @IBOutlet weak var leaveRoomBtn: UIBarButtonItem!
+    
     
     var userInRoom = [PlayerData]()
     
@@ -33,6 +35,11 @@ class RoomTutorialController: UIViewController,UITableViewDelegate, UITableViewD
     var chatSoundPlayer:AVAudioPlayer!
     
     var messages = [ChatModel]()
+    
+    var alertController = UIAlertController()
+    
+    //step 3: leave room and come back
+    var step4IsReady = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,24 +62,53 @@ class RoomTutorialController: UIViewController,UITableViewDelegate, UITableViewD
         tableview.allowsSelection = false
         chatTableView.allowsSelection = false
         
-        userInRoom.append(PlayerData(_userId: MyPlayerData.id, _userName: MyPlayerData.name))
+        
         userInRoom.append(PlayerData(_userId: "b1", _userName: "Bot1"))
+        userInRoom.append(PlayerData(_userId: MyPlayerData.id, _userName: MyPlayerData.name))
         userInRoom.append(PlayerData(_userId: "b2", _userName: "Bot2"))
         
+        chatTextField.isEnabled = false
         
-        
-        messages.append(ChatModel(senderId: "b1", senderName: "Bot1", text: "Two bots have joined your room!"))
+        messages.append(ChatModel(senderId: "b1", senderName: "Bot1", text: "Hi!"))
         chatTableView.reloadData()
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
-            self.messages.append(ChatModel(senderId: "b1", senderName: "Bot1", text: "You can send and receive message here."))
-            self.chatTableView.reloadData()
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                self.messages.append(ChatModel(senderId: "b1", senderName: "Bot1", text: "The table on top shows how many users are in your room."))
-                self.chatTableView.reloadData()
-            }
+        startBtn.isEnabled = false
+        leaveRoomBtn.isEnabled = false
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if(!step4IsReady){
+            alertController = UIAlertController(title: "You can send and receive message here.", message: "Try to say Hi to your bots!", preferredStyle: UIAlertControllerStyle.alert)
+            alertController.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.cancel, handler: nil))
+            present(alertController, animated: true, completion: nil)
+            chatTextField.isEnabled = true
         }
+        
+    }
+    
+    func step2(){
+        chatTextField.isEnabled = false
+        for cell in tableview.visibleCells {
+            cell.backgroundColor = UIColor.clear
+        }
+        alertController = UIAlertController(title: "Nice job!", message: "The table on top shows how many users are in your room.", preferredStyle: UIAlertControllerStyle.alert)
+        alertController.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: step3))
+        alertController.addAction(UIAlertAction(title: "Say no more! I'll figure things out myself", style: UIAlertActionStyle.cancel, handler: nil))
+        present(alertController, animated: true, completion: nil)
+    }
+    func step3(action: UIAlertAction){
+        alertController.dismiss(animated: true, completion: nil)
+        alertController = UIAlertController(title: "You can leave the current room using the button on top left!", message: "Try to leave and create another room to continue!", preferredStyle: UIAlertControllerStyle.alert)
+        alertController.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.cancel, handler: nil))
+        present(alertController, animated: true, completion: nil)
+        leaveRoomBtn.isEnabled = true
+    }
+    func step4(){
+        alertController = UIAlertController(title: "You can start the game using the button on top right", message: "Tap it to continue the tutorial!", preferredStyle: UIAlertControllerStyle.alert)
+        alertController.addAction(UIAlertAction(title: "Okay!", style: UIAlertActionStyle.cancel, handler: nil))
+        present(alertController, animated: true, completion: nil)
+        startBtn.isEnabled = true
     }
     
     func setBackground(){
@@ -89,28 +125,35 @@ class RoomTutorialController: UIViewController,UITableViewDelegate, UITableViewD
             self.chatTableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
         }
         backgroundPlayer.play()
-    }
-    
-    @IBAction func startGameBtnPressed(_ sender: Any) {
-        performSegue(withIdentifier: "InGameViewControllerSegue", sender: self)
-    }
-    @IBAction func leaveRoomBtnPressed(_ sender: Any) {        
-        dismiss(animated: true, completion: nil)
+        
+        if(step4IsReady){
+            step4()
+        }
     }
     
     @IBAction func chatSendBtnPressed(_ sender: Any) {
+        if(chatTextField.text == "" || chatTextField.text == nil){
+            return
+        }
         messages.append(ChatModel(senderId: MyPlayerData.id, senderName: MyPlayerData.name, text: chatTextField.text!))
         chatTextField.text = ""
         chatTableView.reloadData()
+        
+        step2()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         unsubscribeFromKeyboardNotifications()
         backgroundPlayer.stop()
-        if let destination = segue.destination as?  InGameViewController{
+        if let destination = segue.destination as?  InGameTutController{
             destination.playersInGame = userInRoom
             destination.leaderId = MyPlayerData.id
+            destination.playersInGame = userInRoom
         }
+        if let destination = segue.destination as?  AvailableGameTutorialController{
+            destination.step3OfRoomTut = true
+        }
+        
 
     }
     

@@ -9,12 +9,13 @@
 import Foundation
 import UIKit
 
-extension InGameViewController{
+extension InGameTutController{
     @IBAction func chatSendBtnPressed(_ sender: Any) {
         if(chatTextField.text == "" || chatTextField.text == nil){
             return
         }
-        chatHelper.insertMessage(text: chatTextField.text!)
+        messages.append(ChatModel(senderId: MyPlayerData.id, senderName: MyPlayerData.name, text: chatTextField.text!))
+        chatTableView.reloadData()
         chatTextField.text = ""
     }
     func textFieldDidBeginEditing(_ textField: UITextField) {
@@ -28,8 +29,8 @@ extension InGameViewController{
         if chatTextField.isEditing {
             view.frame.origin.y -=  getKeyboardHeight(notification)
             DispatchQueue.main.async {
-                if(self.chatHelper.messages.count > 0){
-                    let indexPath = IndexPath(row: self.chatHelper.messages.count-1, section: 0)
+                if(self.messages.count > 0){
+                    let indexPath = IndexPath(row: self.messages.count-1, section: 0)
                     self.chatTableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
                 }
             }
@@ -38,8 +39,8 @@ extension InGameViewController{
     func keyboardWillHide(_ notification:Notification){
         view.frame.origin.y = 0
         DispatchQueue.main.async {
-            if(self.chatHelper.messages.count > 0){
-                let indexPath = IndexPath(row: self.chatHelper.messages.count-1, section: 0)
+            if(self.messages.count > 0){
+                let indexPath = IndexPath(row: self.messages.count-1, section: 0)
                 self.chatTableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
             }
         }
@@ -59,3 +60,4 @@ extension InGameViewController{
         return keyboardSize.cgRectValue.height
     }
 }
+

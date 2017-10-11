@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-extension InGameViewController {
+extension InGameTutController {
     func calculateHeight(inString:String) -> CGFloat {
         let messageString = inString
         let attributes : [String : Any] = [NSFontAttributeName : UIFont.systemFont(ofSize: 25.0)]
@@ -24,8 +24,8 @@ extension InGameViewController {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if(tableView == chatTableView){
-            if(calculateHeight(inString: chatHelper.messages[indexPath.row].text) > 40){
-                return calculateHeight(inString: chatHelper.messages[indexPath.row].text)
+            if(calculateHeight(inString: messages[indexPath.row].text) > 40){
+                return calculateHeight(inString: messages[indexPath.row].text)
             }
             else{
                 return 40
@@ -35,7 +35,7 @@ extension InGameViewController {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let message = chatHelper.messages[indexPath.row]
+        let message = messages[indexPath.row]
         if(message.senderId == MyPlayerData.id){
             var cell = tableView.dequeueReusableCell(withIdentifier: "MyChatTableViewCell") as? MyChatTableViewCell
             cell = CellAnimator.add(cell: cell!)
@@ -46,11 +46,17 @@ extension InGameViewController {
             cell?.messageTF.layer.masksToBounds = true
             cell?.messageTF.layer.cornerRadius = 5
             
-            s3Helper.loadUserProfilePicture(userId: message.senderId) { (imageData) in
-                DispatchQueue.main.async {
-                    cell?.userIV.image = UIImage(data: imageData)
+            if(message.senderId == MyPlayerData.id){
+                s3Helper.loadUserProfilePicture(userId: message.senderId) { (imageData) in
+                    DispatchQueue.main.async {
+                        cell?.userIV.image = UIImage(data: imageData)
+                    }
                 }
             }
+            else{
+                cell?.userIV.image = #imageLiteral(resourceName: "ichooseyou")
+            }
+            
             return cell!
         }
         else {
@@ -63,22 +69,28 @@ extension InGameViewController {
             cell?.messageTF.layer.masksToBounds = true
             cell?.messageTF.layer.cornerRadius = 5
             
-            s3Helper.loadUserProfilePicture(userId: message.senderId) { (imageData) in
-                DispatchQueue.main.async {
-                    cell?.userIV.image = UIImage(data: imageData)
+            if(message.senderId == MyPlayerData.id){
+                s3Helper.loadUserProfilePicture(userId: message.senderId) { (imageData) in
+                    DispatchQueue.main.async {
+                        cell?.userIV.image = UIImage(data: imageData)
+                    }
                 }
+            }
+            else{
+                cell?.userIV.image = #imageLiteral(resourceName: "ichooseyou")
             }
             return cell!
         }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if(chatHelper.messages.count == 0){
+        if(messages.count == 0){
             emptyMessageLabel.isHidden = false
         }
         else{
             emptyMessageLabel.isHidden = true
         }
-        return chatHelper.messages.count
+        return messages.count
     }
 }
+

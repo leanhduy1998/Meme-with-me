@@ -207,6 +207,9 @@ class PrivateRoomViewController: UIViewController,UITableViewDelegate, UITableVi
     }
     
     @IBAction func chatSendBtnPressed(_ sender: Any) {
+        if(chatTextField.text == "" || chatTextField.text == nil){
+            return
+        }
         chatHelper.insertMessage(text: chatTextField.text!)
         chatTextField.text = ""
     }

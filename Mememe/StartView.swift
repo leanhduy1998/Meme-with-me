@@ -120,6 +120,8 @@ extension StartViewController {
         userIconConstraintArr.append(NSLayoutConstraint(item: userIcon, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1, constant: userIconSize))
         userIconConstraintArr.append(NSLayoutConstraint(item: userIcon, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .width, multiplier: 1, constant: userIconSize))
         NSLayoutConstraint.activate(userIconConstraintArr)
+        
+        userIcon = CircleImageCutter.getCircleImageView(imageview: userIcon)
     }
     
     private func setupCeasarIcon(){
@@ -129,6 +131,8 @@ extension StartViewController {
         ceasarIconConstraintArr.append(NSLayoutConstraint(item: ceasarIcon, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1, constant: iconWidth))
         ceasarIconConstraintArr.append(NSLayoutConstraint(item: ceasarIcon, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .width, multiplier: 1, constant: iconWidth))
         NSLayoutConstraint.activate(ceasarIconConstraintArr)
+        
+        ceasarIcon = CircleImageCutter.getCircleImageView(imageview: ceasarIcon)
     }
     
     private func setupLaughingIcon(){

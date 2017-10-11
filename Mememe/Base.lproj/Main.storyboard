@@ -285,16 +285,16 @@
                                                     <rect key="frame" x="20" y="8" width="112.33333333333334" height="111.66666666666667"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8xO-rO-aAS">
-                                                            <rect key="frame" x="0.6666666666666643" y="0.0" width="111.33333333333334" height="56"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="112.33333333333334" height="56"/>
                                                             <subviews>
                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="m88-DW-9Ze">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="55.666666666666657" height="56"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="56" height="56"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" secondItem="m88-DW-9Ze" secondAttribute="height" multiplier="1:1" id="4N4-lG-BQK"/>
                                                                     </constraints>
                                                                 </imageView>
                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gE0-4y-QDL">
-                                                                    <rect key="frame" x="55.666666666666664" y="0.0" width="55.666666666666679" height="56"/>
+                                                                    <rect key="frame" x="56" y="0.0" width="56.333333333333343" height="56"/>
                                                                 </imageView>
                                                             </subviews>
                                                             <constraints>
@@ -495,10 +495,10 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VDW-ZQ-MpP">
-                                                    <rect key="frame" x="20" y="-0.6666666666666643" width="111" height="127.66666666666666"/>
+                                                    <rect key="frame" x="20" y="-0.6666666666666643" width="112.66666666666666" height="127.66666666666666"/>
                                                     <subviews>
                                                         <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="01n-bC-YCj">
-                                                            <rect key="frame" x="46" y="53.666666666666664" width="20" height="19.999999999999993"/>
+                                                            <rect key="frame" x="47.333333333333329" y="53.666666666666664" width="20" height="19.999999999999993"/>
                                                         </activityIndicatorView>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -508,25 +508,25 @@
                                                     </constraints>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XuV-9W-w1k">
-                                                    <rect key="frame" x="151" y="53.333333333333329" width="41.666666666666657" height="20.333333333333329"/>
+                                                    <rect key="frame" x="152.66666666666666" y="53.333333333333329" width="41.666666666666686" height="20.333333333333329"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Nxw-yY-f1l">
-                                                    <rect key="frame" x="20" y="8" width="111" height="111.66666666666667"/>
+                                                    <rect key="frame" x="20" y="8" width="112.66666666666666" height="111.66666666666667"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="seZ-4A-Ysb">
-                                                            <rect key="frame" x="0.3333333333333357" y="0.0" width="110.66666666666666" height="56"/>
+                                                            <rect key="frame" x="0.3333333333333357" y="0.0" width="112" height="56"/>
                                                             <subviews>
                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ojG-50-zCA">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="55" height="56"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="56" height="56"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" secondItem="ojG-50-zCA" secondAttribute="height" multiplier="1:1" id="X09-wg-6a5"/>
                                                                     </constraints>
                                                                 </imageView>
                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ook-qy-xu3">
-                                                                    <rect key="frame" x="55.000000000000007" y="0.0" width="55.666666666666679" height="56"/>
+                                                                    <rect key="frame" x="55.999999999999993" y="0.0" width="56.000000000000007" height="56"/>
                                                                 </imageView>
                                                             </subviews>
                                                             <constraints>
@@ -534,16 +534,16 @@
                                                             </constraints>
                                                         </stackView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QFy-PP-imL">
-                                                            <rect key="frame" x="0.0" y="56.000000000000007" width="111" height="55.666666666666679"/>
+                                                            <rect key="frame" x="0.0" y="56.000000000000007" width="112.66666666666666" height="55.666666666666679"/>
                                                             <subviews>
                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YuW-c9-eO4">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="56" height="55.666666666666671"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="56.666666666666671" height="55.666666666666671"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" secondItem="YuW-c9-eO4" secondAttribute="height" multiplier="1:1" id="sw2-0M-b6k"/>
                                                                     </constraints>
                                                                 </imageView>
                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1y7-lu-KQu">
-                                                                    <rect key="frame" x="56" y="0.0" width="55" height="55.666666666666671"/>
+                                                                    <rect key="frame" x="56.666666666666664" y="0.0" width="55.999999999999993" height="55.666666666666671"/>
                                                                 </imageView>
                                                             </subviews>
                                                             <constraints>
@@ -581,31 +581,13 @@
                                     <outlet property="delegate" destination="j4i-hQ-4ea" id="ueB-na-Tvj"/>
                                 </connections>
                             </tableView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Sxj-1N-F2D">
-                                <rect key="frame" x="10" y="268" width="394" height="200"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="Zfd-rC-5oJ"/>
-                                </constraints>
-                                <string key="text">Thank you for playing Mememe.
-
-I will walk you through a few things in this game.
-
-Normally, you will be able to join rooms that are open, like the one above.
-
-For now, let just create a new room.
-
-Tap on the (+) and create a room!</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dKq-SL-DrG">
                                 <rect key="frame" x="0.0" y="20" width="414" height="44"/>
                                 <items>
                                     <navigationItem id="Omx-X0-8RJ">
                                         <barButtonItem key="leftBarButtonItem" title="Cancel Tutorial" id="eYb-qU-oO6">
                                             <connections>
-                                                <action selector="cancelBtnPressed:" destination="j4i-hQ-4ea" id="DyJ-MA-T5n"/>
+                                                <action selector="cancelBtnPressed:" destination="j4i-hQ-4ea" id="fs2-EQ-3bp"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -617,9 +599,6 @@ Tap on the (+) and create a room!</string>
                             <constraint firstItem="dKq-SL-DrG" firstAttribute="top" secondItem="M1b-3h-imE" secondAttribute="bottom" id="Ibq-cM-Iz0"/>
                             <constraint firstItem="GgB-H6-tAP" firstAttribute="top" secondItem="e7N-8i-z7i" secondAttribute="bottom" constant="20" id="P8g-LL-HmA"/>
                             <constraint firstAttribute="trailingMargin" secondItem="GgB-H6-tAP" secondAttribute="trailing" constant="10" id="VKe-qA-Vde"/>
-                            <constraint firstItem="Sxj-1N-F2D" firstAttribute="leading" secondItem="yGj-VS-IjB" secondAttribute="leading" constant="10" id="Ysn-v9-YlW"/>
-                            <constraint firstItem="Sxj-1N-F2D" firstAttribute="centerY" secondItem="yGj-VS-IjB" secondAttribute="centerY" id="YtL-kU-8X8"/>
-                            <constraint firstAttribute="trailing" secondItem="Sxj-1N-F2D" secondAttribute="trailing" constant="10" id="a1v-8B-rWu"/>
                             <constraint firstAttribute="trailing" secondItem="GXe-1g-Mij" secondAttribute="trailing" id="aWH-Xt-nwV"/>
                             <constraint firstItem="dKq-SL-DrG" firstAttribute="leading" secondItem="yGj-VS-IjB" secondAttribute="leading" id="brM-6h-vas"/>
                             <constraint firstItem="GgB-H6-tAP" firstAttribute="leading" secondItem="yGj-VS-IjB" secondAttribute="leadingMargin" constant="10" id="dZw-lH-pRs"/>
@@ -757,7 +736,7 @@ Tap on the (+) and create a room!</string>
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OK7-8c-sr4" customClass="InsetLabel" customModule="Mememe" customModuleProvider="target">
-                                                            <rect key="frame" x="78" y="7.9999999999999982" width="280" height="20.333333333333329"/>
+                                                            <rect key="frame" x="78" y="8" width="280" height="43.666666666666664"/>
                                                             <color key="backgroundColor" red="1" green="0.7478899190170083" blue="0.97245037141594759" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
@@ -767,8 +746,10 @@ Tap on the (+) and create a room!</string>
                                                     <constraints>
                                                         <constraint firstAttribute="trailingMargin" secondItem="OK7-8c-sr4" secondAttribute="trailing" constant="8" id="89S-FQ-4JL"/>
                                                         <constraint firstItem="OK7-8c-sr4" firstAttribute="top" secondItem="NEC-Ok-rJY" secondAttribute="topMargin" id="Eue-dv-a00"/>
+                                                        <constraint firstItem="OK7-8c-sr4" firstAttribute="top" secondItem="NEC-Ok-rJY" secondAttribute="top" constant="8" id="JPQ-EV-Qmb"/>
                                                         <constraint firstItem="OK7-8c-sr4" firstAttribute="leading" secondItem="Ycq-PH-oy7" secondAttribute="trailing" constant="30" id="Yq8-mh-iYW"/>
                                                         <constraint firstItem="Ycq-PH-oy7" firstAttribute="top" secondItem="NEC-Ok-rJY" secondAttribute="top" id="ZnX-QG-Ymv"/>
+                                                        <constraint firstAttribute="bottom" secondItem="OK7-8c-sr4" secondAttribute="bottom" constant="8" id="j2M-E0-wNf"/>
                                                         <constraint firstItem="Ycq-PH-oy7" firstAttribute="leading" secondItem="NEC-Ok-rJY" secondAttribute="leading" constant="8" id="nIH-22-lOC"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
@@ -794,7 +775,7 @@ Tap on the (+) and create a room!</string>
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zVl-9j-cI6" customClass="InsetLabel" customModule="Mememe" customModuleProvider="target">
-                                                            <rect key="frame" x="16" y="7.9999999999999982" width="280" height="20.333333333333329"/>
+                                                            <rect key="frame" x="16" y="8" width="280" height="43.666666666666664"/>
                                                             <color key="backgroundColor" red="0.3312300661" green="0.89525973800000003" blue="0.80430157400000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
@@ -802,10 +783,12 @@ Tap on the (+) and create a room!</string>
                                                         </label>
                                                     </subviews>
                                                     <constraints>
+                                                        <constraint firstAttribute="bottom" secondItem="zVl-9j-cI6" secondAttribute="bottom" constant="8" id="11D-na-6Qg"/>
                                                         <constraint firstItem="jFU-bI-49T" firstAttribute="leading" secondItem="zVl-9j-cI6" secondAttribute="trailing" constant="30" id="UkE-pD-I3H"/>
                                                         <constraint firstItem="zVl-9j-cI6" firstAttribute="top" secondItem="qRQ-y1-7Sg" secondAttribute="topMargin" id="b3A-zi-3ZY"/>
                                                         <constraint firstItem="jFU-bI-49T" firstAttribute="top" secondItem="qRQ-y1-7Sg" secondAttribute="top" id="i0Q-LX-T3d"/>
                                                         <constraint firstAttribute="trailing" secondItem="jFU-bI-49T" secondAttribute="trailing" constant="8" id="kUd-Z0-Mya"/>
+                                                        <constraint firstItem="zVl-9j-cI6" firstAttribute="top" secondItem="qRQ-y1-7Sg" secondAttribute="top" constant="8" id="pXB-os-ZIH"/>
                                                         <constraint firstItem="zVl-9j-cI6" firstAttribute="leading" secondItem="qRQ-y1-7Sg" secondAttribute="leadingMargin" constant="8" id="xy5-u4-RR2"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
@@ -975,7 +958,7 @@ Tap on the (+) and create a room!</string>
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JGY-Xj-5mJ" customClass="InsetLabel" customModule="Mememe" customModuleProvider="target">
-                                                            <rect key="frame" x="78" y="7.9999999999999982" width="316" height="20.333333333333329"/>
+                                                            <rect key="frame" x="78" y="8" width="316" height="43.666666666666664"/>
                                                             <color key="backgroundColor" red="1" green="0.7469819188117981" blue="0.97359615564346313" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
@@ -985,8 +968,10 @@ Tap on the (+) and create a room!</string>
                                                     <constraints>
                                                         <constraint firstItem="nIO-QS-oIl" firstAttribute="top" secondItem="ni5-bE-f1L" secondAttribute="top" id="Kgr-Pp-U4e"/>
                                                         <constraint firstItem="nIO-QS-oIl" firstAttribute="leading" secondItem="ni5-bE-f1L" secondAttribute="leading" constant="8" id="P4a-U9-fXm"/>
+                                                        <constraint firstAttribute="bottom" secondItem="JGY-Xj-5mJ" secondAttribute="bottom" constant="8" id="W2P-Te-TB3"/>
                                                         <constraint firstItem="JGY-Xj-5mJ" firstAttribute="top" secondItem="ni5-bE-f1L" secondAttribute="topMargin" id="WlL-e0-Fgy"/>
                                                         <constraint firstAttribute="trailingMargin" secondItem="JGY-Xj-5mJ" secondAttribute="trailing" constant="8" id="b6d-cM-9ze"/>
+                                                        <constraint firstItem="JGY-Xj-5mJ" firstAttribute="top" secondItem="ni5-bE-f1L" secondAttribute="top" constant="8" id="iHm-wj-Hq0"/>
                                                         <constraint firstItem="JGY-Xj-5mJ" firstAttribute="leading" secondItem="nIO-QS-oIl" secondAttribute="trailing" constant="30" id="pb2-yv-o0h"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
@@ -1012,7 +997,7 @@ Tap on the (+) and create a room!</string>
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UGR-Yb-JJy" customClass="InsetLabel" customModule="Mememe" customModuleProvider="target">
-                                                            <rect key="frame" x="16" y="7.9999999999999982" width="316" height="20.333333333333329"/>
+                                                            <rect key="frame" x="16" y="8" width="316" height="43.666666666666664"/>
                                                             <color key="backgroundColor" red="0.3312300661" green="0.89525973800000003" blue="0.80430157400000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
@@ -1025,6 +1010,8 @@ Tap on the (+) and create a room!</string>
                                                         <constraint firstItem="nij-Aw-fNC" firstAttribute="leading" secondItem="UGR-Yb-JJy" secondAttribute="trailing" constant="30" id="Ejb-aE-cHl"/>
                                                         <constraint firstItem="UGR-Yb-JJy" firstAttribute="top" secondItem="TFg-wJ-yp4" secondAttribute="topMargin" id="X9z-Ud-XH4"/>
                                                         <constraint firstItem="UGR-Yb-JJy" firstAttribute="leading" secondItem="TFg-wJ-yp4" secondAttribute="leadingMargin" constant="8" id="cKF-eA-FVe"/>
+                                                        <constraint firstAttribute="bottom" secondItem="UGR-Yb-JJy" secondAttribute="bottom" constant="8" id="gP0-K3-Oqp"/>
+                                                        <constraint firstItem="UGR-Yb-JJy" firstAttribute="top" secondItem="TFg-wJ-yp4" secondAttribute="top" constant="8" id="unJ-kp-ugY"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -1137,6 +1124,232 @@ Tap on the (+) and create a room!</string>
             </objects>
             <point key="canvasLocation" x="3350.7246376811595" y="37.5"/>
         </scene>
+        <!--In Game Tut Controller-->
+        <scene sceneID="Jet-8L-byk">
+            <objects>
+                <viewController id="Srh-3q-e4G" customClass="InGameTutController" customModule="Mememe" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ql3-Xu-3uM"/>
+                        <viewControllerLayoutGuide type="bottom" id="a4e-Jn-1WG"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="lQb-m9-y04">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Bs-ja-Ds3">
+                                <rect key="frame" x="0.0" y="74" width="414" height="583"/>
+                            </imageView>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="V58-Qd-s1f">
+                                <rect key="frame" x="0.0" y="655" width="414" height="81"/>
+                                <color key="backgroundColor" red="0.39328591909999999" green="0.84526804460000005" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </scrollView>
+                            <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rso-0s-DTT">
+                                <rect key="frame" x="0.0" y="20" width="414" height="44"/>
+                                <items>
+                                    <navigationItem id="CU8-rD-xkL">
+                                        <nil key="title"/>
+                                        <barButtonItem key="leftBarButtonItem" title="Option" id="0sI-Aw-a8N">
+                                            <connections>
+                                                <action selector="optionBtnPressed:" destination="Srh-3q-e4G" id="Per-hj-ALW"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="Add Your Meme!" id="7zL-AM-rgx">
+                                            <connections>
+                                                <action selector="AddEditJudgeMemeBtnPressed:" destination="Srh-3q-e4G" id="LUq-RO-J8y"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="83i-ce-E1e">
+                                <rect key="frame" x="20" y="433" width="374" height="213"/>
+                                <subviews>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="40" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="0ZX-MK-OFK">
+                                        <rect key="frame" x="0.0" y="-21" width="410" height="246"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <prototypes>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="HerChatTableViewCell" rowHeight="60" id="H3g-ft-Ls4" customClass="HerChatTableViewCell" customModule="Mememe" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="28" width="410" height="60"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="H3g-ft-Ls4" id="yf5-3N-VZ6">
+                                                    <rect key="frame" x="0.0" y="0.0" width="410" height="59.666666666666664"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NOl-Xa-EyF">
+                                                            <rect key="frame" x="8" y="0.0" width="40" height="40"/>
+                                                            <color key="backgroundColor" red="1" green="0.63607672579999996" blue="0.2279593144" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="40" id="QuW-If-RTE"/>
+                                                                <constraint firstAttribute="width" secondItem="NOl-Xa-EyF" secondAttribute="height" multiplier="1:1" id="wdL-0r-47h"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oPS-jG-twk" customClass="InsetLabel" customModule="Mememe" customModuleProvider="target">
+                                                            <rect key="frame" x="78" y="8" width="316" height="43.666666666666664"/>
+                                                            <color key="backgroundColor" red="1" green="0.74698191879999998" blue="0.97359615560000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="trailingMargin" secondItem="oPS-jG-twk" secondAttribute="trailing" constant="8" id="Cs0-Xx-Okb"/>
+                                                        <constraint firstItem="oPS-jG-twk" firstAttribute="top" secondItem="yf5-3N-VZ6" secondAttribute="top" constant="8" id="DRN-lM-PXZ"/>
+                                                        <constraint firstItem="NOl-Xa-EyF" firstAttribute="leading" secondItem="yf5-3N-VZ6" secondAttribute="leading" constant="8" id="HnT-cs-hbi"/>
+                                                        <constraint firstItem="oPS-jG-twk" firstAttribute="top" secondItem="yf5-3N-VZ6" secondAttribute="topMargin" id="Rhx-6e-Hem"/>
+                                                        <constraint firstItem="oPS-jG-twk" firstAttribute="leading" secondItem="NOl-Xa-EyF" secondAttribute="trailing" constant="30" id="SPv-fs-fVK"/>
+                                                        <constraint firstItem="NOl-Xa-EyF" firstAttribute="top" secondItem="yf5-3N-VZ6" secondAttribute="top" id="oKf-uV-6he"/>
+                                                        <constraint firstAttribute="bottom" secondItem="oPS-jG-twk" secondAttribute="bottom" constant="8" id="vLI-z5-wSb"/>
+                                                    </constraints>
+                                                </tableViewCellContentView>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                <connections>
+                                                    <outlet property="messageTF" destination="oPS-jG-twk" id="gl4-QT-wDP"/>
+                                                    <outlet property="userIV" destination="NOl-Xa-EyF" id="sJ4-aM-UPN"/>
+                                                </connections>
+                                            </tableViewCell>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleAspectFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MyChatTableViewCell" rowHeight="60" id="xLZ-sR-Lm1" customClass="MyChatTableViewCell" customModule="Mememe" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="88" width="410" height="60"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xLZ-sR-Lm1" id="9Pi-WR-6Of">
+                                                    <rect key="frame" x="0.0" y="0.0" width="410" height="59.666666666666664"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PZG-lQ-fxV">
+                                                            <rect key="frame" x="362" y="0.0" width="40" height="40"/>
+                                                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="40" id="Udq-Rx-VgJ"/>
+                                                                <constraint firstAttribute="width" secondItem="PZG-lQ-fxV" secondAttribute="height" multiplier="1:1" id="fxj-9K-Yhl"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="89O-dj-EM0" customClass="InsetLabel" customModule="Mememe" customModuleProvider="target">
+                                                            <rect key="frame" x="16" y="8" width="316" height="43.666666666666664"/>
+                                                            <color key="backgroundColor" red="0.3312300661" green="0.89525973800000003" blue="0.80430157400000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="89O-dj-EM0" firstAttribute="leading" secondItem="9Pi-WR-6Of" secondAttribute="leadingMargin" constant="8" id="Ak1-Cy-tms"/>
+                                                        <constraint firstItem="89O-dj-EM0" firstAttribute="top" secondItem="9Pi-WR-6Of" secondAttribute="top" constant="8" id="Erd-8Z-vEB"/>
+                                                        <constraint firstAttribute="trailing" secondItem="PZG-lQ-fxV" secondAttribute="trailing" constant="8" id="Gjw-7g-Ib4"/>
+                                                        <constraint firstItem="PZG-lQ-fxV" firstAttribute="leading" secondItem="89O-dj-EM0" secondAttribute="trailing" constant="30" id="S5i-gO-gHX"/>
+                                                        <constraint firstAttribute="bottom" secondItem="89O-dj-EM0" secondAttribute="bottom" constant="8" id="X6G-tv-dMW"/>
+                                                        <constraint firstItem="PZG-lQ-fxV" firstAttribute="top" secondItem="9Pi-WR-6Of" secondAttribute="top" id="bfI-id-Prp"/>
+                                                        <constraint firstItem="89O-dj-EM0" firstAttribute="top" secondItem="9Pi-WR-6Of" secondAttribute="topMargin" id="g2B-92-ihx"/>
+                                                    </constraints>
+                                                </tableViewCellContentView>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                <connections>
+                                                    <outlet property="messageTF" destination="89O-dj-EM0" id="Ia8-ff-lqd"/>
+                                                    <outlet property="userIV" destination="PZG-lQ-fxV" id="SvF-VN-DFX"/>
+                                                </connections>
+                                            </tableViewCell>
+                                        </prototypes>
+                                        <connections>
+                                            <outlet property="dataSource" destination="Srh-3q-e4G" id="fdX-rA-DVw"/>
+                                            <outlet property="delegate" destination="Srh-3q-e4G" id="6ao-X3-BAE"/>
+                                        </connections>
+                                    </tableView>
+                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cRL-s7-XLo">
+                                        <rect key="frame" x="0.0" y="177" width="374" height="30"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HXL-LO-ttb">
+                                                <rect key="frame" x="330" y="0.0" width="36" height="30"/>
+                                                <state key="normal" title="Send"/>
+                                                <connections>
+                                                    <action selector="chatSendBtnPressed:" destination="Srh-3q-e4G" eventType="touchUpInside" id="fK2-wU-xVm"/>
+                                                    <action selector="chatSendBtnPressed:" destination="MzE-TQ-o9F" eventType="touchUpInside" id="kFE-ad-uLC"/>
+                                                </connections>
+                                            </button>
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cTI-JG-cJY">
+                                                <rect key="frame" x="10" y="0.0" width="300" height="30"/>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="Srh-3q-e4G" id="N5T-OD-W1z"/>
+                                                </connections>
+                                            </textField>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="cTI-JG-cJY" firstAttribute="leading" secondItem="cRL-s7-XLo" secondAttribute="leading" constant="10" id="4KL-Db-2Bg"/>
+                                            <constraint firstItem="HXL-LO-ttb" firstAttribute="top" secondItem="cRL-s7-XLo" secondAttribute="top" id="9hZ-mt-1DZ"/>
+                                            <constraint firstAttribute="bottom" secondItem="HXL-LO-ttb" secondAttribute="bottom" id="H1L-4s-O8e"/>
+                                            <constraint firstItem="HXL-LO-ttb" firstAttribute="leading" secondItem="cTI-JG-cJY" secondAttribute="trailing" constant="20" id="HVv-Al-QcK"/>
+                                            <constraint firstAttribute="bottom" secondItem="cTI-JG-cJY" secondAttribute="bottom" id="NBm-SZ-0Hg"/>
+                                            <constraint firstAttribute="trailing" secondItem="HXL-LO-ttb" secondAttribute="trailing" constant="8" id="WvC-V3-csc"/>
+                                            <constraint firstAttribute="height" constant="30" id="tQj-eb-KAx"/>
+                                            <constraint firstItem="cTI-JG-cJY" firstAttribute="top" secondItem="cRL-s7-XLo" secondAttribute="top" id="x2D-46-rqF"/>
+                                        </constraints>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Say Hi To Your Friends!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E44-iM-bIR" customClass="InsetLabel" customModule="Mememe" customModuleProvider="target">
+                                        <rect key="frame" x="99" y="8" width="176.33333333333331" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="E44-iM-bIR" firstAttribute="centerX" secondItem="83i-ce-E1e" secondAttribute="centerX" id="52V-fC-bVH"/>
+                                    <constraint firstItem="cRL-s7-XLo" firstAttribute="leading" secondItem="83i-ce-E1e" secondAttribute="leading" id="6se-gm-7Ye"/>
+                                    <constraint firstItem="cRL-s7-XLo" firstAttribute="top" secondItem="0ZX-MK-OFK" secondAttribute="bottom" constant="10" id="83K-Xo-Cik"/>
+                                    <constraint firstItem="0ZX-MK-OFK" firstAttribute="top" secondItem="83i-ce-E1e" secondAttribute="top" constant="26" id="9sq-ma-7dh"/>
+                                    <constraint firstAttribute="trailing" secondItem="0ZX-MK-OFK" secondAttribute="trailing" id="IoG-HN-yqT"/>
+                                    <constraint firstItem="E44-iM-bIR" firstAttribute="top" secondItem="83i-ce-E1e" secondAttribute="top" constant="25" id="Q9U-dQ-UUy"/>
+                                    <constraint firstAttribute="bottom" secondItem="cRL-s7-XLo" secondAttribute="bottom" id="WsF-xI-pqX"/>
+                                    <constraint firstAttribute="trailing" secondItem="cRL-s7-XLo" secondAttribute="trailing" id="eyn-nK-3TH"/>
+                                    <constraint firstItem="0ZX-MK-OFK" firstAttribute="leading" secondItem="83i-ce-E1e" secondAttribute="leading" id="f76-6l-xXe"/>
+                                </constraints>
+                            </view>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pCH-Fo-68Z">
+                                <rect key="frame" x="0.0" y="74" width="414" height="344"/>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="83i-ce-E1e" firstAttribute="top" secondItem="pCH-Fo-68Z" secondAttribute="bottom" id="1oy-js-Lg5"/>
+                            <constraint firstItem="pCH-Fo-68Z" firstAttribute="leading" secondItem="lQb-m9-y04" secondAttribute="leading" id="9RF-3n-XQc"/>
+                            <constraint firstAttribute="trailing" secondItem="Rso-0s-DTT" secondAttribute="trailing" id="BOJ-lA-8aN"/>
+                            <constraint firstAttribute="trailing" secondItem="pCH-Fo-68Z" secondAttribute="trailing" id="DNG-1W-s7W"/>
+                            <constraint firstItem="V58-Qd-s1f" firstAttribute="leading" secondItem="lQb-m9-y04" secondAttribute="leading" id="EZ2-fN-hmQ"/>
+                            <constraint firstItem="0Bs-ja-Ds3" firstAttribute="top" secondItem="Rso-0s-DTT" secondAttribute="bottom" id="GJ4-Hr-f60"/>
+                            <constraint firstAttribute="trailing" secondItem="V58-Qd-s1f" secondAttribute="trailing" id="JPS-S3-Ggm"/>
+                            <constraint firstItem="Rso-0s-DTT" firstAttribute="leading" secondItem="lQb-m9-y04" secondAttribute="leading" id="MmI-El-VhW"/>
+                            <constraint firstAttribute="trailing" secondItem="0Bs-ja-Ds3" secondAttribute="trailing" id="QOt-Hs-yp5"/>
+                            <constraint firstItem="V58-Qd-s1f" firstAttribute="top" secondItem="83i-ce-E1e" secondAttribute="bottom" constant="10" id="U3u-GQ-sBo"/>
+                            <constraint firstItem="V58-Qd-s1f" firstAttribute="top" secondItem="0Bs-ja-Ds3" secondAttribute="bottom" id="Wlb-yk-Xcn"/>
+                            <constraint firstItem="pCH-Fo-68Z" firstAttribute="top" secondItem="Rso-0s-DTT" secondAttribute="bottom" id="a7Y-cJ-pl6"/>
+                            <constraint firstItem="Rso-0s-DTT" firstAttribute="top" secondItem="ql3-Xu-3uM" secondAttribute="bottom" id="dMk-rl-BmO"/>
+                            <constraint firstItem="83i-ce-E1e" firstAttribute="trailing" secondItem="lQb-m9-y04" secondAttribute="trailingMargin" id="dRg-bt-LDP"/>
+                            <constraint firstItem="0Bs-ja-Ds3" firstAttribute="leading" secondItem="lQb-m9-y04" secondAttribute="leading" id="qOb-NA-nTv"/>
+                            <constraint firstItem="a4e-Jn-1WG" firstAttribute="top" secondItem="V58-Qd-s1f" secondAttribute="bottom" id="xii-F6-jnS"/>
+                            <constraint firstItem="83i-ce-E1e" firstAttribute="leading" secondItem="lQb-m9-y04" secondAttribute="leadingMargin" id="zrP-mE-hDa"/>
+                        </constraints>
+                    </view>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="AddEditJudgeMemeBtn" destination="7zL-AM-rgx" id="99J-hh-GaO"/>
+                        <outlet property="chatTableView" destination="0ZX-MK-OFK" id="7eW-b2-28t"/>
+                        <outlet property="chatTextField" destination="cTI-JG-cJY" id="oPb-qv-9gl"/>
+                        <outlet property="chatView" destination="83i-ce-E1e" id="pa9-ei-6tH"/>
+                        <outlet property="currentPlayersScrollView" destination="V58-Qd-s1f" id="0GA-Ah-OJt"/>
+                        <outlet property="emptyMessageLabel" destination="E44-iM-bIR" id="c5g-Mq-hyH"/>
+                        <outlet property="floorBackground" destination="0Bs-ja-Ds3" id="JpZ-XV-TYW"/>
+                        <outlet property="navigationBar" destination="Rso-0s-DTT" id="6DB-tQ-UZe"/>
+                        <outlet property="previewScrollView" destination="pCH-Fo-68Z" id="CZ4-vJ-9aE"/>
+                        <segue destination="SOZ-uG-kSo" kind="unwind" identifier="unwindToAvailableGamesViewController" unwindAction="unwindToAvailableGamesViewControllerWithSegue:" id="FPi-YB-E4B"/>
+                        <segue destination="iWs-4G-FUm" kind="show" identifier="AddEditTutControllerSegue" id="uSc-Xm-EuS"/>
+                        <segue destination="aQc-Ox-PkF" kind="show" identifier="JudgingTutControllerSegue" id="84I-eQ-Bl4"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iow-Na-otC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="SOZ-uG-kSo" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="4299" y="1229"/>
+        </scene>
         <!--Add Edit My Meme View Controller-->
         <scene sceneID="A9V-ig-c3S">
             <objects>
@@ -1246,6 +1459,115 @@ Tap on the (+) and create a room!</string>
             </objects>
             <point key="canvasLocation" x="4298.5507246376819" y="-314.67391304347831"/>
         </scene>
+        <!--Add Edit Tut Controller-->
+        <scene sceneID="1Zh-ZM-Wj0">
+            <objects>
+                <viewController id="iWs-4G-FUm" customClass="AddEditTutController" customModule="Mememe" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="xDR-VX-bMc"/>
+                        <viewControllerLayoutGuide type="bottom" id="AhY-dU-pl5"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="MbV-oZ-j0N">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="63" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="EJR-Vd-149">
+                                <rect key="frame" x="30" y="530" width="354" height="196"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AddEditMyMemeTableCell" rowHeight="63" id="9Is-y5-rSh" customClass="AddEditMyMemeTableCell" customModule="Mememe" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="354" height="63"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9Is-y5-rSh" id="bKA-4H-Wnu">
+                                            <rect key="frame" x="0.0" y="0.0" width="354" height="62.666666666666664"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KHZ-tr-LNe">
+                                                    <rect key="frame" x="18" y="21" width="318" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="KHZ-tr-LNe" secondAttribute="trailing" constant="10" id="9za-Gh-PXz"/>
+                                                <constraint firstItem="KHZ-tr-LNe" firstAttribute="leading" secondItem="bKA-4H-Wnu" secondAttribute="leadingMargin" constant="10" id="Lwe-hL-V06"/>
+                                                <constraint firstItem="KHZ-tr-LNe" firstAttribute="centerY" secondItem="bKA-4H-Wnu" secondAttribute="centerY" id="ixL-SV-fOa"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="memeLabel" destination="KHZ-tr-LNe" id="H0h-6K-lUF"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="iWs-4G-FUm" id="eJ2-0Y-Ufr"/>
+                                    <outlet property="delegate" destination="iWs-4G-FUm" id="1dL-Xd-fJS"/>
+                                </connections>
+                            </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nQX-ho-U0Z">
+                                <rect key="frame" x="30" y="74" width="354" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="LabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s8l-A3-Bsa">
+                                <rect key="frame" x="30" y="452" width="354" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="X6h-XR-t7s">
+                                <rect key="frame" x="10" y="113" width="394" height="409"/>
+                            </imageView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5IT-2m-gBF">
+                                <rect key="frame" x="0.0" y="20" width="414" height="44"/>
+                                <items>
+                                    <navigationItem title="Adding your meme" id="Wf6-Z4-gcJ">
+                                        <barButtonItem key="rightBarButtonItem" title="Finish" id="Q8i-Su-SvK">
+                                            <connections>
+                                                <action selector="finishBtnPressed:" destination="iWs-4G-FUm" id="6L3-sW-UXI"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="X6h-XR-t7s" firstAttribute="leading" secondItem="MbV-oZ-j0N" secondAttribute="leading" constant="10" id="3ij-Bo-U9k"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="s8l-A3-Bsa" secondAttribute="trailing" constant="10" id="5Lm-m2-ffW"/>
+                            <constraint firstItem="X6h-XR-t7s" firstAttribute="top" secondItem="5IT-2m-gBF" secondAttribute="bottom" constant="10" id="6Ju-cF-bnj"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="EJR-Vd-149" secondAttribute="trailing" constant="10" id="9F7-Ec-mjJ"/>
+                            <constraint firstItem="nQX-ho-U0Z" firstAttribute="leading" secondItem="MbV-oZ-j0N" secondAttribute="leadingMargin" constant="10" id="9M0-QY-4oa"/>
+                            <constraint firstItem="EJR-Vd-149" firstAttribute="top" secondItem="s8l-A3-Bsa" secondAttribute="bottom" constant="20" id="ATW-ff-MZX"/>
+                            <constraint firstItem="5IT-2m-gBF" firstAttribute="leading" secondItem="MbV-oZ-j0N" secondAttribute="leading" id="Aso-Fh-Ucw"/>
+                            <constraint firstItem="EJR-Vd-149" firstAttribute="leading" secondItem="MbV-oZ-j0N" secondAttribute="leadingMargin" constant="10" id="HvF-uv-l5g"/>
+                            <constraint firstAttribute="trailing" secondItem="X6h-XR-t7s" secondAttribute="trailing" constant="10" id="K5K-Dn-bvG"/>
+                            <constraint firstItem="X6h-XR-t7s" firstAttribute="centerX" secondItem="MbV-oZ-j0N" secondAttribute="centerX" id="Kog-zc-0ed"/>
+                            <constraint firstItem="EJR-Vd-149" firstAttribute="top" secondItem="X6h-XR-t7s" secondAttribute="bottom" constant="10" id="ZDW-UD-xfk"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="nQX-ho-U0Z" secondAttribute="trailing" constant="10" id="bQb-YA-c4M"/>
+                            <constraint firstItem="nQX-ho-U0Z" firstAttribute="top" secondItem="5IT-2m-gBF" secondAttribute="bottom" constant="10" id="cUr-wj-wMs"/>
+                            <constraint firstItem="5IT-2m-gBF" firstAttribute="top" secondItem="xDR-VX-bMc" secondAttribute="bottom" id="jGx-9p-BFn"/>
+                            <constraint firstItem="s8l-A3-Bsa" firstAttribute="leading" secondItem="MbV-oZ-j0N" secondAttribute="leadingMargin" constant="10" id="nef-By-tEK"/>
+                            <constraint firstAttribute="trailing" secondItem="5IT-2m-gBF" secondAttribute="trailing" id="rSs-Kd-rHY"/>
+                            <constraint firstItem="AhY-dU-pl5" firstAttribute="top" secondItem="EJR-Vd-149" secondAttribute="bottom" constant="10" id="xoC-wy-KOP"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="bottomLabel" destination="s8l-A3-Bsa" id="eCf-nB-rhb"/>
+                        <outlet property="imageview" destination="X6h-XR-t7s" id="mBR-vB-7bF"/>
+                        <outlet property="navigationBar" destination="5IT-2m-gBF" id="h8C-lB-IW1"/>
+                        <outlet property="tableview" destination="EJR-Vd-149" id="YvY-R9-387"/>
+                        <outlet property="topLabel" destination="nQX-ho-U0Z" id="4sB-kl-RhJ"/>
+                        <segue destination="zo7-CW-OPY" kind="unwind" identifier="unwindToInGameViewController" unwindAction="unwindToInGameViewControllerWithSegue:" id="Vo9-1b-cYo"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="A4R-Rf-Nau" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="zo7-CW-OPY" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="5294" y="1145"/>
+        </scene>
         <!--Judging View Controller-->
         <scene sceneID="9U6-Pa-acM">
             <objects>
@@ -1295,6 +1617,56 @@ Tap on the (+) and create a room!</string>
                 <exit id="YxM-99-dMq" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="4299" y="395"/>
+        </scene>
+        <!--Judging Tut Controller-->
+        <scene sceneID="y1L-mG-60L">
+            <objects>
+                <viewController id="aQc-Ox-PkF" customClass="JudgingTutController" customModule="Mememe" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Tig-Tm-IyS"/>
+                        <viewControllerLayoutGuide type="bottom" id="Qhr-RH-Edh"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="plM-mc-xqS">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="acr-1d-oFz">
+                                <rect key="frame" x="20" y="122.66666666666666" width="374" height="490.66666666666674"/>
+                            </scrollView>
+                            <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fWe-pX-BCG">
+                                <rect key="frame" x="0.0" y="20" width="414" height="44"/>
+                                <items>
+                                    <navigationItem id="yHy-IH-3bc">
+                                        <barButtonItem key="rightBarButtonItem" title="Finish" id="FeD-Li-p5s">
+                                            <connections>
+                                                <action selector="finishBtnPressed:" destination="aQc-Ox-PkF" id="aNE-vt-M0K"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="fWe-pX-BCG" secondAttribute="trailing" id="6tW-iy-3a4"/>
+                            <constraint firstItem="fWe-pX-BCG" firstAttribute="top" secondItem="Tig-Tm-IyS" secondAttribute="bottom" id="YXd-Ka-hiN"/>
+                            <constraint firstItem="fWe-pX-BCG" firstAttribute="leading" secondItem="plM-mc-xqS" secondAttribute="leading" id="dNO-0g-LMP"/>
+                            <constraint firstItem="acr-1d-oFz" firstAttribute="height" secondItem="plM-mc-xqS" secondAttribute="height" multiplier="2:3" id="jjj-Ib-3xF"/>
+                            <constraint firstItem="acr-1d-oFz" firstAttribute="centerY" secondItem="plM-mc-xqS" secondAttribute="centerY" id="oJo-SA-7h6"/>
+                            <constraint firstItem="acr-1d-oFz" firstAttribute="leading" secondItem="plM-mc-xqS" secondAttribute="leadingMargin" id="p1r-0x-3ky"/>
+                            <constraint firstItem="acr-1d-oFz" firstAttribute="trailing" secondItem="plM-mc-xqS" secondAttribute="trailingMargin" id="zfJ-rx-Ry6"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="finishBtn" destination="FeD-Li-p5s" id="Ldg-hD-gHj"/>
+                        <outlet property="memeScrollView" destination="acr-1d-oFz" id="x5X-Kr-dh1"/>
+                        <segue destination="iEk-OH-ko1" kind="unwind" identifier="UnwindFromJudgeToInGameViewControllerWithSegue" unwindAction="unwindToInGameViewControllerWithSegue:" id="Vl5-4h-xEj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KG4-1A-JWm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="iEk-OH-ko1" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="5293" y="1876"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="zeD-fk-bfL">
@@ -1625,12 +1997,12 @@ Tap on the (+) and create a room!</string>
                                     <navigationItem id="O83-2B-fzx">
                                         <barButtonItem key="leftBarButtonItem" title="Leave Room" id="m0j-bb-h0Y">
                                             <connections>
-                                                <action selector="leaveRoomBtnPressed:" destination="DiQ-H0-4Vr" id="Msd-gS-DqB"/>
+                                                <segue destination="j4i-hQ-4ea" kind="show" id="K4P-As-mOh"/>
                                             </connections>
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" title="Start Game" id="1aF-XB-aye">
                                             <connections>
-                                                <action selector="startGameBtnPressed:" destination="DiQ-H0-4Vr" id="GAZ-5Y-SMk"/>
+                                                <segue destination="Srh-3q-e4G" kind="show" id="iR2-d0-VrI"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -1660,7 +2032,7 @@ Tap on the (+) and create a room!</string>
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VJl-Wy-y0r" customClass="InsetLabel" customModule="Mememe" customModuleProvider="target">
-                                                            <rect key="frame" x="78" y="7.9999999999999982" width="280" height="20.333333333333329"/>
+                                                            <rect key="frame" x="78" y="8" width="280" height="43.666666666666664"/>
                                                             <color key="backgroundColor" red="1" green="0.74788991900000001" blue="0.97245037140000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
@@ -1668,8 +2040,9 @@ Tap on the (+) and create a room!</string>
                                                         </label>
                                                     </subviews>
                                                     <constraints>
+                                                        <constraint firstItem="VJl-Wy-y0r" firstAttribute="top" secondItem="Ga4-mE-g5E" secondAttribute="top" constant="8" id="7Ja-ii-cXe"/>
+                                                        <constraint firstAttribute="bottom" secondItem="VJl-Wy-y0r" secondAttribute="bottom" constant="8" id="LG4-lG-SvJ"/>
                                                         <constraint firstItem="VJl-Wy-y0r" firstAttribute="leading" secondItem="dmf-y9-2X0" secondAttribute="trailing" constant="30" id="Mg8-tG-pTS"/>
-                                                        <constraint firstItem="VJl-Wy-y0r" firstAttribute="top" secondItem="Ga4-mE-g5E" secondAttribute="topMargin" id="UcD-4K-eZ5"/>
                                                         <constraint firstItem="dmf-y9-2X0" firstAttribute="top" secondItem="Ga4-mE-g5E" secondAttribute="top" id="crm-66-swD"/>
                                                         <constraint firstAttribute="trailingMargin" secondItem="VJl-Wy-y0r" secondAttribute="trailing" constant="8" id="mfA-MF-Pao"/>
                                                         <constraint firstItem="dmf-y9-2X0" firstAttribute="leading" secondItem="Ga4-mE-g5E" secondAttribute="leading" constant="8" id="psm-R2-EHc"/>
@@ -1697,7 +2070,7 @@ Tap on the (+) and create a room!</string>
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j0t-GK-q6n" customClass="InsetLabel" customModule="Mememe" customModuleProvider="target">
-                                                            <rect key="frame" x="16" y="7.9999999999999982" width="280" height="20.333333333333329"/>
+                                                            <rect key="frame" x="16" y="8" width="280" height="43.666666666666664"/>
                                                             <color key="backgroundColor" red="0.3312300661" green="0.89525973800000003" blue="0.80430157400000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
@@ -1707,6 +2080,8 @@ Tap on the (+) and create a room!</string>
                                                     <constraints>
                                                         <constraint firstItem="ezV-ap-qx7" firstAttribute="leading" secondItem="j0t-GK-q6n" secondAttribute="trailing" constant="30" id="Iav-UQ-tri"/>
                                                         <constraint firstItem="ezV-ap-qx7" firstAttribute="top" secondItem="kzr-O8-dHf" secondAttribute="top" id="P3V-cN-M4F"/>
+                                                        <constraint firstItem="j0t-GK-q6n" firstAttribute="top" secondItem="kzr-O8-dHf" secondAttribute="top" constant="8" id="PIL-2S-Zh6"/>
+                                                        <constraint firstAttribute="bottom" secondItem="j0t-GK-q6n" secondAttribute="bottom" constant="8" id="afY-IY-n0C"/>
                                                         <constraint firstItem="j0t-GK-q6n" firstAttribute="leading" secondItem="kzr-O8-dHf" secondAttribute="leadingMargin" constant="8" id="g2a-9s-eDH"/>
                                                         <constraint firstAttribute="trailing" secondItem="ezV-ap-qx7" secondAttribute="trailing" constant="8" id="iKq-Oe-Phd"/>
                                                         <constraint firstItem="j0t-GK-q6n" firstAttribute="top" secondItem="kzr-O8-dHf" secondAttribute="topMargin" id="yQ6-7x-biD"/>
@@ -1810,7 +2185,8 @@ Tap on the (+) and create a room!</string>
                         <outlet property="chatTextField" destination="Pri-8H-FE3" id="cau-UJ-LbT"/>
                         <outlet property="chatView" destination="foC-6N-oV5" id="xd3-lC-bNX"/>
                         <outlet property="emptyChatLabel" destination="t7l-O8-dXt" id="vmw-wg-Bv0"/>
-                        <outlet property="startBtn" destination="1aF-XB-aye" id="aWt-ci-tXG"/>
+                        <outlet property="leaveRoomBtn" destination="m0j-bb-h0Y" id="EBA-8F-fNv"/>
+                        <outlet property="startBtn" destination="1aF-XB-aye" id="Og7-HP-951"/>
                         <outlet property="tableview" destination="lIL-i8-Ebc" id="wZ1-ce-x0V"/>
                     </connections>
                 </viewController>
@@ -1828,6 +2204,7 @@ Tap on the (+) and create a room!</string>
         <image name="startBackground" width="1920" height="1920"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="K4P-As-mOh"/>
         <segue reference="gTY-Lo-ee3"/>
     </inferredMetricsTieBreakers>
 </document>

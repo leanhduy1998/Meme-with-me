@@ -13,11 +13,11 @@ import QuartzCore
 extension PrivateRoomViewController {
     func calculateHeight(inString:String) -> CGFloat {
         let messageString = inString
-        let attributes : [String : Any] = [NSFontAttributeName : UIFont.systemFont(ofSize: 17.0)]
+        let attributes : [String : Any] = [NSFontAttributeName : UIFont.systemFont(ofSize: 25.0)]
         
         let attributedString : NSAttributedString = NSAttributedString(string: messageString, attributes: attributes)
         
-        let rect : CGRect = attributedString.boundingRect(with: CGSize(width: 222.0, height: CGFloat.greatestFiniteMagnitude), options: .usesLineFragmentOrigin, context: nil)
+        let rect : CGRect = attributedString.boundingRect(with: CGSize(width: view.frame.width - 106, height: CGFloat.greatestFiniteMagnitude), options: .usesLineFragmentOrigin, context: nil)
         
         let requredSize:CGRect = rect
         return requredSize.height
@@ -26,10 +26,7 @@ extension PrivateRoomViewController {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if(tableView == chatTableView){
             if(calculateHeight(inString: chatHelper.messages[indexPath.row].text) > 40){
-                let smallestHeight =  calculateHeight(inString: "a")
-                var mulpipliter = calculateHeight(inString: chatHelper.messages[indexPath.row].text) / smallestHeight
-                mulpipliter = mulpipliter/13 + mulpipliter
-                return smallestHeight * (mulpipliter)
+                return calculateHeight(inString: chatHelper.messages[indexPath.row].text)
             }
             else{
                 return 40

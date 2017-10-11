@@ -18,17 +18,41 @@ class AvailableGameTutorialController: UIViewController, UITableViewDelegate, UI
     
     @IBOutlet weak var backgroundColorIV: UIImageView!
     
-    
-
     let helper = UserFilesHelper()
-
     var backgroundPlayer: AVAudioPlayer!
+    var alertController = UIAlertController()
     
+    var step3OfRoomTut = false
     
     override func viewDidLoad() {
-        UserOnlineSystem.updateUserOnlineStatus()
         tableview.reloadData()
         backgroundPlayer = SoundPlayerHelper.getAudioPlayer(songName: "availableRoomMusic", loop: true)
+        
+        
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if(!step3OfRoomTut){
+            alertController = UIAlertController(title: "Thank you for playing Mememe!", message: "I will walk you through a few things in this game.", preferredStyle: UIAlertControllerStyle.alert)
+            alertController.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: step2))
+            alertController.addAction(UIAlertAction(title: "Say no more! I'll figure things out myself", style: UIAlertActionStyle.cancel, handler: nil))
+            self.present(alertController, animated: true, completion: nil)
+        }
+    }
+    
+    func step2(action: UIAlertAction){
+        alertController.dismiss(animated: true, completion: nil)
+        alertController = UIAlertController(title: "Joining room!", message: "Normally, you will be able to join rooms that are open, like the one above.", preferredStyle: UIAlertControllerStyle.alert)
+        alertController.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: step3))
+        alertController.addAction(UIAlertAction(title: "Say no more! I'll figure things out myself", style: UIAlertActionStyle.cancel, handler: nil))
+        present(alertController, animated: true, completion: nil)
+    }
+    
+    func step3(action: UIAlertAction){
+        alertController.dismiss(animated: true, completion: nil)
+        alertController = UIAlertController(title: "For now, let just create a new room!", message: "Tap on the (+) and create a room!", preferredStyle: UIAlertControllerStyle.alert)
+        alertController.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.cancel, handler: nil))
+        present(alertController, animated: true, completion: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -61,26 +85,20 @@ class AvailableGameTutorialController: UIViewController, UITableViewDelegate, UI
         backgroundColorIV.backgroundColor = UIColor(red: 145/255, green: 145/255, blue: 145/255, alpha: 1.0)
     }
     
-    
-    @IBAction func plusButtonPressed(_ sender: Any) {
-        let roomOptionAlertController = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
-        roomOptionAlertController.addAction(UIAlertAction(title: "Create a room", style: UIAlertActionStyle.default, handler: createAPrivateGame))
-        roomOptionAlertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))
-        self.present(roomOptionAlertController, animated: true, completion: nil)
-    }
-    
-
-    func createAPrivateGame(action: UIAlertAction){
-        performSegue(withIdentifier: "RoomTutorialController", sender: self)
-    }
-    
     @IBAction func cancelBtnPressed(_ sender: Any) {
         dismiss(animated: true, completion: nil)
+    }
+    
+    
+    
+    @IBAction func plusButtonPressed(_ sender: Any) {
+        performSegue(withIdentifier: "RoomTutorialController", sender: self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? RoomTutorialController {
             backgroundPlayer.stop()
+            destination.step4IsReady = step3OfRoomTut
         }
     }
 }

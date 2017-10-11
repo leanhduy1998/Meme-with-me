@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class CircleImageCutter {
-    static func getCircleImage(image: UIImage, radius: Float) -> UIImage {
+    static func getRoundEdgeImage(image: UIImage, radius: Float) -> UIImage {
         let imageView: UIImageView = UIImageView(image: image)
         var layer: CALayer = CALayer()
         layer = imageView.layer
@@ -23,5 +23,10 @@ class CircleImageCutter {
         let roundedImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         return roundedImage!
+    }
+    static func getCircleImageView(imageview: UIImageView) -> UIImageView{
+        imageview.layer.cornerRadius = imageview.frame.size.width / 2;
+        imageview.clipsToBounds = true
+        return imageview
     }
 }

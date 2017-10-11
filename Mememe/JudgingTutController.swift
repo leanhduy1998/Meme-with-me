@@ -8,15 +8,14 @@
 
 import UIKit
 
-class JudgingViewController: UIViewController,UIGestureRecognizerDelegate {
-
+class JudgingTutController: UIViewController,UIGestureRecognizerDelegate {
+    
     @IBOutlet weak var finishBtn: UIBarButtonItem!
     
     @IBOutlet weak var memeScrollView: UIScrollView!
     
     var game: Game!
     var playerJudging: String!
-    var memeImage: UIImage!
     var leaderId: String!
     
     
@@ -54,14 +53,14 @@ class JudgingViewController: UIViewController,UIGestureRecognizerDelegate {
             MemeLabelConfigurer.configureMemeLabel(bottomLabel, defaultText: card.bottomText!)
             
             let memeIV = UIImageView(frame: CGRect(x: 0, y: 0, width: cardWidth, height: cardHeight))
-            memeIV.image = memeImage
+            memeIV.backgroundColor = UIColor.gray
             
             cardview.initCardView(topLabel: topLabel, bottomLabel: bottomLabel, playerId: card.playerId!, memeIV: memeIV)
             cardview.isSelecting = false
             
             addGestureToCardView(cardView: cardview)
             
-        
+            
             
             let chooseIV = UIImageView(frame: CGRect(x: cardWidth/3, y: cardHeight/2 - (cardWidth/3)/2, width: cardWidth/3, height: cardWidth/3))
             chooseIV.image = CircleImageCutter.getRoundEdgeImage(image: #imageLiteral(resourceName: "ichooseyou"), radius: 10)
@@ -142,7 +141,7 @@ class JudgingViewController: UIViewController,UIGestureRecognizerDelegate {
         // if a card is selected
         if selectedCard != nil {
             finishBtn.isEnabled = false
-           
+            
             currentCardView?.isSelecting = !(currentCardView?.isSelecting)!
             
             UIView.animate(withDuration: 0.5, delay: 0, options: [], animations: {
@@ -162,7 +161,8 @@ class JudgingViewController: UIViewController,UIGestureRecognizerDelegate {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.destination is InGameViewController {
+        if  let destination = segue.destination as? InGameTutController {
+            destination.step7Finished = true
             let latestRound = GetGameCoreDataData.getLatestRound(game: game)
             var wonCard = ChoosingCardView()
             for vs in (memeScrollView.subviews as? [ChoosingCardView])! {
@@ -177,14 +177,11 @@ class JudgingViewController: UIViewController,UIGestureRecognizerDelegate {
                     break
                 }
             }
-            GameStack.sharedInstance.saveContext {
-                DispatchQueue.main.async {
-                    InGameHelper.updateWinnerCard(gameId: self.game.gameId!, cardPlayerId: wonCard.playerId)
-                }
-            }
+            destination.reloadPreviewCards()
         }
     }
- 
-
-
+    
+    
+    
 }
+
