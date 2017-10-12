@@ -50,6 +50,7 @@ class RoomTutorialController: UIViewController,UITableViewDelegate, UITableViewD
         emptyChatLabel.layer.cornerRadius = 5
         emptyChatLabel.backgroundColor = UIColor.white
         
+        
         let random = Int(arc4random_uniform(2))
         if(random == 0){
             backgroundPlayer = SoundPlayerHelper.getAudioPlayer(songName: "privateRoomMusic", loop: true)
@@ -79,7 +80,7 @@ class RoomTutorialController: UIViewController,UITableViewDelegate, UITableViewD
         super.viewDidAppear(animated)
         if self.isBeingPresented || self.isMovingToParentViewController {
             if(!step4IsReady){
-                alertController = UIAlertController(title: "You can send and receive message here.", message: "Try to say Hi to your bots!", preferredStyle: UIAlertControllerStyle.alert)
+                alertController = UIAlertController(title: "You can send and receive messages here.", message: "Try to say Hi to your bots!", preferredStyle: UIAlertControllerStyle.alert)
                 alertController.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
                 alertController.addAction(UIAlertAction(title: "Say no more! I'll figure things out myself", style: UIAlertActionStyle.default, handler: letUserTakeOver))
                 present(alertController, animated: true, completion: nil)
@@ -104,13 +105,13 @@ class RoomTutorialController: UIViewController,UITableViewDelegate, UITableViewD
     }
     func step3(action: UIAlertAction){
         alertController.dismiss(animated: true, completion: nil)
-        alertController = UIAlertController(title: "You can leave the current room using the button on top left!", message: "Try to leave and create another room to continue!", preferredStyle: UIAlertControllerStyle.alert)
+        alertController = UIAlertController(title: "You can leave the current room using the button on the top left!", message: "Try to leave and create another room to continue!", preferredStyle: UIAlertControllerStyle.alert)
         alertController.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.cancel, handler: nil))
         present(alertController, animated: true, completion: nil)
         leaveRoomBtn.isEnabled = true
     }
     func step4(){
-        alertController = UIAlertController(title: "You can start the game using the button on top right", message: "Tap it to continue the tutorial!", preferredStyle: UIAlertControllerStyle.alert)
+        alertController = UIAlertController(title: "You can start the game using the button on the top right", message: "Tap it to continue the tutorial!", preferredStyle: UIAlertControllerStyle.alert)
         alertController.addAction(UIAlertAction(title: "Okay!", style: UIAlertActionStyle.cancel, handler: nil))
         present(alertController, animated: true, completion: nil)
         startBtn.isEnabled = true

@@ -93,7 +93,7 @@ class InGameTutController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     func step2(action: UIAlertAction){
         alertController.dismiss(animated: true, completion: nil)
-        alertController = UIAlertController(title: "The ruler!", message: "There will be a Ceasar to judge every cards each round.", preferredStyle: UIAlertControllerStyle.alert)
+        alertController = UIAlertController(title: "The ruler!", message: "There will be a Ceasar to choose a winner each round.", preferredStyle: UIAlertControllerStyle.alert)
         alertController.addAction(UIAlertAction(title: "Okay!", style: UIAlertActionStyle.default, handler: step3))
         alertController.addAction(UIAlertAction(title: "Say no more! I'll figure things out myself", style: UIAlertActionStyle.cancel, handler: nil))
         present(alertController, animated: true, completion: nil)
@@ -101,14 +101,14 @@ class InGameTutController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func step3(action: UIAlertAction){
         alertController.dismiss(animated: true, completion: nil)
-        alertController = UIAlertController(title: "The citizen!", message: "This round you will be the citizen. Try to add your card with the top right button!", preferredStyle: UIAlertControllerStyle.alert)
+        alertController = UIAlertController(title: "The citizen!", message: "This round you will be a citizen. Try to add your card with the top right button!", preferredStyle: UIAlertControllerStyle.alert)
         alertController.addAction(UIAlertAction(title: "Okay!", style: UIAlertActionStyle.cancel, handler: nil))
         present(alertController, animated: true, completion: nil)
     }
     
     func step4(){
         letUserWin()
-        alertController = UIAlertController(title: "Congrats! The bot chose you!", message: "Look at your card! Also, every time you open the app, Mememe will tell you how many times you are chosen by Ceasar!", preferredStyle: UIAlertControllerStyle.alert)
+        alertController = UIAlertController(title: "Congrats! The bot chose you!", message: "You won! Look at your card! Also, every time you open the app, Mememe will tell you how many times you are chosen by the Caesar!", preferredStyle: UIAlertControllerStyle.alert)
         alertController.addAction(UIAlertAction(title: "Okay!", style: UIAlertActionStyle.default, handler: step5))
         present(alertController, animated: true, completion: nil)
     }
@@ -121,7 +121,7 @@ class InGameTutController: UIViewController, UITableViewDelegate, UITableViewDat
             
             self.AddEditJudgeMemeBtn.isEnabled = true
             
-            self.alertController = UIAlertController(title: "A new round started! This time you are Ceasar!", message: "Every round each players will be Ceasar in turn. Just like the circle of life!", preferredStyle: UIAlertControllerStyle.alert)
+            self.alertController = UIAlertController(title: "A new round has started! This time you are Ceasar!", message: "Every round each player will be Ceasar in turn. Just like the circle of life!", preferredStyle: UIAlertControllerStyle.alert)
             self.alertController.addAction(UIAlertAction(title: "Okay!", style: UIAlertActionStyle.default, handler: self.step6))
             self.alertController.addAction(UIAlertAction(title: "Say no more! I'll figure things out myself", style: UIAlertActionStyle.cancel, handler: nil))
             self.present(self.alertController, animated: true, completion: nil)
@@ -132,14 +132,14 @@ class InGameTutController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func step6(action: UIAlertAction){
         alertController.dismiss(animated: true, completion: nil)
-        self.alertController = UIAlertController(title: "Did you know?", message: "You can double tap only any cards that is not yours to like it. Also, every time you open the app, Mememe will tell you how many times people laughed at your cards! Try it out to continue!", preferredStyle: UIAlertControllerStyle.alert)
+        self.alertController = UIAlertController(title: "Did you know?", message: "You can double tap on any card that is not yours to like it. Also, every time you open the app, Mememe will tell you how many times people laughed at your cards! Try it out to continue!", preferredStyle: UIAlertControllerStyle.alert)
         self.alertController.addAction(UIAlertAction(title: "Okay!", style: UIAlertActionStyle.cancel, handler: nil))
         self.present(self.alertController, animated: true, completion: nil)
     }
     
     func step7(){
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
-            self.alertController = UIAlertController(title: "All hail Ceasar!", message: "Now you are the Ceasar! When all the cards are folded, you can judge them! Tap on the judge button on top right!", preferredStyle: UIAlertControllerStyle.alert)
+            self.alertController = UIAlertController(title: "All hail Caesar!", message: "Now you are the Caesar! When all the cards are submitted, you can judge them! Tap on the judge button on the top right!", preferredStyle: UIAlertControllerStyle.alert)
             self.alertController.addAction(UIAlertAction(title: "Okay!", style: UIAlertActionStyle.cancel, handler: nil))
             self.present(self.alertController, animated: true, completion: nil)
         })

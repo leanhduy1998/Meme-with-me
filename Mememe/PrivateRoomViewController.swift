@@ -23,6 +23,8 @@ class PrivateRoomViewController: UIViewController,UITableViewDelegate, UITableVi
     @IBOutlet weak var startBtn: UIBarButtonItem!
     @IBOutlet weak var emptyChatLabel: UILabel!
     @IBOutlet weak var backgroundIV: UIImageView!
+    @IBOutlet weak var chatSendBtn: UIButton!
+    
     
     let chatHelper = ChatHelper()
     
@@ -38,24 +40,8 @@ class PrivateRoomViewController: UIViewController,UITableViewDelegate, UITableVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setBackground()
-        chatTableView.separatorStyle = UITableViewCellSeparatorStyle.none
-        
-        emptyChatLabel.layer.masksToBounds = true
-        emptyChatLabel.layer.cornerRadius = 5
-        emptyChatLabel.backgroundColor = UIColor.white
-        
-        let random = Int(arc4random_uniform(2))
-        if(random == 0){
-            backgroundPlayer = SoundPlayerHelper.getAudioPlayer(songName: "privateRoomMusic", loop: true)
-        }
-        else{
-            backgroundPlayer = SoundPlayerHelper.getAudioPlayer(songName: "privateRoomMusic2", loop: true)
-        }
-        chatSoundPlayer = SoundPlayerHelper.getAudioPlayer(songName: "messagereceived", loop: false)
-        
-        tableview.allowsSelection = false
-        chatTableView.allowsSelection = false
+        setupUI()
+        playBackground()
         
         if(leaderId == nil){
              chatHelper.id = MyPlayerData.id
@@ -166,19 +152,6 @@ class PrivateRoomViewController: UIViewController,UITableViewDelegate, UITableVi
             }
         })
     }
-    
-    
-    
-    func setBackground(){
-        var random = Int(arc4random_uniform(UInt32(11)))
-        random += 1
-        let imageName = "floor\(random)"
-        backgroundIV.image = UIImage(named: imageName)
-        
-        tableview.backgroundColor = UIColor.clear
-        chatTableView.backgroundColor = UIColor.clear
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         subscribeToKeyboardNotifications()

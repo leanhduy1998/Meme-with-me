@@ -28,6 +28,7 @@ extension InGameViewController {
         emptyMessageLabel.backgroundColor = UIColor.white
         
         chatTableView.allowsSelection = false
+        chatSendBtn.layer.cornerRadius = 5
     }
     
     func setFloorBackground(){

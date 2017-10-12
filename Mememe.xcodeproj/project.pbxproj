@@ -72,6 +72,8 @@
 		245B2B2C1F510B0100BCF75A /* MyPlayerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245B2B2B1F510B0100BCF75A /* MyPlayerData.swift */; };
 		245B2B301F52350900BCF75A /* PlayerDataDBObjectModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245B2B2F1F52350900BCF75A /* PlayerDataDBObjectModel.swift */; };
 		245B2B321F52379600BCF75A /* PlayerDataDynamoDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245B2B311F52379600BCF75A /* PlayerDataDynamoDB.swift */; };
+		245BE52F1F8EE7E600B02CD3 /* PrivateViewSound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245BE52E1F8EE7E600B02CD3 /* PrivateViewSound.swift */; };
+		245BE5311F8EE83B00B02CD3 /* PrivateRoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245BE5301F8EE83B00B02CD3 /* PrivateRoomView.swift */; };
 		2468B02F1F4E59870091EDD0 /* GameDataToJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2468B02E1F4E59870091EDD0 /* GameDataToJSON.swift */; };
 		2468B0321F4E95870091EDD0 /* CardCeasar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2468B0301F4E95870091EDD0 /* CardCeasar.swift */; };
 		2468B0331F4E95870091EDD0 /* CardCeasarCoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2468B0311F4E95870091EDD0 /* CardCeasarCoreDataProperties.swift */; };
@@ -259,6 +261,8 @@
 		245B2B2B1F510B0100BCF75A /* MyPlayerData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPlayerData.swift; sourceTree = "<group>"; };
 		245B2B2F1F52350900BCF75A /* PlayerDataDBObjectModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerDataDBObjectModel.swift; sourceTree = "<group>"; };
 		245B2B311F52379600BCF75A /* PlayerDataDynamoDB.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerDataDynamoDB.swift; sourceTree = "<group>"; };
+		245BE52E1F8EE7E600B02CD3 /* PrivateViewSound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateViewSound.swift; sourceTree = "<group>"; };
+		245BE5301F8EE83B00B02CD3 /* PrivateRoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateRoomView.swift; sourceTree = "<group>"; };
 		2468B02E1F4E59870091EDD0 /* GameDataToJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameDataToJSON.swift; sourceTree = "<group>"; };
 		2468B0301F4E95870091EDD0 /* CardCeasar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CardCeasar.swift; path = ../CardCeasar.swift; sourceTree = "<group>"; };
 		2468B0311F4E95870091EDD0 /* CardCeasarCoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CardCeasarCoreDataProperties.swift; path = ../CardCeasarCoreDataProperties.swift; sourceTree = "<group>"; };
@@ -426,6 +430,7 @@
 			children = (
 				24896D861F2A70A9003B6954 /* StartView.swift */,
 				24CD58671F86DB42005DCA0C /* AvailableGamesView.swift */,
+				245BE5301F8EE83B00B02CD3 /* PrivateRoomView.swift */,
 				244F2CF51F86DE6F00547AB2 /* InGame */,
 				2413D7B41F422838001EA209 /* AddEditMyMemeView.swift */,
 			);
@@ -637,6 +642,7 @@
 				245B2B1E1F50F9D100BCF75A /* PrivateRoomTableView.swift */,
 				245B2B211F50FB2D00BCF75A /* PrivateRoomTableCell.swift */,
 				247A55CA1F7F5FBC004D1701 /* PrivateRoomChat.swift */,
+				245BE52E1F8EE7E600B02CD3 /* PrivateViewSound.swift */,
 			);
 			name = PrivateRoom;
 			sourceTree = "<group>";
@@ -1260,6 +1266,7 @@
 				2488B07B1F8D96B60064E7A5 /* AddEditTutTableView.swift in Sources */,
 				2402C2301F89696300457B36 /* InGameObservers.swift in Sources */,
 				24E8597A1F7EFA4300856BA3 /* MyCoreDataCoreDataClass.swift in Sources */,
+				245BE5311F8EE83B00B02CD3 /* PrivateRoomView.swift in Sources */,
 				243F20A21F6A2C2D0003C604 /* AvailableRoomHelper.swift in Sources */,
 				2413D7D21F44D85A001EA209 /* InGameBeginingSetup.swift in Sources */,
 				241C6E6B1F59F3A200756BA7 /* UserFilesHelper.swift in Sources */,
@@ -1281,6 +1288,7 @@
 				2498F9E01F347B8F00B21267 /* InGameChatTableView.swift in Sources */,
 				2413D79E1F42082B001EA209 /* HeartView.swift in Sources */,
 				24233F5E1F63437300B2B7EE /* DisplayAlert.swift in Sources */,
+				245BE52F1F8EE7E600B02CD3 /* PrivateViewSound.swift in Sources */,
 				245B2B2C1F510B0100BCF75A /* MyPlayerData.swift in Sources */,
 				24233F581F61F27E00B2B7EE /* AvailableGamesNoImageCell.swift in Sources */,
 				248CC2191F8D47ED0097FB6A /* InGameTutSound.swift in Sources */,

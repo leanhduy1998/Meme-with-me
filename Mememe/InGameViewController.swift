@@ -27,6 +27,8 @@ class InGameViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     @IBOutlet weak var floorBackground: UIImageView!
     
+    @IBOutlet weak var chatSendBtn: UIButton!
+    
     
     @IBAction func unwindToInGameViewController(segue:UIStoryboardSegue) { }
     //ui
