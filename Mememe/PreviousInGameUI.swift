@@ -10,15 +10,21 @@ import Foundation
 import UIKit
 
 extension PreviewInGameViewController{
-    func getUserIconView(frame: CGRect, playerCard: CardNormal,completeHandler: @escaping (_ IV: UIImageView)-> Void){
-        let s3Helper = UserFilesHelper()
-        s3Helper.loadUserProfilePicture(userId: playerCard.playerId!) { (imageData) in
-            DispatchQueue.main.async {
-                let imageview = UIImageView(image: UIImage(data: imageData))
-                imageview.frame = CGRect(x: frame.maxX - self.cardHeight/20, y: frame.minY, width: self.cardHeight/10, height: self.cardHeight/10)
-                completeHandler(imageview)
+    func getUserIconView(game: Game, frame: CGRect, playerCard: CardNormal,completeHandler: @escaping (_ IV: UIImageView)-> Void){
+        let players = game.players?.allObjects as? [Player]
+        
+        var player: Player!
+        
+        for p in players! {
+            if(p.playerId == playerCard.playerId){
+                player = p
+                break
             }
         }
+        
+        let imageview = UIImageView(image: UIImage(data: player.userImageData as! Data))
+        imageview.frame = CGRect(x: frame.maxX - self.cardHeight/20, y: frame.minY, width: self.cardHeight/10, height: self.cardHeight/10)
+        completeHandler(imageview)
     }
     func getBorderForWinningCard() -> UIImageView{
         let borderImage = #imageLiteral(resourceName: "border")
@@ -50,7 +56,7 @@ extension PreviewInGameViewController{
     }
     
     func getNewXForPreviewScroll(x: Int) -> CGFloat{
-        return (space * CGFloat(x+1))  + CGFloat(x) * cardWidth
+        return (space*2 * CGFloat(x+1))  + CGFloat(x) * cardWidth
     }
     func setFloorBackground(){
         var random = Int(arc4random_uniform(UInt32(11)))
@@ -62,5 +68,21 @@ extension PreviewInGameViewController{
         random += 1
         let userFloorImageName = "userFloor\(random)"
         currentPlayersScrollView.backgroundColor = UIColor(patternImage: UIImage(named:userFloorImageName)!)
+    }
+    func setupDimensions(){
+        screenWidth = view.frame.size.width
+        space = screenWidth/24
+        
+        // 44*2 is the size of two navigation bars
+        cardHeight = previewScrollView.frame.height - 44*2
+        cardWidth = cardHeight*9/16
+        
+        cardInitialYBeforeAnimation = cardHeight/2
+    }
+    func getBorderIVForIcon(iconSize: CGFloat) -> UIImageView{
+        let crownImage = #imageLiteral(resourceName: "border")
+        let crownIV = UIImageView(image: crownImage)
+        crownIV.frame = CGRect(x: -5, y: -5, width: iconSize+10, height: iconSize+10)
+        return crownIV
     }
 }

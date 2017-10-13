@@ -18,7 +18,8 @@ extension InGameViewController {
                 for player in self.playersInGame {
                     self.game.addToPlayers(Player(laughes: 0, playerName: player.userName, playerId: player.userId!, score: 0, context: GameStack.sharedInstance.stack.context))
                     
-                    // might add image data to Player too!
+                    let winCounter = WinCounter(playerId: player.userId, wonNum: 0, context: GameStack.sharedInstance.stack.context)
+                    self.game.addToWincounter(winCounter)
                 }
                 
                 let round = Round(roundNum: 0, context: GameStack.sharedInstance.stack.context)

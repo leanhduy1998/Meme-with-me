@@ -2,7 +2,7 @@
 //  Game+CoreDataProperties.swift
 //  
 //
-//  Created by Duy Le on 10/6/17.
+//  Created by Duy Le on 10/13/17.
 //
 //
 
@@ -20,6 +20,7 @@ extension Game {
     @NSManaged public var gameId: String?
     @NSManaged public var players: NSSet?
     @NSManaged public var rounds: NSSet?
+    @NSManaged public var wincounter: NSSet?
 
 }
 
@@ -54,5 +55,22 @@ extension Game {
 
     @objc(removeRounds:)
     @NSManaged public func removeFromRounds(_ values: NSSet)
+
+}
+
+// MARK: Generated accessors for wincounter
+extension Game {
+
+    @objc(addWincounterObject:)
+    @NSManaged public func addToWincounter(_ value: WinCounter)
+
+    @objc(removeWincounterObject:)
+    @NSManaged public func removeFromWincounter(_ value: WinCounter)
+
+    @objc(addWincounter:)
+    @NSManaged public func addToWincounter(_ values: NSSet)
+
+    @objc(removeWincounter:)
+    @NSManaged public func removeFromWincounter(_ values: NSSet)
 
 }

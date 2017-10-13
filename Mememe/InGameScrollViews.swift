@@ -43,9 +43,16 @@ extension InGameViewController {
             redDotIV.frame = CGRect(x: iconSize/2 - (redDotSize)/2, y: -5, width: redDotSize, height: redDotSize)
             let whiteLabel = UILabel()
             
-            let num = winnerTracker[player.userId]
+            var timesWon: Int!
             
-            whiteLabel.text = "\(num!)"
+            for c in (game.wincounter?.allObjects as? [WinCounter])!{
+                if(c.playerId == player.userId){
+                    timesWon = Int(c.won)
+                    break
+                }
+            }
+            
+            whiteLabel.text = "\(timesWon!)"
             whiteLabel.frame = CGRect(x: 0, y: 0, width: redDotSize, height: redDotSize)
             whiteLabel.textAlignment = .center
             whiteLabel.textColor = UIColor.white

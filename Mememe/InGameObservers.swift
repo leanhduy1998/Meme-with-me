@@ -68,6 +68,36 @@ extension InGameViewController{
         })
         inGameRefObservers.append(observer)
     }
+    func addNormalCardsDeletedObserver(){
+        let observer = inGameRef.child(game.gameId!).child("normalCards").observe(DataEventType.childRemoved, with: { (snapshot) in
+            let playerId = snapshot.key
+          
+            let postDict = snapshot.value as?  [String:Any]
+            DispatchQueue.main.async {
+                let cards = GetGameCoreDataData.getLatestRound(game: self.game).cardnormal?.allObjects as? [CardNormal]
+                
+                for card in cards!{
+                    if(card.playerId == playerId){
+                        GetGameCoreDataData.getLatestRound(game: self.game).removeFromCardnormal(card)
+                        break
+                    }
+                }
+                
+                if(!self.currentRoundFinished){
+                    self.reloadPreviewCards()
+                }
+                
+                    
+                if(MyPlayerData.id == self.playerJudging){
+                    self.checkIfAllPlayersHaveInsertCard()
+                }
+                GameStack.sharedInstance.saveContext {
+                }
+            }
+            
+        })
+        inGameRefObservers.append(observer)
+    }
     func addNormalCardsChangedObserver(){
         let observer = inGameRef.child(game.gameId!).child("normalCards").observe(DataEventType.childChanged, with: { (snapshot) in
             let postDict = snapshot.value as?  [String:Any]
@@ -94,7 +124,14 @@ extension InGameViewController{
                         
                         self.userWhoWon = temp.playerId!
                         
-                        self.winnerTracker[temp.playerId!] = self.winnerTracker[temp.playerId!]! + 1
+                        for counter in (self.game.wincounter?.allObjects as? [WinCounter])!{
+                            if(counter.playerId == temp.playerId){
+                                counter.won = counter.won + Int16(1)
+                                break
+                            }
+                        }
+                        GameStack.sharedInstance.saveContext {
+                        }
                         
                         self.currentRoundFinished = true
                         

@@ -69,6 +69,9 @@ class InGameHelper{
                             for (playerId,playerData) in players {
                                 let player = conversion.getPlayerFromDictionary(playerId: playerId, playerData: playerData as! [String : Any])
                                 game.addToPlayers(player)
+                                
+                                let winCounter = WinCounter(playerId: playerId, wonNum: 0, context: GameStack.sharedInstance.stack.context)
+                                game.addToWincounter(winCounter)
                             }
                             break
                                 

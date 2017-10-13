@@ -1,8 +1,8 @@
 //
 //  Game+CoreDataClass.swift
+//  
 //
-//
-//  Created by Duy Le on 8/16/17.
+//  Created by Duy Le on 10/13/17.
 //
 //
 
@@ -32,4 +32,3 @@ public class Game: NSManagedObject {
         }
     }
 }
-

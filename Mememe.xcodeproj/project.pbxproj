@@ -10,8 +10,10 @@
 		19E08B3ED51842C1186BCEDA /* Pods_Mememe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1EFF53BA25955FB53356C75 /* Pods_Mememe.framework */; };
 		2402C2301F89696300457B36 /* InGameObservers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2402C22F1F89696300457B36 /* InGameObservers.swift */; };
 		2402C2321F89A9DF00457B36 /* InsetLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2402C2311F89A9DF00457B36 /* InsetLabel.swift */; };
-		24059D121F88601E007F524F /* GameCoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24059D111F885FFF007F524F /* GameCoreDataClass.swift */; };
-		24059D131F886023007F524F /* GameCoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24059D101F885FFF007F524F /* GameCoreDataProperties.swift */; };
+		240E6B6A1F90DC1E000B28D0 /* Game+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240E6B691F90DC02000B28D0 /* Game+CoreDataProperties.swift */; };
+		240E6B6B1F90DC1E000B28D0 /* Game+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240E6B681F90DC01000B28D0 /* Game+CoreDataClass.swift */; };
+		240E6B6C1F90DC1E000B28D0 /* WinCounter+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240E6B661F90DC01000B28D0 /* WinCounter+CoreDataClass.swift */; };
+		240E6B6D1F90DC1E000B28D0 /* WinCounter+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240E6B671F90DC01000B28D0 /* WinCounter+CoreDataProperties.swift */; };
 		2413D78F1F3D58A0001EA209 /* Round.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2413D78D1F3D58A0001EA209 /* Round.swift */; };
 		2413D7901F3D58A0001EA209 /* RoundCoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2413D78E1F3D58A0001EA209 /* RoundCoreDataProperties.swift */; };
 		2413D79C1F4204C2001EA209 /* AddEditMyMemeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2413D79B1F4204C2001EA209 /* AddEditMyMemeViewController.swift */; };
@@ -200,8 +202,11 @@
 /* Begin PBXFileReference section */
 		2402C22F1F89696300457B36 /* InGameObservers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InGameObservers.swift; sourceTree = "<group>"; };
 		2402C2311F89A9DF00457B36 /* InsetLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsetLabel.swift; sourceTree = "<group>"; };
-		24059D101F885FFF007F524F /* GameCoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCoreDataProperties.swift; sourceTree = "<group>"; };
-		24059D111F885FFF007F524F /* GameCoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCoreDataClass.swift; sourceTree = "<group>"; };
+		240E6B651F90DBB9000B28D0 /* Model 9.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model 9.xcdatamodel"; sourceTree = "<group>"; };
+		240E6B661F90DC01000B28D0 /* WinCounter+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WinCounter+CoreDataClass.swift"; sourceTree = "<group>"; };
+		240E6B671F90DC01000B28D0 /* WinCounter+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WinCounter+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		240E6B681F90DC01000B28D0 /* Game+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Game+CoreDataClass.swift"; sourceTree = "<group>"; };
+		240E6B691F90DC02000B28D0 /* Game+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Game+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		2413D78D1F3D58A0001EA209 /* Round.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Round.swift; path = ../Round.swift; sourceTree = "<group>"; };
 		2413D78E1F3D58A0001EA209 /* RoundCoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RoundCoreDataProperties.swift; path = ../RoundCoreDataProperties.swift; sourceTree = "<group>"; };
 		2413D79B1F4204C2001EA209 /* AddEditMyMemeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEditMyMemeViewController.swift; sourceTree = "<group>"; };
@@ -257,6 +262,7 @@
 		243F209D1F68E7DB0003C604 /* module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
 		243F209E1F6A1BF40003C604 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		243F20A11F6A2C2D0003C604 /* AvailableRoomHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvailableRoomHelper.swift; sourceTree = "<group>"; };
+		24440D3C1F90D96000AD67F0 /* Model 8.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model 8.xcdatamodel"; sourceTree = "<group>"; };
 		244A400C1F90BE8200400822 /* PreviewInGameConditions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewInGameConditions.swift; sourceTree = "<group>"; };
 		244A400E1F90BEE900400822 /* PreviousInGameUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviousInGameUI.swift; sourceTree = "<group>"; };
 		244F2CF61F86DF0C00547AB2 /* InGameCards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InGameCards.swift; sourceTree = "<group>"; };
@@ -548,7 +554,8 @@
 		24305CB81F2BD34700B14632 /* CoreDataProperties */ = {
 			isa = PBXGroup;
 			children = (
-				24059D101F885FFF007F524F /* GameCoreDataProperties.swift */,
+				240E6B671F90DC01000B28D0 /* WinCounter+CoreDataProperties.swift */,
+				240E6B691F90DC02000B28D0 /* Game+CoreDataProperties.swift */,
 				2468B0311F4E95870091EDD0 /* CardCeasarCoreDataProperties.swift */,
 				2413D7BE1F43E78C001EA209 /* CardNormalCoreDataProperties.swift */,
 				2413D7AC1F42112A001EA209 /* PlayerLoveCoreDataProperties.swift */,
@@ -561,7 +568,8 @@
 		24305CC51F2BD4F000B14632 /* CoreDataClass */ = {
 			isa = PBXGroup;
 			children = (
-				24059D111F885FFF007F524F /* GameCoreDataClass.swift */,
+				240E6B661F90DC01000B28D0 /* WinCounter+CoreDataClass.swift */,
+				240E6B681F90DC01000B28D0 /* Game+CoreDataClass.swift */,
 				2468B0301F4E95870091EDD0 /* CardCeasar.swift */,
 				2413D7BD1F43E78C001EA209 /* CardNormal.swift */,
 				2413D7AB1F42112A001EA209 /* PlayerLove.swift */,
@@ -1332,14 +1340,14 @@
 				2488B0761F8D94AA0064E7A5 /* AddEditTutController.swift in Sources */,
 				245B2B1F1F50F9D100BCF75A /* PrivateRoomTableView.swift in Sources */,
 				2402C2321F89A9DF00457B36 /* InsetLabel.swift in Sources */,
+				240E6B6C1F90DC1E000B28D0 /* WinCounter+CoreDataClass.swift in Sources */,
 				248CC2171F8D449B0097FB6A /* InGameTutTableView.swift in Sources */,
 				24E734CB1F6F00F900218AB1 /* AvailableGamesTableView.swift in Sources */,
-				24059D121F88601E007F524F /* GameCoreDataClass.swift in Sources */,
 				24FC32DC1F6CB097006CBD62 /* UserOnlineSystem.swift in Sources */,
 				24E8597B1F7EFA4300856BA3 /* MyCoreDataCoreDataProperties.swift in Sources */,
-				24059D131F886023007F524F /* GameCoreDataProperties.swift in Sources */,
 				24AF9E5A1F30035800D05BFC /* InGameViewController.swift in Sources */,
 				245B2B321F52379600BCF75A /* PlayerDataDynamoDB.swift in Sources */,
+				240E6B6B1F90DC1E000B28D0 /* Game+CoreDataClass.swift in Sources */,
 				246D08EF1F7CAB730025DA40 /* MyDataStack.swift in Sources */,
 				2468B0321F4E95870091EDD0 /* CardCeasar.swift in Sources */,
 				2498F9DD1F3478E200B21267 /* MyChatTableViewCell.swift in Sources */,
@@ -1355,9 +1363,11 @@
 				24D2BE2F1F7B6949003B7957 /* GameStack.swift in Sources */,
 				244A400D1F90BE8200400822 /* PreviewInGameConditions.swift in Sources */,
 				241C6E651F58983B00756BA7 /* SignUpViewController.swift in Sources */,
+				240E6B6D1F90DC1E000B28D0 /* WinCounter+CoreDataProperties.swift in Sources */,
 				24BE6F011F8FE8C00022B981 /* PreviewInGameViewController.swift in Sources */,
 				247A55C91F7F3EE3004D1701 /* ChatModel.swift in Sources */,
 				247A55C71F7F350A004D1701 /* ChatHelper.swift in Sources */,
+				240E6B6A1F90DC1E000B28D0 /* Game+CoreDataProperties.swift in Sources */,
 				24E8597D1F7EFE5700856BA3 /* CellAnimator.swift in Sources */,
 				24AF9E5C1F3018D000D05BFC /* InGameView.swift in Sources */,
 				24896D561F2A5FA2003B6954 /* StartViewController.swift in Sources */,
@@ -1696,6 +1706,8 @@
 		24305C911F2BB46C00B14632 /* GameModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				240E6B651F90DBB9000B28D0 /* Model 9.xcdatamodel */,
+				24440D3C1F90D96000AD67F0 /* Model 8.xcdatamodel */,
 				242F097D1F885802002990E3 /* Model 7.xcdatamodel */,
 				24E859771F7EF94800856BA3 /* Model 6.xcdatamodel */,
 				247415FB1F3C024700973EDE /* Model 5.xcdatamodel */,
@@ -1704,7 +1716,7 @@
 				247415CE1F3BBEE600973EDE /* Model 2.xcdatamodel */,
 				24305C921F2BB46C00B14632 /* Model.xcdatamodel */,
 			);
-			currentVersion = 242F097D1F885802002990E3 /* Model 7.xcdatamodel */;
+			currentVersion = 240E6B651F90DBB9000B28D0 /* Model 9.xcdatamodel */;
 			path = GameModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
