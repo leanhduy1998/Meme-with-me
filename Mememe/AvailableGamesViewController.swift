@@ -35,7 +35,7 @@ class AvailableGamesViewController: UIViewController, UITableViewDelegate, UITab
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        AvailableRoomHelper.deleteMyRoom()
+        AvailableRoomHelper.deleteMyAvailableRoom()
         InGameHelper.removeYourInGameRoom()
         getRoomDataFromDB()
         updateOpenRoomValue()
@@ -65,6 +65,8 @@ class AvailableGamesViewController: UIViewController, UITableViewDelegate, UITab
             let room = AvailableRoomHelper.transferValueFromMapToRoom(leaderId: snapshot.key, map: postDict)
             
             DispatchQueue.main.async {
+                
+                
                 UserOnlineSystem.getUserOnlineStatus(userId: room.leaderId!, completionHandler: { (isUserOnline) in
                     self.appendRoomIfRoomIsOpen(isUserOnline: isUserOnline, room: room)
                 })

@@ -65,6 +65,12 @@ extension AvailableGamesViewController {
                             cell.bottomRightIV.image = playerImages[3]
                             break
                         default:
+                            if(playerImages.count>4){
+                                cell.topLeftIV.image = playerImages[0]
+                                cell.topRightIV.image = playerImages[1]
+                                cell.bottomLeftIV.image = playerImages[2]
+                                cell.bottomRightIV.image = playerImages[3]
+                            }
                             break
                         }
                         

@@ -29,6 +29,8 @@ class InGameViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     @IBOutlet weak var chatSendBtn: UIButton!
     
+    var inGameRefObservers = [UInt]()
+    
     
     @IBAction func unwindToInGameViewController(segue:UIStoryboardSegue) { }
     //ui
@@ -84,12 +86,16 @@ class InGameViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
         
         if leaderId == MyPlayerData.id {
-            AvailableRoomHelper.makeMyRoomStatusClosed()
-            createBeginingData()
+            self.createBeginingData()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
+                AvailableRoomHelper.makeMyRoomStatusClosed()
+                
+            })
         }
         else {
-            InGameHelper.getBeginingGameFromFirB(leaderId: leaderId, completionHandler: { (game, leaderId) in
+            InGameHelper.getBeginingGameFromFirB(leaderId: leaderId, completionHandler: { (game, leaderId, judgingId) in
                 DispatchQueue.main.async {
+                    self.playerJudging = judgingId
                     self.leaderId = leaderId
                     self.game = game
                     self.reloadCurrentPlayersIcon()
@@ -126,7 +132,7 @@ class InGameViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 DispatchQueue.main.async {
                     self.playerJoinedFirebaseCount = self.playerJoinedFirebaseCount + 1
                     if(self.playerJoinedFirebaseCount == self.playersInGame.count){
-                        AvailableRoomHelper.deleteMyRoom()
+                        AvailableRoomHelper.deleteMyAvailableRoom()
                     }
                 }
             })

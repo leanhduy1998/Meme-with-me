@@ -60,8 +60,6 @@ class AvailableGameTutorialController: UIViewController, UITableViewDelegate, UI
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        AvailableRoomHelper.deleteMyRoom()
-        InGameHelper.removeYourInGameRoom()
         setupUI()
         backgroundPlayer.play()
         

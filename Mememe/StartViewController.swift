@@ -125,9 +125,9 @@ class StartViewController: UIViewController,UIGestureRecognizerDelegate, AWSSign
                     UIView.animate(withDuration: 0.5, delay: 0, options: [.autoreverse], animations: {
                         self.leftNotificationLabel.text = "\(Int((data?._laughes)!))"
                         self.rightNotificationLabel.text = "\(Int((data?._madeCeasar)!))"
-                        self.leftNotificationLabel.transform = CGAffineTransform(scaleX: 1.25, y: 1.25)
+                        self.leftNotificationLabel.transform = CGAffineTransform(scaleX: 0.85, y: 0.85)
                         self.leftNotificationLabel.textColor = UIColor.yellow
-                        self.rightNotificationLabel.transform = CGAffineTransform(scaleX: 1.25, y: 1.25)
+                        self.rightNotificationLabel.transform = CGAffineTransform(scaleX: 0.85, y: 0.85)
                         self.rightNotificationLabel.textColor = UIColor.yellow
                     }, completion: { (completed) in
                         if(completed){

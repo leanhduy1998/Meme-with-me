@@ -11,7 +11,7 @@ import Firebase
 
 extension InGameViewController{
     func addPlayerRemovedObserver(){
-        inGameRef.child(game.gameId!).child("players").observe(DataEventType.childRemoved, with: { (snapshot) in
+        let observer = inGameRef.child(game.gameId!).child("players").observe(DataEventType.childRemoved, with: { (snapshot) in
             DispatchQueue.main.async {
                 var count = 0
                 for p in self.playersInGame {
@@ -24,13 +24,26 @@ extension InGameViewController{
                 if(self.playersInGame.count == 1){
                     self.AddEditJudgeMemeBtn.isEnabled = false
                 }
+                
+                if(snapshot.key == self.playerJudging && (!self.currentRoundFinished)){
+                    self.playerJudging = self.leaderId
+                    if(MyPlayerData.id == self.leaderId){
+                        self.AddEditJudgeMemeBtn.title = "Judge Your People!"
+                        self.checkIfAllPlayersHaveInsertCard()
+                    }
+                    GetGameCoreDataData.getLatestRound(game: self.game).cardceasar?.playerId = self.playerJudging
+                    GameStack.sharedInstance.saveContext {
+                    }
+                }
+                
                 self.reloadCurrentPlayersIcon()
             }
         })
+        inGameRefObservers.append(observer)
     }
     
     func addNormalCardsAddedObserver(){
-        inGameRef.child(game.gameId!).child("normalCards").observe(DataEventType.childAdded, with: { (snapshot) in
+        let observer = inGameRef.child(game.gameId!).child("normalCards").observe(DataEventType.childAdded, with: { (snapshot) in
             let playerId = snapshot.key
             
             if playerId != MyPlayerData.id {
@@ -47,15 +60,16 @@ extension InGameViewController{
                     }
                 }
             }
-            else {
+            else if(playerId == MyPlayerData.id) {
                 self.myCardInserted = true
                 self.AddEditJudgeMemeBtn.title = "Edit Your Meme"
                 self.playCardPlacedDown()
             }
         })
+        inGameRefObservers.append(observer)
     }
     func addNormalCardsChangedObserver(){
-        inGameRef.child(game.gameId!).child("normalCards").observe(DataEventType.childChanged, with: { (snapshot) in
+        let observer = inGameRef.child(game.gameId!).child("normalCards").observe(DataEventType.childChanged, with: { (snapshot) in
             let postDict = snapshot.value as?  [String:Any]
             DispatchQueue.main.async {
                 let cardNormals = GetGameCoreDataData.getLatestRound(game: self.game).cardnormal?.allObjects as? [CardNormal]
@@ -82,10 +96,13 @@ extension InGameViewController{
                         
                         self.winnerTracker[temp.playerId!] = self.winnerTracker[temp.playerId!]! + 1
                         
-                        self.AddEditJudgeMemeBtn.isEnabled = false
                         self.currentRoundFinished = true
                         
                         self.reloadCurrentPlayersIcon()
+                        
+                        if(MyPlayerData.id != self.leaderId){
+                            self.AddEditJudgeMemeBtn.isEnabled = false
+                        }
                         
                         if MyPlayerData.id == self.leaderId {
                             self.inGameRef.child(self.game.gameId!).child("nextRoundStarting").setValue("false", withCompletionBlock: { (error, reference) in
@@ -93,7 +110,9 @@ extension InGameViewController{
                                     return
                                 }
                                 DispatchQueue.main.async {
-                                    self.AddEditJudgeMemeBtn.isEnabled = true
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
+                                        self.AddEditJudgeMemeBtn.isEnabled = true
+                                    })
                                     self.AddEditJudgeMemeBtn.title = "Start Next Round!"
                                     self.nextRoundStarting = true
                                     self.leaderCreateNewRoundBeforeNextRoundBegin()
@@ -115,19 +134,51 @@ extension InGameViewController{
                 }
             }
         })
+        inGameRefObservers.append(observer)
     }
     
     func addOtherGameDataChangedObserver(){
-        inGameRef.child(game.gameId!).observe(DataEventType.childChanged, with: { (snapshot) in
+        let observer = inGameRef.child(game.gameId!).observe(DataEventType.childChanged, with: { (snapshot) in
             DispatchQueue.main.async {
                 // if leader changes due to leaving room
                 if(snapshot.key == "leaderId"){
+                    let oldLeaderId = self.leaderId
                     self.leaderId = (snapshot.value as?  String)!
                     
+                    var count = 0
+                    for player in self.playersInGame {
+                        if(player.userId == oldLeaderId){
+                            self.playersInGame.remove(at: count)
+                            break
+                        }
+                        count = count + 1
+                    }
+                    
                     if MyPlayerData.id == self.leaderId && self.currentRoundFinished {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
+                            self.AddEditJudgeMemeBtn.isEnabled = true
+                        })
                         self.AddEditJudgeMemeBtn.title = "Start Next Round!"
                         self.nextRoundStarting = false
                         self.leaderCreateNewRoundBeforeNextRoundBegin()
+                    }
+                    else if MyPlayerData.id == self.leaderId && !self.currentRoundFinished{
+                        if(oldLeaderId == self.playerJudging){
+                            InGameHelper.removeYourCardFromGame(gameId: self.game.gameId!, completionHandler: {
+                                DispatchQueue.main.async {
+                                    self.playerJudging = MyPlayerData.id
+                                    self.AddEditJudgeMemeBtn.title = "Judge Your People!"
+                                    self.checkIfAllPlayersHaveInsertCard()
+                                    
+                                    GetGameCoreDataData.getLatestRound(game: self.game).cardceasar?.playerId = MyPlayerData.id
+                                    GameStack.sharedInstance.saveContext {
+                                    }
+                                }
+                            })
+                        }
+                    }
+                    else if MyPlayerData.id != self.leaderId && self.currentRoundFinished{
+                        self.AddEditJudgeMemeBtn.isEnabled = false
                     }
                 }
                 else if(snapshot.key == "nextRoundStarting"){
@@ -142,5 +193,11 @@ extension InGameViewController{
                 }
             }
         })
+        inGameRefObservers.append(observer)
+    }
+    func removeAllInGameObservers(){
+        for obser in inGameRefObservers {
+            inGameRef.removeObserver(withHandle: obser)
+        }
     }
 }

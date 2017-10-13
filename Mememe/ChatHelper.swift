@@ -14,6 +14,8 @@ class ChatHelper {
     private let chatRef = Database.database().reference().child("chat")
     var id: String?
     var messages = [ChatModel]()
+    
+    var chatObservers = [UInt]()
 
     init(id:String) {
         self.id = id
@@ -25,11 +27,13 @@ class ChatHelper {
         chatRef.child(id!).childByAutoId().setValue(message)
     }
     func removeChatObserver(){
-        chatRef.removeAllObservers()
+        for o in chatObservers{
+            chatRef.removeObserver(withHandle: o)
+        }
     }
     func initializeChatObserver(controller: PrivateRoomViewController){
         let chatRef = Database.database().reference().child("chat")
-        chatRef.child(id!).observe(DataEventType.childAdded, with: { (snapshot) in
+        let observer = chatRef.child(id!).observe(DataEventType.childAdded, with: { (snapshot) in
             DispatchQueue.main.async {
                 let messageDict = snapshot.value as? [String:String]
                 let message = ChatModel()
@@ -62,10 +66,11 @@ class ChatHelper {
                 }
             }
         })
+        chatObservers.append(observer)
     }
     func initializeChatObserver(controller: InGameViewController){
         let chatRef = Database.database().reference().child("chat")
-        chatRef.child(id!).observe(DataEventType.childAdded, with: { (snapshot) in
+        let observer = chatRef.child(id!).observe(DataEventType.childAdded, with: { (snapshot) in
             DispatchQueue.main.async {
                 let messageDict = snapshot.value as? [String:String]
                 let message = ChatModel()
@@ -90,6 +95,7 @@ class ChatHelper {
                 }
             }
         })
+        chatObservers.append(observer)
     }
     func removeChatRoom(id: String){
         chatRef.child(id).removeValue()

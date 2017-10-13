@@ -43,6 +43,8 @@ class PrivateRoomViewController: UIViewController,UITableViewDelegate, UITableVi
         setupUI()
         playBackground()
         
+        InGameHelper.removeYourInGameRoom()
+        
         if(leaderId == nil){
              chatHelper.id = MyPlayerData.id
         }
@@ -115,10 +117,14 @@ class PrivateRoomViewController: UIViewController,UITableViewDelegate, UITableVi
                 }
             }
             DispatchQueue.main.async {
-                if self.userInRoom.count > 1 {
-                    self.startBtn.isEnabled = true
-                }
+                self.startBtn.isEnabled = false
                 self.tableview.reloadData()
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3.0, execute: {
+                    if self.userInRoom.count > 1 {
+                        self.startBtn.isEnabled = true
+                    }
+                    
+                })
             }
         })
         
@@ -154,6 +160,7 @@ class PrivateRoomViewController: UIViewController,UITableViewDelegate, UITableVi
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        InGameHelper.removeYourInGameRoom()
         subscribeToKeyboardNotifications()
         if(self.chatHelper.messages.count > 0){
             let indexPath = IndexPath(row: self.chatHelper.messages.count-1, section: 0)
@@ -167,7 +174,7 @@ class PrivateRoomViewController: UIViewController,UITableViewDelegate, UITableVi
     }
     @IBAction func leaveRoomBtnPressed(_ sender: Any) {
         if leaderId == MyPlayerData.id {
-            AvailableRoomHelper.deleteMyRoom()
+            AvailableRoomHelper.deleteMyAvailableRoom()
         }
         else {
             AvailableRoomHelper.removeYourselfIntoSomeoneRoom(leaderId: leaderId)
@@ -186,6 +193,8 @@ class PrivateRoomViewController: UIViewController,UITableViewDelegate, UITableVi
         chatHelper.insertMessage(text: chatTextField.text!)
         chatTextField.text = ""
     }
+    
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         unsubscribeFromKeyboardNotifications()

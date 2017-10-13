@@ -100,7 +100,7 @@ class AvailableRoomHelper {
             availableRoomRef.updateChildValues(childUpdates)
         }
     }
-    static func deleteMyRoom(){
+    static func deleteMyAvailableRoom(){
         availableRoomRef.child(MyPlayerData.id).removeValue()
     }
     static func insertYourselfIntoSomeoneRoom(leaderId: String){        

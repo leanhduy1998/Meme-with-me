@@ -12,7 +12,7 @@ import Firebase
 extension InGameViewController{
     func leaveRoom(action: UIAlertAction){
         stopPlayers()
-        inGameRef.removeAllObservers()
+        removeAllInGameObservers()
         chatHelper.removeChatObserver()
         if(playersInGame.count == 1){
             InGameHelper.removeYourInGameRoom()
@@ -29,17 +29,12 @@ extension InGameViewController{
                     DispatchQueue.main.async {
                         InGameHelper.removeYourselfFromGame(gameId: self.game.gameId!, completionHandler: {
                             DispatchQueue.main.async {
-                                self.inGameRef.child(self.game.gameId!).child("playerOrderInGame").observeSingleEvent(of: DataEventType.value, with: { (snapshot) in
-                                    let playerId = snapshot.value as? String
+                                self.inGameRef.child(self.game.gameId!).child("playerOrderInGame").setValue(player.userId, withCompletionBlock: { (error, reference) in
                                     DispatchQueue.main.async {
-                                        self.inGameRef.child(self.game.gameId!).child("playerOrderInGame").setValue(playerId, withCompletionBlock: { (error, reference) in
-                                            DispatchQueue.main.async {
-                                                InGameHelper.removeYourInGameRoom()
-                                                self.leftRoom = true
-                                                
-                                                self.performSegue(withIdentifier: "unwindToAvailableGamesViewController", sender: self)
-                                            }
-                                        })
+                                        InGameHelper.removeYourInGameRoom()
+                                        self.leftRoom = true
+                                        
+                                        self.performSegue(withIdentifier: "unwindToAvailableGamesViewController", sender: self)
                                     }
                                 })
                             }

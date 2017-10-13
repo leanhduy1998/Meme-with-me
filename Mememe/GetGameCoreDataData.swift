@@ -20,4 +20,16 @@ class GetGameCoreDataData{
         }
         return latestRound
     }
+    static func getGameAllPlayersAsString(players: [Player])-> String{
+        var string = ""
+        var count = 0
+        for player in players {
+            string.append(player.name!)
+            if count != players.count - 1 {
+                string.append(", ")
+            }
+            count = count + 1
+        }
+        return string
+    }
 }

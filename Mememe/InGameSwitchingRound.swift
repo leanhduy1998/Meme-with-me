@@ -52,10 +52,7 @@ extension InGameViewController{
         
         var nextRoundJudgingId: String!
         
-        var count = 0
-        
         for x in 0...(playersInGame.count - 1){
-            print(x)
             if(playersInGame[x].userId == playerJudging){
                 if(x == playersInGame.count-1){
                     nextRoundJudgingId = playersInGame[0].userId
@@ -68,9 +65,16 @@ extension InGameViewController{
             }
         }
         
-        GameStack.sharedInstance.saveContext {
+        if(playersInGame.count == 1){
+            completeHandler(MyPlayerData.id, nextRoundNumber)
+        }
+        else if(nextRoundJudgingId == nil){
+            nextRoundJudgingId = playersInGame[0].userId
+        }
+        else{
             completeHandler(nextRoundJudgingId!, nextRoundNumber)
         }
+        
     }
     func leaderCreateNewRoundBeforeNextRoundBegin(){
         if(MyPlayerData.id != leaderId){
@@ -86,12 +90,6 @@ extension InGameViewController{
                         let nextRound = Round(roundNum: nextRoundNumber, context: GameStack.sharedInstance.stack.context)
                         nextRound.cardceasar = CardCeasar(cardPic: memeData, playerId: nextRoundJudgeId, round: nextRoundNumber, cardPicUrl: memeUrl, context: GameStack.sharedInstance.stack.context)
                         self.game.addToRounds(nextRound)
-                        
-                        GameStack.sharedInstance.saveContext {
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 5.0, execute: {
-                                self.AddEditJudgeMemeBtn.isEnabled = true
-                            })
-                        }
                     }
                 })
             }

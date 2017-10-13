@@ -16,6 +16,10 @@ extension PrivateRoomViewController{
         let imageName = "floor\(random)"
         backgroundIV.image = UIImage(named: imageName)
         
+        if(backgroundIV.image == nil){
+            setBackground()
+        }
+        
         tableview.backgroundColor = UIColor.clear
         chatTableView.backgroundColor = UIColor.clear
     }

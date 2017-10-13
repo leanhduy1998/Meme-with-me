@@ -24,6 +24,8 @@ class RoomTutorialController: UIViewController,UITableViewDelegate, UITableViewD
     
     @IBOutlet weak var leaveRoomBtn: UIBarButtonItem!
     
+    @IBOutlet weak var chatSendBtn: UIButton!
+    
     
     var userInRoom = [PlayerData]()
     
@@ -46,6 +48,7 @@ class RoomTutorialController: UIViewController,UITableViewDelegate, UITableViewD
         setBackground()
         chatTableView.separatorStyle = UITableViewCellSeparatorStyle.none
         
+        chatSendBtn.layer.cornerRadius = 5
         emptyChatLabel.layer.masksToBounds = true
         emptyChatLabel.layer.cornerRadius = 5
         emptyChatLabel.backgroundColor = UIColor.white

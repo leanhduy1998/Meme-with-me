@@ -77,14 +77,6 @@ extension InGameViewController {
             currentPlayersScrollView.bringSubview(toFront: borderForUserIconIV)
         }
         
-        
-        let players = game.players?.allObjects as? [Player]
-        
-        
-        
-        for x in players!{
-            
-        }
         currentPlayersScrollView.contentSize = CGSize(width: contentWidth, height: iconSize)
     }
 
@@ -110,7 +102,6 @@ extension InGameViewController {
         
         let image = UIImage(data: latestRound.cardceasar?.cardPic! as! Data)
             thisRoundImage = image
-        playerJudging = GetGameCoreDataData.getLatestRound(game: game).cardceasar?.playerId
             
         if !haveWinner {
             if myCardExist {

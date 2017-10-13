@@ -39,7 +39,7 @@ class InGameHelper{
         
         inGameRef.child(gameId).setValue(data)
     }
-    static func getBeginingGameFromFirB(leaderId:String, completionHandler: @escaping (_ game: Game, _ leaderId:String) -> Void){
+    static func getBeginingGameFromFirB(leaderId:String, completionHandler: @escaping (_ game: Game, _ leaderId:String , _ judgingId: String) -> Void){
         
         inGameRef.observeSingleEvent(of: DataEventType.value, with: { (snapshot) in
             let gameIdAndValue = snapshot.value as? [String : Any]
@@ -94,7 +94,7 @@ class InGameHelper{
                             game.addToRounds(round)
                                 
                             GameStack.sharedInstance.saveContext {
-                                completionHandler(game, leaderId)
+                                completionHandler(game, leaderId, judgingId)
                             }
                         }
                     })
@@ -197,6 +197,14 @@ class InGameHelper{
                 completionHandler(false)
             }
         })
+    }
+    
+    static func removeYourCardFromGame(gameId: String, completionHandler: @escaping () -> Void){
+        inGameRef.child(gameId).child("normalCards").child(MyPlayerData.id).removeValue { (error, reference) in
+            if(error == nil){
+                completionHandler()
+            }
+        }
     }
     
     // judging

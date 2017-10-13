@@ -21,6 +21,7 @@ extension InGameTutController {
         currentPlayersScrollView.alwaysBounceHorizontal = true
         setFloorBackground()
         
+        chatSendBtn.layer.cornerRadius = 5
         chatTableView.backgroundColor = UIColor.clear
         
         emptyMessageLabel.layer.masksToBounds = true
