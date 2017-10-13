@@ -17,7 +17,7 @@ class JudgingTutController: UIViewController,UIGestureRecognizerDelegate {
     var game: Game!
     var playerJudging: String!
     var leaderId: String!
-    
+    var memeImage:UIImage!
     
     var cardHeight: CGFloat!
     var cardWidth: CGFloat!
@@ -52,7 +52,9 @@ class JudgingTutController: UIViewController,UIGestureRecognizerDelegate {
             let bottomLabel = UILabel(frame: CGRect(x: space, y: cardHeight - cardHeight/8 - space, width: cardWidth - space*2, height: cardHeight/8))
             MemeLabelConfigurer.configureMemeLabel(bottomLabel, defaultText: card.bottomText!)
             
-            let memeIV = UIImageView(frame: CGRect(x: 0, y: 0, width: cardWidth, height: cardHeight))
+            let memeIV = UIImageView(image: memeImage)
+            memeIV.frame = CGRect(x: 0, y: 0, width: cardWidth, height: cardHeight)
+            
             memeIV.backgroundColor = UIColor.gray
             
             cardview.initCardView(topLabel: topLabel, bottomLabel: bottomLabel, playerId: card.playerId!, memeIV: memeIV)

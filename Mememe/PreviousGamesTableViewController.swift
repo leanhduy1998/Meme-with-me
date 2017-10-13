@@ -10,6 +10,7 @@ import UIKit
 
 class PreviousGamesTableViewController: UITableViewController {
     var games = [Game]()
+    var gameForSegue:Game!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,7 +58,19 @@ class PreviousGamesTableViewController: UITableViewController {
             if(count == 4){
                 break
             }
-            let image = UIImage(data: player.userImageData as! Data)
+            var image: UIImage!
+            if(player.userImageData == nil){
+                let helper = UserFilesHelper()
+                helper.loadUserProfilePicture(userId: player.playerId!, completeHandler: { (userImageData) in
+                    DispatchQueue.main.async {
+                        image = UIImage(data: userImageData as! Data)
+                    }
+                })
+            }
+            else{
+                image = UIImage(data: player.userImageData as! Data)
+            }
+            
             var newImage:UIImage;
             let size = CGSize(width: cell.topLeftIV.frame.width, height: cell.topLeftIV.frame.height)
             UIGraphicsBeginImageContextWithOptions(size, true, 0);
@@ -103,19 +116,14 @@ class PreviousGamesTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        gameForSegue = games[indexPath.row]
+        performSegue(withIdentifier: "PreviewInGameViewControllerSegue", sender: self)
     }
-
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if let destination = segue.destination as? PreviewInGameViewController{
+            destination.game = gameForSegue
+        }
     }
-    */
+    
 
 }

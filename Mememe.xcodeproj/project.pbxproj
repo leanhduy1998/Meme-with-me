@@ -64,6 +64,8 @@
 		243F209B1F68E72D0003C604 /* leveldb-library.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 243F20991F68E72D0003C604 /* leveldb-library.framework */; };
 		243F209F1F6A1BF50003C604 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 243F209E1F6A1BF40003C604 /* GoogleService-Info.plist */; };
 		243F20A21F6A2C2D0003C604 /* AvailableRoomHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243F20A11F6A2C2D0003C604 /* AvailableRoomHelper.swift */; };
+		244A400D1F90BE8200400822 /* PreviewInGameConditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244A400C1F90BE8200400822 /* PreviewInGameConditions.swift */; };
+		244A400F1F90BEE900400822 /* PreviousInGameUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244A400E1F90BEE900400822 /* PreviousInGameUI.swift */; };
 		244F2CF71F86DF0C00547AB2 /* InGameCards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244F2CF61F86DF0C00547AB2 /* InGameCards.swift */; };
 		244F7C011F8EC31E00865BB3 /* StartTut.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244F7C001F8EC31E00865BB3 /* StartTut.swift */; };
 		245B2B141F4F685500BCF75A /* GameDataFromJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245B2B131F4F685500BCF75A /* GameDataFromJSON.swift */; };
@@ -255,6 +257,8 @@
 		243F209D1F68E7DB0003C604 /* module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
 		243F209E1F6A1BF40003C604 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		243F20A11F6A2C2D0003C604 /* AvailableRoomHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvailableRoomHelper.swift; sourceTree = "<group>"; };
+		244A400C1F90BE8200400822 /* PreviewInGameConditions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewInGameConditions.swift; sourceTree = "<group>"; };
+		244A400E1F90BEE900400822 /* PreviousInGameUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviousInGameUI.swift; sourceTree = "<group>"; };
 		244F2CF61F86DF0C00547AB2 /* InGameCards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InGameCards.swift; sourceTree = "<group>"; };
 		244F7C001F8EC31E00865BB3 /* StartTut.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartTut.swift; sourceTree = "<group>"; };
 		245B2B131F4F685500BCF75A /* GameDataFromJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameDataFromJSON.swift; sourceTree = "<group>"; };
@@ -672,6 +676,8 @@
 			children = (
 				245BE5321F8F2E1000B02CD3 /* PreviousGamesTableViewController.swift */,
 				24BE6F001F8FE8C00022B981 /* PreviewInGameViewController.swift */,
+				244A400E1F90BEE900400822 /* PreviousInGameUI.swift */,
+				244A400C1F90BE8200400822 /* PreviewInGameConditions.swift */,
 			);
 			name = "Previous Game";
 			sourceTree = "<group>";
@@ -1305,6 +1311,7 @@
 				24233F5E1F63437300B2B7EE /* DisplayAlert.swift in Sources */,
 				245BE52F1F8EE7E600B02CD3 /* PrivateViewSound.swift in Sources */,
 				245B2B2C1F510B0100BCF75A /* MyPlayerData.swift in Sources */,
+				244A400F1F90BEE900400822 /* PreviousInGameUI.swift in Sources */,
 				24233F581F61F27E00B2B7EE /* AvailableGamesNoImageCell.swift in Sources */,
 				248CC2191F8D47ED0097FB6A /* InGameTutSound.swift in Sources */,
 				2413D7B01F42112A001EA209 /* PlayerLoveCoreDataProperties.swift in Sources */,
@@ -1346,6 +1353,7 @@
 				2468B0331F4E95870091EDD0 /* CardCeasarCoreDataProperties.swift in Sources */,
 				2413D7E31F4B60FA001EA209 /* MememeDynamoDB.swift in Sources */,
 				24D2BE2F1F7B6949003B7957 /* GameStack.swift in Sources */,
+				244A400D1F90BE8200400822 /* PreviewInGameConditions.swift in Sources */,
 				241C6E651F58983B00756BA7 /* SignUpViewController.swift in Sources */,
 				24BE6F011F8FE8C00022B981 /* PreviewInGameViewController.swift in Sources */,
 				247A55C91F7F3EE3004D1701 /* ChatModel.swift in Sources */,

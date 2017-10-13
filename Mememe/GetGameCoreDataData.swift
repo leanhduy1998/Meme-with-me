@@ -20,6 +20,16 @@ class GetGameCoreDataData{
         }
         return latestRound
     }
+    static func getRound(game: Game, roundNum: Int) -> Round {
+        var round: Round!
+        for r in (game.rounds?.allObjects as? [Round])!{
+            if Int(r.roundNum) == roundNum {
+                round = r
+                break
+            }
+        }
+        return round
+    }
     static func getGameAllPlayersAsString(players: [Player])-> String{
         var string = ""
         var count = 0

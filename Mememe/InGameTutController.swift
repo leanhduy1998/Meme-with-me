@@ -229,14 +229,22 @@ class InGameTutController: UIViewController, UITableViewDelegate, UITableViewDat
         
         self.playerJudging = self.playersInGame[0].userId
         
-        let ceasarCard = CardCeasar(cardPic: Data(), playerId: self.playerJudging, round: Int(round.roundNum), cardPicUrl: "ceasarUrl", context: GameStack.sharedInstance.stack.context)
+        let helper = UserFilesHelper()
+        helper.getRandomMemeData { (memeImageData, memeUrl) in
+            DispatchQueue.main.async {
+                let ceasarCard = CardCeasar(cardPic: memeImageData, playerId: self.playerJudging, round: Int(round.roundNum), cardPicUrl: memeUrl, context: GameStack.sharedInstance.stack.context)
+                self.thisRoundImage = UIImage(data: memeImageData)
+                
+                round.cardceasar = ceasarCard
+                self.game.addToRounds(round)
+                
+                self.reloadCurrentPlayersIcon()
+                self.reloadPreviewCards()
+                self.checkIfYourAreJudge()
+            }
+        }
         
-        round.cardceasar = ceasarCard
-        self.game.addToRounds(round)
         
-        self.reloadCurrentPlayersIcon()
-        self.reloadPreviewCards()
-        self.checkIfYourAreJudge()
 
     }
     
@@ -286,10 +294,18 @@ class InGameTutController: UIViewController, UITableViewDelegate, UITableViewDat
         getNextRoundDataLeader { (nextRoundJudgeId, nextRoundNumber) in
             DispatchQueue.main.async {
                 let nextRound = Round(roundNum: nextRoundNumber, context: GameStack.sharedInstance.stack.context)
-                nextRound.cardceasar = CardCeasar(cardPic: Data(), playerId: nextRoundJudgeId, round: nextRoundNumber, cardPicUrl: "asd", context: GameStack.sharedInstance.stack.context)
-                nextRound.addToCardnormal(CardNormal(bottomText: "Bot's meme joke", didWin: false, playerId: "b1", round: nextRoundNumber, topText: "You won't understand", context: GameStack.sharedInstance.stack.context))
-                nextRound.addToCardnormal(CardNormal(bottomText: "What she says", didWin: false, playerId: "b2", round: nextRoundNumber, topText: "I agree", context: GameStack.sharedInstance.stack.context))
-                self.game.addToRounds(nextRound)
+                
+                let helper = UserFilesHelper()
+                helper.getRandomMemeData(completeHandler: { (memeImageData, memeUrl) in
+                    DispatchQueue.main.async {
+                        self.thisRoundImage = UIImage(data: memeImageData)
+                        nextRound.cardceasar = CardCeasar(cardPic: memeImageData, playerId: nextRoundJudgeId, round: nextRoundNumber, cardPicUrl: memeUrl, context: GameStack.sharedInstance.stack.context)
+                        nextRound.addToCardnormal(CardNormal(bottomText: "Bot's meme joke", didWin: false, playerId: "b1", round: nextRoundNumber, topText: "You won't understand", context: GameStack.sharedInstance.stack.context))
+                        nextRound.addToCardnormal(CardNormal(bottomText: "What she says", didWin: false, playerId: "b2", round: nextRoundNumber, topText: "I agree", context: GameStack.sharedInstance.stack.context))
+                        self.game.addToRounds(nextRound)
+                    }
+                })
+
             }
         }
     }
@@ -303,6 +319,7 @@ class InGameTutController: UIViewController, UITableViewDelegate, UITableViewDat
         }
         else if let destination = segue.destination as? JudgingTutController {
             destination.game = game
+            destination.memeImage = thisRoundImage
             destination.playerJudging = playerJudging
             destination.leaderId = leaderId
         }

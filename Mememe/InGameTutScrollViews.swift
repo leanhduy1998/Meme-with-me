@@ -81,6 +81,7 @@ extension InGameTutController{
         
         let haveWinner = checkIfWinnerExist(cards: (latestRound.cardnormal?.allObjects as? [CardNormal])!)
         let myCardExist = checkIfMyCardExist(cards: (latestRound.cardnormal?.allObjects as? [CardNormal])!)
+        let ceasarCard = latestRound.cardceasar
         
         playerJudging = GetGameCoreDataData.getLatestRound(game: game).cardceasar?.playerId
         
@@ -96,14 +97,18 @@ extension InGameTutController{
                 }
             }
             
-            
-            let ceasarCard = latestRound.cardceasar
             setAddEditJudgeMemeBtnUI(ceasarId: (ceasarCard?.playerId)!, haveWinner: haveWinner)
             
             if (currentPlayersCards?.count)! == 0 {
+                let iv = UIImageView(image: UIImage(data: (ceasarCard?.cardPic)! as! Data))
+                iv.frame = CGRect(x: 0, y: 0, width: cardWidth, height: cardHeight)
+                
                 // -40 is for animation
                 let emptyCardUIView = CardView(frame: CGRect(x: space, y: space/2 - cardInitialYBeforeAnimation, width: cardWidth, height: cardHeight))
                 emptyCardUIView.backgroundColor = UIColor.gray
+                
+                emptyCardUIView.addSubview(iv)
+                emptyCardUIView.sendSubview(toBack: iv)
                 
                 previewScrollView.addSubview(emptyCardUIView)
                 
@@ -125,14 +130,15 @@ extension InGameTutController{
                 // -40 is for animation
                 let cardUIView = CardView(frame: CGRect(x: newX, y: 10, width: cardWidth, height: cardHeight))
     
-                
-                
                 cardUIView.addSubview(upLabel)
                 cardUIView.bringSubview(toFront: upLabel)
                 cardUIView.addSubview(downLabel)
                 cardUIView.bringSubview(toFront: downLabel)
                 
-                
+                let iv = UIImageView(image: UIImage(data: (ceasarCard?.cardPic)! as! Data))
+                iv.frame = CGRect(x: 0, y: 0, width: cardWidth, height: cardHeight)
+                cardUIView.addSubview(iv)
+                cardUIView.sendSubview(toBack: iv)
                 
                 if currentPlayersCards?[x].playerId != MyPlayerData.id {
                     let heartView = getHeartView(frame: CGRect(x: 0, y: 0, width: cardWidth, height: cardHeight), playerCard: (currentPlayersCards?[x])!)
@@ -164,6 +170,11 @@ extension InGameTutController{
                 cardUIView.bringSubview(toFront: upLabel)
                 cardUIView.addSubview(downLabel)
                 cardUIView.bringSubview(toFront: downLabel)
+                
+                let iv = UIImageView(image: UIImage(data: (ceasarCard?.cardPic)! as! Data))
+                iv.frame = CGRect(x: 0, y: 0, width: cardWidth, height: cardHeight)
+                cardUIView.addSubview(iv)
+                cardUIView.sendSubview(toBack: iv)
                 
                 cardUIView.backgroundColor = UIColor.gray
                 

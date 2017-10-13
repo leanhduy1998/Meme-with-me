@@ -14,6 +14,7 @@ extension AddEditTutController {
         imageviewHeight = (self.view.frame.height-navigationBar.frame.height)*3/5
         
         setupImageView()
+        imageview.image = memeImage
         imageview.backgroundColor = UIColor.gray
         
         // for width, change the constraint in storyboard instead for labels
