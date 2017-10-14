@@ -178,6 +178,7 @@ class PrivateRoomViewController: UIViewController,UITableViewDelegate, UITableVi
         inGameRef.removeAllObservers()
         availableRoomRef.removeAllObservers()
         chatHelper.removeChatRoom(id: leaderId)
+        backgroundPlayer.stop()
         
         if leaderId == MyPlayerData.id {
             AvailableRoomHelper.deleteMyAvailableRoom()

@@ -94,8 +94,7 @@
 		247A34B81F87127E00E2C9E0 /* inGame.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 247A34B41F87116F00E2C9E0 /* inGame.mp3 */; };
 		247A34B91F87127E00E2C9E0 /* inGame2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 247A34AF1F87116D00E2C9E0 /* inGame2.mp3 */; };
 		247A34BA1F87127E00E2C9E0 /* messagereceived.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 247A34B61F87116F00E2C9E0 /* messagereceived.mp3 */; };
-		247A34BB1F87127E00E2C9E0 /* privateRoomMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 247A34B31F87116E00E2C9E0 /* privateRoomMusic.mp3 */; };
-		247A34BC1F87127E00E2C9E0 /* privateRoomMusic2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 247A34B51F87116F00E2C9E0 /* privateRoomMusic2.mp3 */; };
+		247A34BC1F87127E00E2C9E0 /* privateRoomMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 247A34B51F87116F00E2C9E0 /* privateRoomMusic.mp3 */; };
 		247A34BD1F87127E00E2C9E0 /* startMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 247A34B01F87116D00E2C9E0 /* startMusic.mp3 */; };
 		247A55C71F7F350A004D1701 /* ChatHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247A55C61F7F350A004D1701 /* ChatHelper.swift */; };
 		247A55C91F7F3EE3004D1701 /* ChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247A55C81F7F3EE3004D1701 /* ChatModel.swift */; };
@@ -294,9 +293,8 @@
 		247A34AE1F87116D00E2C9E0 /* availableRoomMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = availableRoomMusic.mp3; sourceTree = "<group>"; };
 		247A34AF1F87116D00E2C9E0 /* inGame2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = inGame2.mp3; sourceTree = "<group>"; };
 		247A34B01F87116D00E2C9E0 /* startMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = startMusic.mp3; sourceTree = "<group>"; };
-		247A34B31F87116E00E2C9E0 /* privateRoomMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = privateRoomMusic.mp3; sourceTree = "<group>"; };
 		247A34B41F87116F00E2C9E0 /* inGame.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = inGame.mp3; sourceTree = "<group>"; };
-		247A34B51F87116F00E2C9E0 /* privateRoomMusic2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = privateRoomMusic2.mp3; sourceTree = "<group>"; };
+		247A34B51F87116F00E2C9E0 /* privateRoomMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = privateRoomMusic.mp3; sourceTree = "<group>"; };
 		247A34B61F87116F00E2C9E0 /* messagereceived.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = messagereceived.mp3; sourceTree = "<group>"; };
 		247A55C61F7F350A004D1701 /* ChatHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatHelper.swift; sourceTree = "<group>"; };
 		247A55C81F7F3EE3004D1701 /* ChatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatModel.swift; sourceTree = "<group>"; };
@@ -769,8 +767,7 @@
 				247A34B41F87116F00E2C9E0 /* inGame.mp3 */,
 				247A34AF1F87116D00E2C9E0 /* inGame2.mp3 */,
 				247A34B61F87116F00E2C9E0 /* messagereceived.mp3 */,
-				247A34B31F87116E00E2C9E0 /* privateRoomMusic.mp3 */,
-				247A34B51F87116F00E2C9E0 /* privateRoomMusic2.mp3 */,
+				247A34B51F87116F00E2C9E0 /* privateRoomMusic.mp3 */,
 				247A34B01F87116D00E2C9E0 /* startMusic.mp3 */,
 				24E3289A1F8964FB00A2A2FE /* endRound.mp3 */,
 				2420885E1F8B50E100BFFD1B /* cardPlacedDown.mp3 */,
@@ -1172,8 +1169,7 @@
 				247A34B81F87127E00E2C9E0 /* inGame.mp3 in Resources */,
 				247A34B91F87127E00E2C9E0 /* inGame2.mp3 in Resources */,
 				247A34BA1F87127E00E2C9E0 /* messagereceived.mp3 in Resources */,
-				247A34BB1F87127E00E2C9E0 /* privateRoomMusic.mp3 in Resources */,
-				247A34BC1F87127E00E2C9E0 /* privateRoomMusic2.mp3 in Resources */,
+				247A34BC1F87127E00E2C9E0 /* privateRoomMusic.mp3 in Resources */,
 				247A34BD1F87127E00E2C9E0 /* startMusic.mp3 in Resources */,
 				2498FA201F3484F900B21267 /* GoogleSignIn.bundle in Resources */,
 				2498FA1C1F3484F900B21267 /* CheckXcodeVersion.sh in Resources */,
