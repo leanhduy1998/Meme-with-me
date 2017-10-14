@@ -99,6 +99,8 @@ extension InGameViewController{
         myCardInserted = false
         self.currentRoundFinished = true
         clearPreviewCardsData()
+        cardOrder.removeAll()
+        cardDictionary.removeAll()
         // if I am leader
         if MyPlayerData.id == leaderId {
             self.reloadPreviewCards()

@@ -54,6 +54,10 @@ class InGameViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var myCardInserted = false
     var userWhoWon = ""
     
+    //preview scroll
+    var cardDictionary = [String : CardView]()
+    var cardOrder = [String]()
+    
     //database
     let inGameRef = Database.database().reference().child("inGame")
     let convertor = InGameHelperConversion()

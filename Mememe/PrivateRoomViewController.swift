@@ -101,22 +101,23 @@ class PrivateRoomViewController: UIViewController,UITableViewDelegate, UITableVi
             startBtn.isEnabled = false
         }
         availableRoomRef.child(leaderId).child("playerInRoom").observe(DataEventType.childAdded, with: { (snapshot) in
-            let value = snapshot.value as? String
-            let postDict = [snapshot.key:value]
-            
-            for (playerId,playerName) in postDict {
-                var exist = false
-                for r in self.userInRoom {
-                    if r.userId == playerId {
-                        exist = true
+            DispatchQueue.main.async {
+                let value = snapshot.value as? String
+                let postDict = [snapshot.key:value]
+                
+                for (playerId,playerName) in postDict {
+                    var exist = false
+                    for r in self.userInRoom {
+                        if r.userId == playerId {
+                            exist = true
+                        }
+                    }
+                    if !exist {
+                        let newData = PlayerData(_userId: playerId, _userName: playerName!)
+                        self.userInRoom.append(newData)
                     }
                 }
-                if !exist {
-                    let newData = PlayerData(_userId: playerId, _userName: playerName!)
-                    self.userInRoom.append(newData)
-                }
-            }
-            DispatchQueue.main.async {
+                
                 self.startBtn.isEnabled = false
                 self.tableview.reloadData()
                 DispatchQueue.main.asyncAfter(deadline: .now() + 3.0, execute: {

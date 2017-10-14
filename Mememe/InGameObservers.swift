@@ -204,7 +204,7 @@ extension InGameViewController{
                             InGameHelper.removeYourCardFromGame(gameId: self.game.gameId!, completionHandler: {
                                 DispatchQueue.main.async {
                                     self.playerJudging = MyPlayerData.id
-                                    self.AddEditJudgeMemeBtn.title = "Judge Your People!"
+                                    self.checkIfYourAreJudge()
                                     self.checkIfAllPlayersHaveInsertCard()
                                     
                                     GetGameCoreDataData.getLatestRound(game: self.game).cardceasar?.playerId = MyPlayerData.id
