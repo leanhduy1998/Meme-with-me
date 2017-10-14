@@ -73,7 +73,7 @@ class PrivateRoomViewController: UIViewController,UITableViewDelegate, UITableVi
             
             let playerData = PlayerData(_userId: MyPlayerData.id, _userName: MyPlayerData.name)
             userInRoom.append(playerData)
-            tableview.reloadData()
+            tableview.insertRows(at: [IndexPath(row: userInRoom.count-1, section: 0)], with: UITableViewRowAnimation.left)
         }
         else {
             AvailableRoomHelper.insertYourselfIntoSomeoneRoom(leaderId: leaderId)
@@ -93,7 +93,7 @@ class PrivateRoomViewController: UIViewController,UITableViewDelegate, UITableVi
                         }
                     }
                     DispatchQueue.main.async {
-                        self.tableview.reloadData()
+                        self.tableview.reloadSections(NSIndexSet(index: self.userInRoom.count-1) as IndexSet, with: UITableViewRowAnimation.right)
                     }
                 }
             })
@@ -102,24 +102,24 @@ class PrivateRoomViewController: UIViewController,UITableViewDelegate, UITableVi
         }
         availableRoomRef.child(leaderId).child("playerInRoom").observe(DataEventType.childAdded, with: { (snapshot) in
             DispatchQueue.main.async {
-                let value = snapshot.value as? String
-                let postDict = [snapshot.key:value]
+                let playerName = snapshot.value as? String
+                let playerId = snapshot.key
                 
-                for (playerId,playerName) in postDict {
-                    var exist = false
-                    for r in self.userInRoom {
-                        if r.userId == playerId {
-                            exist = true
-                        }
-                    }
-                    if !exist {
-                        let newData = PlayerData(_userId: playerId, _userName: playerName!)
-                        self.userInRoom.append(newData)
+         
+                var exist = false
+                for r in self.userInRoom {
+                    if r.userId == playerId {
+                        exist = true
                     }
                 }
-                
+                if !exist {
+                    let newData = PlayerData(_userId: playerId, _userName: playerName!)
+                    self.userInRoom.append(newData)
+                    self.tableview.insertRows(at: [IndexPath(row: self.userInRoom.count-1, section: 0)], with: UITableViewRowAnimation.left)
+                }
+            
                 self.startBtn.isEnabled = false
-                self.tableview.reloadData()
+                
                 DispatchQueue.main.asyncAfter(deadline: .now() + 3.0, execute: {
                     if self.userInRoom.count > 1 {
                         self.startBtn.isEnabled = true
@@ -130,24 +130,25 @@ class PrivateRoomViewController: UIViewController,UITableViewDelegate, UITableVi
         })
         
         availableRoomRef.child(leaderId).child("playerInRoom").observe(DataEventType.childRemoved, with: { (snapshot) in
-            let value = snapshot.value as? String
-            let postDict = [snapshot.key:value]
-            
-            for (playerId,_) in postDict {
-                var count = 0
-                for user in self.userInRoom {
-                    if user.userId == playerId {
-                        self.userInRoom.remove(at: count)
-                        break
-                    }
-                    count = count + 1
-                }
-            }
             DispatchQueue.main.async {
+                let value = snapshot.value as? String
+                let postDict = [snapshot.key:value]
+                
+                for (playerId,_) in postDict {
+                    var count = 0
+                    for user in self.userInRoom {
+                        if user.userId == playerId {
+                            self.userInRoom.remove(at: count)
+
+                            self.tableview.deleteRows(at: [IndexPath(row: count, section: 0)], with: UITableViewRowAnimation.right)
+                            break
+                        }
+                        count = count + 1
+                    }
+                }
                 if self.userInRoom.count == 1 {
                     self.startBtn.isEnabled = false
                 }
-                self.tableview.reloadData()
             }
         })
         // if game has been created, go to another segue
@@ -174,15 +175,16 @@ class PrivateRoomViewController: UIViewController,UITableViewDelegate, UITableVi
         performSegue(withIdentifier: "InGameViewControllerSegue", sender: self)
     }
     @IBAction func leaveRoomBtnPressed(_ sender: Any) {
+        inGameRef.removeAllObservers()
+        availableRoomRef.removeAllObservers()
+        chatHelper.removeChatRoom(id: leaderId)
+        
         if leaderId == MyPlayerData.id {
             AvailableRoomHelper.deleteMyAvailableRoom()
         }
         else {
             AvailableRoomHelper.removeYourselfIntoSomeoneRoom(leaderId: leaderId)
         }
-        inGameRef.removeAllObservers()
-        availableRoomRef.removeAllObservers()
-        chatHelper.removeChatRoom(id: leaderId)
         
         dismiss(animated: true, completion: nil)
     }
