@@ -65,10 +65,10 @@ class AvailableGamesViewController: UIViewController, UITableViewDelegate, UITab
             let room = AvailableRoomHelper.transferValueFromMapToRoom(leaderId: snapshot.key, map: postDict)
             
             DispatchQueue.main.async {
-                
-                
                 UserOnlineSystem.getUserOnlineStatus(userId: room.leaderId!, completionHandler: { (isUserOnline) in
-                    self.appendRoomIfRoomIsOpen(isUserOnline: isUserOnline, room: room)
+                    DispatchQueue.main.async {
+                        self.appendRoomIfRoomIsOpen(isUserOnline: isUserOnline, room: room)
+                    }
                 })
             }
         })
@@ -87,7 +87,7 @@ class AvailableGamesViewController: UIViewController, UITableViewDelegate, UITab
                     }
                     count = count + 1
                 }
-                self.tableview.reloadData()
+                self.tableview.reloadSections(NSIndexSet(index: self.openRooms.count-1) as IndexSet, with: UITableViewRowAnimation.right)
             }
         })
         
@@ -101,11 +101,11 @@ class AvailableGamesViewController: UIViewController, UITableViewDelegate, UITab
                 for r in self.openRooms {
                     if r.leaderId == room.leaderId {
                         self.openRooms.remove(at: count)
+                        self.tableview.deleteRows(at: [IndexPath(row: count, section: 0)], with: UITableViewRowAnimation.right)
                         break
                     }
                     count = count + 1
                 }
-                self.tableview.reloadData()
             }
         })
     }
@@ -141,10 +141,7 @@ class AvailableGamesViewController: UIViewController, UITableViewDelegate, UITab
             }
             if exist == false {
                 self.openRooms.append(room)
-            }
-            
-            DispatchQueue.main.async {
-                self.tableview.reloadData()
+                self.tableview.insertRows(at: [IndexPath(row: openRooms.count-1, section: 0)], with: UITableViewRowAnimation.left)
             }
         }
     }
