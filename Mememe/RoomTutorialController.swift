@@ -79,18 +79,7 @@ class RoomTutorialController: UIViewController,UITableViewDelegate, UITableViewD
         startBtn.isEnabled = false
         leaveRoomBtn.isEnabled = false
     }
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        if self.isBeingPresented || self.isMovingToParentViewController {
-            if(!step4IsReady){
-                alertController = UIAlertController(title: "You can send and receive messages here.", message: "Try to say Hi to your bots!", preferredStyle: UIAlertControllerStyle.alert)
-                alertController.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
-                alertController.addAction(UIAlertAction(title: "Say no more! I'll figure things out myself", style: UIAlertActionStyle.default, handler: letUserTakeOver))
-                present(alertController, animated: true, completion: nil)
-                chatTextField.isEnabled = true
-            }
-        }
-    }
+
     func letUserTakeOver(action: UIAlertAction){
         startBtn.isEnabled = true
         leaveRoomBtn.isEnabled = true
@@ -138,6 +127,16 @@ class RoomTutorialController: UIViewController,UITableViewDelegate, UITableViewD
         if(step4IsReady){
             step4()
         }
+        if self.isBeingPresented || self.isMovingToParentViewController {
+            if(!step4IsReady && self.presentedViewController == nil){
+                alertController = UIAlertController(title: "You can send and receive messages here.", message: "Try to say Hi to your bots!", preferredStyle: UIAlertControllerStyle.alert)
+                alertController.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
+                alertController.addAction(UIAlertAction(title: "Say no more! I'll figure things out myself", style: UIAlertActionStyle.default, handler: letUserTakeOver))
+                present(alertController, animated: true, completion: nil)
+                chatTextField.isEnabled = true
+            }
+        }
+
     }
     
     @IBAction func chatSendBtnPressed(_ sender: Any) {
