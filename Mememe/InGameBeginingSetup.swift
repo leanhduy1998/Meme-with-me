@@ -16,7 +16,7 @@ extension InGameViewController {
                 self.game = Game(createdDate: date, gameId: self.leaderId + "\(currentTimeInt)", context: GameStack.sharedInstance.stack.context)
                 
                 for player in self.playersInGame {
-                    self.game.addToPlayers(Player(laughes: 0, playerName: player.userName, playerId: player.userId!, score: 0, context: GameStack.sharedInstance.stack.context))
+                    self.game.addToPlayers(Player(playerName: player.userName, playerId: player.userId!, context: GameStack.sharedInstance.stack.context))
                     
                     let winCounter = WinCounter(playerId: player.userId, wonNum: 0, context: GameStack.sharedInstance.stack.context)
                     self.game.addToWincounter(winCounter)
@@ -25,20 +25,33 @@ extension InGameViewController {
                 let round = Round(roundNum: 0, context: GameStack.sharedInstance.stack.context)
                 
                 let helper = UserFilesHelper()
-                helper.getRandomMemeData(completeHandler: { (memeData, memeName) in
+                helper.getRandomMemeData(completeHandler: { (memeData, memeUrl) in
                     DispatchQueue.main.async {
                         
                         self.playerJudging = self.self.playersInGame[0].userId
                         
-                        let ceasarCard = CardCeasar(cardPic: memeData, playerId: self.playerJudging, round: Int(round.roundNum), cardPicUrl: "ceasarUrl", context: GameStack.sharedInstance.stack.context)
+                        let ceasarCard = CardCeasar(cardPic: memeData, playerId: self.playerJudging, round: Int(round.roundNum), cardPicUrl: memeUrl, context: GameStack.sharedInstance.stack.context)
                         
                         round.cardceasar = ceasarCard
                         self.game.addToRounds(round)
                         
-                        InGameHelper.insertNewGame(memeName: memeName,playerInRoom: self.playersInGame, gameId: self.game.gameId!)
+                        InGameHelper.insertNewGame(memeUrl: memeUrl,playerInRoom: self.playersInGame, gameId: self.game.gameId!)
+                        
+                    
+                        
+                        MememeDynamoDB.insertGameWithCompletionHandler(game: self.game, { (gameModel, error) in
+                            if error != nil {
+                                print(error)
+                                return
+                            }
+                            DispatchQueue.main.async {
+                                self.gameDBModel = gameModel
+                            }
+                        })
                         
                         GameStack.sharedInstance.saveContext(completeHandler: {
                             DispatchQueue.main.async {
+                                
                                 self.reloadCurrentPlayersIcon()
                                 self.reloadPreviewCards()
                                 
@@ -51,8 +64,6 @@ extension InGameViewController {
                                 self.chatHelper.initializeChatObserver(controller: self)
                             }
                         })
-                        
-                        
                     }
                 })
             }

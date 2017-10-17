@@ -80,20 +80,20 @@ class PrivateRoomViewController: UIViewController,UITableViewDelegate, UITableVi
             availableRoomRef.child(leaderId).child("playerInRoom").observeSingleEvent(of: DataEventType.value, with: { (snapshot) in
                 let postDict = snapshot.value as? [String:String]
                 if postDict != nil {
-                    for (playerId,playerName) in postDict! {
-                        var exist = false
-                        for r in self.userInRoom {
-                            if r.userId == playerId {
-                                exist = true
+                    DispatchQueue.main.async {
+                        for (playerId,playerName) in postDict! {
+                            var exist = false
+                            for r in self.userInRoom {
+                                if r.userId == playerId {
+                                    exist = true
+                                }
+                            }
+                            if !exist {
+                                let newData = PlayerData(_userId: playerId, _userName: playerName)
+                                self.userInRoom.append(newData)
+                                self.tableview.insertRows(at: [IndexPath(row: self.userInRoom.count-1, section: 0)], with: UITableViewRowAnimation.left)
                             }
                         }
-                        if !exist {
-                            let newData = PlayerData(_userId: playerId, _userName: playerName)
-                            self.userInRoom.append(newData)
-                        }
-                    }
-                    DispatchQueue.main.async {
-                        self.tableview.reloadSections(NSIndexSet(index: self.userInRoom.count-1) as IndexSet, with: UITableViewRowAnimation.right)
                     }
                 }
             })
@@ -162,13 +162,13 @@ class PrivateRoomViewController: UIViewController,UITableViewDelegate, UITableVi
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        InGameHelper.removeYourLeaderInGameRoom(leaderId: leaderId)
         InGameHelper.removeYourInGameRoom()
         subscribeToKeyboardNotifications()
         if(self.chatHelper.messages.count > 0){
             let indexPath = IndexPath(row: self.chatHelper.messages.count-1, section: 0)
             self.chatTableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
         }
-        backgroundPlayer.play()
     }
     
     @IBAction func startGameBtnPressed(_ sender: Any) {
@@ -203,6 +203,7 @@ class PrivateRoomViewController: UIViewController,UITableViewDelegate, UITableVi
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         unsubscribeFromKeyboardNotifications()
         backgroundPlayer.stop()
+        backgroundPlayer = nil
         if let destination = segue.destination as? InGameViewController {
             destination.playersInGame = userInRoom
             destination.leaderId = leaderId

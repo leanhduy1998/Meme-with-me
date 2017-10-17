@@ -15,23 +15,23 @@ import AWSDynamoDB
 class MememeDynamoDB {
     private static var numberOfItemsInQuery = 0
 
-    static  func insertSampleDataWithCompletionHandler(game: Game, _ completionHandler: @escaping (_ errors: [NSError]?) -> Void) {
+    static  func insertGameWithCompletionHandler(game: Game, _ completionHandler: @escaping (_ gameModel: MememeDBObjectModel,_ errors: [NSError]?) -> Void) {
         let objectMapper = AWSDynamoDBObjectMapper.default()
         var errors: [NSError] = []
         let group: DispatchGroup = DispatchGroup()
         
         let queryHelper = GameDataToJSON(game: game)
         
-        let itemForGet: MememeDBObjectModel! = MememeDBObjectModel()
+        let itemToInsert: MememeDBObjectModel! = MememeDBObjectModel()
         
-        itemForGet._userId = AWSIdentityManager.default().identityId!
-        itemForGet._createdDate = queryHelper.getGameCreatedDate() as NSNumber
-        itemForGet._game = queryHelper.getGameData()
+        itemToInsert._userId = MyPlayerData.id
+        itemToInsert._createdDate = queryHelper.getGameCreatedDate() as NSNumber
+        itemToInsert._game = queryHelper.getGameData()
         
 
         group.enter()
         
-        objectMapper.save(itemForGet, completionHandler: {(error: Error?) -> Void in
+        objectMapper.save(itemToInsert, completionHandler: {(error: Error?) -> Void in
             if let error = error as NSError? {
                 DispatchQueue.main.async(execute: {
                     errors.append(error)
@@ -43,70 +43,50 @@ class MememeDynamoDB {
         
         group.notify(queue: DispatchQueue.main, execute: {
             if errors.count > 0 {
-                completionHandler(errors)
+                completionHandler(itemToInsert, errors)
             }
             else {
-                completionHandler(nil)
+                completionHandler(itemToInsert,nil)
             }
         })
     }
+    static func updateGame(itemToUpdate: MememeDBObjectModel, game:Game, completionHandler: @escaping (_ error: NSError?) -> Void) {
+        let objectMapper = AWSDynamoDBObjectMapper.default()
+        
+        let queryHelper = GameDataToJSON(game: game)
+        
+        let itemToUpdate: MememeDBObjectModel! = itemToUpdate
+        itemToUpdate._game = queryHelper.getGameData()
+        
+        objectMapper.save(itemToUpdate, completionHandler: {(error: Error?) in
+            DispatchQueue.main.async(execute: {
+                completionHandler(error as? NSError)
+            })
+        })
+    }
+    /*
+    static func scanWithCompletionHandler(limit: Int, _ completionHandler: @escaping (_ response: AWSDynamoDBPaginatedOutput?, _ error: Error?) -> Void) {
+        let objectMapper = AWSDynamoDBObjectMapper.default()
+        let scanExpression = AWSDynamoDBScanExpression()
+        scanExpression.limit = limit as NSNumber
+        
+        objectMapper.scan(MememeDBObjectModel.self, expression: scanExpression) { (response: AWSDynamoDBPaginatedOutput?, error: Error?) in
+            completionHandler(response, error)
+        }
+    }*/
     
-    static func queryWithPartitionKeyAndSortKeyWithCompletionHandler(timesLoading: Int, _ completionHandler: @escaping (_ response: AWSDynamoDBPaginatedOutput?, _ error: NSError?) -> Void) {
+    static func queryWithMyPlayerIdWithCompletionHandler(userId: String, _ completionHandler: @escaping (_ response: AWSDynamoDBPaginatedOutput?, _ error: NSError?) -> Void) {
         let objectMapper = AWSDynamoDBObjectMapper.default()
         let queryExpression = AWSDynamoDBQueryExpression()
         
-        queryExpression.keyConditionExpression = "#userId = :userId AND #createdDate > :createdDate"
-        queryExpression.expressionAttributeNames = [
-            "#userId": "userId",
-            "#createdDate": "createdDate",
-        ]
+        queryExpression.keyConditionExpression = "#userId = :userId"
+        queryExpression.expressionAttributeNames = ["#userId": "userId",]
+        queryExpression.expressionAttributeValues = [":userId": userId]
         
-        GetGameData.getCurrentTimeInt(completionHandler: {(currentTime: Int) in
-            // only deduct 7 days
-            let second = 0
-            let minute = 0 * 60
-            let hour = 0 * 60 * 60
-            let sevenDays = 7 * 60 * 60 * 24
-            
-            let preferedDate = currentTime - (second + hour + minute + sevenDays) * timesLoading // current - x month
-            
-            queryExpression.expressionAttributeValues = [
-                ":userId": AWSIdentityManager.default().identityId!,
-                ":createdDate": preferedDate,
-            ]
-            objectMapper.query(MememeDBObjectModel.self, expression: queryExpression,completionHandler: {(response: AWSDynamoDBPaginatedOutput?, error: Error?) in
-                if response == nil {
-                    DispatchQueue.main.async(execute: {
-                        completionHandler(response, error as NSError?)
-                    })
-                    
-                }
-                else if (response?.items.count)! < 10 * timesLoading && numberOfItemsInQuery != response?.items.count {
-                    self.numberOfItemsInQuery = (response?.items.count)!
-                    DispatchQueue.main.async {
-                        self.queryWithPartitionKeyAndSortKeyWithCompletionHandler(timesLoading: timesLoading + 1, { (results, err) in
-                            DispatchQueue.main.async(execute: {
-                                self.numberOfItemsInQuery = 0
-                                completionHandler(response, err)
-                            })
-                        })
-                    }
-                    
-                }
-                else {
-                    self.numberOfItemsInQuery = 0
-                    DispatchQueue.main.async(execute: {
-                        completionHandler(response, error as NSError?)
-                    })
-                }
-                
-                
+        objectMapper.query(MememeDBObjectModel.self, expression: queryExpression) { (response: AWSDynamoDBPaginatedOutput?, error: Error?) in
+            DispatchQueue.main.async(execute: {
+                completionHandler(response, error as NSError?)
             })
-        
-        })
-        
-        
-        
+        }
     }
-    
 }

@@ -17,7 +17,7 @@ extension InGameViewController{
         playEffect(songName: "endRound", loop: 0, volume: 1, reduceBackgroundVolume: true)
     }
     func playWinningSound(){
-        playEffect(songName: "winning", loop: 0, volume: 0.2, reduceBackgroundVolume: true)
+        playEffect(songName: "winning", loop: 0, volume: 1, reduceBackgroundVolume: true)
     }
     func playMessageReceivedSound(){
         playEffect(songName: "messagereceived", loop: 0, volume: 1, reduceBackgroundVolume: false)
@@ -94,8 +94,5 @@ extension InGameViewController{
         else{
             playBackground()
         }
-    }
-    func stopPlayers(){
-        backgroundPlayer.stop()
     }
 }

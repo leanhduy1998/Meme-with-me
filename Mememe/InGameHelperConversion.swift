@@ -16,19 +16,15 @@ class InGameHelperConversion {
     func getPlayerFromDictionary(playerId:String, playerData: [String:Any]) -> Player{
         let delegate = UIApplication.shared.delegate as! AppDelegate
         
-        let p = Player(laughes: 0, playerName: "", playerId: playerId, score: 0, context: GameStack.sharedInstance.stack.context)
+        let p = Player(playerName: "", playerId: playerId, context: GameStack.sharedInstance.stack.context)
         
         for (key,value) in playerData {
             switch(key){
-            case "laughes":
-                p.laughes = value as! Int16
+            case "playerId":
+                p.playerId = value as! String
                 break
                 
-            case "score":
-                p.score = value as! Int16
-                break
-                
-            case "playerName":
+            case "name":
                 p.name = value as! String
                 break
             default:

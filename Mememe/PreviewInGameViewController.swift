@@ -74,31 +74,72 @@ class PreviewInGameViewController: UIViewController {
     }
     
     func reloadPreviewCards(){
-        var contentWidth = 0 + space*2
-        
         let round = GetGameCoreDataData.getRound(game: game, roundNum: currentRound)
         
         if(round == nil){
             return
         }
         
+        var image: UIImage!
+        
+        if(round.cardceasar?.cardPic == nil){
+            let helper = UserFilesHelper()
+            helper.getMemeData(memeUrl: (round.cardceasar?.cardPicUrl)!, completeHandler: { (memeImageData) in
+                DispatchQueue.main.async {
+                    image = UIImage(data: memeImageData)
+                    self.loadPreviewScrollView(image: image, round: round)
+                }
+            })
+            
+        }
+        else{
+            image = UIImage(data: round.cardceasar?.cardPic! as! Data)
+            loadPreviewScrollView(image: image, round: round)
+        }
+        
+        
+    }
+    
+    func loadPreviewScrollView(image:UIImage,round:Round){
+        var contentWidth = 0 + space*2
+        
         var currentPlayersCards = round.cardnormal?.allObjects as? [CardNormal]
         
         if(currentPlayersCards?.count == 0){
+            contentWidth = contentWidth + cardWidth
+            
+            let newX = getNewXForPreviewScroll(x: 0)
+            let memeImageView = getMemeIV(image: image)
+            let cardUIView = CardView(frame: CGRect(x: newX, y: space/2-cardInitialYBeforeAnimation, width: cardWidth, height: cardHeight))
+            
+            cardUIView.memeIV = memeImageView
+            cardUIView.addSubview(memeImageView)
+            cardUIView.bringSubview(toFront: memeImageView)
+            
+            previewScrollView.addSubview(cardUIView)
+            previewScrollView.bringSubview(toFront: cardUIView)
+            
+            cardUIView.alpha = 0.5
+            
+            UIView.animate(withDuration: 1, animations: {
+                cardUIView.frame = CGRect(x: newX, y: cardUIView.frame.origin.y + self.cardInitialYBeforeAnimation, width: self.cardWidth, height: self.cardHeight)
+                cardUIView.alpha = 1
+            })
+            previewScrollView.contentSize = CGSize(width: contentWidth, height: cardHeight)
             return
         }
         
-        let image = UIImage(data: round.cardceasar?.cardPic! as! Data)
         for x in 0...(((currentPlayersCards?.count)! - 1)) {
-            let memeImageView = getMemeIV(image: image!)
+            let memeImageView = getMemeIV(image: image)
             memeImageView.frame = CGRect(x: 0, y: 0, width: cardWidth, height: cardHeight)
             
             contentWidth += space*2 + cardWidth
+            
             let newX = getNewXForPreviewScroll(x: x)
-                
+            
             let upLabel = getTopLabel(text: (currentPlayersCards?[x].topText)!)
             let downLabel = getBottomLabel(text: (currentPlayersCards?[x].bottomText)!)
-                
+            
             // -40 is for animation
             let cardUIView = CardView(frame: CGRect(x: newX, y: space/2-cardInitialYBeforeAnimation, width: cardWidth, height: cardHeight))
             cardUIView.initCardView(topLabel: upLabel, bottomLabel: downLabel, playerId: (currentPlayersCards?[x].playerId)!, memeIV: memeImageView)
@@ -110,7 +151,7 @@ class PreviewInGameViewController: UIViewController {
                 }
             })
             
-                
+            
             let playerLoves = currentPlayersCards?[x].playerlove?.allObjects as? [PlayerLove]
             
             for love in playerLoves!{
@@ -122,14 +163,14 @@ class PreviewInGameViewController: UIViewController {
                         heartView.alpha = 1
                         heartView.transform = CGAffineTransform(scaleX: 0.80, y: 0.80)
                     }, completion: nil)
-
+                    
                     
                     cardUIView.addSubview(heartView)
                     cardUIView.bringSubview(toFront: heartView)
                     break
                 }
             }
-                
+            
             previewScrollView.addSubview(cardUIView)
             previewScrollView.bringSubview(toFront: cardUIView)
             

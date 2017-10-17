@@ -147,11 +147,12 @@ extension InGameViewController{
                                     return
                                 }
                                 DispatchQueue.main.async {
+                                    self.nextRoundStarting = false
+                                    self.AddEditJudgeMemeBtn.title = "Start Next Round!"
                                     DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
                                         self.AddEditJudgeMemeBtn.isEnabled = true
                                     })
-                                    self.AddEditJudgeMemeBtn.title = "Start Next Round!"
-                                    self.nextRoundStarting = true
+                                    //self.nextRoundStarting = true
                                     self.leaderCreateNewRoundBeforeNextRoundBegin()
                                 }
                             })
@@ -197,6 +198,7 @@ extension InGameViewController{
                         })
                         self.AddEditJudgeMemeBtn.title = "Start Next Round!"
                         self.nextRoundStarting = false
+                        
                         self.leaderCreateNewRoundBeforeNextRoundBegin()
                     }
                     else if MyPlayerData.id == self.leaderId && !self.currentRoundFinished{

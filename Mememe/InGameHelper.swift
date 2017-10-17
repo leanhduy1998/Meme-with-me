@@ -15,7 +15,7 @@ class InGameHelper{
     private static let inGameRef = Database.database().reference().child("inGame")
     private static let conversion = InGameHelperConversion()
     
-    static func insertNewGame(memeName: String, playerInRoom:[PlayerData], gameId: String){
+    static func insertNewGame(memeUrl: String, playerInRoom:[PlayerData], gameId: String){
         var data = [String:Any]()
         
         var players = [String:Any]()
@@ -30,7 +30,7 @@ class InGameHelper{
         data["players"] =  players
         
         
-        let roundMemeUrl = memeName
+        let roundMemeUrl = memeUrl
         data["rounds"] = roundMemeUrl
         
         data["playerOrderInGame"] = playerInRoom[0].userId
@@ -90,7 +90,7 @@ class InGameHelper{
                     
                         
                     let helper = UserFilesHelper()
-                    helper.getMemeData(memeName: roundImageUrl, completeHandler: { (imageData) in
+                    helper.getMemeData(memeUrl: roundImageUrl, completeHandler: { (imageData) in
                         DispatchQueue.main.async {
                             let cardCeasar = CardCeasar(cardPic: imageData, playerId: judgingId, round: 0, cardPicUrl: roundImageUrl, context: GameStack.sharedInstance.stack.context)
                             round.cardceasar = cardCeasar
@@ -144,6 +144,26 @@ class InGameHelper{
             }
         })
     }
+    static func removeYourLeaderInGameRoom(leaderId:String){
+        inGameRef.observeSingleEvent(of: DataEventType.value, with: { (snapshot) in
+            DispatchQueue.main.async {
+                let gameIdAndValue = snapshot.value as? [String : Any]
+                if (gameIdAndValue == nil) {
+                    return
+                }
+                for (gameId,value) in gameIdAndValue! {
+                    let gameValue = value as? [String : Any]
+                    for (key,value) in gameValue! {
+                        let id = value as? String
+                        if (key == "leaderId") && (id == leaderId) {
+                            inGameRef.child(gameId).removeValue()
+                            break
+                        }
+                    }
+                }
+            }
+        })
+    }
     
     static func getRoundImage(gameId: String, completionHandler: @escaping (_ imageData: Data, _ imageUrl: String) -> Void){
         inGameRef.child(gameId).child("rounds").observeSingleEvent(of: DataEventType.value, with: { (snapshot) in
@@ -151,7 +171,7 @@ class InGameHelper{
             let postValue = snapshot.value as? String
         
             let helper = UserFilesHelper()
-            helper.getMemeData(memeName: postValue!, completeHandler: { (imageData) in
+            helper.getMemeData(memeUrl: postValue!, completeHandler: { (imageData) in
                 completionHandler(imageData,postValue!)
             })
         }

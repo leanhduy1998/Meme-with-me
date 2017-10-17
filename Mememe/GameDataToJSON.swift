@@ -19,8 +19,9 @@ class GameDataToJSON {
         var jsonDic = [String:Any]()
         jsonDic["createdDate"] = getDateString()
         jsonDic["players"] = getPlayersDic()
-        jsonDic["rounds"] = getRoundsString()
+        jsonDic["rounds"] = getRoundsDic()
         jsonDic["gameId"] = game.gameId
+        jsonDic["winCounter"] = getWinCounterDic()
         
         return getJSONfromData(data: jsonDic)
     }
@@ -37,22 +38,26 @@ class GameDataToJSON {
         return rawData
     }
     
+    private func getWinCounterDic() -> [String:Any] {
+        var jsonDic = [String:Any]()
+        
+        let winCounters = game.wincounter?.allObjects as? [WinCounter]
+        for counter in winCounters! {            
+            jsonDic["\(counter.playerId!)"] = counter.won
+        }
+        return jsonDic
+    }
     
     private func getPlayersDic() -> [String:Any] {
         var jsonDic = [String:Any]()
         
         let players = game.players?.allObjects as? [Player]
         for player in players! {
-            
-            var playerDic = [String: Any]()
-            playerDic["laughes"] = Int(player.laughes)
-            playerDic["score"] = Int(player.score)
-            
-            jsonDic["\(player.playerId!)"] = playerDic
+            jsonDic["\(player.playerId!)"] = player.name
         }
         return jsonDic
     }
-    private func getRoundsString() -> [String:Any] {
+    private func getRoundsDic() -> [String:Any] {
         var jsonDic = [String:Any]()
         
         let rounds = game.rounds?.allObjects as? [Round]

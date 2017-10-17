@@ -220,9 +220,9 @@ class InGameTutController: UIViewController, UITableViewDelegate, UITableViewDat
         let date = Date()
         self.game = Game(createdDate: date, gameId: self.leaderId + "\(0)", context: GameStack.sharedInstance.stack.context)
         
-        self.game.addToPlayers(Player(laughes: 0, playerName: MyPlayerData.name, playerId: MyPlayerData.id, score: 0, context: GameStack.sharedInstance.stack.context))
-        self.game.addToPlayers(Player(laughes: 0, playerName: "bot1", playerId: "b1", score: 0, context: GameStack.sharedInstance.stack.context))
-        self.game.addToPlayers(Player(laughes: 0, playerName: "bot2", playerId: "b2", score: 0, context: GameStack.sharedInstance.stack.context))
+        self.game.addToPlayers(Player(playerName: MyPlayerData.name, playerId: MyPlayerData.id, context: GameStack.sharedInstance.stack.context))
+        self.game.addToPlayers(Player(playerName: "bot1", playerId: "b1", context: GameStack.sharedInstance.stack.context))
+        self.game.addToPlayers(Player(playerName: "bot2", playerId: "b2", context: GameStack.sharedInstance.stack.context))
         
         
         let round = Round(roundNum: 0, context: GameStack.sharedInstance.stack.context)

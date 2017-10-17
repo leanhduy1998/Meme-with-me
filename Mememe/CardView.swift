@@ -30,7 +30,7 @@ class CardView: UIView {
         self.addSubview(bottomLabel)
         self.bringSubview(toFront: bottomLabel)
         
-        self.addSubview(memeIV)
-        self.sendSubview(toBack: memeIV)
+        self.addSubview(self.memeIV)
+        self.sendSubview(toBack: self.memeIV)
     }
 }

@@ -144,11 +144,11 @@ class UserFilesHelper {
         }
     }
     
-    func getMemeData(memeName: String, completeHandler: @escaping (_ imageData: Data) -> Void){
+    func getMemeData(memeUrl: String, completeHandler: @escaping (_ imageData: Data) -> Void){
         loadMoreContents(directory: "public/memes/") { (contents) in
             
             for c in contents {
-                if c.key == memeName {
+                if c.key == memeUrl {
                     c.download(with: AWSContentDownloadType.ifNotCached, pinOnCompletion: false, progressBlock: { (content, progress) in
                         
                     }, completionHandler: { (content, imageData, error) in

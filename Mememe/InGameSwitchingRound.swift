@@ -101,14 +101,24 @@ extension InGameViewController{
         clearPreviewCardsData()
         cardOrder.removeAll()
         cardDictionary.removeAll()
-        // if I am leader
-        if MyPlayerData.id == leaderId {
-            self.reloadPreviewCards()
-            self.reloadCurrentPlayersIcon()
-            self.checkIfYourAreJudge()
-        }
-        else {
-            setupNextRound()
+        
+        MememeDynamoDB.updateGame(itemToUpdate: gameDBModel!, game: game) { (error) in
+            if(error != nil){
+                print(error.debugDescription)
+                return
+            }
+            
+            DispatchQueue.main.async {
+                // if I am leader
+                if MyPlayerData.id == self.leaderId {
+                    self.reloadPreviewCards()
+                    self.reloadCurrentPlayersIcon()
+                    self.checkIfYourAreJudge()
+                }
+                else {
+                    self.setupNextRound()
+                }
+            }
         }
     }
     private func setupNextRound(){

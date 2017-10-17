@@ -162,7 +162,9 @@ class JudgingViewController: UIViewController,UIGestureRecognizerDelegate {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.destination is InGameViewController {
+        if let destination =  segue.destination as? InGameViewController {
+            destination.AddEditJudgeMemeBtn.isEnabled = false
+            
             let latestRound = GetGameCoreDataData.getLatestRound(game: game)
             var wonCard = ChoosingCardView()
             for vs in (memeScrollView.subviews as? [ChoosingCardView])! {

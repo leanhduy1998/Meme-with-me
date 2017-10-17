@@ -99,6 +99,8 @@
 		247A55C71F7F350A004D1701 /* ChatHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247A55C61F7F350A004D1701 /* ChatHelper.swift */; };
 		247A55C91F7F3EE3004D1701 /* ChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247A55C81F7F3EE3004D1701 /* ChatModel.swift */; };
 		247A55CB1F7F5FBC004D1701 /* PrivateRoomChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247A55CA1F7F5FBC004D1701 /* PrivateRoomChat.swift */; };
+		247D262A1F923A530068B87D /* Player+CoreDataProperties copy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247D26291F923A360068B87D /* Player+CoreDataProperties copy.swift */; };
+		247D262B1F923A530068B87D /* Player+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247D26281F923A360068B87D /* Player+CoreDataClass.swift */; };
 		2488B0761F8D94AA0064E7A5 /* AddEditTutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2488B0751F8D94AA0064E7A5 /* AddEditTutController.swift */; };
 		2488B0791F8D95920064E7A5 /* JudgingTutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2488B0781F8D95920064E7A5 /* JudgingTutController.swift */; };
 		2488B07B1F8D96B60064E7A5 /* AddEditTutTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2488B07A1F8D96B60064E7A5 /* AddEditTutTableView.swift */; };
@@ -151,8 +153,6 @@
 		24E3289F1F89677E00A2A2FE /* InGameSwitchingRound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E3289E1F89677E00A2A2FE /* InGameSwitchingRound.swift */; };
 		24E328A11F89687700A2A2FE /* InGameLeaveRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E328A01F89687700A2A2FE /* InGameLeaveRoom.swift */; };
 		24E734C01F6DCD8F00218AB1 /* InGameHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E734BF1F6DCD8F00218AB1 /* InGameHelper.swift */; };
-		24E734C81F6E01C200218AB1 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E734C61F6E01C200218AB1 /* Player.swift */; };
-		24E734C91F6E01C200218AB1 /* PlayerCoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E734C71F6E01C200218AB1 /* PlayerCoreDataProperties.swift */; };
 		24E734CB1F6F00F900218AB1 /* AvailableGamesTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E734CA1F6F00F900218AB1 /* AvailableGamesTableView.swift */; };
 		24E8597A1F7EFA4300856BA3 /* MyCoreDataCoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E859781F7EF9FB00856BA3 /* MyCoreDataCoreDataClass.swift */; };
 		24E8597B1F7EFA4300856BA3 /* MyCoreDataCoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E859791F7EF9FB00856BA3 /* MyCoreDataCoreDataProperties.swift */; };
@@ -299,6 +299,9 @@
 		247A55C61F7F350A004D1701 /* ChatHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatHelper.swift; sourceTree = "<group>"; };
 		247A55C81F7F3EE3004D1701 /* ChatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatModel.swift; sourceTree = "<group>"; };
 		247A55CA1F7F5FBC004D1701 /* PrivateRoomChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateRoomChat.swift; sourceTree = "<group>"; };
+		247D26271F9239F00068B87D /* Model 10.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model 10.xcdatamodel"; sourceTree = "<group>"; };
+		247D26281F923A360068B87D /* Player+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Player+CoreDataClass.swift"; sourceTree = "<group>"; };
+		247D26291F923A360068B87D /* Player+CoreDataProperties copy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Player+CoreDataProperties copy.swift"; sourceTree = "<group>"; };
 		2488B0751F8D94AA0064E7A5 /* AddEditTutController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEditTutController.swift; sourceTree = "<group>"; };
 		2488B0781F8D95920064E7A5 /* JudgingTutController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JudgingTutController.swift; sourceTree = "<group>"; };
 		2488B07A1F8D96B60064E7A5 /* AddEditTutTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEditTutTableView.swift; sourceTree = "<group>"; };
@@ -358,8 +361,6 @@
 		24E3289E1F89677E00A2A2FE /* InGameSwitchingRound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InGameSwitchingRound.swift; sourceTree = "<group>"; };
 		24E328A01F89687700A2A2FE /* InGameLeaveRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InGameLeaveRoom.swift; sourceTree = "<group>"; };
 		24E734BF1F6DCD8F00218AB1 /* InGameHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InGameHelper.swift; sourceTree = "<group>"; };
-		24E734C61F6E01C200218AB1 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Player.swift; path = ../Player.swift; sourceTree = "<group>"; };
-		24E734C71F6E01C200218AB1 /* PlayerCoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlayerCoreDataProperties.swift; path = ../PlayerCoreDataProperties.swift; sourceTree = "<group>"; };
 		24E734CA1F6F00F900218AB1 /* AvailableGamesTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvailableGamesTableView.swift; sourceTree = "<group>"; };
 		24E859771F7EF94800856BA3 /* Model 6.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model 6.xcdatamodel"; sourceTree = "<group>"; };
 		24E859781F7EF9FB00856BA3 /* MyCoreDataCoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCoreDataCoreDataClass.swift; sourceTree = "<group>"; };
@@ -552,12 +553,12 @@
 		24305CB81F2BD34700B14632 /* CoreDataProperties */ = {
 			isa = PBXGroup;
 			children = (
+				247D26291F923A360068B87D /* Player+CoreDataProperties copy.swift */,
 				240E6B671F90DC01000B28D0 /* WinCounter+CoreDataProperties.swift */,
 				240E6B691F90DC02000B28D0 /* Game+CoreDataProperties.swift */,
 				2468B0311F4E95870091EDD0 /* CardCeasarCoreDataProperties.swift */,
 				2413D7BE1F43E78C001EA209 /* CardNormalCoreDataProperties.swift */,
 				2413D7AC1F42112A001EA209 /* PlayerLoveCoreDataProperties.swift */,
-				24E734C71F6E01C200218AB1 /* PlayerCoreDataProperties.swift */,
 				2413D78E1F3D58A0001EA209 /* RoundCoreDataProperties.swift */,
 			);
 			name = CoreDataProperties;
@@ -566,13 +567,13 @@
 		24305CC51F2BD4F000B14632 /* CoreDataClass */ = {
 			isa = PBXGroup;
 			children = (
+				247D26281F923A360068B87D /* Player+CoreDataClass.swift */,
 				240E6B661F90DC01000B28D0 /* WinCounter+CoreDataClass.swift */,
 				240E6B681F90DC01000B28D0 /* Game+CoreDataClass.swift */,
 				2468B0301F4E95870091EDD0 /* CardCeasar.swift */,
 				2413D7BD1F43E78C001EA209 /* CardNormal.swift */,
 				2413D7AB1F42112A001EA209 /* PlayerLove.swift */,
 				2413D78D1F3D58A0001EA209 /* Round.swift */,
-				24E734C61F6E01C200218AB1 /* Player.swift */,
 			);
 			name = CoreDataClass;
 			sourceTree = "<group>";
@@ -640,13 +641,13 @@
 			name = InGame;
 			sourceTree = "<group>";
 		};
-		245B2B191F50E8BD00BCF75A /* JSON */ = {
+		245B2B191F50E8BD00BCF75A /* JSON conversioin */ = {
 			isa = PBXGroup;
 			children = (
 				2468B02E1F4E59870091EDD0 /* GameDataToJSON.swift */,
 				245B2B131F4F685500BCF75A /* GameDataFromJSON.swift */,
 			);
-			name = JSON;
+			name = "JSON conversioin";
 			sourceTree = "<group>";
 		};
 		245B2B201F50F9ED00BCF75A /* PrivateRoom */ = {
@@ -661,22 +662,6 @@
 			name = PrivateRoom;
 			sourceTree = "<group>";
 		};
-		245B2B2D1F5233CC00BCF75A /* Mememe */ = {
-			isa = PBXGroup;
-			children = (
-				2413D7E61F4CC540001EA209 /* MememeDBObjectModel.swift */,
-			);
-			name = Mememe;
-			sourceTree = "<group>";
-		};
-		245B2B2E1F52348D00BCF75A /* PlayerData */ = {
-			isa = PBXGroup;
-			children = (
-				245B2B2F1F52350900BCF75A /* PlayerDataDBObjectModel.swift */,
-			);
-			name = PlayerData;
-			sourceTree = "<group>";
-		};
 		245BE5341F8F2E2800B02CD3 /* Previous Game */ = {
 			isa = PBXGroup;
 			children = (
@@ -686,15 +671,6 @@
 				244A400C1F90BE8200400822 /* PreviewInGameConditions.swift */,
 			);
 			name = "Previous Game";
-			sourceTree = "<group>";
-		};
-		2468B0351F4EBEDF0091EDD0 /* DynamoDB */ = {
-			isa = PBXGroup;
-			children = (
-				245B2B2D1F5233CC00BCF75A /* Mememe */,
-				245B2B2E1F52348D00BCF75A /* PlayerData */,
-			);
-			name = DynamoDB;
 			sourceTree = "<group>";
 		};
 		246D08E71F7CA5BC0025DA40 /* Game */ = {
@@ -711,7 +687,7 @@
 		246D08E81F7CA8B60025DA40 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
-				245B2B191F50E8BD00BCF75A /* JSON */,
+				245B2B191F50E8BD00BCF75A /* JSON conversioin */,
 				2413D7DE1F499004001EA209 /* GetGameData.swift */,
 				24233F5D1F63437300B2B7EE /* DisplayAlert.swift */,
 				24AFAD921F73355F00D57762 /* GetGameCoreDataData.swift */,
@@ -735,7 +711,9 @@
 			isa = PBXGroup;
 			children = (
 				2413D7E21F4B60FA001EA209 /* MememeDynamoDB.swift */,
+				2413D7E61F4CC540001EA209 /* MememeDBObjectModel.swift */,
 				245B2B311F52379600BCF75A /* PlayerDataDynamoDB.swift */,
+				245B2B2F1F52350900BCF75A /* PlayerDataDBObjectModel.swift */,
 			);
 			name = DynamoDB;
 			sourceTree = "<group>";
@@ -866,7 +844,6 @@
 			children = (
 				2484DBA51F81933000D43178 /* Firebase */,
 				241C6E6C1F5A2DE300756BA7 /* AWS */,
-				2468B0351F4EBEDF0091EDD0 /* DynamoDB */,
 				24305CE01F2E5F9F00B14632 /* CoreData */,
 				245B2B2B1F510B0100BCF75A /* MyPlayerData.swift */,
 				24233F5B1F6312D500B2B7EE /* Extension.swift */,
@@ -894,8 +871,8 @@
 			children = (
 				24896D551F2A5FA2003B6954 /* StartViewController.swift */,
 				241C6E681F58AF2600756BA7 /* Sign up */,
-				242088601F8B55A800BFFD1B /* Tutorial */,
 				24233F561F61F1AC00B2B7EE /* AvailableGames */,
+				242088601F8B55A800BFFD1B /* Tutorial */,
 				245BE5341F8F2E2800B02CD3 /* Previous Game */,
 				245B2B201F50F9ED00BCF75A /* PrivateRoom */,
 				2498F9DE1F347B7200B21267 /* InGame */,
@@ -1275,7 +1252,6 @@
 			files = (
 				2413D78F1F3D58A0001EA209 /* Round.swift in Sources */,
 				2413D7BA1F426544001EA209 /* AddEditMyMemeTableCell.swift in Sources */,
-				24E734C91F6E01C200218AB1 /* PlayerCoreDataProperties.swift in Sources */,
 				242088731F8CA38000BFFD1B /* InGameTutController.swift in Sources */,
 				2413D7D71F461DBD001EA209 /* JudgingViewController.swift in Sources */,
 				2413D7DF1F499004001EA209 /* GetGameData.swift in Sources */,
@@ -1286,7 +1262,6 @@
 				24305CE31F2E632B00B14632 /* AvailableGamesExistImageCell.swift in Sources */,
 				241C6E5F1F58160700756BA7 /* AvailableRoomFirBModel.swift in Sources */,
 				244F7C011F8EC31E00865BB3 /* StartTut.swift in Sources */,
-				24E734C81F6E01C200218AB1 /* Player.swift in Sources */,
 				2488B07B1F8D96B60064E7A5 /* AddEditTutTableView.swift in Sources */,
 				2402C2301F89696300457B36 /* InGameObservers.swift in Sources */,
 				24E8597A1F7EFA4300856BA3 /* MyCoreDataCoreDataClass.swift in Sources */,
@@ -1301,6 +1276,7 @@
 				242088751F8CA3D000BFFD1B /* InGameTutUI.swift in Sources */,
 				24F5C7EC1F87F9830095B2C5 /* InGameAddMeme.swift in Sources */,
 				24C30F421F7441A4007237C1 /* InGameExtensionJudge.swift in Sources */,
+				247D262A1F923A530068B87D /* Player+CoreDataProperties copy.swift in Sources */,
 				245B2B141F4F685500BCF75A /* GameDataFromJSON.swift in Sources */,
 				2468B02F1F4E59870091EDD0 /* GameDataToJSON.swift in Sources */,
 				24F5C7EA1F87F9340095B2C5 /* InGameUserIcon.swift in Sources */,
@@ -1361,6 +1337,7 @@
 				241C6E651F58983B00756BA7 /* SignUpViewController.swift in Sources */,
 				240E6B6D1F90DC1E000B28D0 /* WinCounter+CoreDataProperties.swift in Sources */,
 				24BE6F011F8FE8C00022B981 /* PreviewInGameViewController.swift in Sources */,
+				247D262B1F923A530068B87D /* Player+CoreDataClass.swift in Sources */,
 				247A55C91F7F3EE3004D1701 /* ChatModel.swift in Sources */,
 				247A55C71F7F350A004D1701 /* ChatHelper.swift in Sources */,
 				240E6B6A1F90DC1E000B28D0 /* Game+CoreDataProperties.swift in Sources */,
@@ -1702,6 +1679,7 @@
 		24305C911F2BB46C00B14632 /* GameModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				247D26271F9239F00068B87D /* Model 10.xcdatamodel */,
 				240E6B651F90DBB9000B28D0 /* Model 9.xcdatamodel */,
 				24440D3C1F90D96000AD67F0 /* Model 8.xcdatamodel */,
 				242F097D1F885802002990E3 /* Model 7.xcdatamodel */,
@@ -1712,7 +1690,7 @@
 				247415CE1F3BBEE600973EDE /* Model 2.xcdatamodel */,
 				24305C921F2BB46C00B14632 /* Model.xcdatamodel */,
 			);
-			currentVersion = 240E6B651F90DBB9000B28D0 /* Model 9.xcdatamodel */;
+			currentVersion = 247D26271F9239F00068B87D /* Model 10.xcdatamodel */;
 			path = GameModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

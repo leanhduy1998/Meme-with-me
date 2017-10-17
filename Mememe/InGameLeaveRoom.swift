@@ -11,7 +11,7 @@ import Firebase
 
 extension InGameViewController{
     func leaveRoom(action: UIAlertAction){
-        stopPlayers()
+        backgroundPlayer.stop()
         removeAllInGameObservers()
         chatHelper.removeChatObserver()
         if(playersInGame.count == 1){

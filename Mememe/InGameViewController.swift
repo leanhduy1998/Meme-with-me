@@ -61,6 +61,7 @@ class InGameViewController: UIViewController, UITableViewDelegate, UITableViewDa
     //database
     let inGameRef = Database.database().reference().child("inGame")
     let convertor = InGameHelperConversion()
+    var gameDBModel = MememeDBObjectModel()
     
     
     //chat
@@ -88,7 +89,6 @@ class InGameViewController: UIViewController, UITableViewDelegate, UITableViewDa
             self.createBeginingData()
             DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
                 AvailableRoomHelper.makeMyRoomStatusClosed()
-                
             })
         }
         else {
@@ -107,6 +107,15 @@ class InGameViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     
                     self.chatHelper.id = game.gameId
                     self.chatHelper.initializeChatObserver(controller: self)
+                    
+                    MememeDynamoDB.insertGameWithCompletionHandler(game: self.game, { (gameModel, error) in
+                        if error != nil {
+                            print(error)
+                        }
+                        DispatchQueue.main.async {
+                            self.gameDBModel = gameModel
+                        }
+                    })
                 }
             })
         }
@@ -151,7 +160,19 @@ class InGameViewController: UIViewController, UITableViewDelegate, UITableViewDa
             performSegue(withIdentifier: "AddEditMyMemeViewController", sender: self)
         }
         else if(AddEditJudgeMemeBtn.title == "Judge Your People!"){
-            self.performSegue(withIdentifier: "JudgingViewControllerSegue", sender: self)
+            inGameRef.child(game.gameId!).child("normalCards").observeSingleEvent(of: DataEventType.value, with: { (snapshot) in
+                let postDict = snapshot.value as? [String : [String:Any]]
+                
+                DispatchQueue.main.async {
+                    if postDict?.count == self.playersInGame.count - 1 {
+                        self.performSegue(withIdentifier: "JudgingViewControllerSegue", sender: self)
+                    }
+                    else{
+                        self.AddEditJudgeMemeBtn.isEnabled = false
+                    }
+                }
+            })
+            
         }
         else if(AddEditJudgeMemeBtn.title == "Start Next Round!"){
             inGameRef.child(game.gameId!).child("nextRoundStarting").setValue("true")

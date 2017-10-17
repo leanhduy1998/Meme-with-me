@@ -13,7 +13,7 @@ import UIKit
 class GameDataFromJSON{
     static var delegate: AppDelegate!
     
-    static func getGameFromJSON(model: MememeDBObjectModel, completionHandler: @escaping ()-> Void) -> Game {
+    static func getGameFromJSON(model: MememeDBObjectModel) -> Game {
         let gameJSON = model._game
         
         let json = try? JSONSerialization.jsonObject(with: gameJSON!, options: []) as? [String: Any]
@@ -26,12 +26,26 @@ class GameDataFromJSON{
         let game = Game(createdDate: createdDate!, gameId: (json??["gameId"] as? String)!, context: GameStack.sharedInstance.stack.context)
         
         self.addRoundToGame(game: game, roundDic: (json??["rounds"] as? [String:Any])!)
+        self.addPlayersToGame(game: game, playersDic: (json??["players"] as? [String:String])!)
+        self.addWinCounterToGame(game: game, winCountDic: (json??["winCounter"] as? [String:Int])!)
         
-        GameStack.sharedInstance.saveContext {
+        /*GameStack.sharedInstance.saveContext {
             completionHandler()
-        }
+        }*/
         return game
     }
+    private static func addPlayersToGame(game: Game, playersDic: [String:String]){
+        for(playerId,playerName) in playersDic {
+            game.addToPlayers(Player(playerName: playerName, playerId: playerId, context: GameStack.sharedInstance.stack.context))
+        }
+    }
+    
+    private static func addWinCounterToGame(game: Game, winCountDic: [String:Int]){
+        for(playerId,winCount) in winCountDic {
+            game.addToWincounter(WinCounter(playerId: playerId, wonNum: winCount, context: GameStack.sharedInstance.stack.context))
+        }
+    }
+    
     private static func addRoundToGame(game: Game, roundDic: [String:Any]){
         let roundCount = roundDic.count - 1
         
