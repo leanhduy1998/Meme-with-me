@@ -9,7 +9,7 @@
 import Foundation
 
 extension PrivateRoomViewController{
-    func playBackground(){
+    func setupMusic(){
         backgroundPlayer = SoundPlayerHelper.getAudioPlayer(songName: "privateRoomMusic", loop: true)
         chatSoundPlayer = SoundPlayerHelper.getAudioPlayer(songName: "messagereceived", loop: false)
     }

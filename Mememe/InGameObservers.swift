@@ -32,11 +32,12 @@ extension InGameViewController{
                         self.checkIfAllPlayersHaveInsertCard()
                     }
                     GetGameCoreDataData.getLatestRound(game: self.game).cardceasar?.playerId = self.playerJudging
-                    GameStack.sharedInstance.saveContext {
-                    }
                 }
-                
-                self.reloadCurrentPlayersIcon()
+                GameStack.sharedInstance.saveContext(completeHandler: {
+                    DispatchQueue.main.async {
+                        self.reloadCurrentPlayersIcon()
+                    }
+                })
             }
         })
         inGameRefObservers.append(observer)
@@ -52,12 +53,17 @@ extension InGameViewController{
                     let cardNormal = self.convertor.getCardNormalFromDictionary(playerId: playerId, dictionary: postDict!)
                     
                     GetGameCoreDataData.getLatestRound(game: self.game).addToCardnormal(cardNormal)
-                    self.reloadPreviewCards()
-                    self.playCardPlacedDown()
                     
-                    if(MyPlayerData.id == self.playerJudging){
-                        self.checkIfAllPlayersHaveInsertCard()
-                    }
+                    GameStack.sharedInstance.saveContext(completeHandler: {
+                        DispatchQueue.main.async {
+                            self.reloadPreviewCards()
+                            self.playCardPlacedDown()
+                            
+                            if(MyPlayerData.id == self.playerJudging){
+                                self.checkIfAllPlayersHaveInsertCard()
+                            }
+                        }
+                    })
                 }
             }
             else if(playerId == MyPlayerData.id) {
@@ -83,16 +89,17 @@ extension InGameViewController{
                     }
                 }
                 
-                if(!self.currentRoundFinished){
-                    self.reloadPreviewCards()
-                }
-                
-                    
-                if(MyPlayerData.id == self.playerJudging){
-                    self.checkIfAllPlayersHaveInsertCard()
-                }
-                GameStack.sharedInstance.saveContext {
-                }
+                GameStack.sharedInstance.saveContext(completeHandler: {
+                    DispatchQueue.main.async {
+                        if(!self.currentRoundFinished){
+                            self.reloadPreviewCards()
+                        }
+                        
+                        if(MyPlayerData.id == self.playerJudging){
+                            self.checkIfAllPlayersHaveInsertCard()
+                        }
+                    }
+                })
             }
             
         })
@@ -130,9 +137,7 @@ extension InGameViewController{
                                 break
                             }
                         }
-                        GameStack.sharedInstance.saveContext {
-                        }
-                        
+
                         self.currentRoundFinished = true
                         
                         self.reloadCurrentPlayersIcon()
@@ -165,11 +170,11 @@ extension InGameViewController{
                         break
                     }
                 }
-                GameStack.sharedInstance.saveContext {
+                GameStack.sharedInstance.saveContext(completeHandler: {
                     DispatchQueue.main.async {
                         self.reloadPreviewCards()
                     }
-                }
+                })
             }
         })
         inGameRefObservers.append(observer)
@@ -206,12 +211,15 @@ extension InGameViewController{
                             InGameHelper.removeYourCardFromGame(gameId: self.game.gameId!, completionHandler: {
                                 DispatchQueue.main.async {
                                     self.playerJudging = MyPlayerData.id
-                                    self.checkIfYourAreJudge()
-                                    self.checkIfAllPlayersHaveInsertCard()
                                     
                                     GetGameCoreDataData.getLatestRound(game: self.game).cardceasar?.playerId = MyPlayerData.id
-                                    GameStack.sharedInstance.saveContext {
-                                    }
+                                    
+                                    GameStack.sharedInstance.saveContext(completeHandler: {
+                                        DispatchQueue.main.async {
+                                            self.checkIfYourAreJudge()
+                                            self.checkIfAllPlayersHaveInsertCard()
+                                        }
+                                    })
                                 }
                             })
                         }

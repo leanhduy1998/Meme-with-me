@@ -41,7 +41,7 @@ class PrivateRoomViewController: UIViewController,UITableViewDelegate, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        playBackground()
+        setupMusic()
         
         InGameHelper.removeYourInGameRoom()
         
@@ -169,6 +169,10 @@ class PrivateRoomViewController: UIViewController,UITableViewDelegate, UITableVi
             let indexPath = IndexPath(row: self.chatHelper.messages.count-1, section: 0)
             self.chatTableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
         }
+        if(backgroundPlayer == nil){
+            setupMusic()
+        }
+        backgroundPlayer.play()
     }
     
     @IBAction func startGameBtnPressed(_ sender: Any) {
@@ -214,6 +218,7 @@ class PrivateRoomViewController: UIViewController,UITableViewDelegate, UITableVi
         }
         else if let destination = segue.destination as? AvailableGamesViewController{
             destination.selectedLeaderId = nil
+            destination.getRoomDataFromDB()
             leaderId = nil
             chatHelper.removeChatObserver()
         }

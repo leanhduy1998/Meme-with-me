@@ -89,8 +89,6 @@ extension InGameViewController{
                             cardNormal?.removeFromPlayerlove(playerLove!)
                             
                             GameStack.sharedInstance.saveContext(completeHandler: {
-                                DispatchQueue.main.async {
-                                }
                             })
                         }
                     }

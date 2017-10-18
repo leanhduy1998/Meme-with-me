@@ -179,11 +179,11 @@ class JudgingViewController: UIViewController,UIGestureRecognizerDelegate {
                     break
                 }
             }
-            GameStack.sharedInstance.saveContext {
+            GameStack.sharedInstance.saveContext(completeHandler: {
                 DispatchQueue.main.async {
                     InGameHelper.updateWinnerCard(gameId: self.game.gameId!, cardPlayerId: wonCard.playerId)
                 }
-            }
+            })
         }
     }
  

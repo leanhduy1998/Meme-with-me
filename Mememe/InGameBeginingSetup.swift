@@ -7,16 +7,25 @@
 //
 
 import Foundation
+import UIKit
 
 extension InGameViewController {
     func createBeginingData(){
         let date = Date()
         GetGameData.getCurrentTimeInt { (currentTimeInt) in
             DispatchQueue.main.async {
+                let helper = UserFilesHelper()
                 self.game = Game(createdDate: date, gameId: self.leaderId + "\(currentTimeInt)", context: GameStack.sharedInstance.stack.context)
                 
                 for player in self.playersInGame {
-                    self.game.addToPlayers(Player(playerName: player.userName, playerId: player.userId!, context: GameStack.sharedInstance.stack.context))
+                    let playerCore = Player(playerName: player.userName, playerId: player.userId!, context: GameStack.sharedInstance.stack.context)
+                    self.game.addToPlayers(playerCore)
+                    
+                    helper.loadUserProfilePicture(userId: playerCore.playerId!, completeHandler: { (userImageData) in
+                        DispatchQueue.main.async {
+                            playerCore.userImageData = userImageData as NSData
+                        }
+                    })
                     
                     let winCounter = WinCounter(playerId: player.userId, wonNum: 0, context: GameStack.sharedInstance.stack.context)
                     self.game.addToWincounter(winCounter)
@@ -24,7 +33,7 @@ extension InGameViewController {
                 
                 let round = Round(roundNum: 0, context: GameStack.sharedInstance.stack.context)
                 
-                let helper = UserFilesHelper()
+                
                 helper.getRandomMemeData(completeHandler: { (memeData, memeUrl) in
                     DispatchQueue.main.async {
                         
@@ -51,7 +60,6 @@ extension InGameViewController {
                         
                         GameStack.sharedInstance.saveContext(completeHandler: {
                             DispatchQueue.main.async {
-                                
                                 self.reloadCurrentPlayersIcon()
                                 self.reloadPreviewCards()
                                 

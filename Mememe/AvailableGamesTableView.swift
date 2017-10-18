@@ -34,7 +34,7 @@ extension AvailableGamesViewController {
                         
                         // Decompress the image into a bitmap
                         
-                        let size = CGSize(width: cell.topLeftIV.frame.width, height: cell.topLeftIV.frame.height)
+                        let size = CGSize(width: cell.firstIV.frame.width, height: cell.firstIV.frame.height)
                         UIGraphicsBeginImageContextWithOptions(size, true, 0);
                         image?.draw(in: CGRect(x:0,y:0,width:size.width, height:size.height))
                         newImage = UIGraphicsGetImageFromCurrentImageContext()!;
@@ -47,29 +47,29 @@ extension AvailableGamesViewController {
                         
                         switch(playerImages.count){
                         case 1:
-                            cell.topLeftIV.image = playerImages[0]
+                            cell.secondIV.image = playerImages[0]
                             break
                         case 2:
-                            cell.topLeftIV.image = playerImages[0]
-                            cell.topRightIV.image = playerImages[1]
+                            cell.secondIV.image = playerImages[0]
+                            cell.thirdIV.image = playerImages[1]
                             break
                         case 3:
-                            cell.topLeftIV.image = playerImages[0]
-                            cell.topRightIV.image = playerImages[1]
-                            cell.bottomLeftIV.image = playerImages[2]
+                            cell.firstIV.image = playerImages[0]
+                            cell.secondIV.image = playerImages[1]
+                            cell.thirdIV.image = playerImages[2]
                             break
                         case 4:
-                            cell.topLeftIV.image = playerImages[0]
-                            cell.topRightIV.image = playerImages[1]
-                            cell.bottomLeftIV.image = playerImages[2]
-                            cell.bottomRightIV.image = playerImages[3]
+                            cell.firstIV.image = playerImages[0]
+                            cell.secondIV.image = playerImages[1]
+                            cell.thirdIV.image = playerImages[2]
+                            cell.fourthIV.image = playerImages[3]
                             break
                         default:
                             if(playerImages.count>4){
-                                cell.topLeftIV.image = playerImages[0]
-                                cell.topRightIV.image = playerImages[1]
-                                cell.bottomLeftIV.image = playerImages[2]
-                                cell.bottomRightIV.image = playerImages[3]
+                                cell.firstIV.image = playerImages[0]
+                                cell.secondIV.image = playerImages[1]
+                                cell.thirdIV.image = playerImages[2]
+                                cell.fourthIV.image = playerImages[3]
                             }
                             break
                         }
@@ -100,7 +100,6 @@ extension AvailableGamesViewController {
             }
         }
         else {
-            DisplayAlert.display(controller: self, title: "Error loading Available Games Table View Cell", message: "")
             return UITableViewCell()
         }
         

@@ -10,10 +10,10 @@ import UIKit
 
 class AvailableGamesNoImageCell: UITableViewCell {
 
-    @IBOutlet weak var topLeftIV: UIImageView!
-    @IBOutlet weak var topRightIV: UIImageView!
-    @IBOutlet weak var bottomLeftIV: UIImageView!
-    @IBOutlet weak var bottomRightIV: UIImageView!
+    @IBOutlet weak var firstIV: UIImageView!
+    @IBOutlet weak var secondIV: UIImageView!
+    @IBOutlet weak var thirdIV: UIImageView!
+    @IBOutlet weak var fourthIV: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     

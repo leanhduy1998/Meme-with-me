@@ -95,10 +95,10 @@ class InGameHelper{
                             let cardCeasar = CardCeasar(cardPic: imageData, playerId: judgingId, round: 0, cardPicUrl: roundImageUrl, context: GameStack.sharedInstance.stack.context)
                             round.cardceasar = cardCeasar
                             game.addToRounds(round)
-                                
-                            GameStack.sharedInstance.saveContext {
+                            
+                            GameStack.sharedInstance.saveContext(completeHandler: {
                                 completionHandler(game, leaderId, judgingId)
-                            }
+                            })
                         }
                     })
                 }

@@ -169,24 +169,8 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Mememe/InGameObservers.swift"
-            timestampString = "529919511.840159"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "182"
-            endingLineNumber = "182"
-            landmarkName = "addOtherGameDataChangedObserver()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "Mememe/InGameScrollViews.swift"
-            timestampString = "529675844.780871"
+            timestampString = "530062428.891028"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "197"
@@ -218,7 +202,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Mememe/InGameSwitchingRound.swift"
-            timestampString = "529919511.840433"
+            timestampString = "530062709.080892"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "107"
@@ -233,13 +217,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Mememe/PreviousGamesTableViewController.swift"
-            timestampString = "529919511.840605"
+            filePath = "Mememe/PreviewInGameViewController.swift"
+            timestampString = "530062428.891432"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "76"
-            endingLineNumber = "76"
-            landmarkName = "viewWillAppear(_:)"
+            startingLineNumber = "86"
+            endingLineNumber = "86"
+            landmarkName = "reloadPreviewCards()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

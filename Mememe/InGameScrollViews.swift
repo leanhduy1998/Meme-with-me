@@ -22,7 +22,7 @@ extension InGameViewController {
         
         var counter = 0
         for player in playersInGame{
-            var userCoreData = Player()
+            var userCoreData: Player!
             
             for pCore in (game.players?.allObjects as? [Player])! {
                 if(pCore.playerId == player.userId){

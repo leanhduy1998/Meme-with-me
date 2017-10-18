@@ -131,13 +131,13 @@ extension InGameViewController{
                 
                 self.game.addToRounds(nextRound)
                 
-                GameStack.sharedInstance.saveContext {
+                GameStack.sharedInstance.saveContext(completeHandler: {
                     DispatchQueue.main.async {
                         self.reloadPreviewCards()
                         self.reloadCurrentPlayersIcon()
                         self.checkIfYourAreJudge()
                     }
-                }
+                })
             }
         })
     }

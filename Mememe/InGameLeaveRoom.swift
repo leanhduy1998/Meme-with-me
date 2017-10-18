@@ -14,7 +14,7 @@ extension InGameViewController{
         backgroundPlayer.stop()
         removeAllInGameObservers()
         chatHelper.removeChatObserver()
-        if(playersInGame.count == 1){
+        if(playersInGame.count <= 1){
             InGameHelper.removeYourInGameRoom()
             self.chatHelper.removeChatRoom(id: game.gameId!)
             self.performSegue(withIdentifier: "unwindToAvailableGamesViewController", sender: self)

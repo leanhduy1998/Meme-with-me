@@ -62,8 +62,17 @@ class PreviewInGameViewController: UIViewController {
             nextRoundBtn.isEnabled = true
         }
         if(currentRound == ((game.rounds?.count)!-1)){
-            previousRoundBtn.isEnabled = true
+            if(currentRound == 0){
+                previousRoundBtn.isEnabled = false
+            }
+            else{
+                previousRoundBtn.isEnabled = true
+            }
             nextRoundBtn.isEnabled = false
+        }
+        if(currentRound > 0 && currentRound < ((game.rounds?.count)!-1)){
+            previousRoundBtn.isEnabled = true
+            nextRoundBtn.isEnabled = true
         }
     }
     

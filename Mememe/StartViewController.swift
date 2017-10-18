@@ -57,6 +57,15 @@ class StartViewController: UIViewController,UIGestureRecognizerDelegate, AWSSign
             leftNotificationLabel.text = "\(Int(fetchedObjects![0].laughes))"
             rightNotificationLabel.text = "\(Int(fetchedObjects![0].madeCeasar))"
         }
+      
+        /*
+        do{
+            try GameStack.sharedInstance.stack.dropAllData()
+        }
+        catch{
+            
+        }*/
+        
     }
     
     func onLogin(signInProvider: AWSSignInProvider, result: Any?, authState: AWSIdentityManagerAuthState, error: Error?) {
