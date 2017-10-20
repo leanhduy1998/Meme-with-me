@@ -132,7 +132,7 @@ extension StartViewController {
         ceasarIconConstraintArr.append(NSLayoutConstraint(item: ceasarIcon, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .width, multiplier: 1, constant: iconWidth))
         NSLayoutConstraint.activate(ceasarIconConstraintArr)
         
-        ceasarIcon = CircleImageCutter.getCircleImageView(imageview: ceasarIcon)
+        ceasarIcon.image = CircleImageCutter.getRoundEdgeImage(image: ceasarIcon.image!, radius: 5)
     }
     
     private func setupLaughingIcon(){

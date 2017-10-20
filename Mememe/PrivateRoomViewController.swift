@@ -29,9 +29,10 @@ class PrivateRoomViewController: UIViewController,UITableViewDelegate, UITableVi
     let chatHelper = ChatHelper()
     
     var userInRoom = [PlayerData]()
+    var userImagesDic = [String:Data]()
+    
     var leaderId: String!
     
-    var userImages = [String:UIImage]()
     
     let helper = UserFilesHelper()
     
@@ -141,6 +142,7 @@ class PrivateRoomViewController: UIViewController,UITableViewDelegate, UITableVi
                             self.userInRoom.remove(at: count)
 
                             self.tableview.deleteRows(at: [IndexPath(row: count, section: 0)], with: UITableViewRowAnimation.right)
+                            self.userImagesDic.removeValue(forKey: playerId)
                             break
                         }
                         count = count + 1
@@ -211,6 +213,7 @@ class PrivateRoomViewController: UIViewController,UITableViewDelegate, UITableVi
         if let destination = segue.destination as? InGameViewController {
             destination.playersInGame = userInRoom
             destination.leaderId = leaderId
+            destination.userImagesDic = userImagesDic
             
             inGameRef.removeAllObservers()
             availableRoomRef.removeAllObservers()

@@ -53,6 +53,7 @@ class InGameViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var game : Game!
     var myCardInserted = false
     var userWhoWon = ""
+    var userImagesDic: [String:Data]!
     
     //preview scroll
     var cardDictionary = [String : CardView]()
@@ -92,20 +93,15 @@ class InGameViewController: UIViewController, UITableViewDelegate, UITableViewDa
             })
         }
         else {
-            InGameHelper.getBeginingGameFromFirB(leaderId: leaderId, completionHandler: { (game, leaderId, judgingId) in
-                DispatchQueue.main.async {
-                    self.playerJudging = judgingId
-                    self.leaderId = leaderId
-                    self.game = game
-                    
-                    
+            getBeginingGameFromFirB(completionHandler: { () in
+                DispatchQueue.main.async {                    
                     self.reloadCurrentPlayersIcon()
                     self.reloadPreviewCards()
-     
+                    
                     self.addObserverForCardNormals()
                     self.checkIfYourAreJudge()
                     
-                    self.chatHelper.id = game.gameId
+                    self.chatHelper.id = self.game.gameId
                     self.chatHelper.initializeChatObserver(controller: self)
                     
                     MememeDynamoDB.insertGameWithCompletionHandler(game: self.game, { (gameModel, error) in

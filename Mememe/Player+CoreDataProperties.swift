@@ -2,7 +2,7 @@
 //  Player+CoreDataProperties.swift
 //  
 //
-//  Created by Duy Le on 10/14/17.
+//  Created by Duy Le on 10/20/17.
 //
 //
 
@@ -18,7 +18,7 @@ extension Player {
 
     @NSManaged public var name: String?
     @NSManaged public var playerId: String?
-    @NSManaged public var userImageData: NSData?
+    @NSManaged public var imageStorageLocation: String?
     @NSManaged public var game: Game?
 
 }

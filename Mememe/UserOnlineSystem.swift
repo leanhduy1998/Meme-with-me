@@ -49,7 +49,9 @@ class UserOnlineSystem {
         })
     }
     static func goOffline(){
-        userOnlineStatusRef.child(MyPlayerData.id).removeValue()
+        if(MyPlayerData.id != nil){
+            userOnlineStatusRef.child(MyPlayerData.id).removeValue()
+        }
         timer.invalidate()
     }
 }

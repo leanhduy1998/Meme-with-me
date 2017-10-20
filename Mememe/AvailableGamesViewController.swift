@@ -25,12 +25,21 @@ class AvailableGamesViewController: UIViewController, UITableViewDelegate, UITab
     
     var backgroundPlayer: AVAudioPlayer!
     
-    
+    private let refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
         UserOnlineSystem.updateUserOnlineStatus()
         tableview.reloadData()
         backgroundPlayer = SoundPlayerHelper.getAudioPlayer(songName: "availableRoomMusic", loop: true)
+        if #available(iOS 10.0, *) {
+            tableview.refreshControl = refreshControl
+        } else {
+            tableview.addSubview(refreshControl)
+        }
+        refreshControl.addTarget(self, action: #selector(pulledRefreshedControl(_:)), for: .valueChanged)
+    }
+    func pulledRefreshedControl(_ sender: Any){
+        updateOpenRoomValue()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -87,7 +96,8 @@ class AvailableGamesViewController: UIViewController, UITableViewDelegate, UITab
                     }
                     count = count + 1
                 }
-                self.tableview.reloadSections(NSIndexSet(index: self.openRooms.count-1) as IndexSet, with: UITableViewRowAnimation.right)
+                self.tableview.reloadRows(at: [IndexPath(item: self.openRooms.count-1, section: 0)], with: UITableViewRowAnimation.right)
+           //     self.tableview.reloadSections(NSIndexSet(index: self.openRooms.count-1) as IndexSet, with: UITableViewRowAnimation.right)
             }
         })
         
@@ -120,7 +130,10 @@ class AvailableGamesViewController: UIViewController, UITableViewDelegate, UITab
                     let room = AvailableRoomHelper.transferValueFromMapToRoom(leaderId: leaderId, map: value as! [String : AnyObject])
                     
                     UserOnlineSystem.getUserOnlineStatus(userId: room.leaderId!, completionHandler: { (isUserOnline) in
-                        self.appendRoomIfRoomIsOpen(isUserOnline: isUserOnline, room: room)
+                        DispatchQueue.main.async {
+                            self.appendRoomIfRoomIsOpen(isUserOnline: isUserOnline, room: room)
+                            self.refreshControl.endRefreshing()
+                        }
                     })
                 }
             }
@@ -130,7 +143,7 @@ class AvailableGamesViewController: UIViewController, UITableViewDelegate, UITab
     func appendRoomIfRoomIsOpen(isUserOnline: Bool, room: AvailableRoomFirBModel){
         if isUserOnline{
             var exist = false
-            for r in self.openRooms {
+            for r in openRooms {
                 if r.leaderId == room.leaderId {
                     exist = true
                     break
@@ -140,8 +153,8 @@ class AvailableGamesViewController: UIViewController, UITableViewDelegate, UITab
                 }
             }
             if exist == false {
-                self.openRooms.append(room)
-                self.tableview.insertRows(at: [IndexPath(row: openRooms.count-1, section: 0)], with: UITableViewRowAnimation.left)
+                openRooms.append(room)
+                tableview.insertRows(at: [IndexPath(row: openRooms.count-1, section: 0)], with: UITableViewRowAnimation.left)
             }
         }
     }

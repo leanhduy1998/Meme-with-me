@@ -76,13 +76,20 @@ extension PrivateRoomViewController {
         else {
             var cell = tableView.dequeueReusableCell(withIdentifier: "PrivateRoomTableCell") as? PrivateRoomTableCell
             cell = CellAnimator.add(cell: cell!)
-  
-            helper.loadUserProfilePicture(userId: userInRoom[indexPath.row].userId) { (imageData) in
-                DispatchQueue.main.async {
-                    cell?.imageview.image = UIImage(data: imageData)
+            
+            if(userImagesDic[userInRoom[indexPath.row].userId] != nil){
+                cell?.imageview.image = UIImage(data: userImagesDic[userInRoom[indexPath.row].userId]!)
+            }
+            else{
+                helper.loadUserProfilePicture(userId: userInRoom[indexPath.row].userId) { (imageData) in
+                    DispatchQueue.main.async {
+                        cell?.imageview.image = UIImage(data: imageData)
+                        self.userImagesDic[self.userInRoom[indexPath.row].userId] = imageData
+                    }
                 }
             }
-           
+            
+
             cell?.nameLabel.text = userInRoom[indexPath.row].userName
             
             return cell!

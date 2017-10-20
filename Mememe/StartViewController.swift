@@ -58,13 +58,13 @@ class StartViewController: UIViewController,UIGestureRecognizerDelegate, AWSSign
             rightNotificationLabel.text = "\(Int(fetchedObjects![0].madeCeasar))"
         }
       
-        /*
-        do{
-            try GameStack.sharedInstance.stack.dropAllData()
+        GameStack.sharedInstance.initializeFetchedResultsController()
+        let deleteItems = GameStack.sharedInstance.fetchedResultsController.fetchedObjects
+        
+        
+        for item in deleteItems!{
+            GameStack.sharedInstance.stack.context.delete(item as! NSManagedObject)
         }
-        catch{
-            
-        }*/
         
     }
     

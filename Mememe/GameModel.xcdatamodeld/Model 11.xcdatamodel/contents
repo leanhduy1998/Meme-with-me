@@ -29,9 +29,9 @@
         <attribute name="madeCeasar" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <entity name="Player" representedClassName="Player" syncable="YES">
+        <attribute name="imageStorageLocation" attributeType="String" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
         <attribute name="playerId" attributeType="String" syncable="YES"/>
-        <attribute name="userImageData" optional="YES" attributeType="Binary" syncable="YES"/>
         <relationship name="game" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Game" inverseName="players" inverseEntity="Game" syncable="YES"/>
     </entity>
     <entity name="PlayerLove" representedClassName="PlayerLove" syncable="YES">

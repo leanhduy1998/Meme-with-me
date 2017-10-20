@@ -38,6 +38,9 @@ class GetGameData {
                 let dFormatter = DateFormatter()
                 dFormatter.dateFormat = "EEE, dd MMM yyyy HH:mm:ss z"
                 let serverTime = dFormatter.date(from: contentType)
+                if serverTime == nil{
+                    completionHandler(Date())
+                }
                 completionHandler(serverTime)
             }
         }
