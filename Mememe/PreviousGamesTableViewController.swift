@@ -1,3 +1,4 @@
+
 //
 //  PreviousGamesTableViewController.swift
 //  Mememe
@@ -21,21 +22,12 @@ class PreviousGamesTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        
-        
-        refreshData()
-    }
-    
-    // the flow of data is first dynamodb, then coredata
-    func refreshData(){
         if(Reachability.isConnectedToNetwork()){
-            addDynamoDBDataToGames()
+             addDynamoDBDataToGames()
         }
         else{
-            addCoreDataToGames()
+             addCoreDataToGames()
         }
-        
-        
     }
     
     private func addDynamoDBDataToGames(){
@@ -54,49 +46,49 @@ class PreviousGamesTableViewController: UITableViewController {
             DispatchQueue.main.async {
                 let gameModels = result?.items as? [MememeDBObjectModel]
                 
-                var modelCount = 0
                 for model in gameModels!{
                     let game = GameDataFromJSON.getGameFromJSON(model: model)
                     
                     var playersImages = [UIImage]()
                         
                     let players = game.players?.allObjects as? [Player]
+                    
                     var count = 0
-                    
-                    self.gamesStorageLocation[game.gameId!] = "dynamodb"
-                    
                     for player in players!{
-                        var image: UIImage!
-                        print(player.userImageData==nil)
-                     //   if(player.userImageData == nil){
-                          
-                    //    }
-                            /*
-                        else{
-                            image = UIImage(data: player.userImageData as! Data)
-                            var newImage:UIImage!
-                            let emptyCell = AvailableGamesNoImageCell()
+                        let image = FileManagerHelper.getImageFromMemory(imagePath: player.imageStorageLocation!)
+                        /*var newImage:UIImage!
+                        let emptyCell = AvailableGamesNoImageCell()
                                 
-                            let size = CGSize(width: emptyCell.firstIV.frame.width, height: emptyCell.firstIV.frame.height)
-                            UIGraphicsBeginImageContextWithOptions(size, true, 0)
-                            image?.draw(in: CGRect(x:0,y:0,width:size.width, height:size.height))
-                            newImage = UIGraphicsGetImageFromCurrentImageContext()!
-                            UIGraphicsEndImageContext()
+                        let size = CGSize(width: emptyCell.firstIV.frame.width, height: emptyCell.firstIV.frame.height)
+                        UIGraphicsBeginImageContextWithOptions(size, true, 0)
+                        image.draw(in: CGRect(x:0,y:0,width:size.width, height:size.height))
+                        newImage = UIGraphicsGetImageFromCurrentImageContext()!
+                        UIGraphicsEndImageContext()*/
                                 
-                            var found = false
-                            for i in playersImages{
-                                if(i == newImage){
-                                    found = true
-                                }
+                        var found = false
+                        for i in playersImages{
+                            if(i == image){
+                                found = true
+                                self.view.backgroundColor = UIColor(patternImage: image)
                             }
-                            if(!found){
-                                playersImages.append(newImage)
+                        }
+                        if(!found){
+                            playersImages.append(image)
+                            self.view.backgroundColor = UIColor(patternImage: image)
+                        }
+                        self.playerImagesInGameDic[game.gameId!] = playersImages
+                        
+                        if(count == (players?.count)!-1){
+                            if(self.gamesStorageLocation[game.gameId!] == nil){
+                                self.games.append(game)
                             }
-                            self.playerImagesInGameDic[game.gameId!] = playersImages
-                            modelCount = modelCount + 1
-                        }*/
+                            self.gamesStorageLocation[game.gameId!] = "dynamodb"
+                        }
+                        
+                        count = count + 1
                     }
                 }
+                self.tableView.reloadData()
             }
         }
 
@@ -114,14 +106,7 @@ class PreviousGamesTableViewController: UITableViewController {
                 
                 var playersImages = [UIImage]()
                 for player in (object.players?.allObjects as? [Player])! {
-                    var image:UIImage!
-                    if(player.userImageData == nil){
-                        image = UIImage()
-                    }
-                    else{
-                        image = UIImage(data: player.userImageData! as Data)!
-                    }
-                
+                    let image = FileManagerHelper.getImageFromMemory(imagePath: player.imageStorageLocation!)
                     playersImages.append(image)
                 }
                 playerImagesInGameDic[object.gameId!] = playersImages
@@ -136,17 +121,14 @@ class PreviousGamesTableViewController: UITableViewController {
             return game1.createdDate! as Date > game2.createdDate! as Date
         }
         
+        if games.count == 0{
+            return
+        }
+        
         for x in 0...(games.count-1){
             if(games[x] != oldGames[x]){
-                if(x >= tableView.numberOfRows(inSection: 0)){
-                    self.tableView.insertRows(at: [IndexPath(row: x, section: 0)], with: UITableViewRowAnimation.left)
-                    
-                }
-                else{
-               //     print(tableView.cellForRow(at: IndexPath(row: x, section: 0)))
-               //     tableView.reloadSections(NSIndexSet(index: x) as IndexSet, with: UITableViewRowAnimation.right)
-                    tableView.reloadRows(at: [IndexPath(item: x, section: 0)], with: UITableViewRowAnimation.right)
-                }
+                tableView.reloadData()
+                break
             }
         }
     }
@@ -179,25 +161,6 @@ class PreviousGamesTableViewController: UITableViewController {
             
             cell.downloadBtn.addTarget(self, action: #selector(downloadBtnPressed), for: .touchUpInside)
             
-       /*     if(playerImagesInGameDic[game.gameId!] == nil){
-                for player in (game.players?.allObjects as? [Player])!{
-                    playerImagesInGameDic[game.gameId!] = [UIImage]()
-                    
-                    let image = UIImage(data: player.userImageData! as Data)!
-                    
-                    var found = false
-                    for i in playersImages{
-                        if(image == i){
-                            found = true
-                        }
-                    }
-                    if !found {
-                        playersImages.append(image)
-                    }
-                    
-                    playerImagesInGameDic[game.gameId!]?.append(UIImage())
-                }
-            }*/
             playersImages = playerImagesInGameDic[game.gameId!]!
         }
         

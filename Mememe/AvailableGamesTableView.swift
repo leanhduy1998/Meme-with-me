@@ -120,7 +120,7 @@ extension AvailableGamesViewController {
                         
                         UIView.animate(withDuration: 1, animations: {
                             tableView.backgroundColor = UIColor.black
-                            tableView.visibleCells[indexPath.row].frame.origin.x = self.view.frame.midX 
+                            //tableView.visibleCells[indexPath.row].frame.origin.x = self.view.frame.midX 
                             tableView.visibleCells[indexPath.row].frame.origin.y = self.view.frame.midY - tableView.visibleCells[indexPath.row].frame.height
                             tableView.visibleCells[indexPath.row].transform = CGAffineTransform(scaleX: 2, y: 2)
                             self.tabBarController?.tabBar.barTintColor = UIColor.black

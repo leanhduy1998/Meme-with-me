@@ -73,6 +73,7 @@
 		244F7C011F8EC31E00865BB3 /* StartTut.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244F7C001F8EC31E00865BB3 /* StartTut.swift */; };
 		245031E91F99AD05009060D2 /* Player+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245031E71F99AD05009060D2 /* Player+CoreDataClass.swift */; };
 		245031EA1F99AD05009060D2 /* Player+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245031E81F99AD05009060D2 /* Player+CoreDataProperties.swift */; };
+		245031EC1F99AE0F009060D2 /* FileManagerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245031EB1F99AE0F009060D2 /* FileManagerHelper.swift */; };
 		245B2B141F4F685500BCF75A /* GameDataFromJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245B2B131F4F685500BCF75A /* GameDataFromJSON.swift */; };
 		245B2B1F1F50F9D100BCF75A /* PrivateRoomTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245B2B1E1F50F9D100BCF75A /* PrivateRoomTableView.swift */; };
 		245B2B221F50FB2D00BCF75A /* PrivateRoomTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245B2B211F50FB2D00BCF75A /* PrivateRoomTableCell.swift */; };
@@ -272,6 +273,7 @@
 		244F7C001F8EC31E00865BB3 /* StartTut.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartTut.swift; sourceTree = "<group>"; };
 		245031E71F99AD05009060D2 /* Player+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Player+CoreDataClass.swift"; sourceTree = "<group>"; };
 		245031E81F99AD05009060D2 /* Player+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Player+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		245031EB1F99AE0F009060D2 /* FileManagerHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerHelper.swift; sourceTree = "<group>"; };
 		245B2B131F4F685500BCF75A /* GameDataFromJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameDataFromJSON.swift; sourceTree = "<group>"; };
 		245B2B1E1F50F9D100BCF75A /* PrivateRoomTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivateRoomTableView.swift; sourceTree = "<group>"; };
 		245B2B211F50FB2D00BCF75A /* PrivateRoomTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivateRoomTableCell.swift; sourceTree = "<group>"; };
@@ -700,6 +702,7 @@
 				247A34A31F870F4700E2C9E0 /* SoundPlayerHelper.swift */,
 				247A55C61F7F350A004D1701 /* ChatHelper.swift */,
 				241251271F994E010040AF40 /* Reachability.swift */,
+				245031EB1F99AE0F009060D2 /* FileManagerHelper.swift */,
 			);
 			name = Helper;
 			sourceTree = "<group>";
@@ -1344,6 +1347,7 @@
 				241C6E651F58983B00756BA7 /* SignUpViewController.swift in Sources */,
 				240E6B6D1F90DC1E000B28D0 /* WinCounter+CoreDataProperties.swift in Sources */,
 				24BE6F011F8FE8C00022B981 /* PreviewInGameViewController.swift in Sources */,
+				245031EC1F99AE0F009060D2 /* FileManagerHelper.swift in Sources */,
 				247A55C91F7F3EE3004D1701 /* ChatModel.swift in Sources */,
 				241251281F994E010040AF40 /* Reachability.swift in Sources */,
 				247A55C71F7F350A004D1701 /* ChatHelper.swift in Sources */,

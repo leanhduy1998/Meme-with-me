@@ -25,18 +25,8 @@ extension PreviewInGameViewController{
         let imageview = UIImageView()
         imageview.frame = CGRect(x: frame.maxX - self.cardHeight/20, y: frame.minY, width: self.cardHeight/10, height: self.cardHeight/10)
         
-        
-        if(player.userImageData == nil){
-            let helper = UserFilesHelper()
-            helper.loadUserProfilePicture(userId: player.playerId!, completeHandler: { (userImageData) in
-                imageview.image = UIImage(data: userImageData as! Data)
-                completeHandler(imageview)
-            })
-        }
-        else{
-            imageview.image = UIImage(data: player.userImageData as! Data)
-            completeHandler(imageview)
-        }
+        imageview.image = FileManagerHelper.getImageFromMemory(imagePath: player.imageStorageLocation!)
+        completeHandler(imageview)
     }
     func getBorderForWinningCard() -> UIImageView{
         let borderImage = #imageLiteral(resourceName: "border")

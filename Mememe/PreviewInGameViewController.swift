@@ -235,7 +235,7 @@ class PreviewInGameViewController: UIViewController {
             userIconIV.bringSubview(toFront: redDotIV)
             
             
-            let image = UIImage(data: player.userImageData as! Data)!
+            let image = FileManagerHelper.getImageFromMemory(imagePath: player.imageStorageLocation!)
             userIconIV.image = CircleImageCutter.getRoundEdgeImage(image: image, radius: Float(self.iconSize))
             
             self.currentPlayersScrollView.addSubview(userIconIV)

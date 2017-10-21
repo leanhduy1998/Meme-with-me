@@ -53,7 +53,7 @@ class InGameViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var game : Game!
     var myCardInserted = false
     var userWhoWon = ""
-    var userImagesDic: [String:Data]!
+    var userImagesDic: [String:UIImage]!
     
     //preview scroll
     var cardDictionary = [String : CardView]()

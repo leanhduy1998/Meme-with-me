@@ -78,13 +78,26 @@ extension PrivateRoomViewController {
             cell = CellAnimator.add(cell: cell!)
             
             if(userImagesDic[userInRoom[indexPath.row].userId] != nil){
-                cell?.imageview.image = UIImage(data: userImagesDic[userInRoom[indexPath.row].userId]!)
+                cell?.imageview.image = userImagesDic[userInRoom[indexPath.row].userId]!
             }
             else{
                 helper.loadUserProfilePicture(userId: userInRoom[indexPath.row].userId) { (imageData) in
                     DispatchQueue.main.async {
-                        cell?.imageview.image = UIImage(data: imageData)
-                        self.userImagesDic[self.userInRoom[indexPath.row].userId] = imageData
+                        var image = UIImage(data: imageData)
+                        
+                        var newImage:UIImage
+                        let size = CGSize(width: 128, height: 128)
+                        UIGraphicsBeginImageContextWithOptions(size, true, 0);
+                        image?.draw(in: CGRect(x:0,y:0,width:size.width, height:size.height))
+                        newImage = UIGraphicsGetImageFromCurrentImageContext()!;
+                        UIGraphicsEndImageContext()
+                        
+                        image = newImage
+                        
+                        cell?.imageview.image = image
+                        if indexPath.row > (self.userInRoom.count-1){
+                            self.userImagesDic[self.userInRoom[indexPath.row].userId] = image
+                        }
                     }
                 }
             }

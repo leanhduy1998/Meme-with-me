@@ -19,8 +19,17 @@ extension InGameViewController {
                 self.game = Game(createdDate: date, gameId: self.leaderId + "\(currentTimeInt)", context: GameStack.sharedInstance.stack.context)
                 
                 for player in self.playersInGame {
-                    let data = self.userImagesDic[player.userId]
-                    let playerCore = Player(playerName: player.userName, playerId: player.userId!, userImageData: data!, context: GameStack.sharedInstance.stack.context)
+                    let image = self.userImagesDic[player.userId]
+                    
+                    // original playerId have us-east-1/ before it, making it hard to store the images
+                    var playerIdForStorage = player.userId!
+                    
+                    let index = playerIdForStorage.index(playerIdForStorage.startIndex, offsetBy: 10)
+                    playerIdForStorage = playerIdForStorage.substring(from: index)
+                    
+                    let imagePath = FileManagerHelper.insertImageIntoMemory(imageName: playerIdForStorage, image: image!)
+                    
+                    let playerCore = Player(playerName: player.userName, playerId: player.userId!, userImageLocation: imagePath, context: GameStack.sharedInstance.stack.context)
             
                     self.game.addToPlayers(playerCore)
                     
@@ -34,9 +43,11 @@ extension InGameViewController {
                 helper.getRandomMemeData(completeHandler: { (memeData, memeUrl) in
                     DispatchQueue.main.async {
 
-                        self.playerJudging = self.self.playersInGame[0].userId
+                        self.playerJudging = self.playersInGame[0].userId
                         
-                        let ceasarCard = CardCeasar(cardPic: memeData, playerId: self.playerJudging, round: Int(round.roundNum), cardPicUrl: memeUrl, context: GameStack.sharedInstance.stack.context)
+                        let filePath = FileManagerHelper.insertImageIntoMemory(imageName: "\(self.game.gameId!) round \(Int(round.roundNum))", image: UIImage(data: memeData)!)
+                        
+                        let ceasarCard = CardCeasar(cardPic: memeData, playerId: self.playerJudging, round: Int(round.roundNum), cardPicUrl: filePath, context: GameStack.sharedInstance.stack.context)
                         
                         round.cardceasar = ceasarCard
                         self.game.addToRounds(round)
@@ -99,9 +110,32 @@ extension InGameViewController {
                             let players = value as? [String : AnyObject] ?? [:]
                             
                             for (playerId,playerStats) in players {
+                                var image = self.userImagesDic[playerId]
+                                
                                 let player = conversion.getPlayerFromDictionary(playerId: playerId, playerData: playerStats as! [String : Any])
-                                let data = self.userImagesDic[playerId]
-                                player.userImageData = data as! NSData
+                                
+                                if(image == nil){
+                                    image = UIImage()
+                                    let helper = UserFilesHelper()
+                                    helper.loadUserProfilePicture(userId: playerId, completeHandler: { (imageData) in
+                                        DispatchQueue.main.async {
+                                            let image = UIImage(data: imageData)
+                                            self.userImagesDic[playerId] = image
+                                            self.reloadCurrentPlayersIcon()
+                                        }
+                                        
+                                    })
+                                }
+                                
+                                // original playerId have us-east-1/ before it, making it hard to store the images
+                                var playerIdForStorage = playerId
+                                
+                                let index = playerIdForStorage.index(playerIdForStorage.startIndex, offsetBy: 10)
+                                playerIdForStorage = playerIdForStorage.substring(from: index)
+                                
+                                let filePath = FileManagerHelper.insertImageIntoMemory(imageName: playerIdForStorage, image: image!)
+                                
+                                player.imageStorageLocation = filePath
                                 
                                 self.game.addToPlayers(player)
                                 
@@ -126,9 +160,12 @@ extension InGameViewController {
                     
                     
                     let helper = UserFilesHelper()
-                    helper.getMemeData(memeUrl: roundImageUrl, completeHandler: { (imageData) in
+                    helper.getMemeData(memeUrl: roundImageUrl, completeHandler: { (memeData) in
                         DispatchQueue.main.async {
-                            let cardCeasar = CardCeasar(cardPic: imageData, playerId: self.playerJudging, round: 0, cardPicUrl: roundImageUrl, context: GameStack.sharedInstance.stack.context)
+                            let filePath = FileManagerHelper.insertImageIntoMemory(imageName: "\(self.game.gameId!) round \(Int(round.roundNum))", image: UIImage(data: memeData)!)
+                            
+            
+                            let cardCeasar = CardCeasar(cardPic: memeData, playerId: self.playerJudging, round: 0, cardPicUrl: filePath, context: GameStack.sharedInstance.stack.context)
                             round.cardceasar = cardCeasar
                             self.game.addToRounds(round)
                             

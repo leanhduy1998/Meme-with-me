@@ -61,25 +61,18 @@ extension InGameViewController {
             userIconIV.addSubview(redDotIV)
             userIconIV.bringSubview(toFront: redDotIV)
             
-                
-            let helper = UserFilesHelper()
-            helper.loadUserProfilePicture(userId: player.userId, completeHandler: { (imageData) in
-                DispatchQueue.main.async {
-                    let image = UIImage(data: imageData)!
-                    userIconIV.image = CircleImageCutter.getRoundEdgeImage(image: image, radius: Float(self.iconSize))
-                        
-                    self.currentPlayersScrollView.addSubview(userIconIV)
-                    self.currentPlayersScrollView.sendSubview(toBack: userIconIV)
-                        
-                    userCoreData.userImageData = imageData as NSData
-                    
-                    if userCoreData.playerId == self.userWhoWon {
-                        self.borderForUserIconIV = self.getBorderIVForIcon(iconSize: self.iconSize)
-                        userIconIV.addSubview(self.borderForUserIconIV)
-                        userIconIV.bringSubview(toFront: self.borderForUserIconIV)
-                    }
-                }
-            })
+    
+            let image = userImagesDic[player.userId]
+            userIconIV.image = CircleImageCutter.getRoundEdgeImage(image: image!, radius: 5)
+            
+            currentPlayersScrollView.addSubview(userIconIV)
+            currentPlayersScrollView.sendSubview(toBack: userIconIV)
+            
+            if userCoreData.playerId == userWhoWon {
+                borderForUserIconIV = getBorderIVForIcon(iconSize: iconSize)
+                userIconIV.addSubview(borderForUserIconIV)
+                userIconIV.bringSubview(toFront: borderForUserIconIV)
+            }
             
             currentPlayersScrollView.bringSubview(toFront: borderForUserIconIV)
         }

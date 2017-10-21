@@ -33,6 +33,10 @@ class GetGameData {
         let url = URL(string: "https://www.google.com/")
         let task = URLSession.shared.dataTask(with: url!) {(data, response, error) in
             let httpResponse = response as? HTTPURLResponse
+            if(httpResponse == nil){
+                completionHandler(Date())
+            }
+            
             if let contentType = httpResponse!.allHeaderFields["Date"] as? String {
                 
                 let dFormatter = DateFormatter()

@@ -219,10 +219,10 @@ class InGameTutController: UIViewController, UITableViewDelegate, UITableViewDat
     func createBeginingData(){
         let date = Date()
         self.game = Game(createdDate: date, gameId: self.leaderId + "\(0)", context: GameStack.sharedInstance.stack.context)
-        
-        self.game.addToPlayers(Player(playerName: MyPlayerData.name, playerId: MyPlayerData.id, context: GameStack.sharedInstance.stack.context))
-        self.game.addToPlayers(Player(playerName: "bot1", playerId: "b1", context: GameStack.sharedInstance.stack.context))
-        self.game.addToPlayers(Player(playerName: "bot2", playerId: "b2", context: GameStack.sharedInstance.stack.context))
+    
+        self.game.addToPlayers(Player(playerName: MyPlayerData.name, playerId: MyPlayerData.id, userImageLocation: "", context: GameStack.sharedInstance.stack.context))
+        self.game.addToPlayers(Player(playerName: "bot1", playerId: "b1", userImageLocation: "", context: GameStack.sharedInstance.stack.context))
+        self.game.addToPlayers(Player(playerName: "bot2", playerId: "b2", userImageLocation: "", context: GameStack.sharedInstance.stack.context))
         
         
         let round = Round(roundNum: 0, context: GameStack.sharedInstance.stack.context)

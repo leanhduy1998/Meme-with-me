@@ -16,7 +16,7 @@ public class Player: NSManagedObject {
             self.init(entity: ent, insertInto: context)
             self.playerId = playerId
             self.name = playerName
-            self.userImageLocation = userImageLocation
+            self.imageStorageLocation = userImageLocation
         }
         else {
             fatalError("unable to find Player Entity name")

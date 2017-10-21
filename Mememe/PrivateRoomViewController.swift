@@ -29,7 +29,7 @@ class PrivateRoomViewController: UIViewController,UITableViewDelegate, UITableVi
     let chatHelper = ChatHelper()
     
     var userInRoom = [PlayerData]()
-    var userImagesDic = [String:Data]()
+    var userImagesDic = [String:UIImage]()
     
     var leaderId: String!
     
@@ -73,8 +73,28 @@ class PrivateRoomViewController: UIViewController,UITableViewDelegate, UITableVi
             AvailableRoomHelper.uploadEmptyRoomToFirB(leaderId: MyPlayerData.id, roomType: "private")
             
             let playerData = PlayerData(_userId: MyPlayerData.id, _userName: MyPlayerData.name)
-            userInRoom.append(playerData)
-            tableview.insertRows(at: [IndexPath(row: userInRoom.count-1, section: 0)], with: UITableViewRowAnimation.left)
+            
+            self.userInRoom.append(playerData)
+            self.tableview.insertRows(at: [IndexPath(row: self.userInRoom.count-1, section: 0)], with: UITableViewRowAnimation.left)
+            self.userImagesDic[MyPlayerData.id] = UIImage()
+            
+            self.helper.loadUserProfilePicture(userId: MyPlayerData.id) { (imageData) in
+                DispatchQueue.main.async {
+                    var image = UIImage(data: imageData)
+                    
+                    var newImage:UIImage
+                    let size = CGSize(width: 128, height: 128)
+                    UIGraphicsBeginImageContextWithOptions(size, true, 0);
+                    image?.draw(in: CGRect(x:0,y:0,width:size.width, height:size.height))
+                    newImage = UIGraphicsGetImageFromCurrentImageContext()!;
+                    UIGraphicsEndImageContext()
+                    
+                    image = newImage
+                    
+                    self.userImagesDic[MyPlayerData.id] = image
+                    self.tableview.reloadRows(at: [IndexPath(row: 0, section: 0)], with: UITableViewRowAnimation.left)
+                }
+            }
         }
         else {
             AvailableRoomHelper.insertYourselfIntoSomeoneRoom(leaderId: leaderId)
@@ -116,17 +136,21 @@ class PrivateRoomViewController: UIViewController,UITableViewDelegate, UITableVi
                 if !exist {
                     let newData = PlayerData(_userId: playerId, _userName: playerName!)
                     self.userInRoom.append(newData)
-                    self.tableview.insertRows(at: [IndexPath(row: self.userInRoom.count-1, section: 0)], with: UITableViewRowAnimation.left)
+                    self.helper.loadUserProfilePicture(userId: playerId) { (imageData) in
+                        DispatchQueue.main.async {
+                            let image = UIImage(data: imageData)
+                            self.userImagesDic[playerId] = image
+                            
+                            if(self.userImagesDic.count == self.userInRoom.count && self.userInRoom.count > 1){
+                                self.startBtn.isEnabled = true
+                            }
+                            self.tableview.reloadData()
+                        }
+                    }
+                    
                 }
             
                 self.startBtn.isEnabled = false
-                
-                DispatchQueue.main.asyncAfter(deadline: .now() + 3.0, execute: {
-                    if self.userInRoom.count > 1 {
-                        self.startBtn.isEnabled = true
-                    }
-                    
-                })
             }
         })
         
@@ -162,6 +186,7 @@ class PrivateRoomViewController: UIViewController,UITableViewDelegate, UITableVi
             }
         })
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         InGameHelper.removeYourLeaderInGameRoom(leaderId: leaderId)
@@ -208,8 +233,11 @@ class PrivateRoomViewController: UIViewController,UITableViewDelegate, UITableVi
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         unsubscribeFromKeyboardNotifications()
-        backgroundPlayer.stop()
-        backgroundPlayer = nil
+        if(backgroundPlayer != nil){
+            backgroundPlayer.stop()
+            backgroundPlayer = nil
+        }
+        
         if let destination = segue.destination as? InGameViewController {
             destination.playersInGame = userInRoom
             destination.leaderId = leaderId

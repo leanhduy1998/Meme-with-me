@@ -52,8 +52,12 @@ class GameDataToJSON {
         var jsonDic = [String:Any]()
         
         let players = game.players?.allObjects as? [Player]
+        
         for player in players! {
-            jsonDic["\(player.playerId!)"] = player.name
+            var dic = [String:String]()
+            dic["name"] = player.name
+            dic["imageStorageLocation"] = player.imageStorageLocation
+            jsonDic["\(player.playerId!)"] = dic
         }
         return jsonDic
     }

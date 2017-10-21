@@ -136,6 +136,7 @@ extension InGameViewController{
                         self.reloadPreviewCards()
                         self.reloadCurrentPlayersIcon()
                         self.checkIfYourAreJudge()
+                        self.nextRoundStarting = false
                     }
                 })
             }

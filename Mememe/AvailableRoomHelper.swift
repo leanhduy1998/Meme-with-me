@@ -13,9 +13,6 @@ class AvailableRoomHelper {
     //private static let ref = Database.database().reference()
     private static let availableRoomRef = Database.database().reference().child("availableRoom")
     
-    private static var getRoomDataFromDBTimer = Timer()
-    
-    
     static func uploadEmptyRoomToFirB(leaderId: String, roomType: String){
         var onlyYouPlayerInRoom = [String:Any]()
         onlyYouPlayerInRoom[MyPlayerData.id] = MyPlayerData.name
@@ -26,12 +23,6 @@ class AvailableRoomHelper {
         
         availableRoomRef.child(room.leaderId!).setValue(value) { (err, reference) in
             if err == nil {
-                /*
-                 DispatchQueue.main.async {
-                 getRoomDataFromDBTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateRoomTimeTimer), userInfo: room.leaderId, repeats: true)
-                 getRoomDataFromDBTimer.fire()
-                 }
-                 */
             }
         }
     }

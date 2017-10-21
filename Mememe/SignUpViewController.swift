@@ -53,7 +53,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate{
         else {
             finishBtn.isEnabled = true
         }
-        
+    
         if currentUserImage != nil {
             userImageView.image = currentUserImage
         }

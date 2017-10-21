@@ -26,7 +26,7 @@ class GameDataFromJSON{
         let game = Game(createdDate: createdDate!, gameId: (json??["gameId"] as? String)!, context: GameStack.sharedInstance.stack.context)
         
         self.addRoundToGame(game: game, roundDic: (json??["rounds"] as? [String:Any])!)
-        self.addPlayersToGame(game: game, playersDic: (json??["players"] as? [String:String])!)
+        self.addPlayersToGame(game: game, playersDic: (json??["players"] as? [String:[String:String]])!)
         self.addWinCounterToGame(game: game, winCountDic: (json??["winCounter"] as? [String:Int])!)
         
         /*GameStack.sharedInstance.saveContext {
@@ -34,9 +34,20 @@ class GameDataFromJSON{
         }*/
         return game
     }
-    private static func addPlayersToGame(game: Game, playersDic: [String:String]){
-        for(playerId,playerName) in playersDic {
-            game.addToPlayers(Player(playerName: playerName, playerId: playerId, context: GameStack.sharedInstance.stack.context))
+    private static func addPlayersToGame(game: Game, playersDic: [String:[String:String]]){
+        for(playerId,playerDic2) in playersDic {
+            var name:String!
+            var imageLocation: String!
+            for(key,value) in playerDic2 {
+                if key == "name"{
+                    name = value
+                }
+                if key == "imageStorageLocation" {
+                    imageLocation = value
+                }
+            }
+
+            game.addToPlayers(Player(playerName: name, playerId: playerId, userImageLocation: imageLocation!, context: GameStack.sharedInstance.stack.context))
         }
     }
     
