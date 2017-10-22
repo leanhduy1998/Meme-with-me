@@ -126,6 +126,10 @@ class AvailableGamesViewController: UIViewController, UITableViewDelegate, UITab
                 self.openRooms.removeAll()
                 self.tableview.reloadData()
                 
+                if postDict.count == 0 {
+                    self.refreshControl.endRefreshing()
+                }
+                
                 for(leaderId,value) in postDict {
                     let room = AvailableRoomHelper.transferValueFromMapToRoom(leaderId: leaderId, map: value as! [String : AnyObject])
                     

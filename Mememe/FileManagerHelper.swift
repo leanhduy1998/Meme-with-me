@@ -11,39 +11,51 @@ import UIKit
 
 class FileManagerHelper{
     private static var fileManager: FileManager!
-    private static var documentsURL: URL!
-    private static var documentsPath: String!
+    private static var mememeURL: URL!
     
     private static func setup(){
         fileManager = FileManager.default
-        documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
-        documentsURL = documentsURL.appendingPathComponent("Mememe")
-        documentsPath = documentsURL.path
+        mememeURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
+        mememeURL = mememeURL.appendingPathComponent("Mememe")
         
-        if !fileManager.fileExists(atPath: documentsPath) {
+        createDirectory(directory: mememeURL.path)
+    }
+    private static func createDirectory(directory: String){
+        if !fileManager.fileExists(atPath: directory) {
             do{
-                try fileManager.createDirectory(atPath: documentsPath, withIntermediateDirectories: false, attributes: nil)
+                try fileManager.createDirectory(atPath: directory, withIntermediateDirectories: false, attributes: nil)
             }
             catch{
                 print(error.localizedDescription)
             }
         }
     }
-    static func insertImageIntoMemory(imageName: String, directory: String, image: UIImage) -> String{
+    static func insertImageIntoMemory(imageName: String, directory: [String], image: UIImage) -> String{
         if(fileManager == nil){
             setup()
         }
         
-        var filePath = documentsURL!
+        var directoryURL = mememeURL!
+        var filePath: URL!
+        var fileDirectoryString = ""
         
-        if(directory != ""){
-            filePath = documentsURL.appendingPathComponent(directory)
+        if(directory.count != 0){
+            for d in directory{
+                directoryURL = directoryURL.appendingPathComponent(d)
+                createDirectory(directory: directoryURL.path)
+                fileDirectoryString = "\(fileDirectoryString)/\(d)"
+            }
+            fileDirectoryString = "\(fileDirectoryString)/\(imageName).png"
         }
-        filePath = documentsURL.appendingPathComponent("\(imageName).png")
+        else{
+            fileDirectoryString = "\(imageName).png"
+        }
+        
+        filePath = directoryURL.appendingPathComponent("\(imageName).png")
         do{
-            let files = try fileManager.contentsOfDirectory(atPath: documentsPath)
+            let files = try fileManager.contentsOfDirectory(atPath: directoryURL.path)
             for file in files{
-                if "\(documentsPath)/\(file)" == filePath.path{
+                if "\(directoryURL.path)/\(file)" == filePath.path{
                     try fileManager.removeItem(atPath: filePath.path)
                 }
             }
@@ -52,8 +64,9 @@ class FileManagerHelper{
             print(error.localizedDescription)
         }
         do{
-            let compressedImage = UIImage(data: image.jpeg(UIImage.JPEGQuality.lowest)!)
-            if let pngImageData = UIImagePNGRepresentation(compressedImage!){
+           // let compressedImage = UIImageJPEGRepresentation(image, 1)
+            
+            if let pngImageData = UIImageJPEGRepresentation(image, 0.0){
                 try pngImageData.write(to: filePath, options: .atomic)
             }
         }
@@ -61,15 +74,33 @@ class FileManagerHelper{
             print(error.localizedDescription)
         }
         
-        return imageName
+        return fileDirectoryString
     }
     static func getImageFromMemory(imagePath: String) -> UIImage{
         if(fileManager == nil){
             setup()
         }
         
-        if fileManager.fileExists(atPath: imagePath){
-            if let contentsOfFilePath = UIImage(contentsOfFile: imagePath){
+        let path = mememeURL.appendingPathComponent(imagePath)
+        /*
+        do{
+            let files = try fileManager.contentsOfDirectory(atPath: mememeURL.path)
+            for file in files{
+                print("\(mememeURL.path)/\(file)")
+                print(path.path)
+                if "\(mememeURL.path)/\(file)" == path.path{
+                    if let contentsOfFilePath = UIImage(contentsOfFile: path.path){
+                        return contentsOfFilePath
+                    }
+                }
+            }
+        }
+        catch{
+            print(error.localizedDescription)
+        }*/
+        
+        if fileManager.fileExists(atPath: path.path){
+            if let contentsOfFilePath = UIImage(contentsOfFile: path.path){
                 return contentsOfFilePath
             }
         }

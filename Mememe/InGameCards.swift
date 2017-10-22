@@ -26,8 +26,9 @@ extension InGameViewController{
         return borderIV
     }
     func getMemeIV(image:UIImage) -> UIImageView {
-        let memeImageView = UIImageView(image: CircleImageCutter.getRoundEdgeImage(image: image, radius: 5))
+        var memeImageView = UIImageView(image: image)
         memeImageView.frame = CGRect(x: 0, y: 0, width: cardWidth, height: cardHeight)
+        memeImageView = CircleImageCutter.roundImageView(imageview: memeImageView, radius: 5)
         return memeImageView
     }
     func getHeartView(frame: CGRect, playerCard: CardNormal) -> HeartView{

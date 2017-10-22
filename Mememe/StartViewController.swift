@@ -120,7 +120,7 @@ class StartViewController: UIViewController,UIGestureRecognizerDelegate, AWSSign
                 
                 let playerIdForStorage = FileManagerHelper.getPlayerIdForStorage(playerId: MyPlayerData.id)
                 
-                let filePath = FileManagerHelper.insertImageIntoMemory(imageName: "\(playerIdForStorage) playerId", directory: "", image: UIImage(data: imageData)!)
+                let filePath = FileManagerHelper.insertImageIntoMemory(imageName: "\(playerIdForStorage)playerId", directory: [], image: UIImage(data: imageData)!)
                 
                 if(fetchedObjects?.count == 0){
                     let _ = MyCoreData(imageStorageLocation: filePath, laughes: Int((data?._laughes)!), madeCeasar: Int((data?._madeCeasar)!), context: self.myDataStack.stack.context)

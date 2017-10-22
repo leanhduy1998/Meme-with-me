@@ -79,7 +79,9 @@ class GameDataFromJSON{
         
         helper.getMemeData(memeUrl: roundDic["cardDBUrl"] as! String) { (memeData) in
             DispatchQueue.main.async {
-                let filePath = FileManagerHelper.insertImageIntoMemory(imageName: "round\(Int(round.roundNum))", directory: "Game/\(gameIdForStorage)", image: UIImage(data: memeData)!)
+                let directory: [String] = ["Game","\(gameIdForStorage)"]
+                
+                let filePath = FileManagerHelper.insertImageIntoMemory(imageName: "round\(Int(round.roundNum))", directory: directory, image: UIImage(data: memeData)!)
                 let cardCeasar = CardCeasar(playerId: playerId, round: Int(round.roundNum), cardDBurl: roundDic["cardDBUrl"] as! String, imageStorageLocation: filePath, context: GameStack.sharedInstance.stack.context)
                 round.cardceasar = cardCeasar
             }

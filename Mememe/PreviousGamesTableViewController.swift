@@ -69,7 +69,7 @@ class PreviousGamesTableViewController: UITableViewController {
                         for i in playersImages{
                             if(i == image){
                                 found = true
-                                self.view.backgroundColor = UIColor(patternImage: image)
+        //                        self.view.backgroundColor = UIColor(patternImage: image)
                             }
                         }
                         if(!found){

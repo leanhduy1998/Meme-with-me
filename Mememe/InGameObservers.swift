@@ -52,7 +52,8 @@ extension InGameViewController{
                 DispatchQueue.main.async {
                     let cardNormal = self.convertor.getCardNormalFromDictionary(playerId: playerId, dictionary: postDict!)
                     
-                    GetGameCoreDataData.getLatestRound(game: self.game).addToCardnormal(cardNormal)
+                    let lastestRound = GetGameCoreDataData.getLatestRound(game: self.game)
+                    lastestRound.addToCardnormal(cardNormal)
                     
                     GameStack.sharedInstance.saveContext(completeHandler: {
                         DispatchQueue.main.async {
@@ -74,6 +75,7 @@ extension InGameViewController{
         })
         inGameRefObservers.append(observer)
     }
+    /*
     func addNormalCardsDeletedObserver(){
         let observer = inGameRef.child(game.gameId!).child("normalCards").observe(DataEventType.childRemoved, with: { (snapshot) in
             let playerId = snapshot.key
@@ -105,6 +107,7 @@ extension InGameViewController{
         })
         inGameRefObservers.append(observer)
     }
+ */
     func addNormalCardsChangedObserver(){
         let observer = inGameRef.child(game.gameId!).child("normalCards").observe(DataEventType.childChanged, with: { (snapshot) in
             let postDict = snapshot.value as?  [String:Any]
@@ -224,9 +227,24 @@ extension InGameViewController{
                         }
                     }
                     else if MyPlayerData.id != self.leaderId && self.currentRoundFinished{
+                        self.inGameRef.child(self.game.gameId!).child("normalCards").observeSingleEvent(of: DataEventType.value, with: { (snapshot) in
+                            
+                            let postDict = snapshot.value as?  [String:Any]
+                            DispatchQueue.main.async {
+                                let cardNormals = GetGameCoreDataData.getLatestRound(game: self.game).cardnormal?.allObjects as? [CardNormal]
+                                
+                                for card in cardNormals! {
+                                    GetGameCoreDataData.getLatestRound(game: self.game).removeFromCardnormal(card)
+                                }
+                                
+                                for(playerId,playerDic) in postDict!{
+                                    let card = self.convertor.getCardNormalFromDictionary(playerId: playerId, dictionary: postDict!)
+                                   
+                                }
                         self.AddEditJudgeMemeBtn.isEnabled = false
-                    }
+                    }})}
                 }
+                
                 else if(snapshot.key == "nextRoundStarting"){
                     let value = snapshot.value as? String
                     if(value! == "true"){

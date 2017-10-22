@@ -24,7 +24,7 @@ extension InGameTutController{
         for player in playersInGame{
             let newX = (self.space * CGFloat(counter+1))  + CGFloat(counter) * self.iconSize
             
-            let userIconIV = UIImageView()
+            var userIconIV = UIImageView()
             userIconIV.frame = CGRect(x: newX, y: self.space/4, width: self.iconSize, height: self.iconSize)
             contentWidth += self.space + self.iconSize
             
@@ -36,7 +36,8 @@ extension InGameTutController{
                 helper.loadUserProfilePicture(userId: player.userId, completeHandler: { (imageData) in
                     DispatchQueue.main.async {
                         let image = UIImage(data: imageData)!
-                        userIconIV.image = CircleImageCutter.getRoundEdgeImage(image: image, radius: Float(self.iconSize))
+
+                        userIconIV = CircleImageCutter.roundImageView(imageview: userIconIV, radius: Float(self.iconSize))
                         
                         self.currentPlayersScrollView.addSubview(userIconIV)
                         self.currentPlayersScrollView.sendSubview(toBack: userIconIV)
@@ -44,8 +45,7 @@ extension InGameTutController{
                 })
             }
             else {
-                let image = #imageLiteral(resourceName: "ichooseyou")
-                userIconIV.image = CircleImageCutter.getRoundEdgeImage(image: image, radius: Float(self.iconSize))
+                userIconIV = CircleImageCutter.roundImageView(imageview: userIconIV, radius: Float(self.iconSize))
                 self.currentPlayersScrollView.addSubview(userIconIV)
                 self.currentPlayersScrollView.sendSubview(toBack: userIconIV)
             }

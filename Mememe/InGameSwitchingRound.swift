@@ -91,7 +91,9 @@ extension InGameViewController{
                         
                         let gameIdForStorage = FileManagerHelper.getPlayerIdForStorage(playerId: self.game.gameId!)
                         
-                        let filePath = FileManagerHelper.insertImageIntoMemory(imageName: "round\(nextRoundNumber)", directory: "Game/\(gameIdForStorage)", image: UIImage(data: memeData)!)
+                        let directory: [String] = ["Game","\(gameIdForStorage)"]
+                        
+                        let filePath = FileManagerHelper.insertImageIntoMemory(imageName: "round\(nextRoundNumber)", directory: directory, image: UIImage(data: memeData)!)
                         
                         nextRound.cardceasar = CardCeasar(playerId: nextRoundJudgeId, round: nextRoundNumber, cardDBurl: memeUrl, imageStorageLocation: filePath, context: GameStack.sharedInstance.stack.context)
                         
@@ -136,7 +138,9 @@ extension InGameViewController{
                 
                 let gameIdForStorage = FileManagerHelper.getPlayerIdForStorage(playerId: self.game.gameId!)
                 
-                let filePath = FileManagerHelper.insertImageIntoMemory(imageName: "round\(nextRoundNumber)", directory: "Game/\(gameIdForStorage)", image: UIImage(data: memeData)!)
+                let directory: [String] = ["Game","\(gameIdForStorage)"]
+                
+                let filePath = FileManagerHelper.insertImageIntoMemory(imageName: "round\(nextRoundNumber)", directory: directory, image: UIImage(data: memeData)!)
                 
                 nextRound.cardceasar = CardCeasar(playerId: self.playerJudging, round: nextRoundNumber, cardDBurl: memeUrl, imageStorageLocation: filePath, context: GameStack.sharedInstance.stack.context)
                 

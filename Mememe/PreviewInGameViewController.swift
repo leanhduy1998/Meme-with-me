@@ -205,7 +205,7 @@ class PreviewInGameViewController: UIViewController {
         var counter = 0
         for player in (game.players?.allObjects as? [Player])!{            
             let newX = (self.space * CGFloat(counter+1))  + CGFloat(counter) * self.iconSize
-            let userIconIV = UIImageView()
+            var userIconIV = UIImageView()
             userIconIV.frame = CGRect(x: newX, y: self.space/4, width: self.iconSize, height: self.iconSize)
             contentWidth += self.space + self.iconSize
             
@@ -235,7 +235,7 @@ class PreviewInGameViewController: UIViewController {
             
             
             let image = FileManagerHelper.getImageFromMemory(imagePath: player.imageStorageLocation!)
-            userIconIV.image = CircleImageCutter.getRoundEdgeImage(image: image, radius: Float(self.iconSize))
+            userIconIV = CircleImageCutter.roundImageView(imageview: userIconIV, radius: Float(self.iconSize))
             
             self.currentPlayersScrollView.addSubview(userIconIV)
             self.currentPlayersScrollView.sendSubview(toBack: userIconIV)

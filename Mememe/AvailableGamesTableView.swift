@@ -108,49 +108,54 @@ extension AvailableGamesViewController {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        UserOnlineSystem.getUserOnlineStatus(userId: openRooms[indexPath.row].leaderId!) { (isLeaderOnline) in
-            DispatchQueue.main.async {
-                if isLeaderOnline {
-                    if self.openRooms[indexPath.row].roomIsOpen == "true"{
-                        self.selectedLeaderId = self.openRooms[indexPath.row].leaderId
-                        
-                        self.plusBtnView.isHidden = true
-                        self.tableview.separatorStyle = UITableViewCellSeparatorStyle.none
-                        self.availableRoomRef.removeAllObservers()
-                        
-                        UIView.animate(withDuration: 1, animations: {
-                            tableView.backgroundColor = UIColor.black
-                            //tableView.visibleCells[indexPath.row].frame.origin.x = self.view.frame.midX 
-                            tableView.visibleCells[indexPath.row].frame.origin.y = self.view.frame.midY - tableView.visibleCells[indexPath.row].frame.height
-                            tableView.visibleCells[indexPath.row].transform = CGAffineTransform(scaleX: 2, y: 2)
-                            self.tabBarController?.tabBar.barTintColor = UIColor.black
-                            self.view.backgroundColor = UIColor.black
-                        }, completion: { (completed) in
+        UIView.animate(withDuration: 1, animations: {
+            tableView.backgroundColor = UIColor.black
+            //tableView.visibleCells[indexPath.row].frame.origin.x = self.view.frame.midX
+            tableView.visibleCells[indexPath.row].frame.origin.y = self.view.frame.midY - tableView.visibleCells[indexPath.row].frame.height
+            tableView.visibleCells[indexPath.row].transform = CGAffineTransform(scaleX: 2, y: 2)
+            self.tabBarController?.tabBar.barTintColor = UIColor.black
+            self.view.backgroundColor = UIColor.black
+        }, completion: { (completed) in
+            UserOnlineSystem.getUserOnlineStatus(userId: self.openRooms[indexPath.row].leaderId!) { (isLeaderOnline) in
+                DispatchQueue.main.async {
+                    if isLeaderOnline {
+                        if indexPath.row > (self.openRooms.count - 1){
+                            return
+                        }
+                        if self.openRooms[indexPath.row].roomIsOpen == "true"{
+                            self.selectedLeaderId = self.openRooms[indexPath.row].leaderId
+                            
+                            self.plusBtnView.isHidden = true
+                            self.tableview.separatorStyle = UITableViewCellSeparatorStyle.none
+                            self.availableRoomRef.removeAllObservers()
+                            
+                          
                             if completed {
-                                DispatchQueue.main.async {
-                                    self.performSegue(withIdentifier: "PrivateRoomViewControllerSegue", sender: self)
-                                }
+                                self.performSegue(withIdentifier: "PrivateRoomViewControllerSegue", sender: self)
                             }
-                        })
+                     
+                        }
+                        else {
+                            DisplayAlert.display(controller: self, title: "Room is closed", message: "This room has already started the game!")
+                            self.openRooms.remove(at: indexPath.row)
+                            self.tableview.reloadData()
+                        }
                     }
                     else {
-                        DisplayAlert.display(controller: self, title: "Room is closed", message: "This room has already started the game!")
-                        self.openRooms.remove(at: indexPath.row)
-                        self.tableview.reloadData()
-                    }
-                }
-                else {
-                    var count = 0
-                    for r in self.openRooms {
-                        if r.leaderId == self.openRooms[indexPath.row].leaderId {
-                            self.openRooms.remove(at: count)
-                            break
+                        var count = 0
+                        for r in self.openRooms {
+                            if r.leaderId == self.openRooms[indexPath.row].leaderId {
+                                self.openRooms.remove(at: count)
+                                break
+                            }
+                            count = count + 1
                         }
-                        count = count + 1
                     }
                 }
             }
-        }
+        })
+        
+        
         
     }
     

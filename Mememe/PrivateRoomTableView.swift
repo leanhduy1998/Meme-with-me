@@ -95,7 +95,7 @@ extension PrivateRoomViewController {
                         image = newImage
                         
                         cell?.imageview.image = image
-                        if indexPath.row > (self.userInRoom.count-1){
+                        if indexPath.row <= (self.userInRoom.count-1){
                             self.userImagesDic[self.userInRoom[indexPath.row].userId] = image
                         }
                     }

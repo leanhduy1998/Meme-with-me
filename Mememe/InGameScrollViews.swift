@@ -32,7 +32,7 @@ extension InGameViewController {
             }
             
             let newX = (self.space * CGFloat(counter+1))  + CGFloat(counter) * self.iconSize
-            let userIconIV = UIImageView()
+            var userIconIV = UIImageView()
             userIconIV.frame = CGRect(x: newX, y: self.space/4, width: self.iconSize, height: self.iconSize)
             contentWidth += self.space + self.iconSize
     
@@ -51,6 +51,9 @@ extension InGameViewController {
                     break
                 }
             }
+            if(timesWon == nil){
+                timesWon = 0
+            }
             
             whiteLabel.text = "\(timesWon!)"
             whiteLabel.frame = CGRect(x: 0, y: 0, width: redDotSize, height: redDotSize)
@@ -63,7 +66,9 @@ extension InGameViewController {
             
     
             let image = userImagesDic[player.userId]
-            userIconIV.image = CircleImageCutter.getRoundEdgeImage(image: image!, radius: 5)
+            
+            userIconIV.image = image
+            userIconIV = CircleImageCutter.roundImageView(imageview: userIconIV, radius: 5)
             
             currentPlayersScrollView.addSubview(userIconIV)
             currentPlayersScrollView.sendSubview(toBack: userIconIV)
@@ -103,7 +108,7 @@ extension InGameViewController {
         
         
         let image = FileManagerHelper.getImageFromMemory(imagePath: (latestRound.cardceasar?.imageStorageLocation!)!)
-            thisRoundImage = image
+        thisRoundImage = image
             
         if !haveWinner {
             let ceasarCard = latestRound.cardceasar

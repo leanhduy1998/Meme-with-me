@@ -64,13 +64,14 @@ class JudgingTutController: UIViewController,UIGestureRecognizerDelegate {
             
             
             
-            let chooseIV = UIImageView(frame: CGRect(x: cardWidth/3, y: cardHeight/2 - (cardWidth/3)/2, width: cardWidth/3, height: cardWidth/3))
-            chooseIV.image = CircleImageCutter.getRoundEdgeImage(image: #imageLiteral(resourceName: "ichooseyou"), radius: 10)
+            var chooseIV = UIImageView(frame: CGRect(x: cardWidth/3, y: cardHeight/2 - (cardWidth/3)/2, width: cardWidth/3, height: cardWidth/3))
+            chooseIV.image =  #imageLiteral(resourceName: "ichooseyou")
+            
+            chooseIV = CircleImageCutter.roundImageView(imageview: chooseIV, radius: 10)
+            
             chooseIV.alpha = 0
             cardview.addSubview(chooseIV)
             cardview.choosingIV = chooseIV
-            
-            
             
             memeScrollView.addSubview(cardview)
             
@@ -112,8 +113,10 @@ class JudgingTutController: UIViewController,UIGestureRecognizerDelegate {
         if selectedCard == nil {
             currentCardView?.isSelecting = !(currentCardView?.isSelecting)!
             
-            let chooseIV = UIImageView(frame: CGRect(x: cardWidth/3, y: cardHeight/2 - (cardWidth/3)/2, width: cardWidth/3, height: cardWidth/3))
-            chooseIV.image = CircleImageCutter.getRoundEdgeImage(image: #imageLiteral(resourceName: "ichooseyou"), radius: 10)
+            var chooseIV = UIImageView(frame: CGRect(x: cardWidth/3, y: cardHeight/2 - (cardWidth/3)/2, width: cardWidth/3, height: cardWidth/3))
+            chooseIV.image = #imageLiteral(resourceName: "ichooseyou")
+            
+            chooseIV = CircleImageCutter.roundImageView(imageview: chooseIV, radius: 10)
             
             currentCardView?.choosingIV = chooseIV
             currentCardView?.addSubview(chooseIV)

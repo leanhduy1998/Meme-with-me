@@ -147,7 +147,7 @@ class InGameViewController: UIViewController, UITableViewDelegate, UITableViewDa
         addPlayerRemovedObserver()
         addNormalCardsAddedObserver()
         addNormalCardsChangedObserver()
-        addNormalCardsDeletedObserver()
+       // addNormalCardsDeletedObserver()
         addOtherGameDataChangedObserver()
     }
   
