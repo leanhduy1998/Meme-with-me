@@ -89,20 +89,19 @@ class PreviewInGameViewController: UIViewController {
             return
         }
         
-        var image: UIImage!
+        var image = FileManagerHelper.getImageFromMemory(imagePath: (round.cardceasar?.imageStorageLocation)!)
         
-        if(round.cardceasar?.cardPic == nil){
+        if(image == nil){
             let helper = UserFilesHelper()
-            helper.getMemeData(memeUrl: (round.cardceasar?.cardPicUrl)!, completeHandler: { (memeImageData) in
+            helper.getMemeData(memeUrl: (round.cardceasar?.cardDBUrl)!, completeHandler: { (memeImageData) in
                 DispatchQueue.main.async {
-                    image = UIImage(data: memeImageData)
+                    image = UIImage(data: memeImageData)!
                     self.loadPreviewScrollView(image: image, round: round)
                 }
             })
             
         }
         else{
-            image = UIImage(data: round.cardceasar?.cardPic! as! Data)
             loadPreviewScrollView(image: image, round: round)
         }
         

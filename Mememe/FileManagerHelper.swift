@@ -29,11 +29,17 @@ class FileManagerHelper{
             }
         }
     }
-    static func insertImageIntoMemory(imageName: String, image: UIImage) -> String{
+    static func insertImageIntoMemory(imageName: String, directory: String, image: UIImage) -> String{
         if(fileManager == nil){
             setup()
         }
-        let filePath = documentsURL.appendingPathComponent("\(imageName).png")
+        
+        var filePath = documentsURL!
+        
+        if(directory != ""){
+            filePath = documentsURL.appendingPathComponent(directory)
+        }
+        filePath = documentsURL.appendingPathComponent("\(imageName).png")
         do{
             let files = try fileManager.contentsOfDirectory(atPath: documentsPath)
             for file in files{
@@ -55,17 +61,26 @@ class FileManagerHelper{
             print(error.localizedDescription)
         }
         
-        return filePath.path
+        return imageName
     }
     static func getImageFromMemory(imagePath: String) -> UIImage{
         if(fileManager == nil){
             setup()
         }
+        
         if fileManager.fileExists(atPath: imagePath){
             if let contentsOfFilePath = UIImage(contentsOfFile: imagePath){
                 return contentsOfFilePath
             }
         }
         return UIImage()
+    }
+    static func getPlayerIdForStorage(playerId: String)->String{
+        // original playerId have us-east-1/ before it, making it hard to store the images
+        var playerIdForStorage = playerId
+        
+        let index = playerIdForStorage.index(playerIdForStorage.startIndex, offsetBy: 10)
+        playerIdForStorage = playerIdForStorage.substring(from: index)
+        return playerIdForStorage
     }
 }

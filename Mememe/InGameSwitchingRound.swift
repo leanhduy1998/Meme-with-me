@@ -88,7 +88,13 @@ extension InGameViewController{
                         InGameHelper.updateGameToNextRound(nextRoundJudgeId: nextRoundJudgeId, gameId: self.game.gameId!, nextRound: nextRoundNumber, nextRoundImageUrl: memeUrl)
                         
                         let nextRound = Round(roundNum: nextRoundNumber, context: GameStack.sharedInstance.stack.context)
-                        nextRound.cardceasar = CardCeasar(cardPic: memeData, playerId: nextRoundJudgeId, round: nextRoundNumber, cardPicUrl: memeUrl, context: GameStack.sharedInstance.stack.context)
+                        
+                        let gameIdForStorage = FileManagerHelper.getPlayerIdForStorage(playerId: self.game.gameId!)
+                        
+                        let filePath = FileManagerHelper.insertImageIntoMemory(imageName: "round\(nextRoundNumber)", directory: "Game/\(gameIdForStorage)", image: UIImage(data: memeData)!)
+                        
+                        nextRound.cardceasar = CardCeasar(playerId: nextRoundJudgeId, round: nextRoundNumber, cardDBurl: memeUrl, imageStorageLocation: filePath, context: GameStack.sharedInstance.stack.context)
+                        
                         self.game.addToRounds(nextRound)
                     }
                 })
@@ -124,10 +130,15 @@ extension InGameViewController{
     private func setupNextRound(){
         let nextRoundNumber = Int(GetGameCoreDataData.getLatestRound(game: game).roundNum) + 1
         
-        InGameHelper.getRoundImage( gameId: self.game.gameId!, completionHandler: { (imageData, imageUrl) in
+        InGameHelper.getRoundImage( gameId: self.game.gameId!, completionHandler: { (memeData, memeUrl) in
             DispatchQueue.main.async {
                 let nextRound = Round(roundNum: nextRoundNumber, context: GameStack.sharedInstance.stack.context)
-                nextRound.cardceasar = CardCeasar(cardPic: imageData, playerId: self.playerJudging, round: nextRoundNumber, cardPicUrl: imageUrl, context: GameStack.sharedInstance.stack.context)
+                
+                let gameIdForStorage = FileManagerHelper.getPlayerIdForStorage(playerId: self.game.gameId!)
+                
+                let filePath = FileManagerHelper.insertImageIntoMemory(imageName: "round\(nextRoundNumber)", directory: "Game/\(gameIdForStorage)", image: UIImage(data: memeData)!)
+                
+                nextRound.cardceasar = CardCeasar(playerId: self.playerJudging, round: nextRoundNumber, cardDBurl: memeUrl, imageStorageLocation: filePath, context: GameStack.sharedInstance.stack.context)
                 
                 self.game.addToRounds(nextRound)
                 

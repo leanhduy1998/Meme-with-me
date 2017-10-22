@@ -53,7 +53,8 @@ class StartViewController: UIViewController,UIGestureRecognizerDelegate, AWSSign
         myDataStack.initializeFetchedResultsController()
         let fetchedObjects = self.myDataStack.fetchedResultsController.fetchedObjects as? [MyCoreData]
         if((fetchedObjects?.count)! > 0){
-            userIcon.image = UIImage(data: fetchedObjects![0].imageData as! Data)
+            let image = FileManagerHelper.getImageFromMemory(imagePath: fetchedObjects![0].imageStorageLocation!)
+            userIcon.image = image
             leftNotificationLabel.text = "\(Int(fetchedObjects![0].laughes))"
             rightNotificationLabel.text = "\(Int(fetchedObjects![0].madeCeasar))"
         }
@@ -116,11 +117,16 @@ class StartViewController: UIViewController,UIGestureRecognizerDelegate, AWSSign
             DispatchQueue.main.async {
                 var statChanged = false
                 let fetchedObjects = self.myDataStack.fetchedResultsController.fetchedObjects as? [MyCoreData]
+                
+                let playerIdForStorage = FileManagerHelper.getPlayerIdForStorage(playerId: MyPlayerData.id)
+                
+                let filePath = FileManagerHelper.insertImageIntoMemory(imageName: "\(playerIdForStorage) playerId", directory: "", image: UIImage(data: imageData)!)
+                
                 if(fetchedObjects?.count == 0){
-                    let _ = MyCoreData(imageData: imageData, laughes: Int((data?._laughes)!), madeCeasar: Int((data?._madeCeasar)!), context: self.myDataStack.stack.context)
+                    let _ = MyCoreData(imageStorageLocation: filePath, laughes: Int((data?._laughes)!), madeCeasar: Int((data?._madeCeasar)!), context: self.myDataStack.stack.context)
                 }
                 else {
-                    fetchedObjects![0].imageData = imageData as NSData
+                    fetchedObjects![0].imageStorageLocation = filePath
                     if(fetchedObjects![0].laughes != (data?._laughes as! Int16)){
                         statChanged = true
                     }

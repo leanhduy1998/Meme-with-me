@@ -100,7 +100,7 @@ extension InGameTutController{
             setAddEditJudgeMemeBtnUI(ceasarId: (ceasarCard?.playerId)!, haveWinner: haveWinner)
             
             if (currentPlayersCards?.count)! == 0 {
-                let iv = UIImageView(image: UIImage(data: (ceasarCard?.cardPic)! as! Data))
+                let iv = UIImageView(image: thisRoundImage)
                 iv.frame = CGRect(x: 0, y: 0, width: cardWidth, height: cardHeight)
                 
                 // -40 is for animation
@@ -135,7 +135,7 @@ extension InGameTutController{
                 cardUIView.addSubview(downLabel)
                 cardUIView.bringSubview(toFront: downLabel)
                 
-                let iv = UIImageView(image: UIImage(data: (ceasarCard?.cardPic)! as! Data))
+                let iv = UIImageView(image: thisRoundImage)
                 iv.frame = CGRect(x: 0, y: 0, width: cardWidth, height: cardHeight)
                 cardUIView.addSubview(iv)
                 cardUIView.sendSubview(toBack: iv)
@@ -171,7 +171,7 @@ extension InGameTutController{
                 cardUIView.addSubview(downLabel)
                 cardUIView.bringSubview(toFront: downLabel)
                 
-                let iv = UIImageView(image: UIImage(data: (ceasarCard?.cardPic)! as! Data))
+                let iv = UIImageView(image: thisRoundImage)
                 iv.frame = CGRect(x: 0, y: 0, width: cardWidth, height: cardHeight)
                 cardUIView.addSubview(iv)
                 cardUIView.sendSubview(toBack: iv)

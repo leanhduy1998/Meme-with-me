@@ -100,7 +100,9 @@ extension InGameViewController {
         let haveWinner = checkIfWinnerExist(cards: (latestRound.cardnormal?.allObjects as? [CardNormal])!)
         let myCardExist = checkIfMyCardExist(cards: (latestRound.cardnormal?.allObjects as? [CardNormal])!)
         
-        let image = UIImage(data: latestRound.cardceasar?.cardPic! as! Data)
+        
+        
+        let image = FileManagerHelper.getImageFromMemory(imagePath: (latestRound.cardceasar?.imageStorageLocation!)!)
             thisRoundImage = image
             
         if !haveWinner {
@@ -108,7 +110,7 @@ extension InGameViewController {
             setAddEditJudgeMemeBtnUI(ceasarId: (ceasarCard?.playerId)!, haveWinner: haveWinner)
                 
             if (currentPlayersCards?.count)! == 0 {
-                let memeImageView = getMemeIV(image: image!)
+                let memeImageView = getMemeIV(image: image)
                 // -40 is for animation
                 let emptyCardUIView = CardView(frame: CGRect(x: space, y: space/2 - cardInitialYBeforeAnimation, width: cardWidth, height: cardHeight))
                 let emptyIV = UIImageView(frame: CGRect(x: 0, y: 0, width: cardWidth, height: cardHeight))
@@ -155,7 +157,7 @@ extension InGameViewController {
                 
                 let cardNormal = cardNormalDictionary[playerId]
                 
-                let memeImageView = getMemeIV(image: image!)
+                let memeImageView = getMemeIV(image: image)
                 
                 contentWidth += space + cardWidth
                 let newX = getNewXForPreviewScroll(x: x, haveWinner: haveWinner)
@@ -210,7 +212,7 @@ extension InGameViewController {
             
             contentWidth = screenWidth
             let newX = getNewXForPreviewScroll(x: 0, haveWinner: haveWinner)
-            let memeImageView = getMemeIV(image: image!)
+            let memeImageView = getMemeIV(image: image)
             for card in currentPlayersCards! {
                 if !card.didWin {
                     continue

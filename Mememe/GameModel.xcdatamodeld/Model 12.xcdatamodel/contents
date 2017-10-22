@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13241" systemVersion="16G29" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="CardCeasar" representedClassName="CardCeasar" syncable="YES">
+        <attribute name="cardDBUrl" attributeType="String" syncable="YES"/>
+        <attribute name="imageStorageLocation" attributeType="String" syncable="YES"/>
+        <attribute name="playerId" attributeType="String" syncable="YES"/>
+        <attribute name="round" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="currentround" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Round" inverseName="cardceasar" inverseEntity="Round" syncable="YES"/>
+    </entity>
+    <entity name="CardNormal" representedClassName="CardNormal" syncable="YES">
+        <attribute name="bottomText" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="didWin" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="playerId" attributeType="String" syncable="YES"/>
+        <attribute name="round" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="topText" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="currentround" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Round" inverseName="cardnormal" inverseEntity="Round" syncable="YES"/>
+        <relationship name="playerlove" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="PlayerLove" inverseName="cardnormal" inverseEntity="PlayerLove" syncable="YES"/>
+    </entity>
+    <entity name="Game" representedClassName="Game" syncable="YES">
+        <attribute name="createdDate" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="gameId" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="players" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Player" inverseName="game" inverseEntity="Player" syncable="YES"/>
+        <relationship name="rounds" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Round" inverseName="currentgame" inverseEntity="Round" syncable="YES"/>
+        <relationship name="wincounter" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="WinCounter" inverseName="currentGame" inverseEntity="WinCounter" syncable="YES"/>
+    </entity>
+    <entity name="MyCoreData" representedClassName="MyCoreData" syncable="YES">
+        <attribute name="imageStorageLocation" attributeType="String" syncable="YES"/>
+        <attribute name="laughes" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="madeCeasar" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+    </entity>
+    <entity name="Player" representedClassName="Player" syncable="YES">
+        <attribute name="imageStorageLocation" attributeType="String" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="playerId" attributeType="String" syncable="YES"/>
+        <relationship name="game" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Game" inverseName="players" inverseEntity="Game" syncable="YES"/>
+    </entity>
+    <entity name="PlayerLove" representedClassName="PlayerLove" syncable="YES">
+        <attribute name="playerId" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="cardnormal" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CardNormal" inverseName="playerlove" inverseEntity="CardNormal" syncable="YES"/>
+    </entity>
+    <entity name="Round" representedClassName="Round" syncable="YES">
+        <attribute name="roundNum" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="cardceasar" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="CardCeasar" inverseName="currentround" inverseEntity="CardCeasar" syncable="YES"/>
+        <relationship name="cardnormal" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="CardNormal" inverseName="currentround" inverseEntity="CardNormal" syncable="YES"/>
+        <relationship name="currentgame" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Game" inverseName="rounds" inverseEntity="Game" syncable="YES"/>
+    </entity>
+    <entity name="WinCounter" representedClassName="WinCounter" syncable="YES">
+        <attribute name="playerId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="won" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="currentGame" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Game" inverseName="wincounter" inverseEntity="Game" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="CardCeasar" positionX="-36" positionY="81" width="128" height="120"/>
+        <element name="CardNormal" positionX="-54" positionY="18" width="128" height="150"/>
+        <element name="Game" positionX="-36" positionY="72" width="128" height="120"/>
+        <element name="MyCoreData" positionX="-36" positionY="81" width="128" height="90"/>
+        <element name="Player" positionX="-63" positionY="-18" width="128" height="105"/>
+        <element name="PlayerLove" positionX="-45" positionY="72" width="128" height="75"/>
+        <element name="Round" positionX="-45" positionY="72" width="128" height="105"/>
+        <element name="WinCounter" positionX="-36" positionY="90" width="128" height="90"/>
+    </elements>
+</model>

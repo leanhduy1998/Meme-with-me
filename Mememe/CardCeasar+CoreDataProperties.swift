@@ -2,7 +2,7 @@
 //  CardCeasar+CoreDataProperties.swift
 //  
 //
-//  Created by Duy Le on 8/24/17.
+//  Created by Duy Le on 10/21/17.
 //
 //
 
@@ -16,10 +16,10 @@ extension CardCeasar {
         return NSFetchRequest<CardCeasar>(entityName: "CardCeasar")
     }
 
-    @NSManaged public var cardPic: NSData?
+    @NSManaged public var imageStorageLocation: String?
     @NSManaged public var playerId: String?
     @NSManaged public var round: Int16
-    @NSManaged public var cardPicUrl: String?
+    @NSManaged public var cardDBUrl: String?
     @NSManaged public var currentround: Round?
 
 }

@@ -64,15 +64,26 @@ class GameDataFromJSON{
             let thisRoundDic = roundDic["\(x)"] as? [String:Any]
             let roundCoreData = Round(roundNum: x, context: GameStack.sharedInstance.stack.context)
             
-            addCardCeasarToRound(round: roundCoreData, roundDic: (thisRoundDic?["cardCeasar"] as? [String:Any])!)
+            addCardCeasarToRound(gameId: game.gameId! ,round: roundCoreData, roundDic: (thisRoundDic?["cardCeasar"] as? [String:Any])!)
             addCardNormalToRound(round: roundCoreData, cardDic: (thisRoundDic?["cardNormals"] as? [String:Any])!)
             
             game.addToRounds(roundCoreData)
         }
     }
-    private static func addCardCeasarToRound(round: Round, roundDic: [String:Any]){
-        let cardCeasar = CardCeasar(playerId: roundDic["playerId"] as! String, round: Int(round.roundNum), cardPicUrl: roundDic["cardPicUrl"] as! String, context: GameStack.sharedInstance.stack.context)
-        round.cardceasar = cardCeasar
+    private static func addCardCeasarToRound(gameId: String, round: Round, roundDic: [String:Any]){
+        let helper = UserFilesHelper()
+        
+        let playerId = roundDic["playerId"] as! String
+        
+        let gameIdForStorage = FileManagerHelper.getPlayerIdForStorage(playerId: gameId)
+        
+        helper.getMemeData(memeUrl: roundDic["cardDBUrl"] as! String) { (memeData) in
+            DispatchQueue.main.async {
+                let filePath = FileManagerHelper.insertImageIntoMemory(imageName: "round\(Int(round.roundNum))", directory: "Game/\(gameIdForStorage)", image: UIImage(data: memeData)!)
+                let cardCeasar = CardCeasar(playerId: playerId, round: Int(round.roundNum), cardDBurl: roundDic["cardDBUrl"] as! String, imageStorageLocation: filePath, context: GameStack.sharedInstance.stack.context)
+                round.cardceasar = cardCeasar
+            }
+        }
     }
     private static func addCardNormalToRound(round: Round, cardDic: [String:Any]){
         for (playerId,temp) in cardDic {

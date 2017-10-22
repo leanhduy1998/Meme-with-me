@@ -154,6 +154,7 @@ class InGameTutController: UIViewController, UITableViewDelegate, UITableViewDat
         self.present(self.alertController, animated: true, completion: nil)
     }
     func quitTutorial(action: UIAlertAction){
+        GameStack.sharedInstance.stack.context.delete(game)
         performSegue(withIdentifier: "unwindToAvailableGamesViewControllerFromInGameTut", sender: self)
     }
     
@@ -232,7 +233,7 @@ class InGameTutController: UIViewController, UITableViewDelegate, UITableViewDat
         let helper = UserFilesHelper()
         helper.getRandomMemeData { (memeImageData, memeUrl) in
             DispatchQueue.main.async {
-                let ceasarCard = CardCeasar(cardPic: memeImageData, playerId: self.playerJudging, round: Int(round.roundNum), cardPicUrl: memeUrl, context: GameStack.sharedInstance.stack.context)
+                let ceasarCard = CardCeasar(playerId: self.playerJudging, round: Int(round.roundNum), cardDBurl: "", imageStorageLocation: "", context: GameStack.sharedInstance.stack.context)
                 self.thisRoundImage = UIImage(data: memeImageData)
                 
                 round.cardceasar = ceasarCard
@@ -299,7 +300,9 @@ class InGameTutController: UIViewController, UITableViewDelegate, UITableViewDat
                 helper.getRandomMemeData(completeHandler: { (memeImageData, memeUrl) in
                     DispatchQueue.main.async {
                         self.thisRoundImage = UIImage(data: memeImageData)
-                        nextRound.cardceasar = CardCeasar(cardPic: memeImageData, playerId: nextRoundJudgeId, round: nextRoundNumber, cardPicUrl: memeUrl, context: GameStack.sharedInstance.stack.context)
+                        
+                        nextRound.cardceasar = CardCeasar(playerId: nextRoundJudgeId, round: nextRoundNumber, cardDBurl: "", imageStorageLocation: "", context: GameStack.sharedInstance.stack.context)
+                        
                         nextRound.addToCardnormal(CardNormal(bottomText: "Bot's meme joke", didWin: false, playerId: "b1", round: nextRoundNumber, topText: "You won't understand", context: GameStack.sharedInstance.stack.context))
                         nextRound.addToCardnormal(CardNormal(bottomText: "What she says", didWin: false, playerId: "b2", round: nextRoundNumber, topText: "I agree", context: GameStack.sharedInstance.stack.context))
                         self.game.addToRounds(nextRound)

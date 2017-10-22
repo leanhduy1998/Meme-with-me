@@ -21,13 +21,10 @@ extension InGameViewController {
                 for player in self.playersInGame {
                     let image = self.userImagesDic[player.userId]
                     
-                    // original playerId have us-east-1/ before it, making it hard to store the images
-                    var playerIdForStorage = player.userId!
+                    let playerIdForStorage = FileManagerHelper.getPlayerIdForStorage(playerId: player.userId)
+                    let gameIdForStorage = FileManagerHelper.getPlayerIdForStorage(playerId: self.game.gameId!)
                     
-                    let index = playerIdForStorage.index(playerIdForStorage.startIndex, offsetBy: 10)
-                    playerIdForStorage = playerIdForStorage.substring(from: index)
-                    
-                    let imagePath = FileManagerHelper.insertImageIntoMemory(imageName: playerIdForStorage, image: image!)
+                    let imagePath = FileManagerHelper.insertImageIntoMemory(imageName: playerIdForStorage, directory: "Game/\(gameIdForStorage)", image: image!)
                     
                     let playerCore = Player(playerName: player.userName, playerId: player.userId!, userImageLocation: imagePath, context: GameStack.sharedInstance.stack.context)
             
@@ -45,9 +42,13 @@ extension InGameViewController {
 
                         self.playerJudging = self.playersInGame[0].userId
                         
-                        let filePath = FileManagerHelper.insertImageIntoMemory(imageName: "\(self.game.gameId!) round \(Int(round.roundNum))", image: UIImage(data: memeData)!)
+                        let gameIdForStorage = FileManagerHelper.getPlayerIdForStorage(playerId: self.game.gameId!)
                         
-                        let ceasarCard = CardCeasar(cardPic: memeData, playerId: self.playerJudging, round: Int(round.roundNum), cardPicUrl: filePath, context: GameStack.sharedInstance.stack.context)
+                        let filePath = FileManagerHelper.insertImageIntoMemory(imageName: "round\(Int(round.roundNum))", directory: "Game/\(gameIdForStorage)", image: UIImage(data: memeData)!)
+                        
+                        
+                        
+                        let ceasarCard = CardCeasar(playerId: self.playerJudging, round: Int(round.roundNum), cardDBurl: memeUrl, imageStorageLocation: filePath, context: GameStack.sharedInstance.stack.context)
                         
                         round.cardceasar = ceasarCard
                         self.game.addToRounds(round)
@@ -126,14 +127,11 @@ extension InGameViewController {
                                         
                                     })
                                 }
+             
+                                let playerIdForStorage = FileManagerHelper.getPlayerIdForStorage(playerId: playerId)
+                                let gameIdForStorage = FileManagerHelper.getPlayerIdForStorage(playerId: self.game.gameId!)
                                 
-                                // original playerId have us-east-1/ before it, making it hard to store the images
-                                var playerIdForStorage = playerId
-                                
-                                let index = playerIdForStorage.index(playerIdForStorage.startIndex, offsetBy: 10)
-                                playerIdForStorage = playerIdForStorage.substring(from: index)
-                                
-                                let filePath = FileManagerHelper.insertImageIntoMemory(imageName: playerIdForStorage, image: image!)
+                                let filePath = FileManagerHelper.insertImageIntoMemory(imageName: playerIdForStorage, directory: "Game/\(gameIdForStorage)", image: image!)
                                 
                                 player.imageStorageLocation = filePath
                                 
@@ -162,10 +160,12 @@ extension InGameViewController {
                     let helper = UserFilesHelper()
                     helper.getMemeData(memeUrl: roundImageUrl, completeHandler: { (memeData) in
                         DispatchQueue.main.async {
-                            let filePath = FileManagerHelper.insertImageIntoMemory(imageName: "\(self.game.gameId!) round \(Int(round.roundNum))", image: UIImage(data: memeData)!)
+                            let gameIdForStorage = FileManagerHelper.getPlayerIdForStorage(playerId: self.game.gameId!)
                             
-            
-                            let cardCeasar = CardCeasar(cardPic: memeData, playerId: self.playerJudging, round: 0, cardPicUrl: filePath, context: GameStack.sharedInstance.stack.context)
+                            let filePath = FileManagerHelper.insertImageIntoMemory(imageName: "round\(Int(round.roundNum))", directory: "Game/\(gameIdForStorage)", image: UIImage(data: memeData)!)
+                            
+                            
+                            let cardCeasar = CardCeasar(playerId: self.playerJudging, round: 0, cardDBurl: roundImageUrl, imageStorageLocation: filePath, context: GameStack.sharedInstance.stack.context)
                             round.cardceasar = cardCeasar
                             self.game.addToRounds(round)
                             

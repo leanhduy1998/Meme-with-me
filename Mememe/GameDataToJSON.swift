@@ -104,7 +104,7 @@ class GameDataToJSON {
         let cardCeasar = round.cardceasar
         
         var ceasarArr = [String:Any]()
-        ceasarArr["cardPicUrl"] = cardCeasar?.cardPicUrl
+        ceasarArr["cardDBUrl"] = cardCeasar?.cardDBUrl
         ceasarArr["playerId"] = cardCeasar?.playerId
         
         return ceasarArr

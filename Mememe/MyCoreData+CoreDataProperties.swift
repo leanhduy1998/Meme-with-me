@@ -2,7 +2,7 @@
 //  MyCoreData+CoreDataProperties.swift
 //  
 //
-//  Created by Duy Le on 9/29/17.
+//  Created by Duy Le on 10/21/17.
 //
 //
 
@@ -16,8 +16,8 @@ extension MyCoreData {
         return NSFetchRequest<MyCoreData>(entityName: "MyCoreData")
     }
 
-    @NSManaged public var madeCeasar: Int16
     @NSManaged public var laughes: Int16
-    @NSManaged public var imageData: NSData?
+    @NSManaged public var madeCeasar: Int16
+    @NSManaged public var imageStorageLocation: String?
 
 }

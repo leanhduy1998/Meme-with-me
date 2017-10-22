@@ -2,7 +2,7 @@
 //  MyCoreData+CoreDataClass.swift
 //  
 //
-//  Created by Duy Le on 9/29/17.
+//  Created by Duy Le on 10/21/17.
 //
 //
 
@@ -11,10 +11,10 @@ import CoreData
 
 @objc(MyCoreData)
 public class MyCoreData: NSManagedObject {
-    convenience init(imageData: Data, laughes: Int, madeCeasar: Int, context: NSManagedObjectContext){
+    convenience init(imageStorageLocation: String, laughes: Int, madeCeasar: Int, context: NSManagedObjectContext){
         if let ent = NSEntityDescription.entity(forEntityName: "MyCoreData", in: context){
             self.init(entity: ent, insertInto: context)
-            self.imageData = imageData as NSData
+            self.imageStorageLocation = imageStorageLocation
             self.laughes = Int16(laughes)
             self.madeCeasar = Int16(madeCeasar)
         }
