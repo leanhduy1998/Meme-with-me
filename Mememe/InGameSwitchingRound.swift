@@ -105,7 +105,7 @@ extension InGameViewController{
     }
     func loadNextRound(){
         myCardInserted = false
-        self.currentRoundFinished = true
+        self.currentRoundFinished = false
         clearPreviewCardsData()
         cardOrder.removeAll()
         cardDictionary.removeAll()

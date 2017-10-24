@@ -40,7 +40,7 @@ extension InGameViewController{
                 })
             }
         })
-        inGameRefObservers.append(observer)
+        inGameRefObservers["\(game.gameId!)/players"]?.append(observer)
     }
     
     func addNormalCardsAddedObserver(){
@@ -73,41 +73,43 @@ extension InGameViewController{
                 self.playCardPlacedDown()
             }
         })
-        inGameRefObservers.append(observer)
+        inGameRefObservers["\(game.gameId!)/normalCards"]?.append(observer)
     }
-    /*
+    
     func addNormalCardsDeletedObserver(){
         let observer = inGameRef.child(game.gameId!).child("normalCards").observe(DataEventType.childRemoved, with: { (snapshot) in
             let playerId = snapshot.key
           
-            let postDict = snapshot.value as?  [String:Any]
-            DispatchQueue.main.async {
-                let cards = GetGameCoreDataData.getLatestRound(game: self.game).cardnormal?.allObjects as? [CardNormal]
-                
-                for card in cards!{
-                    if(card.playerId == playerId){
-                        GetGameCoreDataData.getLatestRound(game: self.game).removeFromCardnormal(card)
-                        break
-                    }
-                }
-                
-                GameStack.sharedInstance.saveContext(completeHandler: {
-                    DispatchQueue.main.async {
-                        if(!self.currentRoundFinished){
-                            self.reloadPreviewCards()
-                        }
-                        
-                        if(MyPlayerData.id == self.playerJudging){
-                            self.checkIfAllPlayersHaveInsertCard()
-                        }
-                    }
-                })
-            }
+        //    let postDict = snapshot.value as?  [String:Any]
             
+            if(!self.currentRoundFinished){
+                DispatchQueue.main.async {
+                    let cards = GetGameCoreDataData.getLatestRound(game: self.game).cardnormal?.allObjects as? [CardNormal]
+                    
+                    for card in cards!{
+                        if(card.playerId == playerId){
+                            GetGameCoreDataData.getLatestRound(game: self.game).removeFromCardnormal(card)
+                            break
+                        }
+                    }
+                    
+                    GameStack.sharedInstance.saveContext(completeHandler: {
+                        DispatchQueue.main.async {
+                            if(!self.currentRoundFinished){
+                                self.reloadPreviewCards()
+                            }
+                            
+                            if(MyPlayerData.id == self.playerJudging){
+                                self.checkIfAllPlayersHaveInsertCard()
+                            }
+                        }
+                    })
+                }
+            }
         })
-        inGameRefObservers.append(observer)
+        inGameRefObservers["\(game.gameId!)/normalCards"]?.append(observer)
     }
- */
+ 
     func addNormalCardsChangedObserver(){
         let observer = inGameRef.child(game.gameId!).child("normalCards").observe(DataEventType.childChanged, with: { (snapshot) in
             let postDict = snapshot.value as?  [String:Any]
@@ -180,7 +182,7 @@ extension InGameViewController{
                 })
             }
         })
-        inGameRefObservers.append(observer)
+        inGameRefObservers["\(game.gameId!)/normalCards"]?.append(observer)
     }
     
     func addOtherGameDataChangedObserver(){
@@ -227,22 +229,8 @@ extension InGameViewController{
                         }
                     }
                     else if MyPlayerData.id != self.leaderId && self.currentRoundFinished{
-                        self.inGameRef.child(self.game.gameId!).child("normalCards").observeSingleEvent(of: DataEventType.value, with: { (snapshot) in
-                            
-                            let postDict = snapshot.value as?  [String:Any]
-                            DispatchQueue.main.async {
-                                let cardNormals = GetGameCoreDataData.getLatestRound(game: self.game).cardnormal?.allObjects as? [CardNormal]
-                                
-                                for card in cardNormals! {
-                                    GetGameCoreDataData.getLatestRound(game: self.game).removeFromCardnormal(card)
-                                }
-                                
-                                for(playerId,playerDic) in postDict!{
-                                    let card = self.convertor.getCardNormalFromDictionary(playerId: playerId, dictionary: postDict!)
-                                   
-                                }
                         self.AddEditJudgeMemeBtn.isEnabled = false
-                    }})}
+                    }
                 }
                 
                 else if(snapshot.key == "nextRoundStarting"){
@@ -257,11 +245,14 @@ extension InGameViewController{
                 }
             }
         })
-        inGameRefObservers.append(observer)
+        inGameRefObservers["\(game.gameId!)"]?.append(observer)
     }
     func removeAllInGameObservers(){
-        for obser in inGameRefObservers {
-            inGameRef.removeObserver(withHandle: obser)
+        chatHelper.removeChatObserver()
+        for (directory,observers) in inGameRefObservers{
+            for ob in observers {
+                inGameRef.child(directory).removeObserver(withHandle: ob)
+            }
         }
     }
 }

@@ -24,6 +24,7 @@ class AvailableGamesViewController: UIViewController, UITableViewDelegate, UITab
     let availableRoomRef = Database.database().reference().child("availableRoom")
     
     var backgroundPlayer: AVAudioPlayer!
+    var observers = [UInt]()
     
     private let refreshControl = UIRefreshControl()
     
@@ -68,7 +69,7 @@ class AvailableGamesViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     func getRoomDataFromDB(){
-        availableRoomRef.observe(DataEventType.childAdded, with: { (snapshot) in
+        let ob1 = availableRoomRef.observe(DataEventType.childAdded, with: { (snapshot) in
             let postDict = snapshot.value as? [String : AnyObject] ?? [:]
             
             let room = AvailableRoomHelper.transferValueFromMapToRoom(leaderId: snapshot.key, map: postDict)
@@ -81,8 +82,9 @@ class AvailableGamesViewController: UIViewController, UITableViewDelegate, UITab
                 })
             }
         })
+        observers.append(ob1)
         
-        availableRoomRef.observe(DataEventType.childChanged, with: { (snapshot) in
+        let ob2 = availableRoomRef.observe(DataEventType.childChanged, with: { (snapshot) in
             DispatchQueue.main.async {
                 let postDict = snapshot.value as? [String : AnyObject] ?? [:]
                 
@@ -100,8 +102,9 @@ class AvailableGamesViewController: UIViewController, UITableViewDelegate, UITab
            //     self.tableview.reloadSections(NSIndexSet(index: self.openRooms.count-1) as IndexSet, with: UITableViewRowAnimation.right)
             }
         })
+        observers.append(ob2)
         
-        availableRoomRef.observe(DataEventType.childRemoved, with: { (snapshot) in
+        let ob3 = availableRoomRef.observe(DataEventType.childRemoved, with: { (snapshot) in
             DispatchQueue.main.async {
                 let postDict = snapshot.value as? [String : AnyObject] ?? [:]
                 
@@ -118,14 +121,15 @@ class AvailableGamesViewController: UIViewController, UITableViewDelegate, UITab
                 }
             }
         })
+         observers.append(ob3)
     }
     func updateOpenRoomValue(){
+        self.openRooms.removeAll()
+        self.tableview.reloadData()
+        
         availableRoomRef.observeSingleEvent(of: DataEventType.value, with: { (snapshot) in
             DispatchQueue.main.async {
                 let postDict = snapshot.value as? [String : AnyObject] ?? [:]
-                self.openRooms.removeAll()
-                self.tableview.reloadData()
-                
                 if postDict.count == 0 {
                     self.refreshControl.endRefreshing()
                 }
@@ -161,6 +165,15 @@ class AvailableGamesViewController: UIViewController, UITableViewDelegate, UITab
                 tableview.insertRows(at: [IndexPath(row: openRooms.count-1, section: 0)], with: UITableViewRowAnimation.left)
             }
         }
+    }
+    
+    func removeAllObservers(){
+        var x = 0
+        for ob in observers{
+            availableRoomRef.removeObserver(withHandle: ob)
+            x=x+1
+        }
+        observers.removeAll()
     }
     
     

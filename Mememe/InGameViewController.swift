@@ -29,7 +29,7 @@ class InGameViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     @IBOutlet weak var chatSendBtn: UIButton!
     
-    var inGameRefObservers = [UInt]()
+    var inGameRefObservers = [String:[UInt]]()
     
     
     @IBAction func unwindToInGameViewController(segue:UIStoryboardSegue) { }
@@ -147,7 +147,7 @@ class InGameViewController: UIViewController, UITableViewDelegate, UITableViewDa
         addPlayerRemovedObserver()
         addNormalCardsAddedObserver()
         addNormalCardsChangedObserver()
-       // addNormalCardsDeletedObserver()
+        addNormalCardsDeletedObserver()
         addOtherGameDataChangedObserver()
     }
   

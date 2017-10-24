@@ -33,6 +33,11 @@ class UserOnlineSystem {
         
         userOnlineRef.observeSingleEvent(of: DataEventType.value, with: { (snapshot) in
             let postDict = snapshot.value as? [String : AnyObject] ?? [:]
+            
+            if postDict.count == 0{
+                completionHandler(false)
+            }
+            
             for (key,value) in postDict {
                 if key == "lastActive" {
                     GetGameData.getCurrentTimeInt(completionHandler: { (timeInt) in

@@ -39,10 +39,19 @@ class PrivateRoomViewController: UIViewController,UITableViewDelegate, UITableVi
     var backgroundPlayer:AVAudioPlayer!
     var chatSoundPlayer:AVAudioPlayer!
     
+    // startBtnTimer
+    private var waitAfterUserJoinTimer = Timer()
+    var timeCounter = 0
+    
+    var availableRoomObservers = [String:[UInt]]()
+    var inGameObservers = [UInt]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
         setupMusic()
+        
+        waitAfterUserJoinTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(unEnableStartBtnFor3Sec), userInfo: nil, repeats: true)
         
         InGameHelper.removeYourInGameRoom()
         
@@ -56,16 +65,17 @@ class PrivateRoomViewController: UIViewController,UITableViewDelegate, UITableVi
         chatHelper.initializeChatObserver(controller: self)
         
         // if main room got removed
-        availableRoomRef.observe(DataEventType.childRemoved, with: { (snapshot) in
+        let ob1 = availableRoomRef.observe(DataEventType.childRemoved, with: { (snapshot) in
             if snapshot.key == self.leaderId && self.leaderId != MyPlayerData.id {
                 DispatchQueue.main.async {
                     self.dismiss(animated: true, completion: nil)
                 }
             }
         })
+        availableRoomObservers[""] = [ob1]
         
         // if there is no leader, the user created this room will be leader
-        if leaderId == nil || leaderId == AWSIdentityManager.default().identityId! {
+        if leaderId == nil || leaderId == MyPlayerData.id {
             leaderId = AWSIdentityManager.default().identityId!
             chatHelper.removeChatRoom(id: MyPlayerData.id)
             startBtn.isEnabled = false
@@ -99,6 +109,10 @@ class PrivateRoomViewController: UIViewController,UITableViewDelegate, UITableVi
         else {
             AvailableRoomHelper.insertYourselfIntoSomeoneRoom(leaderId: leaderId)
             availableRoomRef.child(leaderId).child("playerInRoom").observeSingleEvent(of: DataEventType.value, with: { (snapshot) in
+                if(self.availableRoomObservers["\(self.leaderId!)/playerInRoom"] == nil){
+                    return
+                }
+                
                 let postDict = snapshot.value as? [String:String]
                 if postDict != nil {
                     DispatchQueue.main.async {
@@ -121,8 +135,20 @@ class PrivateRoomViewController: UIViewController,UITableViewDelegate, UITableVi
             startBtn.title = ""
             startBtn.isEnabled = false
         }
-        availableRoomRef.child(leaderId).child("playerInRoom").observe(DataEventType.childAdded, with: { (snapshot) in
+        let ob2 = availableRoomRef.child(leaderId).child("playerInRoom").observe(DataEventType.childAdded, with: { (snapshot) in
             DispatchQueue.main.async {
+                if(self.availableRoomObservers["\(self.leaderId!)/playerInRoom"] == nil){
+                    return
+                }
+                
+                if(self.timeCounter != 0 || self.waitAfterUserJoinTimer.isValid){
+                    self.timeCounter = 0
+                    self.waitAfterUserJoinTimer.invalidate()
+                }
+                self.startBtn.isEnabled = false
+                self.waitAfterUserJoinTimer.fire()
+                
+                
                 let playerName = snapshot.value as? String
                 let playerId = snapshot.key
                 
@@ -153,9 +179,14 @@ class PrivateRoomViewController: UIViewController,UITableViewDelegate, UITableVi
                 self.startBtn.isEnabled = false
             }
         })
+        availableRoomObservers["\(leaderId!)/playerInRoom"]!.append(ob2)
         
-        availableRoomRef.child(leaderId).child("playerInRoom").observe(DataEventType.childRemoved, with: { (snapshot) in
+        let ob3 = availableRoomRef.child(leaderId).child("playerInRoom").observe(DataEventType.childRemoved, with: { (snapshot) in
             DispatchQueue.main.async {
+                if(self.availableRoomObservers["\(self.leaderId!)/playerInRoom"] == nil){
+                    return
+                }
+                
                 let value = snapshot.value as? String
                 let postDict = [snapshot.key:value]
                 
@@ -177,14 +208,27 @@ class PrivateRoomViewController: UIViewController,UITableViewDelegate, UITableVi
                 }
             }
         })
+        availableRoomObservers["\(leaderId!)/playerInRoom"]!.append(ob3)
+        
         // if game has been created, go to another segue
-        inGameRef.observe(DataEventType.childAdded, with: { (snapshot) in
+        let ob4 = inGameRef.observe(DataEventType.childAdded, with: { (snapshot) in
             if snapshot.key.contains(self.leaderId)  && self.leaderId != MyPlayerData.id {
                 DispatchQueue.main.async {
                     self.performSegue(withIdentifier: "InGameViewControllerSegue", sender: self)
                 }
             }
         })
+        inGameObservers.append(ob4)
+    }
+    
+    
+    
+    @objc private func unEnableStartBtnFor3Sec(completeHandler: @escaping ()-> Void){
+        timeCounter = timeCounter + 1
+        if(timeCounter == 2){
+            timeCounter = 0
+            startBtn.isEnabled = true
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -206,9 +250,9 @@ class PrivateRoomViewController: UIViewController,UITableViewDelegate, UITableVi
         performSegue(withIdentifier: "InGameViewControllerSegue", sender: self)
     }
     @IBAction func leaveRoomBtnPressed(_ sender: Any) {
-        inGameRef.removeAllObservers()
-        availableRoomRef.removeAllObservers()
+        removeAllObservers()
         chatHelper.removeChatRoom(id: leaderId)
+        
         backgroundPlayer.stop()
         
         if leaderId == MyPlayerData.id {
@@ -229,6 +273,27 @@ class PrivateRoomViewController: UIViewController,UITableViewDelegate, UITableVi
         chatTextField.text = ""
     }
     
+    private func removeAllObservers(){
+        for x in inGameObservers {
+            inGameRef.removeObserver(withHandle: x)
+        }
+        for (directory,observers) in availableRoomObservers{
+            if directory == ""{
+                for ob in observers {
+                    availableRoomRef.removeObserver(withHandle: ob)
+                }
+            }
+            else{
+                for ob in observers {
+                    availableRoomRef.child(directory).removeObserver(withHandle: ob)
+                }
+            }
+        }
+        availableRoomObservers.removeAll()
+        inGameObservers.removeAll()
+        chatHelper.removeChatObserver()
+    }
+    
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -239,19 +304,16 @@ class PrivateRoomViewController: UIViewController,UITableViewDelegate, UITableVi
         }
         
         if let destination = segue.destination as? InGameViewController {
+            removeAllObservers()
             destination.playersInGame = userInRoom
             destination.leaderId = leaderId
             destination.userImagesDic = userImagesDic
-            
-            inGameRef.removeAllObservers()
-            availableRoomRef.removeAllObservers()
-            chatHelper.removeChatObserver()
         }
         else if let destination = segue.destination as? AvailableGamesViewController{
+            removeAllObservers()
             destination.selectedLeaderId = nil
             destination.getRoomDataFromDB()
             leaderId = nil
-            chatHelper.removeChatObserver()
         }
     }
 
