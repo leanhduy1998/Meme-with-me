@@ -10,8 +10,8 @@ import Foundation
 import UIKit
 
 extension PreviewInGameViewController{
-    func getUserIconView(game: Game, frame: CGRect, playerCard: CardNormal,completeHandler: @escaping (_ IV: UIImageView)-> Void){
-        let players = game.players?.allObjects as? [Player]
+    func getUserIconView(round: Round, frame: CGRect, playerCard: CardNormal,completeHandler: @escaping (_ IV: UIImageView)-> Void){
+        let players = round.players?.allObjects as? [Player]
         
         var player: Player!
         

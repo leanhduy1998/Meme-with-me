@@ -2,7 +2,7 @@
 //  Round+CoreDataProperties.swift
 //  
 //
-//  Created by Duy Le on 8/10/17.
+//  Created by Duy Le on 10/25/17.
 //
 //
 
@@ -20,6 +20,7 @@ extension Round {
     @NSManaged public var cardceasar: CardCeasar?
     @NSManaged public var cardnormal: NSSet?
     @NSManaged public var currentgame: Game?
+    @NSManaged public var players: NSSet?
 
 }
 
@@ -37,5 +38,22 @@ extension Round {
 
     @objc(removeCardnormal:)
     @NSManaged public func removeFromCardnormal(_ values: NSSet)
+
+}
+
+// MARK: Generated accessors for players
+extension Round {
+
+    @objc(addPlayersObject:)
+    @NSManaged public func addToPlayers(_ value: Player)
+
+    @objc(removePlayersObject:)
+    @NSManaged public func removeFromPlayers(_ value: Player)
+
+    @objc(addPlayers:)
+    @NSManaged public func addToPlayers(_ values: NSSet)
+
+    @objc(removePlayers:)
+    @NSManaged public func removeFromPlayers(_ values: NSSet)
 
 }

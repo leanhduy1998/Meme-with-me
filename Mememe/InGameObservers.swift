@@ -17,6 +17,7 @@ extension InGameViewController{
                 for p in self.playersInGame {
                     if(p.userId == snapshot.key){
                         self.playersInGame.remove(at: count)
+                        break
                     }
                     count = count + 1
                 }
@@ -25,13 +26,22 @@ extension InGameViewController{
                     self.AddEditJudgeMemeBtn.isEnabled = false
                 }
                 
+                let lastRound = GetGameCoreDataData.getLatestRound(game: self.game)
+                
+                for player in (lastRound.players?.allObjects as? [Player])! {
+                    if player.playerId! == snapshot.key {
+                        lastRound.removeFromPlayers(player)
+                        break
+                    }
+                }
+                
                 if(snapshot.key == self.playerJudging && (!self.currentRoundFinished)){
                     self.playerJudging = self.leaderId
                     if(MyPlayerData.id == self.leaderId){
                         self.AddEditJudgeMemeBtn.title = "Judge Your People!"
                         self.checkIfAllPlayersHaveInsertCard()
                     }
-                    GetGameCoreDataData.getLatestRound(game: self.game).cardceasar?.playerId = self.playerJudging
+                    lastRound.cardceasar?.playerId = self.playerJudging
                 }
                 GameStack.sharedInstance.saveContext(completeHandler: {
                     DispatchQueue.main.async {
@@ -40,6 +50,9 @@ extension InGameViewController{
                 })
             }
         })
+        if inGameRefObservers["\(game.gameId!)/players"] == nil {
+            inGameRefObservers["\(game.gameId!)/players"] = []
+        }
         inGameRefObservers["\(game.gameId!)/players"]?.append(observer)
     }
     
@@ -73,6 +86,9 @@ extension InGameViewController{
                 self.playCardPlacedDown()
             }
         })
+        if inGameRefObservers["\(game.gameId!)/normalCards"] == nil {
+            inGameRefObservers["\(game.gameId!)/normalCards"] = []
+        }
         inGameRefObservers["\(game.gameId!)/normalCards"]?.append(observer)
     }
     
@@ -107,6 +123,10 @@ extension InGameViewController{
                 }
             }
         })
+        if inGameRefObservers["\(game.gameId!)/normalCards"] == nil {
+            inGameRefObservers["\(game.gameId!)/normalCards"] = []
+        }
+        
         inGameRefObservers["\(game.gameId!)/normalCards"]?.append(observer)
     }
  
@@ -182,6 +202,9 @@ extension InGameViewController{
                 })
             }
         })
+        if inGameRefObservers["\(game.gameId!)/normalCards"] == nil {
+            inGameRefObservers["\(game.gameId!)/normalCards"] = []
+        }
         inGameRefObservers["\(game.gameId!)/normalCards"]?.append(observer)
     }
     
@@ -245,6 +268,9 @@ extension InGameViewController{
                 }
             }
         })
+        if inGameRefObservers["\(game.gameId!)"] == nil {
+            inGameRefObservers["\(game.gameId!)"] = []
+        }
         inGameRefObservers["\(game.gameId!)"]?.append(observer)
     }
     func removeAllInGameObservers(){

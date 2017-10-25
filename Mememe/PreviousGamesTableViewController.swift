@@ -50,6 +50,8 @@ class PreviousGamesTableViewController: UITableViewController {
                     let game = GameDataFromJSON.getGameFromJSON(model: model)
                     
                     var playersImages = [UIImage]()
+                    
+                    let lastestRound = GetGameCoreDataData.getLatestRound(game: game)
                         
                     let players = game.players?.allObjects as? [Player]
                     
@@ -69,12 +71,10 @@ class PreviousGamesTableViewController: UITableViewController {
                         for i in playersImages{
                             if(i == image){
                                 found = true
-        //                        self.view.backgroundColor = UIColor(patternImage: image)
                             }
                         }
                         if(!found){
                             playersImages.append(image)
-                            self.view.backgroundColor = UIColor(patternImage: image)
                         }
                         self.playerImagesInGameDic[game.gameId!] = playersImages
                         

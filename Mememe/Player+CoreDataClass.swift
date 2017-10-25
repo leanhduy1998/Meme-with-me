@@ -2,7 +2,7 @@
 //  Player+CoreDataClass.swift
 //  
 //
-//  Created by Duy Le on 10/20/17.
+//  Created by Duy Le on 10/25/17.
 //
 //
 

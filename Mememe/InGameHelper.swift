@@ -64,13 +64,29 @@ class InGameHelper{
                 if (gameIdAndValue == nil) {
                     return
                 }
+                
+                var leaderIdKeyFound = false
+                
                 for (gameId,value) in gameIdAndValue! {
                     let gameValue = value as? [String : Any]
                     for (key,value) in gameValue! {
                         let id = value as? String
                         if (key == "leaderId") && (id == MyPlayerData.id) {
                             inGameRef.child(gameId).removeValue()
-                            break
+                            leaderIdKeyFound = true
+                            return
+                        }
+                    }
+                }
+                
+                if !leaderIdKeyFound{
+                    for (gameId,value) in gameIdAndValue! {
+                        let length = MyPlayerData.id.characters.count
+                        let index = gameId.index(gameId.startIndex, offsetBy: length)
+                        let leaderId = gameId.substring(to: index)
+                        
+                        if leaderId == MyPlayerData.id {
+                            inGameRef.child(gameId).removeValue()
                         }
                     }
                 }

@@ -138,7 +138,7 @@ class InGameViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 DispatchQueue.main.async {
                     self.playerJoinedFirebaseCount = self.playerJoinedFirebaseCount + 1
                     if(self.playerJoinedFirebaseCount == self.playersInGame.count){
-                        AvailableRoomHelper.deleteMyAvailableRoom()
+                        AvailableRoomHelper.deleteMyAvailableRoom(completeHandler: {})
                     }
                 }
             })

@@ -91,8 +91,10 @@ class AvailableRoomHelper {
             availableRoomRef.updateChildValues(childUpdates)
         }
     }
-    static func deleteMyAvailableRoom(){
-        availableRoomRef.child(MyPlayerData.id).removeValue()
+    static func deleteMyAvailableRoom(completeHandler: @escaping ()-> Void){
+        availableRoomRef.child(MyPlayerData.id).removeValue { (error, reference) in
+            completeHandler()
+        }
     }
     static func insertYourselfIntoSomeoneRoom(leaderId: String){        
         availableRoomRef.child(leaderId).child("playerInRoom").observeSingleEvent(of: DataEventType.value, with: { (snapshot) in
@@ -106,7 +108,7 @@ class AvailableRoomHelper {
             }
         })
     }
-    static func removeYourselfIntoSomeoneRoom(leaderId: String){
+    static func removeYourselfIntoSomeoneRoom(leaderId: String, completeHandler: @escaping ()-> Void){
         availableRoomRef.child(leaderId).child("playerInRoom").observeSingleEvent(of: DataEventType.value, with: { (snapshot) in
             var playerInRoom = snapshot.value as? [String:Any]
             playerInRoom?.removeValue(forKey: MyPlayerData.id)
@@ -114,7 +116,9 @@ class AvailableRoomHelper {
             DispatchQueue.main.async {
                 let key = "/\(leaderId)"
                 let childUpdates = ["\(key)/playerInRoom": playerInRoom]
-                availableRoomRef.updateChildValues(childUpdates)
+                availableRoomRef.updateChildValues(childUpdates, withCompletionBlock: { (error, reference) in
+                    completeHandler()
+                })
             }
         })
     }

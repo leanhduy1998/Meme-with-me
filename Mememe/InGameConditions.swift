@@ -20,7 +20,9 @@ extension InGameViewController{
             AddEditJudgeMemeBtn.title = "Edit Your Meme"
         }
         else {
-            AddEditJudgeMemeBtn.isEnabled = true
+            DispatchQueue.main.asyncAfter(deadline: .now() + 5, execute: {
+                self.AddEditJudgeMemeBtn.isEnabled = true
+            })
             AddEditJudgeMemeBtn.title = "Add Your Meme!"
         }
     }

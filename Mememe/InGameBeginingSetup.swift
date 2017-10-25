@@ -18,6 +18,8 @@ extension InGameViewController {
                 let helper = UserFilesHelper()
                 self.game = Game(createdDate: date, gameId: self.leaderId + "\(currentTimeInt)", context: GameStack.sharedInstance.stack.context)
                 
+                let round = Round(roundNum: 0, context: GameStack.sharedInstance.stack.context)
+                
                 for player in self.playersInGame {
                     let image = self.userImagesDic[player.userId]
                     
@@ -31,13 +33,11 @@ extension InGameViewController {
                     let playerCore = Player(playerName: player.userName, playerId: player.userId!, userImageLocation: imagePath, context: GameStack.sharedInstance.stack.context)
             
                     self.game.addToPlayers(playerCore)
+                    round.addToPlayers(playerCore)
                     
                     let winCounter = WinCounter(playerId: player.userId, wonNum: 0, context: GameStack.sharedInstance.stack.context)
                     self.game.addToWincounter(winCounter)
                 }
-                
-                let round = Round(roundNum: 0, context: GameStack.sharedInstance.stack.context)
-                
                 
                 helper.getRandomMemeData(completeHandler: { (memeData, memeUrl) in
                     DispatchQueue.main.async {
@@ -92,6 +92,9 @@ extension InGameViewController {
     func getBeginingGameFromFirB(completionHandler: @escaping () -> Void){
         let conversion = InGameHelperConversion()
         let inGameRef = Database.database().reference().child("inGame")
+        
+        let round = Round(roundNum: 0, context: GameStack.sharedInstance.stack.context)
+        
         inGameRef.observeSingleEvent(of: DataEventType.value, with: { (snapshot) in
             let gameIdAndValue = snapshot.value as? [String : Any]
             for (gameId,value) in gameIdAndValue! {
@@ -142,6 +145,7 @@ extension InGameViewController {
                                 player.imageStorageLocation = filePath
                                 
                                 self.game.addToPlayers(player)
+                                round.addToPlayers(player)
                                 
                                 let winCounter = WinCounter(playerId: playerId, wonNum: 0, context: GameStack.sharedInstance.stack.context)
 
@@ -160,7 +164,7 @@ extension InGameViewController {
                             break
                         }
                     }
-                    let round = Round(roundNum: 0, context: GameStack.sharedInstance.stack.context)
+                    
                     
                     
                     let helper = UserFilesHelper()

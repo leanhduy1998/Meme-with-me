@@ -83,25 +83,16 @@ extension PrivateRoomViewController {
             else{
                 helper.loadUserProfilePicture(userId: userInRoom[indexPath.row].userId) { (imageData) in
                     DispatchQueue.main.async {
-                        var image = UIImage(data: imageData)
-                        
-                        var newImage:UIImage
-                        let size = CGSize(width: 128, height: 128)
-                        UIGraphicsBeginImageContextWithOptions(size, true, 0);
-                        image?.draw(in: CGRect(x:0,y:0,width:size.width, height:size.height))
-                        newImage = UIGraphicsGetImageFromCurrentImageContext()!;
-                        UIGraphicsEndImageContext()
-                        
-                        image = newImage
+                        let image = UIImage(data: imageData)
                         
                         cell?.imageview.image = image
+                        cell?.imageview = CircleImageCutter.roundImageView(imageview: (cell?.imageview)!, radius: 3)
                         if indexPath.row <= (self.userInRoom.count-1){
                             self.userImagesDic[self.userInRoom[indexPath.row].userId] = image
                         }
                     }
                 }
             }
-            
 
             cell?.nameLabel.text = userInRoom[indexPath.row].userName
             

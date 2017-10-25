@@ -45,10 +45,14 @@ class AvailableGamesViewController: UIViewController, UITableViewDelegate, UITab
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        AvailableRoomHelper.deleteMyAvailableRoom()
+        AvailableRoomHelper.deleteMyAvailableRoom(completeHandler: {
+            DispatchQueue.main.async {
+                self.getRoomDataFromDB()
+                self.updateOpenRoomValue()
+            }
+        })
         InGameHelper.removeYourInGameRoom()
-        getRoomDataFromDB()
-        updateOpenRoomValue()
+        
         selectedLeaderId = nil
         setupUI()
         backgroundPlayer.play()

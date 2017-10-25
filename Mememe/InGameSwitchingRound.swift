@@ -87,7 +87,10 @@ extension InGameViewController{
                     DispatchQueue.main.async {
                         InGameHelper.updateGameToNextRound(nextRoundJudgeId: nextRoundJudgeId, gameId: self.game.gameId!, nextRound: nextRoundNumber, nextRoundImageUrl: memeUrl)
                         
+                        let currentPlayersCore = GetGameCoreDataData.getLatestRound(game: self.game).players
+                        
                         let nextRound = Round(roundNum: nextRoundNumber, context: GameStack.sharedInstance.stack.context)
+                        nextRound.players = currentPlayersCore
                         
                         let gameIdForStorage = FileManagerHelper.getPlayerIdForStorage(playerId: self.game.gameId!)
                         
@@ -110,31 +113,46 @@ extension InGameViewController{
         cardOrder.removeAll()
         cardDictionary.removeAll()
         
-        MememeDynamoDB.updateGame(itemToUpdate: gameDBModel!, game: game) { (error) in
-            if(error != nil){
-                print(error.debugDescription)
-                return
-            }
-            
-            DispatchQueue.main.async {
-                // if I am leader
-                if MyPlayerData.id == self.leaderId {
-                    self.reloadPreviewCards()
-                    self.reloadCurrentPlayersIcon()
-                    self.checkIfYourAreJudge()
+        if MyPlayerData.id == self.leaderId {
+            MememeDynamoDB.updateGame(itemToUpdate: gameDBModel!, game: game) { (error) in
+                if(error != nil){
+                    print(error.debugDescription)
+                    return
                 }
-                else {
-                    self.setupNextRound()
+                self.reloadPreviewCards()
+                self.reloadCurrentPlayersIcon()
+                self.checkIfYourAreJudge()
+            }
+        }
+        else {
+            setupNextRound {
+                DispatchQueue.main.async {
+                    MememeDynamoDB.updateGame(itemToUpdate: self.gameDBModel!, game: self.game) { (error) in
+                        if(error != nil){
+                            print(error.debugDescription)
+                            return
+                        }
+                        DispatchQueue.main.async {
+                            self.reloadPreviewCards()
+                            self.reloadCurrentPlayersIcon()
+                            self.checkIfYourAreJudge()
+                            self.nextRoundStarting = false
+                        }
+                    }
                 }
             }
         }
     }
-    private func setupNextRound(){
+    private func setupNextRound(completeHandler: @escaping ()-> Void){
         let nextRoundNumber = Int(GetGameCoreDataData.getLatestRound(game: game).roundNum) + 1
         
         InGameHelper.getRoundImage( gameId: self.game.gameId!, completionHandler: { (memeData, memeUrl) in
             DispatchQueue.main.async {
                 let nextRound = Round(roundNum: nextRoundNumber, context: GameStack.sharedInstance.stack.context)
+                
+                let currentPlayers = GetGameCoreDataData.getLatestRound(game: self.game).players
+                nextRound.players = currentPlayers
+                
                 
                 let gameIdForStorage = FileManagerHelper.getPlayerIdForStorage(playerId: self.game.gameId!)
                 
@@ -147,12 +165,7 @@ extension InGameViewController{
                 self.game.addToRounds(nextRound)
                 
                 GameStack.sharedInstance.saveContext(completeHandler: {
-                    DispatchQueue.main.async {
-                        self.reloadPreviewCards()
-                        self.reloadCurrentPlayersIcon()
-                        self.checkIfYourAreJudge()
-                        self.nextRoundStarting = false
-                    }
+                    completeHandler()
                 })
             }
         })

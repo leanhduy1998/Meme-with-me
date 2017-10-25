@@ -35,6 +35,7 @@ class GetGameData {
             let httpResponse = response as? HTTPURLResponse
             if(httpResponse == nil){
                 completionHandler(Date())
+                return
             }
             
             if let contentType = httpResponse!.allHeaderFields["Date"] as? String {

@@ -2,7 +2,7 @@
 //  Player+CoreDataProperties.swift
 //  
 //
-//  Created by Duy Le on 10/20/17.
+//  Created by Duy Le on 10/25/17.
 //
 //
 
@@ -16,9 +16,10 @@ extension Player {
         return NSFetchRequest<Player>(entityName: "Player")
     }
 
+    @NSManaged public var imageStorageLocation: String?
     @NSManaged public var name: String?
     @NSManaged public var playerId: String?
-    @NSManaged public var imageStorageLocation: String?
     @NSManaged public var game: Game?
+    @NSManaged public var round: Round?
 
 }

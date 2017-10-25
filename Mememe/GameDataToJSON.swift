@@ -10,8 +10,10 @@ import Foundation
 
 class GameDataToJSON {
     var game: Game!
+    var lastestRound: Round!
     init(game:Game) {
         self.game = game
+        self.lastestRound = GetGameCoreDataData.getLatestRound(game: game)
     }
     
     
@@ -51,7 +53,7 @@ class GameDataToJSON {
     private func getPlayersDic() -> [String:Any] {
         var jsonDic = [String:Any]()
         
-        let players = game.players?.allObjects as? [Player]
+        let players = lastestRound.players?.allObjects as? [Player]
         
         for player in players! {
             var dic = [String:String]()

@@ -24,7 +24,9 @@ extension InGameViewController {
         for player in playersInGame{
             var userCoreData: Player!
             
-            for pCore in (game.players?.allObjects as? [Player])! {
+            let lastestRound = GetGameCoreDataData.getLatestRound(game: game)
+            
+            for pCore in (lastestRound.players?.allObjects as? [Player])! {
                 if(pCore.playerId == player.userId){
                     userCoreData = pCore
                     break

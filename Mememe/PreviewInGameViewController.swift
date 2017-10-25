@@ -152,7 +152,16 @@ class PreviewInGameViewController: UIViewController {
             let cardUIView = CardView(frame: CGRect(x: newX, y: space/2-cardInitialYBeforeAnimation, width: cardWidth, height: cardHeight))
             cardUIView.initCardView(topLabel: upLabel, bottomLabel: downLabel, playerId: (currentPlayersCards?[x].playerId)!, memeIV: memeImageView)
             
-            getUserIconView(game: game, frame: memeImageView.frame, playerCard: currentPlayersCards![x], completeHandler: { (iv) in
+            var round: Round!
+            
+            for r in (game.rounds?.allObjects as? [Round])!{
+                if Int(r.roundNum) == currentRound {
+                    round = r
+                    break
+                }
+            }
+            
+            getUserIconView(round: round, frame: memeImageView.frame, playerCard: currentPlayersCards![x], completeHandler: { (iv) in
                 DispatchQueue.main.async {
                     cardUIView.addSubview(iv)
                     cardUIView.bringSubview(toFront: iv)
@@ -203,7 +212,17 @@ class PreviewInGameViewController: UIViewController {
         iconSize = 44 - space/2
         
         var counter = 0
-        for player in (game.players?.allObjects as? [Player])!{            
+        
+        var round: Round!
+        
+        for r in (game.rounds?.allObjects as? [Round])!{
+            if Int(r.roundNum) == currentRound {
+                round = r
+                break
+            }
+        }
+        
+        for player in (round.players?.allObjects as? [Player])!{
             let newX = (self.space * CGFloat(counter+1))  + CGFloat(counter) * self.iconSize
             var userIconIV = UIImageView()
             userIconIV.frame = CGRect(x: newX, y: self.space/4, width: self.iconSize, height: self.iconSize)

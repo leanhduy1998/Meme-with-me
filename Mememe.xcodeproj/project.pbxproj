@@ -15,8 +15,6 @@
 		240E6B6C1F90DC1E000B28D0 /* WinCounter+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240E6B661F90DC01000B28D0 /* WinCounter+CoreDataClass.swift */; };
 		240E6B6D1F90DC1E000B28D0 /* WinCounter+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240E6B671F90DC01000B28D0 /* WinCounter+CoreDataProperties.swift */; };
 		241251281F994E010040AF40 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241251271F994E010040AF40 /* Reachability.swift */; };
-		2413D78F1F3D58A0001EA209 /* Round.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2413D78D1F3D58A0001EA209 /* Round.swift */; };
-		2413D7901F3D58A0001EA209 /* RoundCoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2413D78E1F3D58A0001EA209 /* RoundCoreDataProperties.swift */; };
 		2413D79C1F4204C2001EA209 /* AddEditMyMemeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2413D79B1F4204C2001EA209 /* AddEditMyMemeViewController.swift */; };
 		2413D79E1F42082B001EA209 /* HeartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2413D79D1F42082B001EA209 /* HeartView.swift */; };
 		2413D7AF1F42112A001EA209 /* PlayerLove.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2413D7AB1F42112A001EA209 /* PlayerLove.swift */; };
@@ -75,8 +73,6 @@
 		244A43F71F9BB78F00463F2E /* CardCeasar+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244A43F51F9BB78F00463F2E /* CardCeasar+CoreDataClass.swift */; };
 		244F2CF71F86DF0C00547AB2 /* InGameCards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244F2CF61F86DF0C00547AB2 /* InGameCards.swift */; };
 		244F7C011F8EC31E00865BB3 /* StartTut.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244F7C001F8EC31E00865BB3 /* StartTut.swift */; };
-		245031E91F99AD05009060D2 /* Player+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245031E71F99AD05009060D2 /* Player+CoreDataClass.swift */; };
-		245031EA1F99AD05009060D2 /* Player+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245031E81F99AD05009060D2 /* Player+CoreDataProperties.swift */; };
 		245031EC1F99AE0F009060D2 /* FileManagerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245031EB1F99AE0F009060D2 /* FileManagerHelper.swift */; };
 		245B2B141F4F685500BCF75A /* GameDataFromJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245B2B131F4F685500BCF75A /* GameDataFromJSON.swift */; };
 		245B2B1F1F50F9D100BCF75A /* PrivateRoomTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245B2B1E1F50F9D100BCF75A /* PrivateRoomTableView.swift */; };
@@ -120,6 +116,7 @@
 		24896D871F2A70A9003B6954 /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24896D861F2A70A9003B6954 /* StartView.swift */; };
 		248CC2171F8D449B0097FB6A /* InGameTutTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248CC2161F8D449B0097FB6A /* InGameTutTableView.swift */; };
 		248CC2191F8D47ED0097FB6A /* InGameTutSound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248CC2181F8D47ED0097FB6A /* InGameTutSound.swift */; };
+		2493972A1FA07924002F392A /* PrivateRoomObservers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249397291FA07924002F392A /* PrivateRoomObservers.swift */; };
 		2498F9D81F342E8600B21267 /* CircleImageCutter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2498F9D71F342E8600B21267 /* CircleImageCutter.swift */; };
 		2498F9DB1F3478C500B21267 /* HerChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2498F9DA1F3478C500B21267 /* HerChatTableViewCell.swift */; };
 		2498F9DD1F3478E200B21267 /* MyChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2498F9DC1F3478E200B21267 /* MyChatTableViewCell.swift */; };
@@ -167,6 +164,10 @@
 		24F6A7701F34E48D000E35DD /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2498FA271F34857100B21267 /* libsqlite3.0.tbd */; };
 		24F6A7711F34E48D000E35DD /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2498FA281F34857100B21267 /* libsqlite3.tbd */; };
 		24F6A7731F34E4C2000E35DD /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 24F6A7721F34E4C2000E35DD /* libz.tbd */; };
+		24F7C9991FA0541800D20368 /* Player+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F7C9951FA0541700D20368 /* Player+CoreDataClass.swift */; };
+		24F7C99A1FA0541800D20368 /* Round+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F7C9961FA0541700D20368 /* Round+CoreDataProperties.swift */; };
+		24F7C99B1FA0541800D20368 /* Player+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F7C9971FA0541700D20368 /* Player+CoreDataProperties.swift */; };
+		24F7C99C1FA0541800D20368 /* Round+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F7C9981FA0541800D20368 /* Round+CoreDataClass.swift */; };
 		24FC32DC1F6CB097006CBD62 /* UserOnlineSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FC32DB1F6CB097006CBD62 /* UserOnlineSystem.swift */; };
 /* End PBXBuildFile section */
 
@@ -210,8 +211,6 @@
 		240E6B681F90DC01000B28D0 /* Game+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Game+CoreDataClass.swift"; sourceTree = "<group>"; };
 		240E6B691F90DC02000B28D0 /* Game+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Game+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		241251271F994E010040AF40 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
-		2413D78D1F3D58A0001EA209 /* Round.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Round.swift; path = ../Round.swift; sourceTree = "<group>"; };
-		2413D78E1F3D58A0001EA209 /* RoundCoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RoundCoreDataProperties.swift; path = ../RoundCoreDataProperties.swift; sourceTree = "<group>"; };
 		2413D79B1F4204C2001EA209 /* AddEditMyMemeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEditMyMemeViewController.swift; sourceTree = "<group>"; };
 		2413D79D1F42082B001EA209 /* HeartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeartView.swift; sourceTree = "<group>"; };
 		2413D7AB1F42112A001EA209 /* PlayerLove.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlayerLove.swift; path = ../PlayerLove.swift; sourceTree = "<group>"; };
@@ -276,8 +275,6 @@
 		244A43F51F9BB78F00463F2E /* CardCeasar+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CardCeasar+CoreDataClass.swift"; sourceTree = "<group>"; };
 		244F2CF61F86DF0C00547AB2 /* InGameCards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InGameCards.swift; sourceTree = "<group>"; };
 		244F7C001F8EC31E00865BB3 /* StartTut.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartTut.swift; sourceTree = "<group>"; };
-		245031E71F99AD05009060D2 /* Player+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Player+CoreDataClass.swift"; sourceTree = "<group>"; };
-		245031E81F99AD05009060D2 /* Player+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Player+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		245031EB1F99AE0F009060D2 /* FileManagerHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerHelper.swift; sourceTree = "<group>"; };
 		245B2B131F4F685500BCF75A /* GameDataFromJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameDataFromJSON.swift; sourceTree = "<group>"; };
 		245B2B1E1F50F9D100BCF75A /* PrivateRoomTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivateRoomTableView.swift; sourceTree = "<group>"; };
@@ -332,6 +329,7 @@
 		24896D861F2A70A9003B6954 /* StartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
 		248CC2161F8D449B0097FB6A /* InGameTutTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InGameTutTableView.swift; sourceTree = "<group>"; };
 		248CC2181F8D47ED0097FB6A /* InGameTutSound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InGameTutSound.swift; sourceTree = "<group>"; };
+		249397291FA07924002F392A /* PrivateRoomObservers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateRoomObservers.swift; sourceTree = "<group>"; };
 		2498F9D71F342E8600B21267 /* CircleImageCutter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleImageCutter.swift; sourceTree = "<group>"; };
 		2498F9DA1F3478C500B21267 /* HerChatTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HerChatTableViewCell.swift; sourceTree = "<group>"; };
 		2498F9DC1F3478E200B21267 /* MyChatTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyChatTableViewCell.swift; sourceTree = "<group>"; };
@@ -364,6 +362,7 @@
 		24C30F411F7441A4007237C1 /* InGameExtensionJudge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InGameExtensionJudge.swift; sourceTree = "<group>"; };
 		24C30F431F7441E8007237C1 /* InGameScrollViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InGameScrollViews.swift; sourceTree = "<group>"; };
 		24C4A7801F2AC94C00A1E277 /* AvailableGamesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvailableGamesViewController.swift; sourceTree = "<group>"; };
+		24C74FA11F9FF5C800282983 /* Model 13.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model 13.xcdatamodel"; sourceTree = "<group>"; };
 		24CD58671F86DB42005DCA0C /* AvailableGamesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableGamesView.swift; sourceTree = "<group>"; };
 		24D2BE2E1F7B6949003B7957 /* GameStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStack.swift; sourceTree = "<group>"; };
 		24E3289A1F8964FB00A2A2FE /* endRound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = endRound.mp3; sourceTree = "<group>"; };
@@ -374,11 +373,16 @@
 		24E734CA1F6F00F900218AB1 /* AvailableGamesTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvailableGamesTableView.swift; sourceTree = "<group>"; };
 		24E859771F7EF94800856BA3 /* Model 6.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model 6.xcdatamodel"; sourceTree = "<group>"; };
 		24E8597C1F7EFE5700856BA3 /* CellAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellAnimator.swift; sourceTree = "<group>"; };
+		24EBAD8D1FA04E7500C7AA13 /* Model 14.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model 14.xcdatamodel"; sourceTree = "<group>"; };
 		24F237B01F807FCF00616F3C /* InGameChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InGameChat.swift; sourceTree = "<group>"; };
 		24F5C7E91F87F9340095B2C5 /* InGameUserIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InGameUserIcon.swift; sourceTree = "<group>"; };
 		24F5C7EB1F87F9830095B2C5 /* InGameAddMeme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InGameAddMeme.swift; sourceTree = "<group>"; };
 		24F5C7ED1F87FC750095B2C5 /* heartbeat.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = heartbeat.mp3; sourceTree = "<group>"; };
 		24F6A7721F34E4C2000E35DD /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		24F7C9951FA0541700D20368 /* Player+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Player+CoreDataClass.swift"; sourceTree = "<group>"; };
+		24F7C9961FA0541700D20368 /* Round+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Round+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		24F7C9971FA0541700D20368 /* Player+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Player+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		24F7C9981FA0541800D20368 /* Round+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Round+CoreDataClass.swift"; sourceTree = "<group>"; };
 		24FC32DB1F6CB097006CBD62 /* UserOnlineSystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserOnlineSystem.swift; sourceTree = "<group>"; };
 		A1EFF53BA25955FB53356C75 /* Pods_Mememe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mememe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A726362B99EE502AE5C81BCB /* Pods-Mememe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mememe.release.xcconfig"; path = "Pods/Target Support Files/Pods-Mememe/Pods-Mememe.release.xcconfig"; sourceTree = "<group>"; };
@@ -561,14 +565,14 @@
 		24305CB81F2BD34700B14632 /* CoreDataProperties */ = {
 			isa = PBXGroup;
 			children = (
+				24F7C9961FA0541700D20368 /* Round+CoreDataProperties.swift */,
+				24F7C9971FA0541700D20368 /* Player+CoreDataProperties.swift */,
 				244A43F41F9BB78E00463F2E /* CardCeasar+CoreDataProperties.swift */,
 				244A43E91F9BB14700463F2E /* MyCoreData+CoreDataProperties.swift */,
-				245031E81F99AD05009060D2 /* Player+CoreDataProperties.swift */,
 				240E6B671F90DC01000B28D0 /* WinCounter+CoreDataProperties.swift */,
 				240E6B691F90DC02000B28D0 /* Game+CoreDataProperties.swift */,
 				2413D7BE1F43E78C001EA209 /* CardNormalCoreDataProperties.swift */,
 				2413D7AC1F42112A001EA209 /* PlayerLoveCoreDataProperties.swift */,
-				2413D78E1F3D58A0001EA209 /* RoundCoreDataProperties.swift */,
 			);
 			name = CoreDataProperties;
 			sourceTree = "<group>";
@@ -576,14 +580,14 @@
 		24305CC51F2BD4F000B14632 /* CoreDataClass */ = {
 			isa = PBXGroup;
 			children = (
+				24F7C9951FA0541700D20368 /* Player+CoreDataClass.swift */,
+				24F7C9981FA0541800D20368 /* Round+CoreDataClass.swift */,
 				244A43F51F9BB78F00463F2E /* CardCeasar+CoreDataClass.swift */,
 				244A43E81F9BB14700463F2E /* MyCoreData+CoreDataClass.swift */,
-				245031E71F99AD05009060D2 /* Player+CoreDataClass.swift */,
 				240E6B661F90DC01000B28D0 /* WinCounter+CoreDataClass.swift */,
 				240E6B681F90DC01000B28D0 /* Game+CoreDataClass.swift */,
 				2413D7BD1F43E78C001EA209 /* CardNormal.swift */,
 				2413D7AB1F42112A001EA209 /* PlayerLove.swift */,
-				2413D78D1F3D58A0001EA209 /* Round.swift */,
 			);
 			name = CoreDataClass;
 			sourceTree = "<group>";
@@ -668,6 +672,7 @@
 				245B2B211F50FB2D00BCF75A /* PrivateRoomTableCell.swift */,
 				247A55CA1F7F5FBC004D1701 /* PrivateRoomChat.swift */,
 				245BE52E1F8EE7E600B02CD3 /* PrivateViewSound.swift */,
+				249397291FA07924002F392A /* PrivateRoomObservers.swift */,
 			);
 			name = PrivateRoom;
 			sourceTree = "<group>";
@@ -1261,7 +1266,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2413D78F1F3D58A0001EA209 /* Round.swift in Sources */,
 				2413D7BA1F426544001EA209 /* AddEditMyMemeTableCell.swift in Sources */,
 				242088731F8CA38000BFFD1B /* InGameTutController.swift in Sources */,
 				2413D7D71F461DBD001EA209 /* JudgingViewController.swift in Sources */,
@@ -1284,6 +1288,7 @@
 				2413D7BF1F43E78C001EA209 /* CardNormal.swift in Sources */,
 				24C4A7811F2AC94C00A1E277 /* AvailableGamesViewController.swift in Sources */,
 				244A43EA1F9BB14700463F2E /* MyCoreData+CoreDataClass.swift in Sources */,
+				24F7C9991FA0541800D20368 /* Player+CoreDataClass.swift in Sources */,
 				242088751F8CA3D000BFFD1B /* InGameTutUI.swift in Sources */,
 				24F5C7EC1F87F9830095B2C5 /* InGameAddMeme.swift in Sources */,
 				24C30F421F7441A4007237C1 /* InGameExtensionJudge.swift in Sources */,
@@ -1292,7 +1297,6 @@
 				24F5C7EA1F87F9340095B2C5 /* InGameUserIcon.swift in Sources */,
 				24305CDF1F2E5F5300B14632 /* CoreDataStack.swift in Sources */,
 				2413D7D41F45189A001EA209 /* CardView.swift in Sources */,
-				2413D7901F3D58A0001EA209 /* RoundCoreDataProperties.swift in Sources */,
 				244A43F61F9BB78F00463F2E /* CardCeasar+CoreDataProperties.swift in Sources */,
 				2474E0001F349424006E00AC /* AWSMobileClient.swift in Sources */,
 				244A43F71F9BB78F00463F2E /* CardCeasar+CoreDataClass.swift in Sources */,
@@ -1307,10 +1311,12 @@
 				24233F581F61F27E00B2B7EE /* AvailableGamesNoImageCell.swift in Sources */,
 				248CC2191F8D47ED0097FB6A /* InGameTutSound.swift in Sources */,
 				2413D7B01F42112A001EA209 /* PlayerLoveCoreDataProperties.swift in Sources */,
+				24F7C99A1FA0541800D20368 /* Round+CoreDataProperties.swift in Sources */,
 				24C30F441F7441E8007237C1 /* InGameScrollViews.swift in Sources */,
 				242088661F8C02CC00BFFD1B /* AvailableGameTutorialController.swift in Sources */,
 				2413D7BC1F427A81001EA209 /* MemeLabelConfigurer.swift in Sources */,
 				2413D7DD1F484470001EA209 /* ChoosingCardView.swift in Sources */,
+				2493972A1FA07924002F392A /* PrivateRoomObservers.swift in Sources */,
 				2413D7B51F422838001EA209 /* AddEditMyMemeView.swift in Sources */,
 				2498F9DB1F3478C500B21267 /* HerChatTableViewCell.swift in Sources */,
 				244F2CF71F86DF0C00547AB2 /* InGameCards.swift in Sources */,
@@ -1330,10 +1336,10 @@
 				24FC32DC1F6CB097006CBD62 /* UserOnlineSystem.swift in Sources */,
 				24AF9E5A1F30035800D05BFC /* InGameViewController.swift in Sources */,
 				245B2B321F52379600BCF75A /* PlayerDataDynamoDB.swift in Sources */,
-				245031E91F99AD05009060D2 /* Player+CoreDataClass.swift in Sources */,
 				240E6B6B1F90DC1E000B28D0 /* Game+CoreDataClass.swift in Sources */,
 				246D08EF1F7CAB730025DA40 /* MyDataStack.swift in Sources */,
 				2498F9DD1F3478E200B21267 /* MyChatTableViewCell.swift in Sources */,
+				24F7C99C1FA0541800D20368 /* Round+CoreDataClass.swift in Sources */,
 				24E3289F1F89677E00A2A2FE /* InGameSwitchingRound.swift in Sources */,
 				24CD58681F86DB42005DCA0C /* AvailableGamesView.swift in Sources */,
 				2413D7E71F4CC540001EA209 /* MememeDBObjectModel.swift in Sources */,
@@ -1357,7 +1363,6 @@
 				24AF9E5C1F3018D000D05BFC /* InGameView.swift in Sources */,
 				24896D561F2A5FA2003B6954 /* StartViewController.swift in Sources */,
 				2498FA351F3485E800B21267 /* GoogleIdentityProfile.swift in Sources */,
-				245031EA1F99AD05009060D2 /* Player+CoreDataProperties.swift in Sources */,
 				2498FA371F3485E800B21267 /* SignInViewController.swift in Sources */,
 				249F11A51F6DA4CD00C60059 /* PlayerData.swift in Sources */,
 				2413D7AF1F42112A001EA209 /* PlayerLove.swift in Sources */,
@@ -1372,6 +1377,7 @@
 				242088681F8C2B6400BFFD1B /* AvailableGamesTutorialTableView.swift in Sources */,
 				24896D541F2A5FA2003B6954 /* AppDelegate.swift in Sources */,
 				2488B0791F8D95920064E7A5 /* JudgingTutController.swift in Sources */,
+				24F7C99B1FA0541800D20368 /* Player+CoreDataProperties.swift in Sources */,
 				24E734C01F6DCD8F00218AB1 /* InGameHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1693,6 +1699,8 @@
 		24305C911F2BB46C00B14632 /* GameModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				24EBAD8D1FA04E7500C7AA13 /* Model 14.xcdatamodel */,
+				24C74FA11F9FF5C800282983 /* Model 13.xcdatamodel */,
 				244A43DF1F9BB02A00463F2E /* Model 12.xcdatamodel */,
 				2421E9FA1F99ABF7003BF020 /* Model 11.xcdatamodel */,
 				247D26271F9239F00068B87D /* Model 10.xcdatamodel */,
@@ -1706,7 +1714,7 @@
 				247415CE1F3BBEE600973EDE /* Model 2.xcdatamodel */,
 				24305C921F2BB46C00B14632 /* Model.xcdatamodel */,
 			);
-			currentVersion = 244A43DF1F9BB02A00463F2E /* Model 12.xcdatamodel */;
+			currentVersion = 24EBAD8D1FA04E7500C7AA13 /* Model 14.xcdatamodel */;
 			path = GameModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

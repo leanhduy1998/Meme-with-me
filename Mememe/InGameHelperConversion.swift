@@ -24,7 +24,7 @@ class InGameHelperConversion {
                 p.playerId = value as! String
                 break
                 
-            case "name":
+            case "playerName":
                 p.name = value as! String
                 break
             default:
