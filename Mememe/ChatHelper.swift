@@ -31,7 +31,9 @@ class ChatHelper {
             chatRef.removeObserver(withHandle: o)
         }
     }
-    func initializeChatObserver(controller: PrivateRoomViewController){
+    func initializeChatObserver(controller: PrivateRoomViewController, leaderId: String){
+        self.id = leaderId
+        
         let chatRef = Database.database().reference().child("chat")
         let observer = chatRef.child(id!).observe(DataEventType.childAdded, with: { (snapshot) in
             DispatchQueue.main.async {

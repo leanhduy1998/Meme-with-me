@@ -82,6 +82,10 @@ extension InGameViewController {
                                 
                                 self.chatHelper.id = self.game.gameId
                                 self.chatHelper.initializeChatObserver(controller: self)
+                                
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
+                                    AvailableRoomHelper.makeMyRoomStatusClosed()
+                                })
                             }
                         })
                     }
@@ -164,8 +168,7 @@ extension InGameViewController {
                             break
                         }
                     }
-                    
-                    
+                    self.game.addToRounds(round)
                     
                     let helper = UserFilesHelper()
                     helper.getMemeData(memeUrl: roundImageUrl, completeHandler: { (memeData) in
@@ -179,7 +182,6 @@ extension InGameViewController {
                             
                             let cardCeasar = CardCeasar(playerId: self.playerJudging, round: 0, cardDBurl: roundImageUrl, imageStorageLocation: filePath, context: GameStack.sharedInstance.stack.context)
                             round.cardceasar = cardCeasar
-                            self.game.addToRounds(round)
                             
                             GameStack.sharedInstance.saveContext(completeHandler: {
                                 completionHandler()

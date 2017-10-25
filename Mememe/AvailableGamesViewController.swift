@@ -10,6 +10,7 @@ import UIKit
 import AWSMobileHubHelper
 import AVFoundation
 import FirebaseDatabase
+import SwiftTryCatch
 
 class AvailableGamesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBAction func unwindToAvailableGamesViewController(segue:UIStoryboardSegue) { }
@@ -102,8 +103,13 @@ class AvailableGamesViewController: UIViewController, UITableViewDelegate, UITab
                     }
                     count = count + 1
                 }
-                self.tableview.reloadRows(at: [IndexPath(item: self.openRooms.count-1, section: 0)], with: UITableViewRowAnimation.right)
-           //     self.tableview.reloadSections(NSIndexSet(index: self.openRooms.count-1) as IndexSet, with: UITableViewRowAnimation.right)
+                SwiftTryCatch.try({
+                    self.tableview.reloadRows(at: [IndexPath(item: self.openRooms.count-1, section: 0)], with: UITableViewRowAnimation.right)
+                }, catch: { (error) in
+                    self.tableview.reloadData()
+                }, finally: {
+                    // close resources
+                })
             }
         })
         observers.append(ob2)
@@ -118,7 +124,14 @@ class AvailableGamesViewController: UIViewController, UITableViewDelegate, UITab
                 for r in self.openRooms {
                     if r.leaderId == room.leaderId {
                         self.openRooms.remove(at: count)
-                        self.tableview.deleteRows(at: [IndexPath(row: count, section: 0)], with: UITableViewRowAnimation.right)
+                        SwiftTryCatch.try({
+                            self.tableview.deleteRows(at: [IndexPath(row: count, section: 0)], with: UITableViewRowAnimation.right)
+                        }, catch: { (error) in
+                            self.tableview.reloadData()
+                        }, finally: {
+                            // close resources
+                        })
+                        
                         break
                     }
                     count = count + 1
@@ -166,7 +179,14 @@ class AvailableGamesViewController: UIViewController, UITableViewDelegate, UITab
             }
             if exist == false {
                 openRooms.append(room)
-                tableview.insertRows(at: [IndexPath(row: openRooms.count-1, section: 0)], with: UITableViewRowAnimation.left)
+                SwiftTryCatch.try({
+                    self.tableview.insertRows(at: [IndexPath(row: self.openRooms.count-1, section: 0)], with: UITableViewRowAnimation.left)
+                }, catch: { (error) in
+                    self.tableview.reloadData()
+                }, finally: {
+                    // close resources
+                })
+                
             }
         }
     }

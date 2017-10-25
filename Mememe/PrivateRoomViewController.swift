@@ -10,6 +10,7 @@ import UIKit
 import AWSMobileHubHelper
 import FirebaseDatabase
 import AVFoundation
+import SwiftTryCatch
 
 class PrivateRoomViewController: UIViewController,UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
     let availableRoomRef = Database.database().reference().child("availableRoom")
@@ -41,43 +42,23 @@ class PrivateRoomViewController: UIViewController,UITableViewDelegate, UITableVi
     
     // startBtnTimer
     var startBtnTimerIsCounting = false
+    // timer will add debt*3sec  to time to enable startBtn
+    var startBtnPlayerAddedDebt = 0
     
     var availableRoomObservers = [String:[UInt]]()
     var inGameObservers = [UInt]()
+    var segueAlreadyPushed = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
         setupMusic()
         
-        InGameHelper.removeYourInGameRoom()
-        
-        if(leaderId == nil){
-             chatHelper.id = MyPlayerData.id
-        }
-        else {
-            chatHelper.id = leaderId
-        }
-        
-    
-        chatHelper.initializeChatObserver(controller: self)
-        
-        // if main room got removed
-        let ob1 = availableRoomRef.observe(DataEventType.childRemoved, with: { (snapshot) in
-            if snapshot.key == self.leaderId && self.leaderId != MyPlayerData.id {
-                DispatchQueue.main.async {
-                    self.dismiss(animated: true, completion: nil)
-                }
-            }
-        })
-        if availableRoomObservers[""] == nil {
-            availableRoomObservers[""] = []
-        }
-        availableRoomObservers[""] = [ob1]
+        addIfTheRoomIAmInIsRemovedObserver()
         
         // if there is no leader, the user created this room will be leader
         if leaderId == nil || leaderId == MyPlayerData.id {
-            leaderId = AWSIdentityManager.default().identityId!
+            leaderId = MyPlayerData.id
             chatHelper.removeChatRoom(id: MyPlayerData.id)
             startBtn.isEnabled = false
             
@@ -86,8 +67,15 @@ class PrivateRoomViewController: UIViewController,UITableViewDelegate, UITableVi
             let playerData = PlayerData(_userId: MyPlayerData.id, _userName: MyPlayerData.name)
             
             self.userInRoom.append(playerData)
-           // self.tableview.insertRows(at: [IndexPath(row: self.userInRoom.count-1, section: 0)], with: UITableViewRowAnimation.left)
-            self.tableview.reloadData()
+            
+            SwiftTryCatch.try({
+                self.tableview.insertRows(at: [IndexPath(row: self.userInRoom.count-1, section: 0)], with: UITableViewRowAnimation.left)
+            }, catch: { (error) in
+                self.tableview.reloadData()
+            }, finally: {
+                // close resources
+            })
+            
             self.userImagesDic[MyPlayerData.id] = UIImage()
             
             self.helper.loadUserProfilePicture(userId: MyPlayerData.id) { (imageData) in
@@ -107,9 +95,9 @@ class PrivateRoomViewController: UIViewController,UITableViewDelegate, UITableVi
         else {
             AvailableRoomHelper.insertYourselfIntoSomeoneRoom(leaderId: leaderId)
             availableRoomRef.child(leaderId).child("playerInRoom").observeSingleEvent(of: DataEventType.value, with: { (snapshot) in
-               /* if(self.availableRoomObservers["\(self.leaderId!)/playerInRoom"] == nil){
-                    return
-                }*/
+                if(self.availableRoomObservers["\(self.leaderId!)/playerInRoom"] == nil){
+                    self.availableRoomObservers["\(self.leaderId!)/playerInRoom"] = []
+                }
                 
                 let postDict = snapshot.value as? [String:String]
                 if postDict != nil {
@@ -124,8 +112,14 @@ class PrivateRoomViewController: UIViewController,UITableViewDelegate, UITableVi
                             if !exist {
                                 let newData = PlayerData(_userId: playerId, _userName: playerName)
                                 self.userInRoom.append(newData)
-                                self.tableview.insertRows(at: [IndexPath(row: self.userInRoom.count-1, section: 0)], with: UITableViewRowAnimation.left)
-                                //self.tableview.reloadData()
+                                
+                                SwiftTryCatch.try({
+                                    self.tableview.insertRows(at: [IndexPath(row: self.userInRoom.count-1, section: 0)], with: UITableViewRowAnimation.left)
+                                }, catch: { (error) in
+                                    self.tableview.reloadData()
+                                }, finally: {
+                                    // close resources
+                                })
                             }
                         }
                         self.addPlayerInRoomAddedObserver()
@@ -137,12 +131,15 @@ class PrivateRoomViewController: UIViewController,UITableViewDelegate, UITableVi
             startBtn.title = ""
             startBtn.isEnabled = false
         }
+        chatHelper.initializeChatObserver(controller: self,leaderId: leaderId)
+        
+        InGameHelper.removeYourInGameRoom()
+        InGameHelper.removeYourLeaderInGameRoom(leaderId: leaderId)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        InGameHelper.removeYourLeaderInGameRoom(leaderId: leaderId)
-        InGameHelper.removeYourInGameRoom()
+        segueAlreadyPushed = false
         subscribeToKeyboardNotifications()
         if(self.chatHelper.messages.count > 0){
             let indexPath = IndexPath(row: self.chatHelper.messages.count-1, section: 0)

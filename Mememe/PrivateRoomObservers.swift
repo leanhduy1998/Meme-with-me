@@ -8,6 +8,7 @@
 
 import Foundation
 import Firebase
+import SwiftTryCatch
 
 extension PrivateRoomViewController{
     func addPlayerInRoomAddedObserver(){
@@ -15,18 +16,6 @@ extension PrivateRoomViewController{
             DispatchQueue.main.async {
                 if(self.availableRoomObservers["\(self.leaderId!)/playerInRoom"] == nil){
                     return
-                }
-                
-                self.startBtn.isEnabled = false
-                if(!self.startBtnTimerIsCounting){
-                    self.startBtnTimerIsCounting = true
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
-                        self.startBtnTimerIsCounting = false
-                        self.startBtn.isEnabled = true
-                    })
-                }
-                else{
-                    self.startBtn.isEnabled = false
                 }
                 
                 let playerName = snapshot.value as? String
@@ -39,6 +28,10 @@ extension PrivateRoomViewController{
                         exist = true
                     }
                 }
+                
+                self.startBtn.isEnabled = false
+                self.startBtnPlayerAddedDebt = self.startBtnPlayerAddedDebt + 1
+                
                 if !exist {
                     let newData = PlayerData(_userId: playerId, _userName: playerName!)
                     self.userInRoom.append(newData)
@@ -48,17 +41,20 @@ extension PrivateRoomViewController{
                             self.userImagesDic[playerId] = image
                             
                             if(self.userImagesDic.count == self.userInRoom.count && self.userInRoom.count > 1){
-                                self.startBtn.isEnabled = true
+                                self.checkIfStartBtnCanBeEnabled()
                             }
-                   
-                            self.tableview.insertRows(at: [IndexPath(row: self.userInRoom.count-1, section: 0)], with: UITableViewRowAnimation.left)
-                            //self.tableview.reloadData()
+                            
+                            SwiftTryCatch.try({
+                                self.tableview.insertRows(at: [IndexPath(row: self.userInRoom.count-1, section: 0)], with: UITableViewRowAnimation.left)
+                            }, catch: { (error) in
+                                self.tableview.reloadData()
+                            }, finally: {
+                                // close resources
+                            })
                         }
                     }
                     
                 }
-                
-                self.startBtn.isEnabled = false
             }
         })
         if availableRoomObservers["\(leaderId!)/playerInRoom"] == nil {
@@ -66,6 +62,28 @@ extension PrivateRoomViewController{
         }
         availableRoomObservers["\(leaderId!)/playerInRoom"]!.append(ob2)
     }
+    func checkIfStartBtnCanBeEnabled(){
+        if(!self.startBtnTimerIsCounting){
+            self.startBtnTimerIsCounting = true
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
+                self.startBtnPlayerAddedDebt = self.startBtnPlayerAddedDebt - 1
+                self.startBtnTimerIsCounting = false
+                
+                if(self.startBtnPlayerAddedDebt == 0){
+                    self.startBtn.isEnabled = true
+                }
+                else{
+                    self.checkIfStartBtnCanBeEnabled()
+                }
+            })
+        }
+        else{
+            self.startBtn.isEnabled = false
+        }
+    }
+    
+    
+    
     func addPlayerInRoomRemovedObserver(){
         let ob3 = availableRoomRef.child(leaderId).child("playerInRoom").observe(DataEventType.childRemoved, with: { (snapshot) in
             DispatchQueue.main.async {
@@ -82,8 +100,14 @@ extension PrivateRoomViewController{
                         if user.userId == playerId {
                             self.userInRoom.remove(at: count)
                             
-                            self.tableview.deleteRows(at: [IndexPath(row: count, section: 0)], with: UITableViewRowAnimation.right)
-                            //self.tableview.reloadData()
+                            SwiftTryCatch.try({
+                                self.tableview.deleteRows(at: [IndexPath(row: count, section: 0)], with: UITableViewRowAnimation.right)
+                            }, catch: { (error) in
+                                self.tableview.reloadData()
+                            }, finally: {
+                                // close resources
+                            })
+                            
                             self.userImagesDic.removeValue(forKey: playerId)
                             break
                         }
@@ -100,16 +124,37 @@ extension PrivateRoomViewController{
         }
         availableRoomObservers["\(leaderId!)/playerInRoom"]!.append(ob3)
     }
+    
     func addInGameObservers(){
         // if game has been created, go to another segue
         let ob4 = inGameRef.observe(DataEventType.childAdded, with: { (snapshot) in
             if snapshot.key.contains(self.leaderId)  && self.leaderId != MyPlayerData.id {
                 DispatchQueue.main.async {
-                    self.performSegue(withIdentifier: "InGameViewControllerSegue", sender: self)
+                    if !self.segueAlreadyPushed{
+                        self.segueAlreadyPushed = true
+                        self.performSegue(withIdentifier: "InGameViewControllerSegue", sender: self)
+                    }
+                    
                 }
             }
         })
         inGameObservers.append(ob4)
+    }
+    func addIfTheRoomIAmInIsRemovedObserver(){
+        // if main room got removed
+        let ob1 = availableRoomRef.observe(DataEventType.childRemoved, with: { (snapshot) in
+            if snapshot.key == self.leaderId && self.leaderId != MyPlayerData.id {
+                DispatchQueue.main.async {
+                    if !self.segueAlreadyPushed{
+                        self.dismiss(animated: true, completion: nil)
+                    }
+                }
+            }
+        })
+        if availableRoomObservers[""] == nil {
+            availableRoomObservers[""] = []
+        }
+        availableRoomObservers[""] = [ob1]
     }
     func removeAllObservers(){
         for x in inGameObservers {

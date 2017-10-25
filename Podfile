@@ -8,5 +8,6 @@ target :’Mememe’ do
 	pod 'AWSCore'
 	pod 'AWSDynamoDB'
 	pod ‘AWSS3’
+	pod 'SwiftTryCatch'
 	use_frameworks!
 end

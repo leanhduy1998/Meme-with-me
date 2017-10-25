@@ -88,9 +88,6 @@ class InGameViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
         if leaderId == MyPlayerData.id {
             self.createBeginingData()
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
-                AvailableRoomHelper.makeMyRoomStatusClosed()
-            })
         }
         else {
             getBeginingGameFromFirB(completionHandler: { () in
@@ -198,6 +195,20 @@ class InGameViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
         else if let destination = segue.destination as? AvailableGamesViewController{
             destination.updateOpenRoomValue()
+        }
+        else{
+            print(segue.destination)
+        }
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        if isMovingFromParentViewController
+        {
+            print("View controller was popped")
+        }
+        else
+        {
+            print("New view controller was pushed")
         }
     }
 }
