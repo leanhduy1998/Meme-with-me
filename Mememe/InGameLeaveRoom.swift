@@ -20,12 +20,24 @@ extension InGameViewController{
             self.performSegue(withIdentifier: "unwindToAvailableGamesViewController", sender: self)
         }
         else {
-            for player in playersInGame {
-                if player.userId == MyPlayerData.id {
-                    continue
+            if MyPlayerData.id != leaderId {
+                InGameHelper.removeYourselfFromGame(gameId: self.game.gameId!, completionHandler: {
+                    self.performSegue(withIdentifier: "unwindToAvailableGamesViewController", sender: self)
+                })
+            }
+            else{
+                var player: PlayerData!
+                for p in playersInGame {
+                    if p.userId == MyPlayerData.id {
+                        continue
+                    }
+                    else{
+                        player = p
+                    }
                 }
+                
                 InGameHelper.updateLeaderId(newLeaderId: player.userId, gameId: game.gameId!, completionHandler: {
-                    
+                        
                     DispatchQueue.main.async {
                         InGameHelper.removeYourselfFromGame(gameId: self.game.gameId!, completionHandler: {
                             DispatchQueue.main.async {
@@ -33,7 +45,7 @@ extension InGameViewController{
                                     DispatchQueue.main.async {
                                         InGameHelper.removeYourInGameRoom()
                                         self.leftRoom = true
-                                        
+                                            
                                         self.performSegue(withIdentifier: "unwindToAvailableGamesViewController", sender: self)
                                     }
                                 })
@@ -41,8 +53,10 @@ extension InGameViewController{
                         })
                     }
                 })
-                break
+                
             }
+            
+            
             
         }
     }

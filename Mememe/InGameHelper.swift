@@ -71,9 +71,11 @@ class InGameHelper{
                     let gameValue = value as? [String : Any]
                     for (key,value) in gameValue! {
                         let id = value as? String
-                        if (key == "leaderId") && (id == MyPlayerData.id) {
-                            inGameRef.child(gameId).removeValue()
+                        if (key == "leaderId") {
                             leaderIdKeyFound = true
+                            if(id == MyPlayerData.id){
+                                inGameRef.child(gameId).removeValue()
+                            }
                             return
                         }
                     }
