@@ -42,7 +42,7 @@ extension InGameViewController {
             
             let redDotSize = iconSize/4
             let redDotIV = UIImageView(image: #imageLiteral(resourceName: "redCircle"))
-            redDotIV.frame = CGRect(x: iconSize/2 - (redDotSize)/2, y: -5, width: redDotSize, height: redDotSize)
+            redDotIV.frame = CGRect(x: iconSize/2 - (redDotSize)/2, y: 0, width: redDotSize, height: redDotSize)
             let whiteLabel = UILabel()
             
             var timesWon: Int!
@@ -135,19 +135,22 @@ extension InGameViewController {
                 
                 return
             }
-            else if(currentPlayersCards?.count)! == 1{
-                self.clearPreviewCardsData()
+            else if(currentPlayersCards?.count)! == 1 {
+                if (currentPlayersCards![0].topText == " ") && (currentPlayersCards![0].bottomText == " ") {
+                    self.clearPreviewCardsData()
+                }
             }
             
-            if((currentPlayersCards?.count)! < cardDictionary.count){
+            /*if((currentPlayersCards?.count)! < cardDictionary.count){
                 clearPreviewCardsData()
                 cardOrder.removeAll()
                 cardDictionary.removeAll()
                 reloadPreviewCards()
                 return
-            }
+            }*/
             
-            var cardNormalDictionary = [String:CardNormal]()
+            
+            var checkIfCardNoLongerExist = [String:Bool]()
             
             for x in 0...(((currentPlayersCards?.count)! - 1)) {
                 let card = cardDictionary[(currentPlayersCards?[x].playerId)!]
@@ -155,8 +158,17 @@ extension InGameViewController {
                 if(card == nil){
                     cardOrder.append((currentPlayersCards?[x].playerId)!)
                 }
-                cardNormalDictionary[(currentPlayersCards?[x].playerId)!] = currentPlayersCards?[x]
+        
+                checkIfCardNoLongerExist[(currentPlayersCards?[x].playerId)!] = true
+               // cardNormalDictionary[(currentPlayersCards?[x].playerId)!] = currentPlayersCards?[x]
             }
+            
+            if (currentPlayersCards?.count)! < cardDictionary.count {
+                cardDiction
+            }
+            
+            
+            
             
             var x = 0
             for playerId in cardOrder {
@@ -179,10 +191,13 @@ extension InGameViewController {
                 cardUIView.initCardView(topLabel: upLabel, bottomLabel: downLabel, playerId: playerId, memeIV: memeImageView)
                 
                 
-                if playerId != MyPlayerData.id {
-                    let heartView = getHeartView(frame: memeImageView.frame, playerCard: cardNormal!)
-                    cardUIView.addSubview(heartView)
-                    cardUIView.bringSubview(toFront: heartView)
+                if playerId != MyPlayerData.id{
+                    if !cardUIView.haveHeartView{
+                        cardUIView.haveHeartView = true
+                        let heartView = getHeartView(frame: memeImageView.frame, playerCard: cardNormal!)
+                        cardUIView.addSubview(heartView)
+                        cardUIView.bringSubview(toFront: heartView)
+                    }
                 }
                 
                 previewScrollView.addSubview(cardUIView)

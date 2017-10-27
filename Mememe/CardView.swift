@@ -15,6 +15,7 @@ class CardView: UIView {
     var topLabel: UILabel!
     var bottomLabel: UILabel!
     var memeIV: UIImageView!
+    var haveHeartView: Bool!
     
     func initCardView(topLabel: UILabel, bottomLabel:UILabel, playerId: String, memeIV: UIImageView){
         topText = topLabel.text
@@ -23,6 +24,7 @@ class CardView: UIView {
         self.memeIV = memeIV
         self.topLabel = topLabel
         self.bottomLabel = bottomLabel
+        self.haveHeartView = false
         
         
         self.addSubview(topLabel)

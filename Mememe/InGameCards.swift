@@ -75,11 +75,10 @@ extension InGameViewController{
                     })
                 }
                 else {
-                    if((heartView?.subviews.count)! == 0){
-                        return
+                    for v in (heartView?.subviews)! {
+                        v.removeFromSuperview()
                     }
-                    
-                    heartView?.subviews[0].removeFromSuperview()
+
                     let cardNormal = heartView?.cardNormal
                     
                     InGameHelper.unlikeSomeoOneCard(gameId: self.game.gameId!, cardId: (cardNormal?.playerId)!)
