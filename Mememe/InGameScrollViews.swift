@@ -136,7 +136,7 @@ extension InGameViewController {
                 return
             }
             else if(currentPlayersCards?.count)! == 1 {
-                if (currentPlayersCards![0].topText == " ") && (currentPlayersCards![0].bottomText == " ") {
+                if (currentPlayersCards![0].topText == " " || currentPlayersCards![0].topText == "") && (currentPlayersCards![0].bottomText == " "||currentPlayersCards![0].bottomText == "") {
                     self.clearPreviewCardsData()
                 }
             }
@@ -149,7 +149,7 @@ extension InGameViewController {
                 return
             }*/
             
-            
+            var cardNormalDictionary = [String:CardNormal]()
             var checkIfCardNoLongerExist = [String:Bool]()
             
             for x in 0...(((currentPlayersCards?.count)! - 1)) {
@@ -160,11 +160,15 @@ extension InGameViewController {
                 }
         
                 checkIfCardNoLongerExist[(currentPlayersCards?[x].playerId)!] = true
-               // cardNormalDictionary[(currentPlayersCards?[x].playerId)!] = currentPlayersCards?[x]
+                cardNormalDictionary[(currentPlayersCards?[x].playerId)!] = currentPlayersCards?[x]
             }
             
             if (currentPlayersCards?.count)! < cardDictionary.count {
-                cardDiction
+                for (playerId,_) in cardDictionary {
+                    if checkIfCardNoLongerExist[playerId] == nil || checkIfCardNoLongerExist[playerId] == false {
+                         cardDictionary.removeValue(forKey: playerId)
+                    }
+                }
             }
             
             
@@ -173,37 +177,38 @@ extension InGameViewController {
             var x = 0
             for playerId in cardOrder {
                 let card = cardDictionary[playerId]
-                
                 let cardNormal = cardNormalDictionary[playerId]
                 
-                let memeImageView = getMemeIV(image: image)
-                
                 contentWidth += space + cardWidth
-                let newX = getNewXForPreviewScroll(x: x, haveWinner: haveWinner)
                 
-                
-                let upLabel = getTopLabel(text: (cardNormal?.topText)!)
-                let downLabel = getBottomLabel(text: (cardNormal?.bottomText)!)
-                
-                
-                // -40 is for animation
-                let cardUIView = CardView(frame: CGRect(x: newX, y: space/2-cardInitialYBeforeAnimation, width: cardWidth, height: cardHeight))
-                cardUIView.initCardView(topLabel: upLabel, bottomLabel: downLabel, playerId: playerId, memeIV: memeImageView)
-                
-                
-                if playerId != MyPlayerData.id{
-                    if !cardUIView.haveHeartView{
-                        cardUIView.haveHeartView = true
-                        let heartView = getHeartView(frame: memeImageView.frame, playerCard: cardNormal!)
-                        cardUIView.addSubview(heartView)
-                        cardUIView.bringSubview(toFront: heartView)
-                    }
+                if card != nil {
+                    previewScrollView.addSubview(card!)
+                    previewScrollView.bringSubview(toFront: card!)
                 }
-                
-                previewScrollView.addSubview(cardUIView)
-                previewScrollView.bringSubview(toFront: cardUIView)
-                
-                if(card == nil){
+                else {
+                    let newX = getNewXForPreviewScroll(x: x, haveWinner: haveWinner)
+                    
+                    let upLabel = getTopLabel(text: (cardNormal?.topText)!)
+                    let downLabel = getBottomLabel(text: (cardNormal?.bottomText)!)
+                    
+                    // -40 is for animation
+                    let cardUIView = CardView(frame: CGRect(x: newX, y: space/2-cardInitialYBeforeAnimation, width: cardWidth, height: cardHeight))
+                    
+                    let memeImageView = getMemeIV(image: image)
+                    
+                    cardUIView.initCardView(topLabel: upLabel, bottomLabel: downLabel, playerId: playerId, memeIV: memeImageView)
+                    
+                    if playerId != MyPlayerData.id{
+                        if !cardUIView.haveHeartView{
+                            cardUIView.haveHeartView = true
+                            let heartView = getHeartView(frame: memeImageView.frame, playerCard: cardNormal!)
+                            cardUIView.addSubview(heartView)
+                            cardUIView.bringSubview(toFront: heartView)
+                        }
+                    }
+                    previewScrollView.addSubview(cardUIView)
+                    previewScrollView.bringSubview(toFront: cardUIView)
+                    
                     cardUIView.alpha = 0.5
                     
                     UIView.animate(withDuration: 1, animations: {
@@ -212,14 +217,6 @@ extension InGameViewController {
                     })
                     
                     cardDictionary[playerId] = cardUIView
-                }
-                else{
-                    cardUIView.frame = CGRect(x: newX, y: space/2, width: cardWidth, height: cardHeight)
-                    cardUIView.alpha = 0.5
-                    
-                    UIView.animate(withDuration: 1, animations: {
-                        cardUIView.alpha = 1
-                    })
                 }
                 x = x + 1
             }

@@ -30,17 +30,23 @@ class AddEditMyMemeViewController: UIViewController, UITableViewDelegate, UITabl
     
     var imageviewHeight : CGFloat!
     
+    var originalFont: UIFont!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        originalFont = UIFont(name: topLabel.font.fontName, size: topLabel.font.pointSize)
     }
     
     func topUIViewTouched(sender: UITapGestureRecognizer){
         topLabel.text = " "
+        topLabel.font = originalFont
+        
     }
     func bottomUIViewTouched(sender: UITapGestureRecognizer){
         bottomLabel.text = " "
+        bottomLabel.font = originalFont
     }
     
 

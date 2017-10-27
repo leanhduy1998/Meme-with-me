@@ -37,7 +37,6 @@
 		241C6E651F58983B00756BA7 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241C6E641F58983B00756BA7 /* SignUpViewController.swift */; };
 		241C6E671F58AEFF00756BA7 /* ChangeUserPictureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241C6E661F58AEFF00756BA7 /* ChangeUserPictureViewController.swift */; };
 		241C6E6B1F59F3A200756BA7 /* UserFilesHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241C6E6A1F59F3A200756BA7 /* UserFilesHelper.swift */; };
-		2420885D1F8B50D800BFFD1B /* winning.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2420885C1F8B50C600BFFD1B /* winning.mp3 */; };
 		2420885F1F8B50E400BFFD1B /* cardPlacedDown.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2420885E1F8B50E100BFFD1B /* cardPlacedDown.mp3 */; };
 		242088661F8C02CC00BFFD1B /* AvailableGameTutorialController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242088651F8C02CC00BFFD1B /* AvailableGameTutorialController.swift */; };
 		242088681F8C2B6400BFFD1B /* AvailableGamesTutorialTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242088671F8C2B6400BFFD1B /* AvailableGamesTutorialTableView.swift */; };
@@ -158,6 +157,7 @@
 		24E734CB1F6F00F900218AB1 /* AvailableGamesTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E734CA1F6F00F900218AB1 /* AvailableGamesTableView.swift */; };
 		24E8597D1F7EFE5700856BA3 /* CellAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E8597C1F7EFE5700856BA3 /* CellAnimator.swift */; };
 		24F237B11F807FCF00616F3C /* InGameChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F237B01F807FCF00616F3C /* InGameChat.swift */; };
+		24F4B4001FA2E0FE009419AA /* winning.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 24F4B3FF1FA2E0FE009419AA /* winning.mp3 */; };
 		24F5C7EA1F87F9340095B2C5 /* InGameUserIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F5C7E91F87F9340095B2C5 /* InGameUserIcon.swift */; };
 		24F5C7EC1F87F9830095B2C5 /* InGameAddMeme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F5C7EB1F87F9830095B2C5 /* InGameAddMeme.swift */; };
 		24F5C7EE1F87FD380095B2C5 /* heartbeat.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 24F5C7ED1F87FC750095B2C5 /* heartbeat.mp3 */; };
@@ -233,7 +233,6 @@
 		241C6E641F58983B00756BA7 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		241C6E661F58AEFF00756BA7 /* ChangeUserPictureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeUserPictureViewController.swift; sourceTree = "<group>"; };
 		241C6E6A1F59F3A200756BA7 /* UserFilesHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserFilesHelper.swift; sourceTree = "<group>"; };
-		2420885C1F8B50C600BFFD1B /* winning.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = winning.mp3; path = ../../../../Downloads/winning.mp3; sourceTree = "<group>"; };
 		2420885E1F8B50E100BFFD1B /* cardPlacedDown.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = cardPlacedDown.mp3; sourceTree = "<group>"; };
 		242088651F8C02CC00BFFD1B /* AvailableGameTutorialController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableGameTutorialController.swift; sourceTree = "<group>"; };
 		242088671F8C2B6400BFFD1B /* AvailableGamesTutorialTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableGamesTutorialTableView.swift; sourceTree = "<group>"; };
@@ -375,6 +374,7 @@
 		24E8597C1F7EFE5700856BA3 /* CellAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellAnimator.swift; sourceTree = "<group>"; };
 		24EBAD8D1FA04E7500C7AA13 /* Model 14.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model 14.xcdatamodel"; sourceTree = "<group>"; };
 		24F237B01F807FCF00616F3C /* InGameChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InGameChat.swift; sourceTree = "<group>"; };
+		24F4B3FF1FA2E0FE009419AA /* winning.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = winning.mp3; sourceTree = "<group>"; };
 		24F5C7E91F87F9340095B2C5 /* InGameUserIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InGameUserIcon.swift; sourceTree = "<group>"; };
 		24F5C7EB1F87F9830095B2C5 /* InGameAddMeme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InGameAddMeme.swift; sourceTree = "<group>"; };
 		24F5C7ED1F87FC750095B2C5 /* heartbeat.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = heartbeat.mp3; sourceTree = "<group>"; };
@@ -765,7 +765,7 @@
 				24D599571FA1D39500D101B8 /* inGame2.mp3 */,
 				24D599581FA1D39500D101B8 /* startMusic.mp3 */,
 				2420885E1F8B50E100BFFD1B /* cardPlacedDown.mp3 */,
-				2420885C1F8B50C600BFFD1B /* winning.mp3 */,
+				24F4B3FF1FA2E0FE009419AA /* winning.mp3 */,
 			);
 			name = sound;
 			sourceTree = "<group>";
@@ -1155,7 +1155,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2420885F1F8B50E400BFFD1B /* cardPlacedDown.mp3 in Resources */,
-				2420885D1F8B50D800BFFD1B /* winning.mp3 in Resources */,
 				24E3289B1F89650900A2A2FE /* endRound.mp3 in Resources */,
 				24F5C7EE1F87FD380095B2C5 /* heartbeat.mp3 in Resources */,
 				24D599591FA1D39500D101B8 /* inGame2.mp3 in Resources */,
@@ -1168,6 +1167,7 @@
 				24D5995A1FA1D39500D101B8 /* startMusic.mp3 in Resources */,
 				2474DFFF1F349424006E00AC /* AWSGoogleSignInResources.bundle in Resources */,
 				24896D5E1F2A5FA2003B6954 /* LaunchScreen.storyboard in Resources */,
+				24F4B4001FA2E0FE009419AA /* winning.mp3 in Resources */,
 				24896D5B1F2A5FA2003B6954 /* Assets.xcassets in Resources */,
 				2498FA361F3485E800B21267 /* SignIn.storyboard in Resources */,
 				2498FA1B1F3484F900B21267 /* NOTICE in Resources */,
