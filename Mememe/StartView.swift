@@ -19,8 +19,6 @@ extension StartViewController {
         setupLeftRedNotificationView()
         setupRightRedNotificationView()
         
-        setupMainScreenTap()
-        
         setupTouchToStartLabel()
         addFadeInAnimation()
         setupGoogleButton()
@@ -65,25 +63,6 @@ extension StartViewController {
         }) { (completed) in
             if completed{
                 self.addLoopingAnimation()
-            }
-        }
-    }
-    
-    private func setupMainScreenTap(){
-        let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(sender:)))
-        tap.delegate = self
-        view.addGestureRecognizer(tap)
-    }
-    @objc private func handleTap(sender: UITapGestureRecognizer) {
-        googleButton.isHidden = false
-        googleButton.alpha = 0
-        
-        UIView.animate(withDuration: 0.5, animations: {
-            self.googleButton.alpha = 1
-            self.touchToStartLabel.alpha = 0
-        }) { (completed) in
-            if(completed){
-                self.touchToStartLabel.isHidden = true
             }
         }
     }

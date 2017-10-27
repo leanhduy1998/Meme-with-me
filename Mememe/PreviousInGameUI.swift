@@ -11,7 +11,11 @@ import UIKit
 
 extension PreviewInGameViewController{
     func getUserIconView(round: Round, frame: CGRect, playerCard: CardNormal,completeHandler: @escaping (_ IV: UIImageView)-> Void){
-        let players = round.players?.allObjects as? [Player]
+        var players = round.players?.allObjects as? [Player]
+        
+        if players?.count == 0 {
+            players = game.players?.allObjects as? [Player]
+        }
         
         var player: Player!
         
@@ -86,7 +90,7 @@ extension PreviewInGameViewController{
     func getBorderIVForIcon(iconSize: CGFloat) -> UIImageView{
         let crownImage = #imageLiteral(resourceName: "border")
         let crownIV = UIImageView(image: crownImage)
-        crownIV.frame = CGRect(x: -5, y: -5, width: iconSize+10, height: iconSize+10)
+        crownIV.frame = CGRect(x: 0, y: 0, width: iconSize, height: iconSize)
         return crownIV
     }
 }

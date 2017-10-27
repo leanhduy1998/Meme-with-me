@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-
+import SwiftTryCatch
 
 extension AvailableGamesViewController {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -29,19 +29,6 @@ extension AvailableGamesViewController {
                 helper.loadUserProfilePicture(userId: playerId, completeHandler: { (imageData) in
                     DispatchQueue.main.async{
                         var image = UIImage(data: imageData)
-                        
-                        var newImage:UIImage;
-                        
-                        // Decompress the image into a bitmap
-                        
-                        let size = CGSize(width: cell.firstIV.frame.width, height: cell.firstIV.frame.height)
-                        UIGraphicsBeginImageContextWithOptions(size, true, 0);
-                        image?.draw(in: CGRect(x:0,y:0,width:size.width, height:size.height))
-                        newImage = UIGraphicsGetImageFromCurrentImageContext()!;
-                        UIGraphicsEndImageContext();
-                        
-                        
-                        image = newImage
                         
                         playerImages.append(image!)
                         
@@ -139,7 +126,13 @@ extension AvailableGamesViewController {
                     else {
                         DisplayAlert.display(controller: self, title: "Room is closed", message: "This room has already started the game!")
                         self.openRooms.remove(at: indexPath.row)
-                        self.tableview.reloadData()
+                        SwiftTryCatch.try({
+                            tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.right)
+                        }, catch: { (error) in
+                            self.tableview.reloadData()
+                        }, finally: {
+                            // close resources
+                        })
                     }
                 }
                 else {
@@ -147,7 +140,13 @@ extension AvailableGamesViewController {
                     for r in self.openRooms {
                         if r.leaderId == self.openRooms[indexPath.row].leaderId {
                             self.openRooms.remove(at: count)
-                            tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.right)
+                            SwiftTryCatch.try({
+                                tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.right)
+                            }, catch: { (error) in
+                                self.tableview.reloadData()
+                            }, finally: {
+                                // close resources
+                            })
                             break
                         }
                         count = count + 1

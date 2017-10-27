@@ -87,10 +87,14 @@ extension InGameViewController{
                     DispatchQueue.main.async {
                         InGameHelper.updateGameToNextRound(nextRoundJudgeId: nextRoundJudgeId, gameId: self.game.gameId!, nextRound: nextRoundNumber, nextRoundImageUrl: memeUrl)
                         
-                        let currentPlayersCore = GetGameCoreDataData.getLatestRound(game: self.game).players
+                        let currentPlayersCore = GetGameCoreDataData.getLatestRound(game: self.game).players?.allObjects as? [Player]
                         
                         let nextRound = Round(roundNum: nextRoundNumber, context: GameStack.sharedInstance.stack.context)
-                        nextRound.players = currentPlayersCore
+                        
+                        for player in currentPlayersCore!{
+                            let copy = Player(playerName: player.name!, playerId: player.playerId!, userImageLocation: player.imageStorageLocation!, context: GameStack.sharedInstance.stack.context)
+                            nextRound.addToPlayers(copy)
+                        }
                         
                         let gameIdForStorage = FileManagerHelper.getPlayerIdForStorage(playerId: self.game.gameId!)
                         
@@ -150,9 +154,12 @@ extension InGameViewController{
             DispatchQueue.main.async {
                 let nextRound = Round(roundNum: nextRoundNumber, context: GameStack.sharedInstance.stack.context)
                 
-                let currentPlayers = GetGameCoreDataData.getLatestRound(game: self.game).players
-                nextRound.players = currentPlayers
+                let currentPlayers = GetGameCoreDataData.getLatestRound(game: self.game).players?.allObjects as? [Player]
                 
+                for player in currentPlayers! {
+                    let copy = Player(playerName: player.name!, playerId: player.playerId!, userImageLocation: player.imageStorageLocation!, context: GameStack.sharedInstance.stack.context)
+                    nextRound.addToPlayers(copy)
+                }
                 
                 let gameIdForStorage = FileManagerHelper.getPlayerIdForStorage(playerId: self.game.gameId!)
                 

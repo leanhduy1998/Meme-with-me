@@ -41,7 +41,7 @@ extension InGameViewController{
                     DispatchQueue.main.async {
                         InGameHelper.removeYourselfFromGame(gameId: self.game.gameId!, completionHandler: {
                             DispatchQueue.main.async {
-                                self.inGameRef.child(self.game.gameId!).child("playerOrderInGame").setValue(player.userId, withCompletionBlock: { (error, reference) in
+                            self.inGameRef.child(self.game.gameId!).child("playerOrderInGame").setValue(player.userId, withCompletionBlock: { (error, reference) in
                                     DispatchQueue.main.async {
                                         InGameHelper.removeYourInGameRoom()
                                         self.leftRoom = true
@@ -53,11 +53,7 @@ extension InGameViewController{
                         })
                     }
                 })
-                
             }
-            
-            
-            
         }
     }
 }

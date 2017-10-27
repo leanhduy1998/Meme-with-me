@@ -46,6 +46,7 @@ class StartViewController: UIViewController,UIGestureRecognizerDelegate, AWSSign
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        setupMainScreenTap()
         
         backgroundPlayer = SoundPlayerHelper.getAudioPlayer(songName: "startMusic", loop: true)
         backgroundPlayer.play()
@@ -64,9 +65,43 @@ class StartViewController: UIViewController,UIGestureRecognizerDelegate, AWSSign
         
         
         for item in deleteItems!{
-            GameStack.sharedInstance.stack.context.delete(item as! NSManagedObject)
+        //    GameStack.sharedInstance.stack.context.delete(item as! NSManagedObject)
         }
         
+    }
+    
+    private func setupMainScreenTap(){
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(sender:)))
+        tap.delegate = self
+        view.addGestureRecognizer(tap)
+    }
+    @objc private func handleTap(sender: UITapGestureRecognizer) {
+        googleButton.isHidden = false
+        googleButton.alpha = 0
+        
+        UIView.animate(withDuration: 0.5, animations: {
+            self.touchToStartLabel.alpha = 0
+            
+            if Reachability.isConnectedToNetwork() {
+                self.googleButton.alpha = 1
+            }
+            
+        }) { (completed) in
+            if(completed){
+                self.touchToStartLabel.isHidden = true
+                
+                if !Reachability.isConnectedToNetwork() {
+                    let alertController = UIAlertController(title: "Plot twist! There is no wifi!", message: "Do you want to see your previous games that are saved on your phone?", preferredStyle: UIAlertControllerStyle.actionSheet)
+                    alertController.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.default, handler: self.showPreviewGames))
+                    alertController.addAction(UIAlertAction(title: "Nah", style: UIAlertActionStyle.cancel, handler: nil))
+                    self.present(alertController, animated: true, completion: nil)
+                }
+            }
+        }
+    }
+    
+    private func showPreviewGames(action: UIAlertAction){
+        performSegue(withIdentifier: "PreviewGamesSegue", sender: self)
     }
     
     func onLogin(signInProvider: AWSSignInProvider, result: Any?, authState: AWSIdentityManagerAuthState, error: Error?) {

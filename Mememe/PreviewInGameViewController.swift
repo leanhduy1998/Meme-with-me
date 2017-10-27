@@ -18,7 +18,7 @@ class PreviewInGameViewController: UIViewController {
     var game:Game!
     // ui
     var screenWidth : CGFloat!
-    var space : CGFloat!
+    var space = CGFloat(5)
     var cardWidth : CGFloat!
     var cardHeight: CGFloat!
     var iconSize: CGFloat!
@@ -37,6 +37,7 @@ class PreviewInGameViewController: UIViewController {
         super.viewWillAppear(animated)
         setupDimensions()
         reloadPreviewCards()
+        reloadCurrentPlayersIcon()
         checkSwitchingRoundCondition()
     }
     
@@ -48,12 +49,14 @@ class PreviewInGameViewController: UIViewController {
         checkSwitchingRoundCondition()
         clearPreviewCardsData()
         reloadPreviewCards()
+        reloadCurrentPlayersIcon()
     }
     @IBAction func nextBtnPressed(_ sender: Any) {
         currentRound = currentRound + 1
         checkSwitchingRoundCondition()
         clearPreviewCardsData()
         reloadPreviewCards()
+        reloadCurrentPlayersIcon()
     }
     
     func checkSwitchingRoundCondition(){
@@ -168,6 +171,14 @@ class PreviewInGameViewController: UIViewController {
                 }
             })
             
+       
+            if(currentPlayersCards![x].didWin){
+                let borderForCard = self.getBorderForWinningCard()
+                cardUIView.addSubview(borderForCard)
+                cardUIView.bringSubview(toFront: borderForCard)
+            }
+            
+            
             
             let playerLoves = currentPlayersCards?[x].playerlove?.allObjects as? [PlayerLove]
             
@@ -208,8 +219,7 @@ class PreviewInGameViewController: UIViewController {
         borderForUserIconIV.removeFromSuperview()
         
         var contentWidth = CGFloat(0)
-        // never use currentPlayersScrollView.frame.height, because it uses the height of its storyboard
-        iconSize = 44 - space/2
+        iconSize = currentPlayersScrollView.frame.height - space
         
         var counter = 0
         
@@ -232,7 +242,7 @@ class PreviewInGameViewController: UIViewController {
             
             let redDotSize = iconSize/4
             let redDotIV = UIImageView(image: #imageLiteral(resourceName: "redCircle"))
-            redDotIV.frame = CGRect(x: iconSize/2 - (redDotSize)/2, y: -5, width: redDotSize, height: redDotSize)
+            redDotIV.frame = CGRect(x: iconSize/2 - (redDotSize)/2, y: 0, width: redDotSize, height: redDotSize)
             let whiteLabel = UILabel()
             
             var timesWon: Int!
@@ -254,14 +264,14 @@ class PreviewInGameViewController: UIViewController {
             
             
             let image = FileManagerHelper.getImageFromMemory(imagePath: player.imageStorageLocation!)
-            userIconIV = CircleImageCutter.roundImageView(imageview: userIconIV, radius: Float(self.iconSize))
+            userIconIV.image = image
+            userIconIV = CircleImageCutter.roundImageView(imageview: userIconIV, radius: 5)
             
             self.currentPlayersScrollView.addSubview(userIconIV)
             self.currentPlayersScrollView.sendSubview(toBack: userIconIV)
             
-            let currentRound = GetGameCoreDataData.getRound(game: game, roundNum: self.currentRound)
-            for card in (currentRound.cardnormal?.allObjects as? [CardNormal])!{
-                if(card.didWin){
+            for card in (round.cardnormal?.allObjects as? [CardNormal])!{
+                if(card.didWin && card.playerId == player.playerId){
                     self.borderForUserIconIV = self.getBorderIVForIcon(iconSize: self.iconSize)
                     userIconIV.addSubview(self.borderForUserIconIV)
                     userIconIV.bringSubview(toFront: self.borderForUserIconIV)

@@ -85,7 +85,7 @@ class AddEditMyMemeViewController: UIViewController, UITableViewDelegate, UITabl
                 
         GameStack.sharedInstance.saveContext(completeHandler: {
             DispatchQueue.main.async {
-                self.performSegue(withIdentifier: "unwindToInGameViewController", sender: self)
+                self.dismiss(animated: true, completion: nil)
             }
         })
     }

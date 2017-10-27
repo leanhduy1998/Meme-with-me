@@ -83,8 +83,13 @@ class PrivateRoomViewController: UIViewController,UITableViewDelegate, UITableVi
                     let image = UIImage(data: imageData)
                                         
                     self.userImagesDic[MyPlayerData.id] = image
-                    self.tableview.reloadRows(at: [IndexPath(row: 0, section: 0)], with: UITableViewRowAnimation.left)
-                    //self.tableview.reloadData()
+                    SwiftTryCatch.try({
+                        self.tableview.reloadRows(at: [IndexPath(row: 0, section: 0)], with: UITableViewRowAnimation.left)
+                    }, catch: { (error) in
+                        self.tableview.reloadData()
+                    }, finally: {
+                        // close resources
+                    })
                     
                     self.addPlayerInRoomAddedObserver()
                     self.addPlayerInRoomRemovedObserver()

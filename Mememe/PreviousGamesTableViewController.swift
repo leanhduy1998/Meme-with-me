@@ -8,6 +8,7 @@
 //
 
 import UIKit
+import SwiftTryCatch
 
 class PreviousGamesTableViewController: UITableViewController {
     var games = [Game]()
@@ -17,120 +18,119 @@ class PreviousGamesTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if(Reachability.isConnectedToNetwork()){
+            addDynamoDBDataToGames()
+        }
+        else{
+            addCoreDataToGames(completeHandler: {})
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         if(Reachability.isConnectedToNetwork()){
-             addDynamoDBDataToGames()
-        }
-        else{
-             addCoreDataToGames()
+            addDynamoDBDataToGames()
         }
     }
     
     private func addDynamoDBDataToGames(){
-        GameStack.sharedInstance.initializeFetchedResultsController()
-        let fetchedObjects = GameStack.sharedInstance.fetchedResultsController.fetchedObjects as? [Game]
-        
-        for object in fetchedObjects!{
-            if(gamesStorageLocation[object.gameId!]==nil){
-                gamesStorageLocation[object.gameId!] = "coreData"
-                games.append(object)
+        addCoreDataToGames(completeHandler: {
+            DispatchQueue.main.async {
+                self.queryAndHandleData()
             }
-        }
-        
+        })
+    }
+    private func queryAndHandleData(){
         MememeDynamoDB.queryWithMyPlayerIdWithCompletionHandler(userId: MyPlayerData.id) { (result, error) in
             
             DispatchQueue.main.async {
                 let gameModels = result?.items as? [MememeDBObjectModel]
                 
+                var x = 0
                 for model in gameModels!{
                     let game = GameDataFromJSON.getGameFromJSON(model: model)
                     
                     var playersImages = [UIImage]()
+                    var temp = [String:Bool]()
                     
-                    let lastestRound = GetGameCoreDataData.getLatestRound(game: game)
-                        
                     let players = game.players?.allObjects as? [Player]
                     
-                    var count = 0
                     for player in players!{
                         let image = FileManagerHelper.getImageFromMemory(imagePath: player.imageStorageLocation!)
-                        /*var newImage:UIImage!
-                        let emptyCell = AvailableGamesNoImageCell()
-                                
-                        let size = CGSize(width: emptyCell.firstIV.frame.width, height: emptyCell.firstIV.frame.height)
-                        UIGraphicsBeginImageContextWithOptions(size, true, 0)
-                        image.draw(in: CGRect(x:0,y:0,width:size.width, height:size.height))
-                        newImage = UIGraphicsGetImageFromCurrentImageContext()!
-                        UIGraphicsEndImageContext()*/
-                                
-                        var found = false
-                        for i in playersImages{
-                            if(i == image){
-                                found = true
-                            }
-                        }
-                        if(!found){
+                        
+                        if temp[player.playerId!] == nil || temp[player.playerId!] == false {
                             playersImages.append(image)
+                            temp[player.playerId!] = true
                         }
-                        self.playerImagesInGameDic[game.gameId!] = playersImages
-                        
-                        if(count == (players?.count)!-1){
-                            if(self.gamesStorageLocation[game.gameId!] == nil){
-                                self.games.append(game)
-                            }
-                            self.gamesStorageLocation[game.gameId!] = "dynamodb"
-                        }
-                        
-                        count = count + 1
                     }
+                    
+                    self.playerImagesInGameDic[game.gameId!] = playersImages
+                    
+                    if(self.gamesStorageLocation[game.gameId!] == nil){
+                        self.games.append(game)
+                        self.gamesStorageLocation[game.gameId!] = "dynamodb"
+                        
+                        SwiftTryCatch.try({
+                            self.tableView.insertRows(at: [IndexPath(item: x, section: 0)], with: UITableViewRowAnimation.right)
+                        }, catch: { (error) in
+                            self.tableView.reloadData()
+                        }, finally: {
+                            // close resources
+                        })
+                    }
+                    x = x + 1
                 }
-                self.tableView.reloadData()
             }
         }
-
     }
     
-    private func addCoreDataToGames(){
+    private func addCoreDataToGames(completeHandler: @escaping ()-> Void){
         GameStack.sharedInstance.initializeFetchedResultsController()
         let fetchedObjects = GameStack.sharedInstance.fetchedResultsController.fetchedObjects as? [Game]
         
-        
         for object in fetchedObjects!{
-            if(gamesStorageLocation[object.gameId!]==nil){
+            if(gamesStorageLocation[object.gameId!]==nil || gamesStorageLocation[object.gameId!]=="dynamodb"){
                 gamesStorageLocation[object.gameId!] = "coreData"
                 games.append(object)
                 
                 var playersImages = [UIImage]()
-                for player in (object.players?.allObjects as? [Player])! {
+                var temp = [String:Bool]()
+                
+                for player in (object.players?.allObjects as? [Player])!{
                     let image = FileManagerHelper.getImageFromMemory(imagePath: player.imageStorageLocation!)
-                    playersImages.append(image)
+                    
+                    if temp[player.playerId!] == nil || temp[player.playerId!] == false {
+                        playersImages.append(image)
+                        temp[player.playerId!] = true
+                    }
                 }
-                playerImagesInGameDic[object.gameId!] = playersImages
+                self.playerImagesInGameDic[object.gameId!] = playersImages
             }
         }
-        sortDataAndReloadTableView()
-        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.sortDataAndReloadTableView(completeHandler: completeHandler)
+        }
     }
-    private func sortDataAndReloadTableView(){
+    private func sortDataAndReloadTableView(completeHandler: @escaping ()-> Void){
         let oldGames = games
         games = games.sorted { (game1, game2) -> Bool in
             return game1.createdDate! as Date > game2.createdDate! as Date
         }
-        
-        if games.count == 0{
-            return
-        }
-        
-        for x in 0...(games.count-1){
-            if(games[x] != oldGames[x]){
-                tableView.reloadData()
-                break
+        for x in 0...(games.count-1) {
+            if oldGames[x] != games[x] {
+                SwiftTryCatch.try({
+                    self.tableView.reloadRows(at: [IndexPath(item: x, section: 0)], with: UITableViewRowAnimation.right)
+                }, catch: { (error) in
+                    self.tableView.reloadData()
+                }, finally: {
+                    // close resources
+                })
             }
         }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            completeHandler()
+        }
+        
     }
 
     // MARK: - Table view data source
@@ -160,9 +160,8 @@ class PreviousGamesTableViewController: UITableViewController {
             cell.downloadBtn.tag = indexPath.row
             
             cell.downloadBtn.addTarget(self, action: #selector(downloadBtnPressed), for: .touchUpInside)
-            
-            playersImages = playerImagesInGameDic[game.gameId!]!
         }
+        playersImages = playerImagesInGameDic[game.gameId!]!
         
         cell.nameLabel.text = GetGameCoreDataData.getGameAllPlayersAsString(players: players!)
         
