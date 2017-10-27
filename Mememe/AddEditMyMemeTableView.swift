@@ -13,10 +13,8 @@ extension AddEditMyMemeViewController {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AddEditMyMemeTableCell") as? AddEditMyMemeTableCell
-        
-        let memetexts = ["When you are dead inside but don’t want anyone to know","When you want to add a comment to the conversation and are patiently waiting for a pause","When you said you’d do something with a friend before but now you really don’t want to","memeText4","memeText5","memeText6","memeText7","memeText8","memeText9","memeText10","memeText11","memeText12","memeText13","memeText14","memeText15","memeText16","memeText17","memeText18","memeText19","memeText20"]
-        cell?.memeLabel.text = memetexts[indexPath.row]
-        cell?.memeLabel.tag = 0
+    
+        cell?.memeLabel.text = memes[indexPath.row]
         
         let lpGestureRecognizer: UILongPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(didLongPressCell))
         cell?.contentView.addGestureRecognizer(lpGestureRecognizer)
@@ -72,7 +70,6 @@ extension AddEditMyMemeViewController {
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let memetexts = ["When you are dead inside but don’t want anyone to know","When you want to add a comment to the conversation and are patiently waiting for a pause","When you said you’d do something with a friend before but now you really don’t want to","memeText4","memeText5","memeText6","memeText7","memeText8","memeText9","memeText10","memeText11","memeText12","memeText13","memeText14","memeText15","memeText16","memeText17","memeText18","memeText19","memeText20"]
-        return memetexts.count
+        return memes.count
     }
 }

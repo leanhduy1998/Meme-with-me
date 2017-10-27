@@ -81,6 +81,9 @@ class InGameViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     // animation
     var cardInitialYBeforeAnimation: CGFloat!
+    
+    // addeditmymemeview
+    var memes = [String]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -112,6 +115,7 @@ class InGameViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 }
             })
         }
+        memes = MemeHelper.get7Memes()
         
         self.automaticallyAdjustsScrollViewInsets = false
     }
@@ -186,6 +190,7 @@ class InGameViewController: UIViewController, UITableViewDelegate, UITableViewDa
             destination.memeImage = thisRoundImage
             destination.game = game
             destination.leaderId = leaderId
+            destination.memes = memes
         }
         else if let destination = segue.destination as? JudgingViewController {
             destination.game = game

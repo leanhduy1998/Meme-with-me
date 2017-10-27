@@ -117,6 +117,8 @@ extension InGameViewController{
         cardOrder.removeAll()
         cardDictionary.removeAll()
         
+        memes = MemeHelper.get7Memes()
+        
         if MyPlayerData.id == self.leaderId {
             MememeDynamoDB.updateGame(itemToUpdate: gameDBModel!, game: game) { (error) in
                 if(error != nil){

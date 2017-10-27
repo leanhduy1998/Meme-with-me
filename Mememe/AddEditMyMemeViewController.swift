@@ -32,6 +32,7 @@ class AddEditMyMemeViewController: UIViewController, UITableViewDelegate, UITabl
     
     var originalFont: UIFont!
     
+    var memes = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()

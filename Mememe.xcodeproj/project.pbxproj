@@ -158,6 +158,7 @@
 		24E8597D1F7EFE5700856BA3 /* CellAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E8597C1F7EFE5700856BA3 /* CellAnimator.swift */; };
 		24F237B11F807FCF00616F3C /* InGameChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F237B01F807FCF00616F3C /* InGameChat.swift */; };
 		24F4B4001FA2E0FE009419AA /* winning.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 24F4B3FF1FA2E0FE009419AA /* winning.mp3 */; };
+		24F4B4061FA31108009419AA /* MemeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F4B4051FA31108009419AA /* MemeHelper.swift */; };
 		24F5C7EA1F87F9340095B2C5 /* InGameUserIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F5C7E91F87F9340095B2C5 /* InGameUserIcon.swift */; };
 		24F5C7EC1F87F9830095B2C5 /* InGameAddMeme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F5C7EB1F87F9830095B2C5 /* InGameAddMeme.swift */; };
 		24F5C7EE1F87FD380095B2C5 /* heartbeat.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 24F5C7ED1F87FC750095B2C5 /* heartbeat.mp3 */; };
@@ -375,6 +376,7 @@
 		24EBAD8D1FA04E7500C7AA13 /* Model 14.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model 14.xcdatamodel"; sourceTree = "<group>"; };
 		24F237B01F807FCF00616F3C /* InGameChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InGameChat.swift; sourceTree = "<group>"; };
 		24F4B3FF1FA2E0FE009419AA /* winning.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = winning.mp3; sourceTree = "<group>"; };
+		24F4B4051FA31108009419AA /* MemeHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemeHelper.swift; sourceTree = "<group>"; };
 		24F5C7E91F87F9340095B2C5 /* InGameUserIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InGameUserIcon.swift; sourceTree = "<group>"; };
 		24F5C7EB1F87F9830095B2C5 /* InGameAddMeme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InGameAddMeme.swift; sourceTree = "<group>"; };
 		24F5C7ED1F87FC750095B2C5 /* heartbeat.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = heartbeat.mp3; sourceTree = "<group>"; };
@@ -711,6 +713,7 @@
 				247A55C61F7F350A004D1701 /* ChatHelper.swift */,
 				241251271F994E010040AF40 /* Reachability.swift */,
 				245031EB1F99AE0F009060D2 /* FileManagerHelper.swift */,
+				24F4B4051FA31108009419AA /* MemeHelper.swift */,
 			);
 			name = Helper;
 			sourceTree = "<group>";
@@ -1345,6 +1348,7 @@
 				24E3289F1F89677E00A2A2FE /* InGameSwitchingRound.swift in Sources */,
 				24CD58681F86DB42005DCA0C /* AvailableGamesView.swift in Sources */,
 				2413D7E71F4CC540001EA209 /* MememeDBObjectModel.swift in Sources */,
+				24F4B4061FA31108009419AA /* MemeHelper.swift in Sources */,
 				241C6E671F58AEFF00756BA7 /* ChangeUserPictureViewController.swift in Sources */,
 				247A34A41F870F4700E2C9E0 /* SoundPlayerHelper.swift in Sources */,
 				247A55CB1F7F5FBC004D1701 /* PrivateRoomChat.swift in Sources */,
