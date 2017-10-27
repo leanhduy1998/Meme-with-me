@@ -64,6 +64,16 @@ class MememeDynamoDB {
             })
         })
     }
+    static func removeItem(_ item: MememeDBObjectModel, completionHandler: @escaping (_ error: NSError?) -> Void) {
+        let objectMapper = AWSDynamoDBObjectMapper.default()
+        
+        objectMapper.remove(item, completionHandler: {(error: Error?) in
+            DispatchQueue.main.async(execute: {
+                completionHandler(error as? NSError)
+            })
+        })
+    }
+    
     /*
     static func scanWithCompletionHandler(limit: Int, _ completionHandler: @escaping (_ response: AWSDynamoDBPaginatedOutput?, _ error: Error?) -> Void) {
         let objectMapper = AWSDynamoDBObjectMapper.default()

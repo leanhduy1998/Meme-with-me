@@ -16,6 +16,8 @@ class PreviousGamesTableViewController: UITableViewController {
     var gamesStorageLocation = [String:String]()
     var gameForSegue:Game!
     
+    var gameModels = [String:MememeDBObjectModel]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         if(Reachability.isConnectedToNetwork()){
@@ -44,24 +46,22 @@ class PreviousGamesTableViewController: UITableViewController {
         MememeDynamoDB.queryWithMyPlayerIdWithCompletionHandler(userId: MyPlayerData.id) { (result, error) in
             
             DispatchQueue.main.async {
-                let gameModels = result?.items as? [MememeDBObjectModel]
-                
+                let models = result?.items as? [MememeDBObjectModel]
+        
                 var x = 0
-                for model in gameModels!{
+                self.gameModels.removeAll()
+                
+                for model in models!{
                     let game = GameDataFromJSON.getGameFromJSON(model: model)
+                    self.gameModels[game.gameId!] = model
                     
                     var playersImages = [UIImage]()
-                    var temp = [String:Bool]()
-                    
+
                     let players = game.players?.allObjects as? [Player]
                     
                     for player in players!{
                         let image = FileManagerHelper.getImageFromMemory(imagePath: player.imageStorageLocation!)
-                        
-                        if temp[player.playerId!] == nil || temp[player.playerId!] == false {
-                            playersImages.append(image)
-                            temp[player.playerId!] = true
-                        }
+                        playersImages.append(image)
                     }
                     
                     self.playerImagesInGameDic[game.gameId!] = playersImages
@@ -173,7 +173,7 @@ class PreviousGamesTableViewController: UITableViewController {
             return cell
         }
         
-        switch(playersImages.count){
+        switch(players?.count)!{
         case 1:
             cell.secondIV.image = playersImages[0]
             break
@@ -182,9 +182,9 @@ class PreviousGamesTableViewController: UITableViewController {
             cell.thirdIV.image = playersImages[1]
             break
         case 3:
-            cell.firstIV.image = playersImages[0]
             cell.secondIV.image = playersImages[1]
             cell.thirdIV.image = playersImages[2]
+            cell.fourthIV.image = playersImages[0]
             break
         case 4:
             cell.firstIV.image = playersImages[0]
@@ -224,6 +224,30 @@ class PreviousGamesTableViewController: UITableViewController {
                     GameStack.sharedInstance.stack.context.delete(game)
                 }
             }
+        }
+    }
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            if(!Reachability.isConnectedToNetwork()){
+                DisplayAlert.display(controller: self, title: "Master Access Denied! Beep! Boop!", message: "You can't delete games unless there is wifi! Sorry!")
+                return
+            }
+            
+            if gameModels[games[indexPath.row].gameId!] == nil {
+                GameStack.sharedInstance.stack.context.delete(self.games[indexPath.row])
+                games.remove(at: indexPath.row)
+                self.tableView.reloadData()
+                return
+            }
+            MememeDynamoDB.removeItem(gameModels[games[indexPath.row].gameId!]!, completionHandler: { (error) in
+                if error == nil {
+                    DispatchQueue.main.async {
+                        GameStack.sharedInstance.stack.context.delete(self.games[indexPath.row])
+                        self.games.remove(at: indexPath.row)
+                        self.tableView.reloadData()
+                    }
+                }
+            })
         }
     }
     

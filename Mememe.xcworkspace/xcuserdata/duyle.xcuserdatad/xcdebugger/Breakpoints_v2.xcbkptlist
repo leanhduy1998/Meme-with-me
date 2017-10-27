@@ -201,22 +201,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Mememe/PreviousGamesTableViewController.swift"
-            timestampString = "530762682.370165"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "124"
-            endingLineNumber = "124"
-            landmarkName = "sortDataAndReloadTableView(completeHandler:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "Mememe/InGameCards.swift"
             timestampString = "530762682.370292"
             startingColumnNumber = "9223372036854775807"
@@ -266,7 +250,7 @@
                   moduleName = "Mememe"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/duyle/Desktop/Mememe/Mememe/InGameCards.swift"
-                  timestampString = "530785713.789418"
+                  timestampString = "530837560.710825"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "78"
@@ -281,7 +265,7 @@
                   moduleName = "Mememe"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/duyle/Desktop/Mememe/Mememe/InGameCards.swift"
-                  timestampString = "530785713.792985"
+                  timestampString = "530837560.712505"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "78"

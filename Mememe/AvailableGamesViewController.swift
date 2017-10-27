@@ -29,6 +29,9 @@ class AvailableGamesViewController: UIViewController, UITableViewDelegate, UITab
     
     private let refreshControl = UIRefreshControl()
     
+    //segue
+    var kickedOutOfRoom = false
+    
     override func viewDidLoad() {
         //onlyForAdmin()
         UserOnlineSystem.updateUserOnlineStatus()
@@ -64,6 +67,11 @@ class AvailableGamesViewController: UIViewController, UITableViewDelegate, UITab
         selectedLeaderId = nil
         setupUI()
         backgroundPlayer.play()
+        
+        if kickedOutOfRoom {
+            kickedOutOfRoom = false
+            displayKickedOutAlert()
+        }
     }
     
     func getNamefromAllPlayerInRoom(playerArr: [String:Any]) -> String{
@@ -205,6 +213,10 @@ class AvailableGamesViewController: UIViewController, UITableViewDelegate, UITab
             x=x+1
         }
         observers.removeAll()
+    }
+    
+    func displayKickedOutAlert(){
+        DisplayAlert.display(controller: self, title: "You are meant for greater things!", message: "You got kicked out :(")
     }
     
     

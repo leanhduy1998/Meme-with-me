@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-import QuartzCore
+import SwiftTryCatch
 
 extension PrivateRoomViewController {
     func calculateHeight(inString:String) -> CGFloat {
@@ -112,6 +112,29 @@ extension PrivateRoomViewController {
         }
         else {
             return userInRoom.count
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            if(MyPlayerData.id != leaderId){
+                DisplayAlert.display(controller: self, title: "Master Access Denied! Beep! Boop!", message: "You are not the leader of the room.")
+                return
+            }
+            else if userInRoom[indexPath.row].userId == MyPlayerData.id {
+                DisplayAlert.display(controller: self, title: "To be kicked, you must first be able to be kicked!", message: "You cannot kick yourself out!")
+                return
+            }
+        availableRoomRef.child(leaderId).child("playerInRoom").child(userInRoom[indexPath.row].userId).removeValue()
+            
+            self.userInRoom.remove(at: indexPath.row)
+            SwiftTryCatch.try({
+                self.tableview.deleteRows(at: [indexPath], with: UITableViewRowAnimation.left)
+            }, catch: { (error) in
+                self.tableview.reloadData()
+            }, finally: {
+                
+            })
         }
     }
 }

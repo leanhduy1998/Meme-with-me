@@ -47,7 +47,10 @@ class PrivateRoomViewController: UIViewController,UITableViewDelegate, UITableVi
     
     var availableRoomObservers = [String:[UInt]]()
     var inGameObservers = [UInt]()
+    
+    //segue
     var segueAlreadyPushed = false
+    var kickedOut = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -191,6 +194,7 @@ class PrivateRoomViewController: UIViewController,UITableViewDelegate, UITableVi
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         unsubscribeFromKeyboardNotifications()
+        
         if(backgroundPlayer != nil){
             backgroundPlayer.stop()
             backgroundPlayer = nil
@@ -207,6 +211,11 @@ class PrivateRoomViewController: UIViewController,UITableViewDelegate, UITableVi
             destination.selectedLeaderId = nil
             destination.getRoomDataFromDB()
             leaderId = nil
+            
+            if kickedOut {
+                kickedOut = false
+                destination.kickedOutOfRoom = true
+            }
         }
     }
 

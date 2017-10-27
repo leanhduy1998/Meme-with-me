@@ -65,6 +65,7 @@ extension PrivateRoomViewController{
     func checkIfStartBtnCanBeEnabled(){
         if(!self.startBtnTimerIsCounting){
             self.startBtnTimerIsCounting = true
+
             DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
                 self.startBtnPlayerAddedDebt = self.startBtnPlayerAddedDebt - 1
                 self.startBtnTimerIsCounting = false
@@ -95,6 +96,11 @@ extension PrivateRoomViewController{
                 let postDict = [snapshot.key:value]
                 
                 for (playerId,_) in postDict {
+                    if playerId == MyPlayerData.id {
+                        self.kickedOut = true
+                        self.performSegue(withIdentifier: "unwindToAvailableGamesViewController", sender: self)
+                    }
+                    
                     var count = 0
                     for user in self.userInRoom {
                         if user.userId == playerId {
