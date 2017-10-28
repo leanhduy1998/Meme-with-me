@@ -9,6 +9,7 @@
 import Foundation
 import Firebase
 import AVFoundation
+import SwiftTryCatch
 
 class ChatHelper {
     private let chatRef = Database.database().reference().child("chat")
@@ -51,12 +52,24 @@ class ChatHelper {
                     }
                 }
                 self.messages.append(message)
-                controller.chatTableView.reloadData()
+                SwiftTryCatch.try({
+                    if message.senderId == MyPlayerData.id {
+                        controller.chatTableView.insertRows(at: [IndexPath(item: self.messages.count - 1, section: 0)], with: UITableViewRowAnimation.right)
+                    }
+                    else{
+                        controller.chatTableView.insertRows(at: [IndexPath(item: self.messages.count - 1, section: 0)], with: UITableViewRowAnimation.left)
+                    }
+                }, catch: { (error) in
+                    controller.chatTableView.reloadData()
+                }, finally: {
+                    // close resources
+                })
+    
                 
                 if let c = controller as? PrivateRoomViewController {
                     c.chatSoundPlayer.play()
                 }
-                if let c = controller as? InGameViewController {
+                else if let c = controller as? InGameViewController {
                     c.playMessageReceivedSound()
                 }
 

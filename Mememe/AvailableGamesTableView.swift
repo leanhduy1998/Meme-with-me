@@ -23,9 +23,7 @@ extension AvailableGamesViewController {
             
             var playerImages = [UIImage]()
             
-            
             for (playerId,_) in room.playerInRoom! {
-                
                 helper.loadUserProfilePicture(userId: playerId, completeHandler: { (imageData) in
                     DispatchQueue.main.async{
                         var image = UIImage(data: imageData)
@@ -65,6 +63,11 @@ extension AvailableGamesViewController {
                     }
                 })
             }
+            
+            cell.firstIV = CircleImageCutter.roundImageView(imageview: cell.firstIV, radius: 15)
+            cell.secondIV = CircleImageCutter.roundImageView(imageview: cell.secondIV, radius: 15)
+            cell.thirdIV = CircleImageCutter.roundImageView(imageview: cell.thirdIV, radius: 15)
+            cell.fourthIV = CircleImageCutter.roundImageView(imageview: cell.fourthIV, radius: 15)
             return cell
         }
         else if room.roomImageUrl! == "noURL" && (room.playerInRoom?.count)! == 1 {
@@ -83,6 +86,7 @@ extension AvailableGamesViewController {
                         }
                     }
                 })
+                cell.imageview = CircleImageCutter.roundImageView(imageview: cell.imageview, radius: 15)
                 return cell
             }
         }

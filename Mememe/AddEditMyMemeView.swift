@@ -15,6 +15,7 @@ extension AddEditMyMemeViewController {
         
         setupImageView()
         imageview.image = memeImage
+        imageview = CircleImageCutter.roundImageView(imageview: imageview, radius: 15)
         
         // for width, change the constraint in storyboard instead for labels
         topLabel.frame = CGRect(x: 10, y: 10, width: imageview.frame.width, height: imageviewHeight/8)

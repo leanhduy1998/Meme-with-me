@@ -47,11 +47,18 @@ extension PrivateRoomViewController {
                 cell?.messageTF.layer.masksToBounds = true
                 cell?.messageTF.layer.cornerRadius = 5
                 
-                helper.loadUserProfilePicture(userId: message.senderId) { (imageData) in
-                    DispatchQueue.main.async {
-                        cell?.userIV.image = UIImage(data: imageData)
+                if userImagesDic[message.senderId] == nil {
+                    helper.loadUserProfilePicture(userId: message.senderId) { (imageData) in
+                        DispatchQueue.main.async {
+                            cell?.userIV.image = UIImage(data: imageData)
+                            self.userImagesDic[message.senderId] = UIImage(data: imageData)
+                        }
                     }
                 }
+                else {
+                    cell?.userIV.image = userImagesDic[message.senderId]
+                }
+                cell?.userIV = CircleImageCutter.roundImageView(imageview: (cell?.userIV)!, radius: 15)
                 return cell!
             }
             else {
@@ -65,11 +72,18 @@ extension PrivateRoomViewController {
                 cell?.messageTF.layer.masksToBounds = true
                 cell?.messageTF.layer.cornerRadius = 5
                 
-                helper.loadUserProfilePicture(userId: message.senderId) { (imageData) in
-                    DispatchQueue.main.async {
-                        cell?.userIV.image = UIImage(data: imageData)
+                if userImagesDic[message.senderId] == nil {
+                    helper.loadUserProfilePicture(userId: message.senderId) { (imageData) in
+                        DispatchQueue.main.async {
+                            cell?.userIV.image = UIImage(data: imageData)
+                            self.userImagesDic[message.senderId] = UIImage(data: imageData)
+                        }
                     }
                 }
+                else {
+                    cell?.userIV.image = userImagesDic[message.senderId]
+                }
+                cell?.userIV = CircleImageCutter.roundImageView(imageview: (cell?.userIV)!, radius: 15)
                 return cell!
             }
         }
@@ -86,14 +100,13 @@ extension PrivateRoomViewController {
                         let image = UIImage(data: imageData)
                         
                         cell?.imageview.image = image
-                        cell?.imageview = CircleImageCutter.roundImageView(imageview: (cell?.imageview)!, radius: 3)
                         if indexPath.row <= (self.userInRoom.count-1){
                             self.userImagesDic[self.userInRoom[indexPath.row].userId] = image
                         }
                     }
                 }
             }
-
+            cell?.imageview = CircleImageCutter.roundImageView(imageview: (cell?.imageview)!, radius: 15)
             cell?.nameLabel.text = userInRoom[indexPath.row].userName
             
             return cell!

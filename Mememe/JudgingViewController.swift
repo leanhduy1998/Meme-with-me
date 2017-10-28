@@ -33,12 +33,14 @@ class JudgingViewController: UIViewController,UIGestureRecognizerDelegate {
     }
     
     override func viewDidLoad() {
+        super.viewDidLoad()
+        
         self.view.setNeedsLayout()
         self.view.layoutIfNeeded()
         cardHeight = memeScrollView.frame.height
         cardWidth = cardHeight * 9 / 16
         
-        super.viewDidLoad()
+        
         var contentWidth = CGFloat(space)
         
         let latestRound = GetGameCoreDataData.getLatestRound(game: game)
@@ -53,8 +55,9 @@ class JudgingViewController: UIViewController,UIGestureRecognizerDelegate {
             let bottomLabel = UILabel(frame: CGRect(x: space, y: cardHeight - cardHeight/8 - space, width: cardWidth - space*2, height: cardHeight/8))
             MemeLabelConfigurer.configureMemeLabel(bottomLabel, defaultText: card.bottomText!)
             
-            let memeIV = UIImageView(frame: CGRect(x: 0, y: 0, width: cardWidth, height: cardHeight))
+            var memeIV = UIImageView(frame: CGRect(x: 0, y: 0, width: cardWidth, height: cardHeight))
             memeIV.image = memeImage
+            memeIV = CircleImageCutter.roundImageView(imageview: memeIV, radius: 15)
             
             cardview.initCardView(topLabel: topLabel, bottomLabel: bottomLabel, playerId: card.playerId!, memeIV: memeIV)
             cardview.isSelecting = false
