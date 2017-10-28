@@ -89,13 +89,17 @@ class AddEditMyMemeViewController: UIViewController, UITableViewDelegate, UITabl
             InGameHelper.insertNormalCardIntoGame(gameId: game.gameId!, card: myCard)
         }
         
-                
         GameStack.sharedInstance.saveContext(completeHandler: {
             DispatchQueue.main.async {
                 self.dismiss(animated: true, completion: nil)
             }
         })
     }
+    
+    @IBAction func cancelBtnPressed(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? InGameViewController {

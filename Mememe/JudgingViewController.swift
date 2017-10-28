@@ -164,8 +164,12 @@ class JudgingViewController: UIViewController,UIGestureRecognizerDelegate {
                 currentCardView?.choosingIV.isHidden = true
             }, completion: nil)
         }
-        
     }
+    
+    @IBAction func cancelBtnPressed(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination =  segue.destination as? InGameViewController {

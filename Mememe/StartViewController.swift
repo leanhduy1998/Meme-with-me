@@ -43,16 +43,15 @@ class StartViewController: UIViewController,UIGestureRecognizerDelegate, AWSSign
 
     var backgroundPlayer: AVAudioPlayer!
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        MemeHelper.getAllMemes()
-        
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         setupUI()
         setupMainScreenTap()
         
         backgroundPlayer = SoundPlayerHelper.getAudioPlayer(songName: "startMusic", loop: true)
         backgroundPlayer.play()
-    
+        
         myDataStack.initializeFetchedResultsController()
         let fetchedObjects = self.myDataStack.fetchedResultsController.fetchedObjects as? [MyCoreData]
         if((fetchedObjects?.count)! > 0){
@@ -61,15 +60,12 @@ class StartViewController: UIViewController,UIGestureRecognizerDelegate, AWSSign
             leftNotificationLabel.text = "\(Int(fetchedObjects![0].laughes))"
             rightNotificationLabel.text = "\(Int(fetchedObjects![0].madeCeasar))"
         }
-      
+        
         GameStack.sharedInstance.initializeFetchedResultsController()
         let deleteItems = GameStack.sharedInstance.fetchedResultsController.fetchedObjects
-        
-        
         for item in deleteItems!{
-        //    GameStack.sharedInstance.stack.context.delete(item as! NSManagedObject)
+            //    GameStack.sharedInstance.stack.context.delete(item as! NSManagedObject)
         }
-        
     }
     
     private func setupMainScreenTap(){
@@ -146,6 +142,8 @@ class StartViewController: UIViewController,UIGestureRecognizerDelegate, AWSSign
     }
     
     private func handleLoginData(results: [PlayerDataDBObjectModel]){
+        MemeHelper.getAllMemes()
+        
         let data = results[0] as? PlayerDataDBObjectModel
         MyPlayerData.name = data?._name
         

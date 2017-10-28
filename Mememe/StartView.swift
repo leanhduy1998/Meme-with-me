@@ -33,8 +33,6 @@ extension StartViewController {
         googleButton.delegate = self
     }
     
-  
-    
     private func addFadeInAnimation(){
         userIcon.alpha = 0
         laughingIcon.alpha = 0

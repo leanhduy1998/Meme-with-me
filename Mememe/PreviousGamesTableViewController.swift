@@ -251,5 +251,7 @@ class PreviousGamesTableViewController: UITableViewController {
         }
     }
     
-
+    @IBAction func cancelBtnPressed(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
 }
