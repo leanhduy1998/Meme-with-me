@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftTryCatch
 
 class AddEditMyMemeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate {
 
@@ -32,22 +33,50 @@ class AddEditMyMemeViewController: UIViewController, UITableViewDelegate, UITabl
     
     var originalFont: UIFont!
     
-    var memes = [String]()
+    var memeModel = MemeModel()
+    var memesArrangement = [String]()
+    var memesRelatedPos = [String:String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
         originalFont = UIFont(name: topLabel.font.fontName, size: topLabel.font.pointSize)
+        
+        for meme in memeModel.topMemes {
+            memesRelatedPos[meme] = "top"
+        }
+        for meme in memeModel.bottomMemes {
+            memesRelatedPos[meme] = "bot"
+        }
+        for meme in memeModel.fullMemes {
+            memesRelatedPos[meme] = "full"
+        }
+        tableview.rowHeight = UITableViewAutomaticDimension
+        tableview.estimatedRowHeight = 140
     }
     
     func topUIViewTouched(sender: UITapGestureRecognizer){
-        topLabel.text = " "
-        topLabel.font = originalFont
-        
+        if !isTextEmpty(string: topLabel.text!){
+            memesArrangement.append(topLabel.text!)
+            self.tableview.reloadData()
+            topLabel.text = " "
+            topLabel.font = originalFont
+        }
     }
     func bottomUIViewTouched(sender: UITapGestureRecognizer){
-        bottomLabel.text = " "
-        bottomLabel.font = originalFont
+        if !isTextEmpty(string: bottomLabel.text!){
+            memesArrangement.append(bottomLabel.text!)
+            self.tableview.reloadData()
+            bottomLabel.text = " "
+            bottomLabel.font = originalFont
+        }
+    }
+    
+    func isTextEmpty(string: String)->Bool{
+        if (string == " " || string == "" || string.isEmpty) {
+            return true
+        }
+        return false
     }
     
 

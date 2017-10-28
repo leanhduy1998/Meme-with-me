@@ -10,26 +10,123 @@ import UIKit
 import Firebase
 
 class MemeHelper {
-    private static var memes = [String]()
-    static func get7Memes()->[String]{
-        if memes.count == 0 {
-            return []
+    private static var topMemes = [String]()
+    private static var bottomMemes = [String]()
+    private static var fullMemes = [String]()
+    
+    static func get9Memes()->MemeModel{
+        if topMemes.count == 0 || bottomMemes.count == 0 || fullMemes.count == 0 {
+            return MemeModel()
         }
-        
         var picked = [Int:Int]()
-        while(picked.count < 7){
-            let random = Int(arc4random_uniform(UInt32(memes.count)))
+        var top = [String]()
+        var bot = [String]()
+        var full = [String]()
+        
+        let memeModel = MemeModel()
+        var temp = [Int]()
+        
+        while(picked.count < 4){
+            let random = Int(arc4random_uniform(UInt32(topMemes.count)))
             picked[random] = random
         }
-        var returnMeme = [String]()
+        
         for(num,_) in picked {
-            returnMeme.append(memes[num])
+            top.append(topMemes[num])
+            temp.append(num)
         }
-        return returnMeme
+        for x in (0...(temp.count-1)).reversed() {
+            topMemes.remove(at: x)
+        }
+        temp.removeAll()
+        
+        picked.removeAll()
+        
+        while(picked.count < 4){
+            let random = Int(arc4random_uniform(UInt32(bottomMemes.count)))
+            picked[random] = random
+        }
+        for(num,_) in picked {
+            bot.append(bottomMemes[num])
+            temp.append(num)
+        }
+        for x in (0...(temp.count-1)).reversed() {
+            bottomMemes.remove(at: x)
+        }
+        
+        let random = Int(arc4random_uniform(UInt32(fullMemes.count)))
+        full.append(fullMemes[random])
+        fullMemes.remove(at: random)
+        
+        memeModel.topMemes = top
+        memeModel.bottomMemes = bot
+        memeModel.fullMemes = full
+        
+        return memeModel
     }
-    static func getAllMemes(){
-        Database.database().reference().child("meme").observeSingleEvent(of: DataEventType.value, with: { (snapshot) in
-            memes = (snapshot.value as? [String])!
+    static func refillCards(model: MemeModel) -> MemeModel{
+        model.topMemes = refillPos(temp: model.topMemes, pos: "top")
+        model.bottomMemes = refillPos(temp: model.bottomMemes, pos: "bot")
+        model.fullMemes = refillPos(temp: model.fullMemes, pos: "full")
+        return model
+    }
+    private static func refillPos(temp: [String], pos: String) -> [String]{
+        if temp.count < 4 {
+            var memes = temp
+                
+            var picked = [Int:Int]()
+                
+            if pos == "top" {
+                while(picked.count < (4-memes.count)){
+                    let random = Int(arc4random_uniform(UInt32(topMemes.count)))
+                    picked[random] = random
+                }
+                for(num,_) in picked {
+                    memes.append(topMemes[num])
+                    topMemes.remove(at: num)
+                }
+            }
+            if pos == "bot" {
+                while(picked.count < (4-memes.count)){
+                    let random = Int(arc4random_uniform(UInt32(bottomMemes.count)))
+                    picked[random] = random
+                }
+                for(num,_) in picked {
+                    memes.append(bottomMemes[num])
+                    bottomMemes.remove(at: num)
+                }
+            }
+            if pos == "full" {
+                while(picked.count < (4-memes.count)){
+                    let random = Int(arc4random_uniform(UInt32(fullMemes.count)))
+                    picked[random] = random
+                }
+                for(num,_) in picked {
+                    memes.append(fullMemes[num])
+                    fullMemes.remove(at: num)
+                }
+            }
+            return memes
+        }
+        return temp
+    }
+    
+    static func getAllMemes(completeHandler: @escaping ()-> Void){
+    Database.database().reference().child("meme").observeSingleEvent(of: DataEventType.value, with: { (snapshot) in
+            let postDic = snapshot.value as? [String:[String]]
+        
+            for (memePos,memes) in postDic! {
+                if memePos == "topMemes" {
+                    topMemes = memes
+                }
+                else if memePos == "bottomMemes" {
+                    bottomMemes = memes
+                }
+                else {
+                    fullMemes = memes
+                }
+            }
+            completeHandler()
         })
     }
 }

@@ -53,6 +53,9 @@
 		24305CDF1F2E5F5300B14632 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24305CDE1F2E5F5300B14632 /* CoreDataStack.swift */; };
 		24305CE31F2E632B00B14632 /* AvailableGamesOneImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24305CE21F2E632B00B14632 /* AvailableGamesOneImageCell.swift */; };
 		2431A8C41F8D6F4100A49A6E /* InGameTutChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2431A8C31F8D6F4100A49A6E /* InGameTutChat.swift */; };
+		243D2A1C1FA50757006BD1E1 /* topMemes.txt in Resources */ = {isa = PBXBuildFile; fileRef = 243D2A1B1FA50756006BD1E1 /* topMemes.txt */; };
+		243D2A1E1FA5128B006BD1E1 /* bottomMemes.txt in Resources */ = {isa = PBXBuildFile; fileRef = 243D2A1D1FA5128B006BD1E1 /* bottomMemes.txt */; };
+		243D2A201FA5131E006BD1E1 /* fullMemes.txt in Resources */ = {isa = PBXBuildFile; fileRef = 243D2A1F1FA5131E006BD1E1 /* fullMemes.txt */; };
 		243F208B1F68E70D0003C604 /* FirebaseAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 243F20841F68E70D0003C604 /* FirebaseAnalytics.framework */; };
 		243F208C1F68E70D0003C604 /* FirebaseCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 243F20851F68E70D0003C604 /* FirebaseCore.framework */; };
 		243F208D1F68E70D0003C604 /* FirebaseCoreDiagnostics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 243F20861F68E70D0003C604 /* FirebaseCoreDiagnostics.framework */; };
@@ -70,6 +73,7 @@
 		244A43EB1F9BB14700463F2E /* MyCoreData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244A43E91F9BB14700463F2E /* MyCoreData+CoreDataProperties.swift */; };
 		244A43F61F9BB78F00463F2E /* CardCeasar+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244A43F41F9BB78E00463F2E /* CardCeasar+CoreDataProperties.swift */; };
 		244A43F71F9BB78F00463F2E /* CardCeasar+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244A43F51F9BB78F00463F2E /* CardCeasar+CoreDataClass.swift */; };
+		244B20F01FA441120050681C /* MemeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244B20EF1FA441120050681C /* MemeModel.swift */; };
 		244F2CF71F86DF0C00547AB2 /* InGameCards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244F2CF61F86DF0C00547AB2 /* InGameCards.swift */; };
 		244F7C011F8EC31E00865BB3 /* StartTut.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244F7C001F8EC31E00865BB3 /* StartTut.swift */; };
 		245031EC1F99AE0F009060D2 /* FileManagerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245031EB1F99AE0F009060D2 /* FileManagerHelper.swift */; };
@@ -254,6 +258,9 @@
 		24305CDE1F2E5F5300B14632 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		24305CE21F2E632B00B14632 /* AvailableGamesOneImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvailableGamesOneImageCell.swift; sourceTree = "<group>"; };
 		2431A8C31F8D6F4100A49A6E /* InGameTutChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InGameTutChat.swift; sourceTree = "<group>"; };
+		243D2A1B1FA50756006BD1E1 /* topMemes.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = topMemes.txt; sourceTree = "<group>"; };
+		243D2A1D1FA5128B006BD1E1 /* bottomMemes.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bottomMemes.txt; sourceTree = "<group>"; };
+		243D2A1F1FA5131E006BD1E1 /* fullMemes.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fullMemes.txt; sourceTree = "<group>"; };
 		243F20841F68E70D0003C604 /* FirebaseAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FirebaseAnalytics.framework; sourceTree = "<group>"; };
 		243F20851F68E70D0003C604 /* FirebaseCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FirebaseCore.framework; sourceTree = "<group>"; };
 		243F20861F68E70D0003C604 /* FirebaseCoreDiagnostics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FirebaseCoreDiagnostics.framework; sourceTree = "<group>"; };
@@ -275,6 +282,7 @@
 		244A43E91F9BB14700463F2E /* MyCoreData+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MyCoreData+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		244A43F41F9BB78E00463F2E /* CardCeasar+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CardCeasar+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		244A43F51F9BB78F00463F2E /* CardCeasar+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CardCeasar+CoreDataClass.swift"; sourceTree = "<group>"; };
+		244B20EF1FA441120050681C /* MemeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemeModel.swift; sourceTree = "<group>"; };
 		244F2CF61F86DF0C00547AB2 /* InGameCards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InGameCards.swift; sourceTree = "<group>"; };
 		244F7C001F8EC31E00865BB3 /* StartTut.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartTut.swift; sourceTree = "<group>"; };
 		245031EB1F99AE0F009060D2 /* FileManagerHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerHelper.swift; sourceTree = "<group>"; };
@@ -874,6 +882,7 @@
 				24233F5B1F6312D500B2B7EE /* Extension.swift */,
 				249F11A41F6DA4CD00C60059 /* PlayerData.swift */,
 				247A55C81F7F3EE3004D1701 /* ChatModel.swift */,
+				244B20EF1FA441120050681C /* MemeModel.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -919,6 +928,9 @@
 		24896D851F2A6C40003B6954 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				243D2A1B1FA50756006BD1E1 /* topMemes.txt */,
+				243D2A1F1FA5131E006BD1E1 /* fullMemes.txt */,
+				243D2A1D1FA5128B006BD1E1 /* bottomMemes.txt */,
 				247A349E1F8709AF00E2C9E0 /* sound */,
 				247A349B1F87068900E2C9E0 /* font */,
 				24896D571F2A5FA2003B6954 /* Main.storyboard */,
@@ -1170,6 +1182,7 @@
 				247A34B71F87127E00E2C9E0 /* availableRoomMusic.mp3 in Resources */,
 				247A34B81F87127E00E2C9E0 /* inGame.mp3 in Resources */,
 				247A34BA1F87127E00E2C9E0 /* messagereceived.mp3 in Resources */,
+				243D2A1E1FA5128B006BD1E1 /* bottomMemes.txt in Resources */,
 				247A34BC1F87127E00E2C9E0 /* privateRoomMusic.mp3 in Resources */,
 				2498FA201F3484F900B21267 /* GoogleSignIn.bundle in Resources */,
 				2498FA1C1F3484F900B21267 /* CheckXcodeVersion.sh in Resources */,
@@ -1179,9 +1192,11 @@
 				24F4B4001FA2E0FE009419AA /* winning.mp3 in Resources */,
 				24896D5B1F2A5FA2003B6954 /* Assets.xcassets in Resources */,
 				2498FA361F3485E800B21267 /* SignIn.storyboard in Resources */,
+				243D2A1C1FA50757006BD1E1 /* topMemes.txt in Resources */,
 				2498FA1B1F3484F900B21267 /* NOTICE in Resources */,
 				247A349D1F87070300E2C9E0 /* AsimovDistIt.otf in Resources */,
 				243F209F1F6A1BF50003C604 /* GoogleService-Info.plist in Resources */,
+				243D2A201FA5131E006BD1E1 /* fullMemes.txt in Resources */,
 				24896D591F2A5FA2003B6954 /* Main.storyboard in Resources */,
 				2498FA1A1F3484F900B21267 /* Amazon_Software_License.txt in Resources */,
 			);
@@ -1371,6 +1386,7 @@
 				244A43EB1F9BB14700463F2E /* MyCoreData+CoreDataProperties.swift in Sources */,
 				241251281F994E010040AF40 /* Reachability.swift in Sources */,
 				247A55C71F7F350A004D1701 /* ChatHelper.swift in Sources */,
+				244B20F01FA441120050681C /* MemeModel.swift in Sources */,
 				240E6B6A1F90DC1E000B28D0 /* Game+CoreDataProperties.swift in Sources */,
 				24E8597D1F7EFE5700856BA3 /* CellAnimator.swift in Sources */,
 				24AF9E5C1F3018D000D05BFC /* InGameView.swift in Sources */,

@@ -88,7 +88,7 @@ extension PrivateRoomViewController{
     func addPlayerInRoomRemovedObserver(){
         let ob3 = availableRoomRef.child(leaderId).child("playerInRoom").observe(DataEventType.childRemoved, with: { (snapshot) in
             DispatchQueue.main.async {
-                if(self.availableRoomObservers["\(self.leaderId!)/playerInRoom"] == nil){
+                if(self.availableRoomObservers["\(self.leaderId)/playerInRoom"] == nil){
                     return
                 }
                 

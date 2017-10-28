@@ -44,8 +44,42 @@ class StartViewController: UIViewController,UIGestureRecognizerDelegate, AWSSign
     var backgroundPlayer: AVAudioPlayer!
 
 
+    func onlyForAdmin(){
+        let path = Bundle.main.path(forResource: "topMemes", ofType: "txt")
+        do {
+            let data = try String(contentsOfFile: path!, encoding: .utf8)
+            print(data)
+            let myStrings = data.components(separatedBy: .newlines)
+            Database.database().reference().child("meme").child("topMemes").setValue(myStrings)
+        } catch {
+            print(error)
+        }
+        
+        let path2 = Bundle.main.path(forResource: "bottomMemes", ofType: "txt")
+        do {
+            let data = try String(contentsOfFile: path2!, encoding: .utf8)
+            print(data)
+            let myStrings = data.components(separatedBy: .newlines)
+            Database.database().reference().child("meme").child("bottomMemes").setValue(myStrings)
+        } catch {
+            print(error)
+        }
+        
+        let path3 = Bundle.main.path(forResource: "fullMemes", ofType: "txt")
+        do {
+            let data = try String(contentsOfFile: path3!, encoding: .utf8)
+            print(data)
+            let myStrings = data.components(separatedBy: .newlines)
+            Database.database().reference().child("meme").child("fullMemes").setValue(myStrings)
+        } catch {
+            print(error)
+        }
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        //onlyForAdmin()
+        
         setupUI()
         setupMainScreenTap()
         
@@ -142,8 +176,6 @@ class StartViewController: UIViewController,UIGestureRecognizerDelegate, AWSSign
     }
     
     private func handleLoginData(results: [PlayerDataDBObjectModel]){
-        MemeHelper.getAllMemes()
-        
         let data = results[0] as? PlayerDataDBObjectModel
         MyPlayerData.name = data?._name
         

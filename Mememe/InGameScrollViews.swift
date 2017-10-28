@@ -137,7 +137,7 @@ extension InGameViewController {
                 return
             }
             else if(currentPlayersCards?.count)! == 1 {
-                if isLabelEmpty(string: currentPlayersCards![0].topText!)  && isLabelEmpty(string: currentPlayersCards![0].bottomText!) {
+                if isTextEmpty(string: currentPlayersCards![0].topText!)  && isTextEmpty(string: currentPlayersCards![0].bottomText!) {
                     self.clearPreviewCardsData()
                 }
             }
@@ -263,7 +263,7 @@ extension InGameViewController {
         previewScrollView.contentSize = CGSize(width: contentWidth, height: cardHeight)
         
     }
-    func isLabelEmpty(string: String)->Bool{
+    func isTextEmpty(string: String)->Bool{
         if (string == " " || string == "" || string.isEmpty) {
             return true
         }

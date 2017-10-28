@@ -8,13 +8,14 @@
 
 import Foundation
 import UIKit
+import SwiftTryCatch
 
 extension AddEditMyMemeViewController {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AddEditMyMemeTableCell") as? AddEditMyMemeTableCell
-    
-        cell?.memeLabel.text = memes[indexPath.row]
+        
+        cell?.memeLabel.text = memesArrangement[indexPath.row]
         
         let lpGestureRecognizer: UILongPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(didLongPressCell))
         cell?.contentView.addGestureRecognizer(lpGestureRecognizer)
@@ -45,21 +46,48 @@ extension AddEditMyMemeViewController {
             dragLabel?.removeFromSuperview()
             if topUIView.frame.intersects(dragLabel.frame) {
                 // for some reason, the text need to have a space in it to make the animation works
+                /*
                 if bottomLabel.text == dragLabel.text {
                     bottomLabel.text = " "
+                }*/
+                if !isTextEmpty(string: topLabel.text!) {
+                    self.memesArrangement.append(topLabel.text!)
                 }
+                
                 DispatchQueue.main.async {
                     MemeLabelConfigurer.configureMemeLabel(self.topLabel, defaultText: self.dragLabel.text!)
+                    
+                    var count = 0
+                    for meme in self.memesArrangement {
+                        if meme == self.dragLabel.text {
+                            self.memesArrangement.remove(at: count)
+                            self.tableview.reloadData()
+                        }
+                        count = count + 1
+                    }
                 }
                 
             }
             if bottomUIView.frame.intersects(dragLabel.frame) {
                 // for some reason, the text need to have a space in it to make the animation works
-                if topLabel.text == dragLabel.text {
+                /*if topLabel.text == dragLabel.text {
                     topLabel.text = " "
+                }*/
+                if !isTextEmpty(string: bottomLabel.text!) {
+                    self.memesArrangement.append(bottomLabel.text!)
                 }
+                
                 DispatchQueue.main.async {
                     MemeLabelConfigurer.configureMemeLabel(self.bottomLabel, defaultText: self.dragLabel.text!)
+                    
+                    var count = 0
+                    for meme in self.memesArrangement {
+                        if meme == self.dragLabel.text {
+                            self.memesArrangement.remove(at: count)
+                            self.tableview.reloadData()
+                        }
+                        count = count + 1
+                    }
                 }
                 
             }
@@ -70,6 +98,6 @@ extension AddEditMyMemeViewController {
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return memes.count
+        return memesArrangement.count
     }
 }

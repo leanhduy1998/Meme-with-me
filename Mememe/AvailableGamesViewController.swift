@@ -33,7 +33,6 @@ class AvailableGamesViewController: UIViewController, UITableViewDelegate, UITab
     var kickedOutOfRoom = false
     
     override func viewDidLoad() {
-        //onlyForAdmin()
         UserOnlineSystem.updateUserOnlineStatus()
         tableview.reloadData()
         backgroundPlayer = SoundPlayerHelper.getAudioPlayer(songName: "availableRoomMusic", loop: true)
@@ -44,11 +43,6 @@ class AvailableGamesViewController: UIViewController, UITableViewDelegate, UITab
         }
         refreshControl.addTarget(self, action: #selector(pulledRefreshedControl(_:)), for: .valueChanged)
     }
-    /*
-    func onlyForAdmin(){
-        let memetexts = ["When you are dead inside but don’t want anyone to know","When you want to add a comment to the conversation and are patiently waiting for a pause","When you said you’d do something with a friend before but now you really don’t want to","memeText4","memeText5","memeText6","memeText7","memeText8","memeText9","memeText10","memeText11","memeText12","memeText13","memeText14","memeText15","memeText16","memeText17","memeText18","memeText19","memeText20"]
-        Database.database().reference().child("meme").setValue(memetexts)
-    }*/
     
     func pulledRefreshedControl(_ sender: Any){
         updateOpenRoomValue()

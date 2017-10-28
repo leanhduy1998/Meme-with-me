@@ -83,10 +83,21 @@ class InGameViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var cardInitialYBeforeAnimation: CGFloat!
     
     // addeditmymemeview
-    var memes = [String]()
+    var memeModel: MemeModel!
+    var memesArrangement = [String]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        MemeHelper.getAllMemes(completeHandler: {
+            DispatchQueue.main.async {
+                self.memeModel = MemeHelper.get9Memes()
+                self.memesArrangement.append(contentsOf: self.memeModel.topMemes)
+                self.memesArrangement.append(contentsOf: self.memeModel.bottomMemes)
+                self.memesArrangement.append(contentsOf: self.memeModel.fullMemes)
+                self.memesArrangement.shuffle()
+            }
+        })
+        
         setupUI()
 
         if leaderId == MyPlayerData.id {
@@ -115,7 +126,7 @@ class InGameViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 }
             })
         }
-        memes = MemeHelper.get7Memes()
+        
         
         self.automaticallyAdjustsScrollViewInsets = false
     }
@@ -190,7 +201,8 @@ class InGameViewController: UIViewController, UITableViewDelegate, UITableViewDa
             destination.memeImage = thisRoundImage
             destination.game = game
             destination.leaderId = leaderId
-            destination.memes = memes
+            destination.memeModel = memeModel
+            destination.memesArrangement = memesArrangement
         }
         else if let destination = segue.destination as? JudgingViewController {
             destination.game = game
@@ -201,5 +213,29 @@ class InGameViewController: UIViewController, UITableViewDelegate, UITableViewDa
         else if let destination = segue.destination as? AvailableGamesViewController{
             destination.updateOpenRoomValue()
         }
+    }
+}
+
+extension MutableCollection where Indices.Iterator.Element == Index {
+    /// Shuffles the contents of this collection.
+    mutating func shuffle() {
+        let c = count
+        guard c > 1 else { return }
+        
+        for (firstUnshuffled , unshuffledCount) in zip(indices, stride(from: c, to: 1, by: -1)) {
+            let d: IndexDistance = numericCast(arc4random_uniform(numericCast(unshuffledCount)))
+            guard d != 0 else { continue }
+            let i = index(firstUnshuffled, offsetBy: d)
+            swap(&self[firstUnshuffled], &self[i])
+        }
+    }
+}
+
+extension Sequence {
+    /// Returns an array with the contents of this sequence, shuffled.
+    func shuffled() -> [Iterator.Element] {
+        var result = Array(self)
+        result.shuffle()
+        return result
     }
 }
