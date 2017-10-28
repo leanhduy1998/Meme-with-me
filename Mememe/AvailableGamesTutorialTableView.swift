@@ -12,15 +12,13 @@ import UIKit
 
 extension AvailableGameTutorialController {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-     
-        var cell = (tableView.dequeueReusableCell(withIdentifier: "AvailableGamesExistImageCell") as? AvailableGamesExistImageCell)!
+        var cell = (tableView.dequeueReusableCell(withIdentifier: "AvailableGamesOneImageCell") as? AvailableGamesOneImageCell)!
         cell = CellAnimator.add(cell: cell)
         cell.nameLabel.text = "A bot's room!"
-        cell.activityIndicator.startAnimating()
+        cell.activityIndicator.stopAnimating()
             
         cell.imageview.image = #imageLiteral(resourceName: "ichooseyou")
         
-
         return cell
     }
     

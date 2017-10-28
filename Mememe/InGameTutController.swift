@@ -54,6 +54,7 @@ class InGameTutController: UIViewController, UITableViewDelegate, UITableViewDat
     var userWhoWon = ""
     
     var playersInGame = [PlayerData]()
+    var userImages = [String:UIImage]()
     
     var game:Game!
     var messages = [ChatModel]()

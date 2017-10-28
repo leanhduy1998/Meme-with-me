@@ -48,11 +48,8 @@ extension RoomTutorialController {
                 cell?.messageTF.layer.cornerRadius = 5
                 
                
-                helper.loadUserProfilePicture(userId: message.senderId) { (imageData) in
-                    DispatchQueue.main.async {
-                        cell?.userIV.image = UIImage(data: imageData)
-                    }
-                }
+                cell?.userIV.image = self.userImages[message.senderId]
+                cell?.userIV = CircleImageCutter.roundImageView(imageview: (cell?.userIV)!, radius: 15)
                                 
                 return cell!
             }
@@ -68,6 +65,7 @@ extension RoomTutorialController {
                 cell?.messageTF.layer.cornerRadius = 5
            
                 cell?.userIV.image = #imageLiteral(resourceName: "ichooseyou")
+                cell?.userIV = CircleImageCutter.roundImageView(imageview: (cell?.userIV)!, radius: 15)
                 
                 return cell!
             }
@@ -80,6 +78,7 @@ extension RoomTutorialController {
                 helper.loadUserProfilePicture(userId: userInRoom[indexPath.row].userId) { (imageData) in
                     DispatchQueue.main.async {
                         cell?.imageview.image = UIImage(data: imageData)
+                        self.userImages[self.userInRoom[indexPath.row].userId] = UIImage(data: imageData)
                     }
                 }
             }
