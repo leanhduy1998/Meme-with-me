@@ -51,8 +51,6 @@ class AddEditMyMemeViewController: UIViewController, UITableViewDelegate, UITabl
         for meme in memeModel.fullMemes {
             memesRelatedPos[meme] = "full"
         }
-        tableview.rowHeight = UITableViewAutomaticDimension
-        tableview.estimatedRowHeight = 140
     }
     
     func topUIViewTouched(sender: UITapGestureRecognizer){

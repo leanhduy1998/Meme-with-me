@@ -16,12 +16,25 @@ extension AddEditMyMemeViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AddEditMyMemeTableCell") as? AddEditMyMemeTableCell
         
         cell?.memeLabel.text = memesArrangement[indexPath.row]
-        
+        cell?.memeLabel.lineBreakMode = NSLineBreakMode.byWordWrapping
+        cell?.memeLabel.numberOfLines = 0
+    
         let lpGestureRecognizer: UILongPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(didLongPressCell))
         cell?.contentView.addGestureRecognizer(lpGestureRecognizer)
         
         return cell!
     }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 80
+    }
+    
+    /*
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 80
+    }*/
+    
+
     
     func didLongPressCell (recognizer: UILongPressGestureRecognizer) {
         switch recognizer.state {
@@ -50,6 +63,7 @@ extension AddEditMyMemeViewController {
                 if bottomLabel.text == dragLabel.text {
                     bottomLabel.text = " "
                 }*/
+                topLabel.font = originalFont
                 if !isTextEmpty(string: topLabel.text!) {
                     self.memesArrangement.append(topLabel.text!)
                 }
@@ -73,6 +87,7 @@ extension AddEditMyMemeViewController {
                 /*if topLabel.text == dragLabel.text {
                     topLabel.text = " "
                 }*/
+                bottomLabel.font = originalFont
                 if !isTextEmpty(string: bottomLabel.text!) {
                     self.memesArrangement.append(bottomLabel.text!)
                 }
