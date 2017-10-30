@@ -14,6 +14,11 @@ class MemeHelper {
     private static var bottomMemes = [String]()
     private static var fullMemes = [String]()
     
+    private static let topAmount = 3
+    private static let bottomAmount = 3
+    private static let fullAmount = 3
+    
+    
     static func get9Memes()->MemeModel{
         if topMemes.count == 0 || bottomMemes.count == 0 || fullMemes.count == 0 {
             return MemeModel()
@@ -26,7 +31,7 @@ class MemeHelper {
         let memeModel = MemeModel()
         var temp = [Int]()
         
-        while(picked.count < 4){
+        while(picked.count < topAmount){
             let random = Int(arc4random_uniform(UInt32(topMemes.count)))
             picked[random] = random
         }
@@ -39,10 +44,9 @@ class MemeHelper {
             topMemes.remove(at: x)
         }
         temp.removeAll()
-        
         picked.removeAll()
         
-        while(picked.count < 4){
+        while(picked.count < bottomAmount){
             let random = Int(arc4random_uniform(UInt32(bottomMemes.count)))
             picked[random] = random
         }
@@ -54,9 +58,21 @@ class MemeHelper {
             bottomMemes.remove(at: x)
         }
         
-        let random = Int(arc4random_uniform(UInt32(fullMemes.count)))
-        full.append(fullMemes[random])
-        fullMemes.remove(at: random)
+        
+        temp.removeAll()
+        picked.removeAll()
+        
+        while(picked.count < fullAmount){
+            let random = Int(arc4random_uniform(UInt32(fullMemes.count)))
+            picked[random] = random
+        }
+        for(num,_) in picked {
+            full.append(fullMemes[num])
+            temp.append(num)
+        }
+        for x in (0...(temp.count-1)).reversed() {
+            fullMemes.remove(at: x)
+        }
         
         memeModel.topMemes = top
         memeModel.bottomMemes = bot
@@ -71,44 +87,53 @@ class MemeHelper {
         return model
     }
     private static func refillPos(temp: [String], pos: String) -> [String]{
-        if temp.count < 4 {
-            var memes = temp
+        var memes = temp
                 
-            var picked = [Int:Int]()
+        var picked = [Int:Int]()
                 
-            if pos == "top" {
-                while(picked.count < (4-memes.count)){
-                    let random = Int(arc4random_uniform(UInt32(topMemes.count)))
-                    picked[random] = random
-                }
-                for(num,_) in picked {
-                    memes.append(topMemes[num])
-                    topMemes.remove(at: num)
-                }
+        if pos == "top" {
+            if temp.count >= topAmount {
+                return temp
             }
-            if pos == "bot" {
-                while(picked.count < (4-memes.count)){
-                    let random = Int(arc4random_uniform(UInt32(bottomMemes.count)))
-                    picked[random] = random
-                }
-                for(num,_) in picked {
-                    memes.append(bottomMemes[num])
-                    bottomMemes.remove(at: num)
-                }
+            
+            while(picked.count < (topAmount-memes.count)){
+                let random = Int(arc4random_uniform(UInt32(topMemes.count)))
+                picked[random] = random
             }
-            if pos == "full" {
-                while(picked.count < (4-memes.count)){
-                    let random = Int(arc4random_uniform(UInt32(fullMemes.count)))
-                    picked[random] = random
-                }
-                for(num,_) in picked {
-                    memes.append(fullMemes[num])
-                    fullMemes.remove(at: num)
-                }
+            for(num,_) in picked {
+                memes.append(topMemes[num])
+                topMemes.remove(at: num)
             }
-            return memes
         }
-        return temp
+        if pos == "bot" {
+            if temp.count >= bottomAmount {
+                return temp
+            }
+            
+            while(picked.count < (bottomAmount-memes.count)){
+                let random = Int(arc4random_uniform(UInt32(bottomMemes.count)))
+                picked[random] = random
+            }
+            for(num,_) in picked {
+                memes.append(bottomMemes[num])
+                bottomMemes.remove(at: num)
+            }
+        }
+        if pos == "full" {
+            if temp.count >= fullAmount {
+                return temp
+            }
+            
+            while(picked.count < (fullAmount-memes.count)){
+                let random = Int(arc4random_uniform(UInt32(fullMemes.count)))
+                picked[random] = random
+            }
+            for(num,_) in picked {
+                memes.append(fullMemes[num])
+                fullMemes.remove(at: num)
+            }
+        }
+        return memes
     }
     
     static func getAllMemes(completeHandler: @escaping ()-> Void){

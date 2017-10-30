@@ -23,7 +23,7 @@ class MemeLabelConfigurer {
             NSStrokeColorAttributeName: UIColor.black,
             NSForegroundColorAttributeName: UIColor.white,
             NSFontAttributeName: UIFont(name: "HelveticaNeue-CondensedBlack", size: label.font.pointSize)!,
-            NSStrokeWidthAttributeName: -(label.font.pointSize/12)]
+            NSStrokeWidthAttributeName: -(label.font.pointSize/10)]
         let myString = NSMutableAttributedString(string: defaultText, attributes: memeTextAttributes )
         
         label.attributedText = myString

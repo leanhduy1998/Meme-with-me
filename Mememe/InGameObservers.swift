@@ -226,6 +226,7 @@ extension InGameViewController{
                     }
                     
                     if MyPlayerData.id == self.leaderId && self.currentRoundFinished {
+                        self.AddEditJudgeMemeBtn.isEnabled = false
                         DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
                             self.AddEditJudgeMemeBtn.isEnabled = true
                         })

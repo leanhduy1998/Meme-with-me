@@ -20,6 +20,9 @@ extension AvailableGamesViewController {
             var cell = (tableView.dequeueReusableCell(withIdentifier: "AvailableGamesOneImageCell") as? AvailableGamesOneImageCell)!
             cell = CellAnimator.add(cell: cell)
             cell.nameLabel.text = getNamefromAllPlayerInRoom(playerArr: room.playerInRoom!)
+            cell.nameLabel.layer.masksToBounds = true
+            cell.nameLabel.layer.cornerRadius = 5
+            
             cell.activityIndicator.startAnimating()
             
             for (playerId,_) in room.playerInRoom! {
@@ -40,6 +43,9 @@ extension AvailableGamesViewController {
             var cell = (tableView.dequeueReusableCell(withIdentifier: "AvailableGamesTwoImageCell") as? AvailableGamesTwoImageCell)!
             cell = CellAnimator.add(cell: cell)
             cell.nameLabel.text = getNamefromAllPlayerInRoom(playerArr: room.playerInRoom!)
+            cell.nameLabel.layer.masksToBounds = true
+            cell.nameLabel.layer.cornerRadius = 5
+            
             cell.activityIndicator.startAnimating()
             
             var playerImages = [UIImage]()
@@ -66,6 +72,9 @@ extension AvailableGamesViewController {
             var cell = (tableView.dequeueReusableCell(withIdentifier: "AvailableGamesThreeImageCell") as? AvailableGamesThreeImageCell)!
             cell = CellAnimator.add(cell: cell)
             cell.nameLabel.text = getNamefromAllPlayerInRoom(playerArr: room.playerInRoom!)
+            cell.nameLabel.layer.masksToBounds = true
+            cell.nameLabel.layer.cornerRadius = 5
+            
             cell.activityIndicator.startAnimating()
             
             var playerImages = [UIImage]()
@@ -94,6 +103,9 @@ extension AvailableGamesViewController {
             var cell = (tableView.dequeueReusableCell(withIdentifier: "AvailableGamesFourImageCell") as? AvailableGamesFourImageCell)!
             cell = CellAnimator.add(cell: cell)
             cell.nameLabel.text = getNamefromAllPlayerInRoom(playerArr: room.playerInRoom!)
+            cell.nameLabel.layer.masksToBounds = true
+            cell.nameLabel.layer.cornerRadius = 5
+            
             cell.activityIndicator.startAnimating()
             
             var playerImages = [UIImage]()

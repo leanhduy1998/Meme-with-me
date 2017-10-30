@@ -13,7 +13,7 @@ extension InGameViewController{
     func getBorderIVForIcon(iconSize: CGFloat) -> UIImageView{
         let crownImage = #imageLiteral(resourceName: "border")
         let crownIV = UIImageView(image: crownImage)
-        crownIV.frame = CGRect(x: -5, y: -5, width: iconSize+10, height: iconSize+10)
+        crownIV.frame = CGRect(x: 0, y: 0, width: iconSize, height: iconSize)
         return crownIV
     }
     

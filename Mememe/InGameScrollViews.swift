@@ -136,10 +136,8 @@ extension InGameViewController {
                 
                 return
             }
-            else if(currentPlayersCards?.count)! == 1 {
-                if isTextEmpty(string: currentPlayersCards![0].topText!)  && isTextEmpty(string: currentPlayersCards![0].bottomText!) {
-                    self.clearPreviewCardsData()
-                }
+            else if(cardDictionary.count) == 0 {
+                self.clearPreviewCardsData()
             }
             
             /*if((currentPlayersCards?.count)! < cardDictionary.count){
@@ -179,7 +177,7 @@ extension InGameViewController {
                 
                 contentWidth += space + cardWidth
                 
-                if card != nil {
+                if card != nil && card?.bottomLabel.text == cardNormal?.bottomText && card?.topLabel.text == cardNormal?.topText {
                     previewScrollView.addSubview(card!)
                     previewScrollView.bringSubview(toFront: card!)
                 }

@@ -29,13 +29,6 @@ extension AddEditMyMemeViewController {
         return 80
     }
     
-    /*
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80
-    }*/
-    
-
-    
     func didLongPressCell (recognizer: UILongPressGestureRecognizer) {
         switch recognizer.state {
         case .began:
@@ -66,6 +59,15 @@ extension AddEditMyMemeViewController {
                 topLabel.font = originalFont
                 if !isTextEmpty(string: topLabel.text!) {
                     self.memesArrangement.append(topLabel.text!)
+                    if memesRelatedPos[topLabel.text!] == "top" {
+                        memeModel.topMemes.append(topLabel.text!)
+                    }
+                    else if memesRelatedPos[topLabel.text!] == "bot" {
+                        memeModel.bottomMemes.append(topLabel.text!)
+                    }
+                    else if memesRelatedPos[topLabel.text!] == "full" {
+                        memeModel.fullMemes.append(topLabel.text!)
+                    }
                 }
                 
                 DispatchQueue.main.async {
@@ -76,6 +78,7 @@ extension AddEditMyMemeViewController {
                         if meme == self.dragLabel.text {
                             self.memesArrangement.remove(at: count)
                             self.tableview.reloadData()
+                            break
                         }
                         count = count + 1
                     }
@@ -90,6 +93,15 @@ extension AddEditMyMemeViewController {
                 bottomLabel.font = originalFont
                 if !isTextEmpty(string: bottomLabel.text!) {
                     self.memesArrangement.append(bottomLabel.text!)
+                    if memesRelatedPos[bottomLabel.text!] == "top" {
+                        memeModel.topMemes.append(bottomLabel.text!)
+                    }
+                    else if memesRelatedPos[bottomLabel.text!] == "bot" {
+                        memeModel.bottomMemes.append(bottomLabel.text!)
+                    }
+                    else if memesRelatedPos[bottomLabel.text!] == "full" {
+                        memeModel.fullMemes.append(bottomLabel.text!)
+                    }
                 }
                 
                 DispatchQueue.main.async {
@@ -100,6 +112,7 @@ extension AddEditMyMemeViewController {
                         if meme == self.dragLabel.text {
                             self.memesArrangement.remove(at: count)
                             self.tableview.reloadData()
+                            break
                         }
                         count = count + 1
                     }

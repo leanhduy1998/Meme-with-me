@@ -41,16 +41,11 @@ class AddEditMyMemeViewController: UIViewController, UITableViewDelegate, UITabl
         super.viewDidLoad()
         setupUI()
         originalFont = UIFont(name: topLabel.font.fontName, size: topLabel.font.pointSize)
-        
-        for meme in memeModel.topMemes {
-            memesRelatedPos[meme] = "top"
-        }
-        for meme in memeModel.bottomMemes {
-            memesRelatedPos[meme] = "bot"
-        }
-        for meme in memeModel.fullMemes {
-            memesRelatedPos[meme] = "full"
-        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        print(memesArrangement.count)
     }
     
     func topUIViewTouched(sender: UITapGestureRecognizer){
@@ -118,7 +113,7 @@ class AddEditMyMemeViewController: UIViewController, UITableViewDelegate, UITabl
         
         GameStack.sharedInstance.saveContext(completeHandler: {
             DispatchQueue.main.async {
-                self.dismiss(animated: true, completion: nil)
+                self.performSegue(withIdentifier: "unwindToInGameViewController", sender: self)
             }
         })
     }
@@ -131,6 +126,10 @@ class AddEditMyMemeViewController: UIViewController, UITableViewDelegate, UITabl
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? InGameViewController {
             destination.game = game
+            destination.myTopText = topLabel.text!
+            destination.myBottomText = bottomLabel.text!
+            destination.memesArrangement = memesArrangement
+            print(memesArrangement.count)
         }
     }
 }

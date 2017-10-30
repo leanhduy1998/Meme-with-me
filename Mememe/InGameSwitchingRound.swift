@@ -117,11 +117,28 @@ extension InGameViewController{
         cardOrder.removeAll()
         cardDictionary.removeAll()
         
+        removeMemeThatAlreadyBeenPuttedOnTopPic()
+        removeMemeThatAlreadyBeenPuttedOnBottomPic()
+        
+        let oldTopMemesCount = memeModel.topMemes.count
+        let oldBottomMemesCount = memeModel.bottomMemes.count
+        let oldFullMemesCount = memeModel.fullMemes.count
+        
         memeModel = MemeHelper.refillCards(model: memeModel)
         memesArrangement.removeAll()
         memesArrangement.append(contentsOf: memeModel.topMemes)
         memesArrangement.append(contentsOf: memeModel.bottomMemes)
         memesArrangement.append(contentsOf: memeModel.fullMemes)
+        
+        for x in (oldTopMemesCount-1)...(memeModel.topMemes.count-1){
+            memesRelatedPos[memeModel.topMemes[x]] = "top"
+        }
+        for x in (oldBottomMemesCount-1)...(memeModel.bottomMemes.count-1){
+            memesRelatedPos[memeModel.bottomMemes[x]] = "bot"
+        }
+        for x in (oldFullMemesCount-1)...(memeModel.fullMemes.count-1){
+            memesRelatedPos[memeModel.fullMemes[x]] = "full"
+        }
         memesArrangement.shuffle()
         
         if MyPlayerData.id == self.leaderId {
@@ -136,7 +153,7 @@ extension InGameViewController{
             }
         }
         else {
-            setupNextRound {
+            setupNextRoundForNonLeader {
                 DispatchQueue.main.async {
                     MememeDynamoDB.updateGame(itemToUpdate: self.gameDBModel!, game: self.game) { (error) in
                         if(error != nil){
@@ -154,7 +171,7 @@ extension InGameViewController{
             }
         }
     }
-    private func setupNextRound(completeHandler: @escaping ()-> Void){
+    private func setupNextRoundForNonLeader(completeHandler: @escaping ()-> Void){
         let nextRoundNumber = Int(GetGameCoreDataData.getLatestRound(game: game).roundNum) + 1
         
         InGameHelper.getRoundImage( gameId: self.game.gameId!, completionHandler: { (memeData, memeUrl) in
@@ -185,4 +202,69 @@ extension InGameViewController{
         })
     }
     
+    func removeMemeThatAlreadyBeenPuttedOnTopPic(){
+        if memesRelatedPos[myTopText] == "top" {
+            var count = 0
+            for meme in memeModel.topMemes {
+                if meme == myTopText{
+                    memeModel.topMemes.remove(at: count)
+                    return
+                }
+                count = count + 1
+            }
+        }
+        else if memesRelatedPos[myTopText] == "bot" {
+            var count = 0
+            for meme in memeModel.bottomMemes {
+                if meme == myTopText{
+                    memeModel.bottomMemes.remove(at: count)
+                    return
+                }
+                count = count + 1
+            }
+        }
+        else if memesRelatedPos[myTopText] == "full" {
+            var count = 0
+            for meme in memeModel.fullMemes {
+                if meme == myTopText{
+                    memeModel.fullMemes.remove(at: count)
+                    return
+                }
+                count = count + 1
+            }
+        }
+    }
+    
+    func removeMemeThatAlreadyBeenPuttedOnBottomPic(){
+        if memesRelatedPos[myBottomText] == "top" {
+            var count = 0
+            for meme in memeModel.topMemes {
+                if meme == myBottomText{
+                    memeModel.topMemes.remove(at: count)
+                    return
+                }
+                count = count + 1
+            }
+        }
+        else if memesRelatedPos[myBottomText] == "bot" {
+            var count = 0
+            for meme in memeModel.bottomMemes {
+                if meme == myBottomText{
+                    memeModel.bottomMemes.remove(at: count)
+                    return
+                }
+                count = count + 1
+            }
+        }
+        else if memesRelatedPos[myBottomText] == "full" {
+            var count = 0
+            for meme in memeModel.fullMemes {
+                if meme == myBottomText{
+                    memeModel.fullMemes.remove(at: count)
+                    return
+                }
+                count = count + 1
+            }
+        }
+    }
 }

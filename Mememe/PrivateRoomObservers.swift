@@ -88,7 +88,7 @@ extension PrivateRoomViewController{
     func addPlayerInRoomRemovedObserver(){
         let ob3 = availableRoomRef.child(leaderId).child("playerInRoom").observe(DataEventType.childRemoved, with: { (snapshot) in
             DispatchQueue.main.async {
-                if(self.availableRoomObservers["\(self.leaderId)/playerInRoom"] == nil){
+                if(self.availableRoomObservers["\(self.leaderId!)/playerInRoom"] == nil){
                     return
                 }
                 
@@ -134,7 +134,7 @@ extension PrivateRoomViewController{
     func addInGameObservers(){
         // if game has been created, go to another segue
         let ob4 = inGameRef.observe(DataEventType.childAdded, with: { (snapshot) in
-            if snapshot.key.contains(self.leaderId)  && self.leaderId != MyPlayerData.id {
+            if snapshot.key.contains(self.leaderId!)  && self.leaderId! != MyPlayerData.id {
                 DispatchQueue.main.async {
                     if !self.segueAlreadyPushed{
                         self.segueAlreadyPushed = true
