@@ -13,11 +13,11 @@ class AvailableRoomHelper {
     //private static let ref = Database.database().reference()
     private static let availableRoomRef = Database.database().reference().child("availableRoom")
     
-    static func uploadEmptyRoomToFirB(leaderId: String, roomType: String){
+    static func uploadEmptyRoomToFirB(roomType: String){
         var onlyYouPlayerInRoom = [String:Any]()
         onlyYouPlayerInRoom[MyPlayerData.id] = MyPlayerData.name
         
-        let room = AvailableRoomFirBModel(leaderId: leaderId, playerInRoom: onlyYouPlayerInRoom, roomType: roomType, roomImageUrl: "noURL", roomIsOpen: "true")
+        let room = AvailableRoomFirBModel(leaderName: MyPlayerData.name, leaderId: MyPlayerData.id, playerInRoom: onlyYouPlayerInRoom, roomType: roomType, roomImageUrl: "noURL", roomIsOpen: "true")
         
         let value = getMapStringValueFromRoom(room: room)
         
@@ -57,11 +57,12 @@ class AvailableRoomHelper {
         map["roomType"] = room.roomType
         map["roomImageUrl"] = room.roomImageUrl
         map["roomIsOpen"] = room.roomIsOpen
+        map["leaderName"] = room.leaderName
         return map
     }
     
     static func transferValueFromMapToRoom(leaderId: String, map: [String : AnyObject]) -> AvailableRoomFirBModel{
-        let room = AvailableRoomFirBModel(leaderId: leaderId, playerInRoom: [:], roomType: "", roomImageUrl: "", roomIsOpen: "false")
+        let room = AvailableRoomFirBModel(leaderName: "", leaderId: leaderId, playerInRoom: [:], roomType: "", roomImageUrl: "", roomIsOpen: "false")
         
         for (key,value) in map {
             switch(key){
@@ -76,6 +77,8 @@ class AvailableRoomHelper {
                     break
                 case "roomIsOpen":
                     room.roomIsOpen = (value as! String)
+                case "leaderName":
+                    room.leaderName = (value as! String)
                 break
                 default:
                     fatalError()

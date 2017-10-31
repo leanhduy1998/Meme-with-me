@@ -65,7 +65,7 @@ class PrivateRoomViewController: UIViewController,UITableViewDelegate, UITableVi
             chatHelper.removeChatRoom(id: MyPlayerData.id)
             startBtn.isEnabled = false
             
-            AvailableRoomHelper.uploadEmptyRoomToFirB(leaderId: MyPlayerData.id, roomType: "private")
+            AvailableRoomHelper.uploadEmptyRoomToFirB(roomType: "private")
             
             let playerData = PlayerData(_userId: MyPlayerData.id, _userName: MyPlayerData.name)
             
@@ -190,6 +190,14 @@ class PrivateRoomViewController: UIViewController,UITableViewDelegate, UITableVi
         }
         chatHelper.insertMessage(text: chatTextField.text!)
         chatTextField.text = ""
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        if(backgroundPlayer != nil){
+            backgroundPlayer.stop()
+            backgroundPlayer = nil
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

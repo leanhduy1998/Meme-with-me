@@ -19,7 +19,7 @@ extension AvailableGamesViewController {
         if (room.playerInRoom?.count)! == 1 {
             var cell = (tableView.dequeueReusableCell(withIdentifier: "AvailableGamesOneImageCell") as? AvailableGamesOneImageCell)!
             cell = CellAnimator.add(cell: cell)
-            cell.nameLabel.text = getNamefromAllPlayerInRoom(playerArr: room.playerInRoom!)
+            cell.nameLabel.text = getLeaderNameFromRoom(room: room)
             cell.nameLabel.layer.masksToBounds = true
             cell.nameLabel.layer.cornerRadius = 5
             
@@ -42,7 +42,7 @@ extension AvailableGamesViewController {
         else if (room.playerInRoom?.count)! == 2 {
             var cell = (tableView.dequeueReusableCell(withIdentifier: "AvailableGamesTwoImageCell") as? AvailableGamesTwoImageCell)!
             cell = CellAnimator.add(cell: cell)
-            cell.nameLabel.text = getNamefromAllPlayerInRoom(playerArr: room.playerInRoom!)
+            cell.nameLabel.text = getLeaderNameFromRoom(room: room)
             cell.nameLabel.layer.masksToBounds = true
             cell.nameLabel.layer.cornerRadius = 5
             
@@ -71,7 +71,7 @@ extension AvailableGamesViewController {
         else if (room.playerInRoom?.count)! == 3 {
             var cell = (tableView.dequeueReusableCell(withIdentifier: "AvailableGamesThreeImageCell") as? AvailableGamesThreeImageCell)!
             cell = CellAnimator.add(cell: cell)
-            cell.nameLabel.text = getNamefromAllPlayerInRoom(playerArr: room.playerInRoom!)
+            cell.nameLabel.text = getLeaderNameFromRoom(room: room)
             cell.nameLabel.layer.masksToBounds = true
             cell.nameLabel.layer.cornerRadius = 5
             
@@ -100,9 +100,11 @@ extension AvailableGamesViewController {
             return cell
         }
         else if (room.playerInRoom?.count)! >= 4 {
+            
             var cell = (tableView.dequeueReusableCell(withIdentifier: "AvailableGamesFourImageCell") as? AvailableGamesFourImageCell)!
             cell = CellAnimator.add(cell: cell)
-            cell.nameLabel.text = getNamefromAllPlayerInRoom(playerArr: room.playerInRoom!)
+            cell.nameLabel.text = getLeaderNameFromRoom(room: room)
+            
             cell.nameLabel.layer.masksToBounds = true
             cell.nameLabel.layer.cornerRadius = 5
             

@@ -35,7 +35,16 @@ class AvailableGamesViewController: UIViewController, UITableViewDelegate, UITab
     override func viewDidLoad() {
         UserOnlineSystem.updateUserOnlineStatus()
         tableview.reloadData()
-        backgroundPlayer = SoundPlayerHelper.getAudioPlayer(songName: "availableRoomMusic", loop: true)
+        
+        let random = Int(arc4random_uniform(2))
+        if random == 0 {
+            backgroundPlayer = SoundPlayerHelper.getAudioPlayer(songName: "availableRoomMusic", loop: true)
+        }
+        else{
+            backgroundPlayer = SoundPlayerHelper.getAudioPlayer(songName: "availableRoomMusic2", loop: true)
+        }
+        
+        
         if #available(iOS 10.0, *) {
             tableview.refreshControl = refreshControl
         } else {
@@ -80,6 +89,9 @@ class AvailableGamesViewController: UIViewController, UITableViewDelegate, UITab
             count = count + 1
         }
         return string
+    }
+    func getLeaderNameFromRoom(room: AvailableRoomFirBModel) -> String{
+        return "\(room.leaderName!)'s room"
     }
     
     func getRoomDataFromDB(){

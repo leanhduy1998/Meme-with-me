@@ -176,6 +176,7 @@
 		24F7C99B1FA0541800D20368 /* Player+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F7C9971FA0541700D20368 /* Player+CoreDataProperties.swift */; };
 		24F7C99C1FA0541800D20368 /* Round+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F7C9981FA0541800D20368 /* Round+CoreDataClass.swift */; };
 		24FC32DC1F6CB097006CBD62 /* UserOnlineSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FC32DB1F6CB097006CBD62 /* UserOnlineSystem.swift */; };
+		24FF0CA91FA85212005FF1AD /* availableRoomMusic2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 24FF0CA81FA85211005FF1AD /* availableRoomMusic2.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -398,6 +399,7 @@
 		24F7C9971FA0541700D20368 /* Player+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Player+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		24F7C9981FA0541800D20368 /* Round+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Round+CoreDataClass.swift"; sourceTree = "<group>"; };
 		24FC32DB1F6CB097006CBD62 /* UserOnlineSystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserOnlineSystem.swift; sourceTree = "<group>"; };
+		24FF0CA81FA85211005FF1AD /* availableRoomMusic2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = availableRoomMusic2.mp3; sourceTree = "<group>"; };
 		A1EFF53BA25955FB53356C75 /* Pods_Mememe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mememe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A726362B99EE502AE5C81BCB /* Pods-Mememe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mememe.release.xcconfig"; path = "Pods/Target Support Files/Pods-Mememe/Pods-Mememe.release.xcconfig"; sourceTree = "<group>"; };
 		C319D98D1CD23D94BB79B2CE /* Pods-Mememe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mememe.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Mememe/Pods-Mememe.debug.xcconfig"; sourceTree = "<group>"; };
@@ -774,12 +776,13 @@
 			isa = PBXGroup;
 			children = (
 				247A34AE1F87116D00E2C9E0 /* availableRoomMusic.mp3 */,
+				24FF0CA81FA85211005FF1AD /* availableRoomMusic2.mp3 */,
 				24F5C7ED1F87FC750095B2C5 /* heartbeat.mp3 */,
 				247A34B41F87116F00E2C9E0 /* inGame.mp3 */,
+				24D599571FA1D39500D101B8 /* inGame2.mp3 */,
 				247A34B61F87116F00E2C9E0 /* messagereceived.mp3 */,
 				247A34B51F87116F00E2C9E0 /* privateRoomMusic.mp3 */,
 				24E3289A1F8964FB00A2A2FE /* endRound.mp3 */,
-				24D599571FA1D39500D101B8 /* inGame2.mp3 */,
 				24D599581FA1D39500D101B8 /* startMusic.mp3 */,
 				2420885E1F8B50E100BFFD1B /* cardPlacedDown.mp3 */,
 				24F4B3FF1FA2E0FE009419AA /* winning.mp3 */,
@@ -1187,6 +1190,7 @@
 				2498FA201F3484F900B21267 /* GoogleSignIn.bundle in Resources */,
 				2498FA1C1F3484F900B21267 /* CheckXcodeVersion.sh in Resources */,
 				24D5995A1FA1D39500D101B8 /* startMusic.mp3 in Resources */,
+				24FF0CA91FA85212005FF1AD /* availableRoomMusic2.mp3 in Resources */,
 				2474DFFF1F349424006E00AC /* AWSGoogleSignInResources.bundle in Resources */,
 				24896D5E1F2A5FA2003B6954 /* LaunchScreen.storyboard in Resources */,
 				24F4B4001FA2E0FE009419AA /* winning.mp3 in Resources */,

@@ -13,18 +13,19 @@
 
 import Foundation
 import UIKit
-import AWSDynamoDB
 
 class AvailableRoomFirBModel {
     
-    var leaderId: String?
+    var leaderId: String!
+    var leaderName: String!
     var playerInRoom: [String:Any]?
     var roomType: String?
     var roomImageUrl: String?
     var roomIsOpen: String
     
-    init(leaderId: String, playerInRoom: [String:Any], roomType: String, roomImageUrl: String, roomIsOpen: String){
+    init(leaderName: String, leaderId: String, playerInRoom: [String:Any], roomType: String, roomImageUrl: String, roomIsOpen: String){
         self.leaderId = leaderId
+        self.leaderName = leaderName
         self.playerInRoom = playerInRoom
         self.roomType = roomType
         self.roomImageUrl = roomImageUrl
