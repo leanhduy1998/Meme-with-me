@@ -9,7 +9,7 @@
 import Foundation
 
 class MemeModel {
-    var topMemes: [String]!
-    var bottomMemes: [String]!
-    var fullMemes: [String]!
+    var topMemes = [String]()
+    var bottomMemes = [String]()
+    var fullMemes = [String]()
 }

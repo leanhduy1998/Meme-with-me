@@ -20,6 +20,7 @@ extension InGameViewController {
             if postDict?.count == self.playersInGame.count - 1 {
                 DispatchQueue.main.async {
                     self.AddEditJudgeMemeBtn.isEnabled = true
+                    self.playHammerSound()
                 }
             }
         })

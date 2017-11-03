@@ -25,6 +25,9 @@ extension InGameViewController{
     func playCardPlacedDown(){
         playEffect(songName: "cardPlacedDown", loop: 0, volume: 1, reduceBackgroundVolume: false)
     }
+    func playHammerSound(){
+        playEffect(songName: "hammer", loop: 0, volume: 1, reduceBackgroundVolume: true)
+    }
     
     func playBackground(){
         if(backgroundPlayer != nil && backgroundPlayer.isPlaying){

@@ -19,6 +19,9 @@ class AddEditMyMemeViewController: UIViewController, UITableViewDelegate, UITabl
     
     @IBOutlet weak var navigationBar: UINavigationBar!
     
+    @IBOutlet weak var repickBtn: UIBarButtonItem!
+    
+    
     var topUIView : UIView!
     var bottomUIView : UIView!
     var dragLabel : UILabel!
@@ -33,7 +36,7 @@ class AddEditMyMemeViewController: UIViewController, UITableViewDelegate, UITabl
     
     var originalFont: UIFont!
     
-    var memeModel = MemeModel()
+    var memeModel: MemeModel!
     var memesArrangement = [String]()
     var memesRelatedPos = [String:String]()
     
@@ -45,7 +48,6 @@ class AddEditMyMemeViewController: UIViewController, UITableViewDelegate, UITabl
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        print(memesArrangement.count)
     }
     
     func topUIViewTouched(sender: UITapGestureRecognizer){
@@ -88,6 +90,74 @@ class AddEditMyMemeViewController: UIViewController, UITableViewDelegate, UITabl
             return
         }
         
+        if !topEmpty {
+            if memesRelatedPos[topLabel.text!] == "top" {
+                var count = 0
+                for meme in memeModel.topMemes {
+                    if meme == topLabel.text! {
+                        memeModel.topMemes.remove(at: count)
+                        break
+                    }
+                    count = count + 1
+                }
+            }
+            else if memesRelatedPos[topLabel.text!] == "bot" {
+                var count = 0
+                for meme in memeModel.bottomMemes {
+                    if meme == topLabel.text! {
+                        memeModel.bottomMemes.remove(at: count)
+                        break
+                    }
+                    count = count + 1
+                }
+
+            }
+            else if memesRelatedPos[topLabel.text!] == "full" {
+                var count = 0
+                for meme in memeModel.fullMemes {
+                    if meme == topLabel.text! {
+                        memeModel.fullMemes.remove(at: count)
+                        break
+                    }
+                    count = count + 1
+                }
+            }
+        }
+        
+        if !bottomEmpty {
+            if memesRelatedPos[bottomLabel.text!] == "top" {
+                var count = 0
+                for meme in memeModel.topMemes {
+                    if meme == bottomLabel.text! {
+                        memeModel.topMemes.remove(at: count)
+                        break
+                    }
+                    count = count + 1
+                }
+            }
+            else if memesRelatedPos[bottomLabel.text!] == "bot" {
+                var count = 0
+                for meme in memeModel.bottomMemes {
+                    if meme == bottomLabel.text! {
+                        memeModel.bottomMemes.remove(at: count)
+                        break
+                    }
+                    count = count + 1
+                }
+                
+            }
+            else if memesRelatedPos[bottomLabel.text!] == "full" {
+                var count = 0
+                for meme in memeModel.fullMemes {
+                    if meme == bottomLabel.text! {
+                        memeModel.fullMemes.remove(at: count)
+                        break
+                    }
+                    count = count + 1
+                }
+            }
+        }
+        
         let latestRound = GetGameCoreDataData.getLatestRound(game: game)
         let cardNormals = latestRound.cardnormal?.allObjects as? [CardNormal]
         
@@ -122,6 +192,31 @@ class AddEditMyMemeViewController: UIViewController, UITableViewDelegate, UITabl
         dismiss(animated: true, completion: nil)
     }
     
+    @IBAction func repickBtnPressed(_ sender: Any) {
+        repickBtn.isEnabled = false
+        self.memeModel = MemeHelper.get9Memes()
+        self.memesArrangement.append(contentsOf: self.memeModel.topMemes)
+        self.memesArrangement.append(contentsOf: self.memeModel.bottomMemes)
+        self.memesArrangement.append(contentsOf: self.memeModel.fullMemes)
+        self.memesArrangement.shuffle()
+        
+        for meme in self.memeModel.topMemes {
+            self.memesRelatedPos[meme] = "top"
+        }
+        for meme in self.memeModel.bottomMemes {
+            self.memesRelatedPos[meme] = "bot"
+        }
+        for meme in self.memeModel.fullMemes {
+            self.memesRelatedPos[meme] = "full"
+        }
+        tableview.reloadData()
+        
+        DispatchQueue.main.asyncAfter(deadline: .now()+1) {
+            self.repickBtn.isEnabled = true
+        }
+    }
+    
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? InGameViewController {
@@ -129,7 +224,7 @@ class AddEditMyMemeViewController: UIViewController, UITableViewDelegate, UITabl
             destination.myTopText = topLabel.text!
             destination.myBottomText = bottomLabel.text!
             destination.memesArrangement = memesArrangement
-            print(memesArrangement.count)
+            destination.memeModel = memeModel
         }
     }
 }

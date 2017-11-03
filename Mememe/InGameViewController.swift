@@ -125,25 +125,21 @@ class InGameViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func setupMemes(){
-        MemeHelper.getAllMemes(completeHandler: {
-            DispatchQueue.main.async {
-                self.memeModel = MemeHelper.get9Memes()
-                self.memesArrangement.append(contentsOf: self.memeModel.topMemes)
-                self.memesArrangement.append(contentsOf: self.memeModel.bottomMemes)
-                self.memesArrangement.append(contentsOf: self.memeModel.fullMemes)
-                self.memesArrangement.shuffle()
-                
-                for meme in self.memeModel.topMemes {
-                    self.memesRelatedPos[meme] = "top"
-                }
-                for meme in self.memeModel.bottomMemes {
-                    self.memesRelatedPos[meme] = "bot"
-                }
-                for meme in self.memeModel.fullMemes {
-                    self.memesRelatedPos[meme] = "full"
-                }
-            }
-        })
+        self.memeModel = MemeHelper.get9Memes()
+        self.memesArrangement.append(contentsOf: self.memeModel.topMemes)
+        self.memesArrangement.append(contentsOf: self.memeModel.bottomMemes)
+        self.memesArrangement.append(contentsOf: self.memeModel.fullMemes)
+        self.memesArrangement.shuffle()
+        
+        for meme in self.memeModel.topMemes {
+            self.memesRelatedPos[meme] = "top"
+        }
+        for meme in self.memeModel.bottomMemes {
+            self.memesRelatedPos[meme] = "bot"
+        }
+        for meme in self.memeModel.fullMemes {
+            self.memesRelatedPos[meme] = "full"
+        }
     }
 
     

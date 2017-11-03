@@ -153,22 +153,25 @@ class StartViewController: UIViewController,UIGestureRecognizerDelegate, AWSSign
      
         MyPlayerData.id = AWSIdentityManager.default().identityId
         // handle success here
-        DispatchQueue.main.async {
-            PlayerDataDynamoDB.queryWithPartitionKeyWithCompletionHandler(userId: MyPlayerData.id) { (results, error) in
-                if(error != nil){
-                    print((error?.description)!)
-                    return
-                }
-    
-                if results?.items.count == 0 {
-                    DispatchQueue.main.async {
-                        self.performSegue(withIdentifier: "SignUpViewControllerSegue", sender: self)
+        
+        MemeHelper.getAllMemes {
+            DispatchQueue.main.async {
+                PlayerDataDynamoDB.queryWithPartitionKeyWithCompletionHandler(userId: MyPlayerData.id) { (results, error) in
+                    if(error != nil){
+                        print((error?.description)!)
                         return
                     }
-                }
-                else{
-                    DispatchQueue.main.async {
-                        self.handleLoginData(results: results?.items as! [PlayerDataDBObjectModel])
+                    
+                    if results?.items.count == 0 {
+                        DispatchQueue.main.async {
+                            self.performSegue(withIdentifier: "SignUpViewControllerSegue", sender: self)
+                            return
+                        }
+                    }
+                    else{
+                        DispatchQueue.main.async {
+                            self.handleLoginData(results: results?.items as! [PlayerDataDBObjectModel])
+                        }
                     }
                 }
             }

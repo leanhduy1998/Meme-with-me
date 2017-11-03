@@ -9,14 +9,13 @@
 import Foundation
 import UIKit
 
-class PreviewGamesCell: UITableViewCell {
+class PreviewGamesFourImageCell: UITableViewCell {
     
     @IBOutlet weak var firstIV: UIImageView!
     @IBOutlet weak var secondIV: UIImageView!
     @IBOutlet weak var thirdIV: UIImageView!
     @IBOutlet weak var fourthIV: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     @IBOutlet weak var downloadBtn: UIButton!
     

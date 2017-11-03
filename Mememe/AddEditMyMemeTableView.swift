@@ -59,15 +59,6 @@ extension AddEditMyMemeViewController {
                 topLabel.font = originalFont
                 if !isTextEmpty(string: topLabel.text!) {
                     self.memesArrangement.append(topLabel.text!)
-                    if memesRelatedPos[topLabel.text!] == "top" {
-                        memeModel.topMemes.append(topLabel.text!)
-                    }
-                    else if memesRelatedPos[topLabel.text!] == "bot" {
-                        memeModel.bottomMemes.append(topLabel.text!)
-                    }
-                    else if memesRelatedPos[topLabel.text!] == "full" {
-                        memeModel.fullMemes.append(topLabel.text!)
-                    }
                 }
                 
                 DispatchQueue.main.async {
@@ -93,15 +84,6 @@ extension AddEditMyMemeViewController {
                 bottomLabel.font = originalFont
                 if !isTextEmpty(string: bottomLabel.text!) {
                     self.memesArrangement.append(bottomLabel.text!)
-                    if memesRelatedPos[bottomLabel.text!] == "top" {
-                        memeModel.topMemes.append(bottomLabel.text!)
-                    }
-                    else if memesRelatedPos[bottomLabel.text!] == "bot" {
-                        memeModel.bottomMemes.append(bottomLabel.text!)
-                    }
-                    else if memesRelatedPos[bottomLabel.text!] == "full" {
-                        memeModel.fullMemes.append(bottomLabel.text!)
-                    }
                 }
                 
                 DispatchQueue.main.async {
