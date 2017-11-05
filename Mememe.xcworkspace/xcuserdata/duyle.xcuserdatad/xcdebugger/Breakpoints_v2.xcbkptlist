@@ -170,7 +170,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Mememe/FileManagerHelper.swift"
-            timestampString = "530340537.130894"
+            timestampString = "531545990.243747"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "80"
@@ -186,7 +186,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Mememe/FileManagerHelper.swift"
-            timestampString = "530340537.130941"
+            timestampString = "531545990.243844"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "34"
@@ -208,6 +208,22 @@
             startingLineNumber = "40"
             endingLineNumber = "40"
             landmarkName = "insertGameWithCompletionHandler(meme:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Mememe/PreviewInGameViewController.swift"
+            timestampString = "531559642.858572"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "261"
+            endingLineNumber = "261"
+            landmarkName = "reloadCurrentPlayersIcon()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -71,11 +71,23 @@ class GameDataToJSON {
             var roundDic = [String: Any]()
             roundDic["cardNormals"] = getCardNormalsDic(round: round)
             roundDic["cardCeasar"] = getCeasarCardDic(round: round)
+            roundDic["players"] = getRoundPlayersDic(round: round)
             
             jsonDic["\(Int(round.roundNum))"] = roundDic
         }
         return jsonDic
     }
+    private func getRoundPlayersDic(round: Round) -> [String:Any]{
+        var jsonDic = [String:Any]()
+        for player in (round.players?.allObjects as? [Player])!{
+            var dic = [String:String]()
+            dic["name"] = player.name
+            dic["imageStorageLocation"] = player.imageStorageLocation
+            jsonDic["\(player.playerId!)"] = dic
+        }
+        return jsonDic
+    }
+    
     private func getCardNormalsDic(round: Round) -> [String:Any] {
         var jsonDic = [String:Any]()
         

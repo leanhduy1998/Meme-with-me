@@ -104,7 +104,7 @@ class FileManagerHelper{
                 return contentsOfFilePath
             }
         }
-        return UIImage()
+        return #imageLiteral(resourceName: "ichooseyou")
     }
     static func getPlayerIdForStorage(playerId: String)->String{
         // original playerId have us-east-1/ before it, making it hard to store the images

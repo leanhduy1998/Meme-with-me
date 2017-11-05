@@ -66,10 +66,27 @@ class GameDataFromJSON{
             
             addCardCeasarToRound(gameId: game.gameId! ,round: roundCoreData, roundDic: (thisRoundDic?["cardCeasar"] as? [String:Any])!)
             addCardNormalToRound(round: roundCoreData, cardDic: (thisRoundDic?["cardNormals"] as? [String:Any])!)
+            addRoundPlayersToRound(round: roundCoreData, playerDic: thisRoundDic!["players"] as! [String : [String : String]])
             
             game.addToRounds(roundCoreData)
         }
     }
+    private static func addRoundPlayersToRound(round: Round, playerDic: [String:[String:String]]){
+        for(playerId,dic) in playerDic {
+            let player = Player()
+            for(key,value) in dic {
+                if key == "name"{
+                    player.name = value
+                }
+                else if key == "imageStorageLocation"{
+                    player.imageStorageLocation = value
+                }
+            }
+            player.playerId = playerId
+            round.addToPlayers(player)
+        }
+    }
+    
     private static func addCardCeasarToRound(gameId: String, round: Round, roundDic: [String:Any]){
         let helper = UserFilesHelper()
         

@@ -28,6 +28,8 @@ class PreviewInGameViewController: UIViewController {
     
     var currentRound = 0
     
+    var playerImageDic = [String:UIImage]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setFloorBackground()
@@ -88,13 +90,9 @@ class PreviewInGameViewController: UIViewController {
     func reloadPreviewCards(){
         let round = GetGameCoreDataData.getRound(game: game, roundNum: currentRound)
         
-        if(round == nil){
-            return
-        }
-        
         var image = FileManagerHelper.getImageFromMemory(imagePath: (round.cardceasar?.imageStorageLocation)!)
         
-        if(image == nil){
+        if(image == #imageLiteral(resourceName: "ichooseyou")){
             let helper = UserFilesHelper()
             helper.getMemeData(memeUrl: (round.cardceasar?.cardDBUrl)!, completeHandler: { (memeImageData) in
                 DispatchQueue.main.async {
@@ -102,13 +100,10 @@ class PreviewInGameViewController: UIViewController {
                     self.loadPreviewScrollView(image: image, round: round)
                 }
             })
-            
         }
         else{
             loadPreviewScrollView(image: image, round: round)
         }
-        
-        
     }
     
     func loadPreviewScrollView(image:UIImage,round:Round){
@@ -263,7 +258,7 @@ class PreviewInGameViewController: UIViewController {
             userIconIV.bringSubview(toFront: redDotIV)
             
             
-            let image = FileManagerHelper.getImageFromMemory(imagePath: player.imageStorageLocation!)
+            let image = playerImageDic[player.playerId!]
             userIconIV.image = image
             userIconIV = CircleImageCutter.roundImageView(imageview: userIconIV, radius: 5)
             

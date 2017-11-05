@@ -56,6 +56,9 @@
 		243D2A1C1FA50757006BD1E1 /* topMemes.txt in Resources */ = {isa = PBXBuildFile; fileRef = 243D2A1B1FA50756006BD1E1 /* topMemes.txt */; };
 		243D2A1E1FA5128B006BD1E1 /* bottomMemes.txt in Resources */ = {isa = PBXBuildFile; fileRef = 243D2A1D1FA5128B006BD1E1 /* bottomMemes.txt */; };
 		243D2A201FA5131E006BD1E1 /* fullMemes.txt in Resources */ = {isa = PBXBuildFile; fileRef = 243D2A1F1FA5131E006BD1E1 /* fullMemes.txt */; };
+		243EEB641FAD931700639923 /* PreviewGamesTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243EEB631FAD931700639923 /* PreviewGamesTableView.swift */; };
+		243EEB661FAD938500639923 /* PreviewGamesTableViewLoading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243EEB651FAD938500639923 /* PreviewGamesTableViewLoading.swift */; };
+		243EEB681FAD945300639923 /* PreviewGamesSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243EEB671FAD945300639923 /* PreviewGamesSetup.swift */; };
 		243F208B1F68E70D0003C604 /* FirebaseAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 243F20841F68E70D0003C604 /* FirebaseAnalytics.framework */; };
 		243F208C1F68E70D0003C604 /* FirebaseCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 243F20851F68E70D0003C604 /* FirebaseCore.framework */; };
 		243F208D1F68E70D0003C604 /* FirebaseCoreDiagnostics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 243F20861F68E70D0003C604 /* FirebaseCoreDiagnostics.framework */; };
@@ -266,6 +269,9 @@
 		243D2A1B1FA50756006BD1E1 /* topMemes.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = topMemes.txt; sourceTree = "<group>"; };
 		243D2A1D1FA5128B006BD1E1 /* bottomMemes.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bottomMemes.txt; sourceTree = "<group>"; };
 		243D2A1F1FA5131E006BD1E1 /* fullMemes.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fullMemes.txt; sourceTree = "<group>"; };
+		243EEB631FAD931700639923 /* PreviewGamesTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewGamesTableView.swift; sourceTree = "<group>"; };
+		243EEB651FAD938500639923 /* PreviewGamesTableViewLoading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewGamesTableViewLoading.swift; sourceTree = "<group>"; };
+		243EEB671FAD945300639923 /* PreviewGamesSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewGamesSetup.swift; sourceTree = "<group>"; };
 		243F20841F68E70D0003C604 /* FirebaseAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FirebaseAnalytics.framework; sourceTree = "<group>"; };
 		243F20851F68E70D0003C604 /* FirebaseCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FirebaseCore.framework; sourceTree = "<group>"; };
 		243F20861F68E70D0003C604 /* FirebaseCoreDiagnostics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FirebaseCoreDiagnostics.framework; sourceTree = "<group>"; };
@@ -706,16 +712,35 @@
 		245BE5341F8F2E2800B02CD3 /* Previous Game */ = {
 			isa = PBXGroup;
 			children = (
+				2465D2011FAEEC8A00449027 /* Preview Part */,
+				2465D2021FAEECA900449027 /* In Game */,
+			);
+			name = "Previous Game";
+			sourceTree = "<group>";
+		};
+		2465D2011FAEEC8A00449027 /* Preview Part */ = {
+			isa = PBXGroup;
+			children = (
 				245BE5321F8F2E1000B02CD3 /* PreviousGamesViewController.swift */,
-				24BE6F001F8FE8C00022B981 /* PreviewInGameViewController.swift */,
+				243EEB631FAD931700639923 /* PreviewGamesTableView.swift */,
+				243EEB651FAD938500639923 /* PreviewGamesTableViewLoading.swift */,
 				24F010551FAC133C0029E804 /* PreviewSection.swift */,
-				244A400E1F90BEE900400822 /* PreviousInGameUI.swift */,
-				244A400C1F90BE8200400822 /* PreviewInGameConditions.swift */,
 				24F010591FAC5A270029E804 /* PreviewGamesTwoImageCell.swift */,
 				24F0105B1FAC5B180029E804 /* PreviewGamesThreeImageCell.swift */,
 				2474E4CE1F98517900E70D44 /* PreviewGamesFourImageCell.swift */,
+				243EEB671FAD945300639923 /* PreviewGamesSetup.swift */,
 			);
-			name = "Previous Game";
+			name = "Preview Part";
+			sourceTree = "<group>";
+		};
+		2465D2021FAEECA900449027 /* In Game */ = {
+			isa = PBXGroup;
+			children = (
+				24BE6F001F8FE8C00022B981 /* PreviewInGameViewController.swift */,
+				244A400E1F90BEE900400822 /* PreviousInGameUI.swift */,
+				244A400C1F90BE8200400822 /* PreviewInGameConditions.swift */,
+			);
+			name = "In Game";
 			sourceTree = "<group>";
 		};
 		246D08E71F7CA5BC0025DA40 /* Game */ = {
@@ -1346,6 +1371,7 @@
 				245B2B141F4F685500BCF75A /* GameDataFromJSON.swift in Sources */,
 				2468B02F1F4E59870091EDD0 /* GameDataToJSON.swift in Sources */,
 				24F5C7EA1F87F9340095B2C5 /* InGameUserIcon.swift in Sources */,
+				243EEB641FAD931700639923 /* PreviewGamesTableView.swift in Sources */,
 				24305CDF1F2E5F5300B14632 /* CoreDataStack.swift in Sources */,
 				24AD96A41FA414A200C51279 /* AvailableGamesThreeImageCell.swift in Sources */,
 				2413D7D41F45189A001EA209 /* CardView.swift in Sources */,
@@ -1377,6 +1403,7 @@
 				24E328A11F89687700A2A2FE /* InGameLeaveRoom.swift in Sources */,
 				24233F5C1F6312D500B2B7EE /* Extension.swift in Sources */,
 				2498F9D81F342E8600B21267 /* CircleImageCutter.swift in Sources */,
+				243EEB681FAD945300639923 /* PreviewGamesSetup.swift in Sources */,
 				24E3289D1F89668B00A2A2FE /* InGameConditions.swift in Sources */,
 				24305C931F2BB46C00B14632 /* GameModel.xcdatamodeld in Sources */,
 				242088701F8C300B00BFFD1B /* RoomTableView.swift in Sources */,
@@ -1405,6 +1432,7 @@
 				242088771F8CA4B300BFFD1B /* InGameTutScrollViews.swift in Sources */,
 				2413D7E31F4B60FA001EA209 /* MememeDynamoDB.swift in Sources */,
 				24D2BE2F1F7B6949003B7957 /* GameStack.swift in Sources */,
+				243EEB661FAD938500639923 /* PreviewGamesTableViewLoading.swift in Sources */,
 				244A400D1F90BE8200400822 /* PreviewInGameConditions.swift in Sources */,
 				241C6E651F58983B00756BA7 /* SignUpViewController.swift in Sources */,
 				240E6B6D1F90DC1E000B28D0 /* WinCounter+CoreDataProperties.swift in Sources */,
