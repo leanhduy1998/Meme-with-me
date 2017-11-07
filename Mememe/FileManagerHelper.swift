@@ -82,22 +82,6 @@ class FileManagerHelper{
         }
         
         let path = mememeURL.appendingPathComponent(imagePath)
-        /*
-        do{
-            let files = try fileManager.contentsOfDirectory(atPath: mememeURL.path)
-            for file in files{
-                print("\(mememeURL.path)/\(file)")
-                print(path.path)
-                if "\(mememeURL.path)/\(file)" == path.path{
-                    if let contentsOfFilePath = UIImage(contentsOfFile: path.path){
-                        return contentsOfFilePath
-                    }
-                }
-            }
-        }
-        catch{
-            print(error.localizedDescription)
-        }*/
         
         if fileManager.fileExists(atPath: path.path){
             if let contentsOfFilePath = UIImage(contentsOfFile: path.path){
@@ -106,6 +90,7 @@ class FileManagerHelper{
         }
         return #imageLiteral(resourceName: "ichooseyou")
     }
+    
     static func getPlayerIdForStorage(playerId: String)->String{
         // original playerId have us-east-1/ before it, making it hard to store the images
         var playerIdForStorage = playerId

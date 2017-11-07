@@ -85,78 +85,21 @@ extension PreviousGamesViewController {
     }
     
     func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+        /*
         for indexPath in indexPaths {
             let players = sections[indexPath.section].games[indexPath.row].players?.allObjects as? [Player]
             
             let game = sections[indexPath.section].games[indexPath.row]
-            var playersImages = playerImagesInGameDic[game.gameId!]!
             
-            var ivOrder = Array(playersImages.keys)
-            
-            if playersImages[ivOrder[0]] == #imageLiteral(resourceName: "ichooseyou") {
-                if playerImageDownload[ivOrder[0]] == nil {
-                    helper.loadUserProfilePicture(userId: ivOrder[0], completeHandler: { (imageData) in
+            for player in players!{
+                if playerImagesDic[player.playerId!] == nil {
+                    self.helper.loadUserProfilePicture(userId: player.playerId!, completeHandler: { (imageData) in
                         DispatchQueue.main.async {
-                            let image = UIImage(data: imageData)
-                            let compressedImage = UIImage(data:(image?.jpeg(UIImage.JPEGQuality.lowest))!)
-                            playersImages[ivOrder[0]] = compressedImage
+                            self.playerImagesDic[player.playerId!] = UIImage(data: (UIImage(data: imageData)?.jpeg(UIImage.JPEGQuality.lowest))!)
                         }
                     })
                 }
-                else{
-                    playersImages[ivOrder[0]] = playerImageDownload[ivOrder[0]]
-                }
             }
-            
-            if playersImages[ivOrder[1]] == #imageLiteral(resourceName: "ichooseyou") {
-                if playerImageDownload[ivOrder[1]] == nil {
-                    helper.loadUserProfilePicture(userId: ivOrder[1], completeHandler: { (imageData) in
-                        DispatchQueue.main.async {
-                            let image = UIImage(data: imageData)
-                            let compressedImage = UIImage(data:(image?.jpeg(UIImage.JPEGQuality.lowest))!)
-                            playersImages[ivOrder[1]] = compressedImage
-                            self.playerImageDownload[ivOrder[1]] = compressedImage
-                        }
-                    })
-                }
-                else {
-                    playersImages[ivOrder[1]] = playerImageDownload[ivOrder[1]]
-                }
-            }
-            
-            if players?.count == 3 && playersImages[ivOrder[2]] == #imageLiteral(resourceName: "ichooseyou") {
-                if playerImageDownload[ivOrder[2]] == nil {
-                    helper.loadUserProfilePicture(userId: ivOrder[2], completeHandler: { (imageData) in
-                        DispatchQueue.main.async {
-                            let image = UIImage(data: imageData)
-                            let compressedImage = UIImage(data:(image?.jpeg(UIImage.JPEGQuality.lowest))!)
-                            playersImages[ivOrder[2]] = compressedImage
-                            self.playerImageDownload[ivOrder[2]] = compressedImage
-                        }
-                    })
-                }
-                else{
-                    playersImages[ivOrder[2]] = playerImageDownload[ivOrder[2]]
-                }
-            }
-            
-            if (players?.count)! >= 4  && playersImages[ivOrder[3]] == #imageLiteral(resourceName: "ichooseyou") {
-                if playerImageDownload[ivOrder[3]] == nil {
-                    helper.loadUserProfilePicture(userId: ivOrder[3], completeHandler: { (imageData) in
-                        DispatchQueue.main.async {
-                            let image = UIImage(data: imageData)
-                            let compressedImage = UIImage(data:(image?.jpeg(UIImage.JPEGQuality.lowest))!)
-                            playersImages[ivOrder[3]] = compressedImage
-                            self.playerImageDownload[ivOrder[3]] = compressedImage
-                        }
-                    })
-                }
-                else{
-                    playersImages[ivOrder[3]] = playerImageDownload[ivOrder[3]]
-                }
-            }
-            
-            playerImagesInGameDic[game.gameId!] = playersImages
-        }
+        }*/
     }
 }
