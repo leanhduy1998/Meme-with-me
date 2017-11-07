@@ -101,6 +101,8 @@ class PrivateRoomViewController: UIViewController,UITableViewDelegate, UITableVi
             }
         }
         else {
+            InGameHelper.removeYourLeaderInGameRoom(leaderId: leaderId)
+            
             AvailableRoomHelper.insertYourselfIntoSomeoneRoom(leaderId: leaderId)
             availableRoomRef.child(leaderId).child("playerInRoom").observeSingleEvent(of: DataEventType.value, with: { (snapshot) in
                 if(self.availableRoomObservers["\(self.leaderId!)/playerInRoom"] == nil){
@@ -142,7 +144,6 @@ class PrivateRoomViewController: UIViewController,UITableViewDelegate, UITableVi
         chatHelper.initializeChatObserver(controller: self,leaderId: leaderId)
         
         InGameHelper.removeYourInGameRoom()
-        InGameHelper.removeYourLeaderInGameRoom(leaderId: leaderId)
     }
     
     override func viewWillAppear(_ animated: Bool) {

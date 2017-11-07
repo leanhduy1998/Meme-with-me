@@ -91,6 +91,9 @@
 		245BE5331F8F2E1000B02CD3 /* PreviousGamesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245BE5321F8F2E1000B02CD3 /* PreviousGamesViewController.swift */; };
 		24602D551FB14162002D1CC2 /* CardNormalJSONModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24602D541FB14162002D1CC2 /* CardNormalJSONModel.swift */; };
 		24602D571FB1421E002D1CC2 /* PlayerLoveJSONModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24602D561FB1421E002D1CC2 /* PlayerLoveJSONModel.swift */; };
+		24602D591FB145C1002D1CC2 /* WinCounterJSONModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24602D581FB145C1002D1CC2 /* WinCounterJSONModel.swift */; };
+		24602D5B1FB1AFEC002D1CC2 /* UIImageEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24602D5A1FB1AFEC002D1CC2 /* UIImageEditor.swift */; };
+		24602D5E1FB1CB8F002D1CC2 /* PreviewImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24602D5D1FB1CB8F002D1CC2 /* PreviewImage.swift */; };
 		2468B02F1F4E59870091EDD0 /* GameDataToJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2468B02E1F4E59870091EDD0 /* GameDataToJSON.swift */; };
 		246B8A731F735B3D0034DC24 /* InGameHelperConversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246B8A721F735B3D0034DC24 /* InGameHelperConversion.swift */; };
 		246D08EF1F7CAB730025DA40 /* MyDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246D08EE1F7CAB730025DA40 /* MyDataStack.swift */; };
@@ -123,7 +126,7 @@
 		248CC2171F8D449B0097FB6A /* InGameTutTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248CC2161F8D449B0097FB6A /* InGameTutTableView.swift */; };
 		248CC2191F8D47ED0097FB6A /* InGameTutSound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248CC2181F8D47ED0097FB6A /* InGameTutSound.swift */; };
 		2493972A1FA07924002F392A /* PrivateRoomObservers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249397291FA07924002F392A /* PrivateRoomObservers.swift */; };
-		2498F9D81F342E8600B21267 /* CircleImageCutter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2498F9D71F342E8600B21267 /* CircleImageCutter.swift */; };
+		2498F9D81F342E8600B21267 /* UIImageViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2498F9D71F342E8600B21267 /* UIImageViewHelper.swift */; };
 		2498F9DB1F3478C500B21267 /* HerChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2498F9DA1F3478C500B21267 /* HerChatTableViewCell.swift */; };
 		2498F9DD1F3478E200B21267 /* MyChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2498F9DC1F3478E200B21267 /* MyChatTableViewCell.swift */; };
 		2498F9E01F347B8F00B21267 /* InGameChatTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2498F9DF1F347B8F00B21267 /* InGameChatTableView.swift */; };
@@ -314,6 +317,9 @@
 		245BE5321F8F2E1000B02CD3 /* PreviousGamesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviousGamesViewController.swift; sourceTree = "<group>"; };
 		24602D541FB14162002D1CC2 /* CardNormalJSONModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardNormalJSONModel.swift; sourceTree = "<group>"; };
 		24602D561FB1421E002D1CC2 /* PlayerLoveJSONModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerLoveJSONModel.swift; sourceTree = "<group>"; };
+		24602D581FB145C1002D1CC2 /* WinCounterJSONModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinCounterJSONModel.swift; sourceTree = "<group>"; };
+		24602D5A1FB1AFEC002D1CC2 /* UIImageEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageEditor.swift; sourceTree = "<group>"; };
+		24602D5D1FB1CB8F002D1CC2 /* PreviewImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewImage.swift; sourceTree = "<group>"; };
 		2468B02E1F4E59870091EDD0 /* GameDataToJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameDataToJSON.swift; sourceTree = "<group>"; };
 		246B8A721F735B3D0034DC24 /* InGameHelperConversion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InGameHelperConversion.swift; sourceTree = "<group>"; };
 		246D08EE1F7CAB730025DA40 /* MyDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDataStack.swift; sourceTree = "<group>"; };
@@ -357,7 +363,7 @@
 		248CC2161F8D449B0097FB6A /* InGameTutTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InGameTutTableView.swift; sourceTree = "<group>"; };
 		248CC2181F8D47ED0097FB6A /* InGameTutSound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InGameTutSound.swift; sourceTree = "<group>"; };
 		249397291FA07924002F392A /* PrivateRoomObservers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateRoomObservers.swift; sourceTree = "<group>"; };
-		2498F9D71F342E8600B21267 /* CircleImageCutter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleImageCutter.swift; sourceTree = "<group>"; };
+		2498F9D71F342E8600B21267 /* UIImageViewHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageViewHelper.swift; sourceTree = "<group>"; };
 		2498F9DA1F3478C500B21267 /* HerChatTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HerChatTableViewCell.swift; sourceTree = "<group>"; };
 		2498F9DC1F3478E200B21267 /* MyChatTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyChatTableViewCell.swift; sourceTree = "<group>"; };
 		2498F9DF1F347B8F00B21267 /* InGameChatTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InGameChatTableView.swift; sourceTree = "<group>"; };
@@ -481,17 +487,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2413D7981F414942001EA209 /* Helper */ = {
-			isa = PBXGroup;
-			children = (
-				2498F9D71F342E8600B21267 /* CircleImageCutter.swift */,
-				2413D7BB1F427A81001EA209 /* MemeLabelConfigurer.swift */,
-				24E8597C1F7EFE5700856BA3 /* CellAnimator.swift */,
-				2402C2311F89A9DF00457B36 /* InsetLabel.swift */,
-			);
-			name = Helper;
-			sourceTree = "<group>";
-		};
 		2413D7B31F422808001EA209 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -710,6 +705,7 @@
 				24AB455C1FB04D9D004DE842 /* CardCeasarJSONModel.swift */,
 				24602D541FB14162002D1CC2 /* CardNormalJSONModel.swift */,
 				24602D561FB1421E002D1CC2 /* PlayerLoveJSONModel.swift */,
+				24602D581FB145C1002D1CC2 /* WinCounterJSONModel.swift */,
 			);
 			name = "JSON conversion";
 			sourceTree = "<group>";
@@ -736,6 +732,18 @@
 			name = "Previous Game";
 			sourceTree = "<group>";
 		};
+		24602D5C1FB1B019002D1CC2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2498F9D71F342E8600B21267 /* UIImageViewHelper.swift */,
+				2413D7BB1F427A81001EA209 /* MemeLabelConfigurer.swift */,
+				24E8597C1F7EFE5700856BA3 /* CellAnimator.swift */,
+				2402C2311F89A9DF00457B36 /* InsetLabel.swift */,
+				24602D5A1FB1AFEC002D1CC2 /* UIImageEditor.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
 		2465D2011FAEEC8A00449027 /* Preview Part */ = {
 			isa = PBXGroup;
 			children = (
@@ -747,6 +755,7 @@
 				24F0105B1FAC5B180029E804 /* PreviewGamesThreeImageCell.swift */,
 				2474E4CE1F98517900E70D44 /* PreviewGamesFourImageCell.swift */,
 				243EEB671FAD945300639923 /* PreviewGamesSetup.swift */,
+				24602D5D1FB1CB8F002D1CC2 /* PreviewImage.swift */,
 			);
 			name = "Preview Part";
 			sourceTree = "<group>";
@@ -775,6 +784,7 @@
 		246D08E81F7CA8B60025DA40 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				24602D5C1FB1B019002D1CC2 /* View */,
 				245B2B191F50E8BD00BCF75A /* JSON conversion */,
 				2413D7DE1F499004001EA209 /* GetGameData.swift */,
 				24233F5D1F63437300B2B7EE /* DisplayAlert.swift */,
@@ -945,7 +955,6 @@
 			children = (
 				2413D7B31F422808001EA209 /* ViewController */,
 				24305CE11F2E62BD00B14632 /* TableCell */,
-				2413D7981F414942001EA209 /* Helper */,
 				2413D79D1F42082B001EA209 /* HeartView.swift */,
 				2413D7D31F45189A001EA209 /* CardView.swift */,
 				2413D7DC1F484470001EA209 /* ChoosingCardView.swift */,
@@ -1390,6 +1399,7 @@
 				24F5C7EC1F87F9830095B2C5 /* InGameAddMeme.swift in Sources */,
 				24C30F421F7441A4007237C1 /* InGameExtensionJudge.swift in Sources */,
 				245B2B141F4F685500BCF75A /* GameDataFromJSON.swift in Sources */,
+				24602D5E1FB1CB8F002D1CC2 /* PreviewImage.swift in Sources */,
 				2468B02F1F4E59870091EDD0 /* GameDataToJSON.swift in Sources */,
 				24F5C7EA1F87F9340095B2C5 /* InGameUserIcon.swift in Sources */,
 				243EEB641FAD931700639923 /* PreviewGamesTableView.swift in Sources */,
@@ -1425,7 +1435,7 @@
 				244F2CF71F86DF0C00547AB2 /* InGameCards.swift in Sources */,
 				24E328A11F89687700A2A2FE /* InGameLeaveRoom.swift in Sources */,
 				24233F5C1F6312D500B2B7EE /* Extension.swift in Sources */,
-				2498F9D81F342E8600B21267 /* CircleImageCutter.swift in Sources */,
+				2498F9D81F342E8600B21267 /* UIImageViewHelper.swift in Sources */,
 				243EEB681FAD945300639923 /* PreviewGamesSetup.swift in Sources */,
 				24E3289D1F89668B00A2A2FE /* InGameConditions.swift in Sources */,
 				24305C931F2BB46C00B14632 /* GameModel.xcdatamodeld in Sources */,
@@ -1471,6 +1481,7 @@
 				24AF9E5C1F3018D000D05BFC /* InGameView.swift in Sources */,
 				24896D561F2A5FA2003B6954 /* StartViewController.swift in Sources */,
 				2498FA351F3485E800B21267 /* GoogleIdentityProfile.swift in Sources */,
+				24602D591FB145C1002D1CC2 /* WinCounterJSONModel.swift in Sources */,
 				2498FA371F3485E800B21267 /* SignInViewController.swift in Sources */,
 				249F11A51F6DA4CD00C60059 /* PlayerData.swift in Sources */,
 				2413D7AF1F42112A001EA209 /* PlayerLove.swift in Sources */,
@@ -1486,6 +1497,7 @@
 				242088681F8C2B6400BFFD1B /* AvailableGamesTutorialTableView.swift in Sources */,
 				24896D541F2A5FA2003B6954 /* AppDelegate.swift in Sources */,
 				2488B0791F8D95920064E7A5 /* JudgingTutController.swift in Sources */,
+				24602D5B1FB1AFEC002D1CC2 /* UIImageEditor.swift in Sources */,
 				24AB45591FB04966004DE842 /* RoundJSONModel.swift in Sources */,
 				24F7C99B1FA0541800D20368 /* Player+CoreDataProperties.swift in Sources */,
 				24E734C01F6DCD8F00218AB1 /* InGameHelper.swift in Sources */,

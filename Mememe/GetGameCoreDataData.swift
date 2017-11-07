@@ -30,11 +30,34 @@ class GetGameCoreDataData{
         }
         return round
     }
+    static func getRound(game: GameJSONModel, roundNum: Int) -> RoundJSONModel {
+        var round: RoundJSONModel!
+        for r in game.rounds{
+            if r.roundNum == roundNum {
+                round = r
+                break
+            }
+        }
+        return round
+    }
+    
     static func getGameAllPlayersAsString(players: [Player])-> String{
         var string = ""
         var count = 0
         for player in players {
             string.append(player.name!)
+            if count != players.count - 1 {
+                string.append(", ")
+            }
+            count = count + 1
+        }
+        return string
+    }
+    static func getGameAllPlayersAsString(players: [PlayerJSONModel])-> String{
+        var string = ""
+        var count = 0
+        for player in players {
+            string.append(player.playerName)
             if count != players.count - 1 {
                 string.append(", ")
             }

@@ -57,7 +57,7 @@ class JudgingViewController: UIViewController,UIGestureRecognizerDelegate {
             
             var memeIV = UIImageView(frame: CGRect(x: 0, y: 0, width: cardWidth, height: cardHeight))
             memeIV.image = memeImage
-            memeIV = CircleImageCutter.roundImageView(imageview: memeIV, radius: 15)
+            memeIV = UIImageViewHelper.roundImageView(imageview: memeIV, radius: 15)
             
             cardview.initCardView(topLabel: topLabel, bottomLabel: bottomLabel, playerId: card.playerId!, memeIV: memeIV)
             cardview.isSelecting = false
@@ -67,7 +67,7 @@ class JudgingViewController: UIViewController,UIGestureRecognizerDelegate {
             var chooseIV = UIImageView(frame: CGRect(x: cardWidth/3, y: cardHeight/2 - (cardWidth/3)/2, width: cardWidth/3, height: cardWidth/3))
             chooseIV.image =  #imageLiteral(resourceName: "ichooseyou")
             
-            chooseIV = CircleImageCutter.roundImageView(imageview: chooseIV, radius: 10)
+            chooseIV = UIImageViewHelper.roundImageView(imageview: chooseIV, radius: 10)
             
             chooseIV.alpha = 0
             cardview.addSubview(chooseIV)
@@ -118,7 +118,7 @@ class JudgingViewController: UIViewController,UIGestureRecognizerDelegate {
             var chooseIV = UIImageView(frame: CGRect(x: cardWidth/3, y: cardHeight/2 - (cardWidth/3)/2, width: cardWidth/3, height: cardWidth/3))
             chooseIV.image =  #imageLiteral(resourceName: "ichooseyou")
             
-            chooseIV = CircleImageCutter.roundImageView(imageview: chooseIV, radius: 10)
+            chooseIV = UIImageViewHelper.roundImageView(imageview: chooseIV, radius: 10)
             
             currentCardView?.choosingIV = chooseIV
             currentCardView?.addSubview(chooseIV)

@@ -98,7 +98,7 @@ class StartViewController: UIViewController,UIGestureRecognizerDelegate, AWSSign
         GameStack.sharedInstance.initializeFetchedResultsController()
         let deleteItems = GameStack.sharedInstance.fetchedResultsController.fetchedObjects
         for item in deleteItems!{
-                GameStack.sharedInstance.stack.context.delete(item as! NSManagedObject)
+            //    GameStack.sharedInstance.stack.context.delete(item as! NSManagedObject)
         }
     }
     

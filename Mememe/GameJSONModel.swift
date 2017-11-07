@@ -11,8 +11,10 @@ import Foundation
 class GameJSONModel{
     var createdDate: Date!
     var gameId: String!
-    var rounds: [RoundJSONModel]!
+    var rounds = [RoundJSONModel]()
     var model: MememeDBObjectModel!
+    var player = [PlayerJSONModel]()
+    var winCounter = [WinCounterJSONModel]()
     
     init(createdDate: Date!, gameId: String!, model: MememeDBObjectModel){
         self.createdDate = createdDate

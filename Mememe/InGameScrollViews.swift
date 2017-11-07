@@ -39,7 +39,7 @@ extension InGameViewController {
             let image = userImagesDic[player.userId]
             
             userIconIV.image = image
-            userIconIV = CircleImageCutter.roundImageView(imageview: userIconIV, radius: 15)
+            userIconIV = UIImageViewHelper.roundImageView(imageview: userIconIV, radius: 15)
             
             contentWidth += self.space + self.iconSize
     
@@ -120,7 +120,7 @@ extension InGameViewController {
                 // -40 is for animation
                 let emptyCardUIView = CardView(frame: CGRect(x: space, y: space/2 - cardInitialYBeforeAnimation, width: cardWidth, height: cardHeight))
                 var emptyIV = UIImageView(frame: CGRect(x: 0, y: 0, width: cardWidth, height: cardHeight))
-                emptyIV = CircleImageCutter.roundImageView(imageview: emptyIV, radius: 15)
+                emptyIV = UIImageViewHelper.roundImageView(imageview: emptyIV, radius: 15)
                 
                 emptyIV.image = image
                 emptyCardUIView.addSubview(emptyIV)
@@ -191,7 +191,7 @@ extension InGameViewController {
                     let cardUIView = CardView(frame: CGRect(x: newX, y: space/2-cardInitialYBeforeAnimation, width: cardWidth, height: cardHeight))
                     
                     var memeImageView = getMemeIV(image: image)
-                    memeImageView = CircleImageCutter.roundImageView(imageview: memeImageView, radius: 15)
+                    memeImageView = UIImageViewHelper.roundImageView(imageview: memeImageView, radius: 15)
                     
                     cardUIView.initCardView(topLabel: upLabel, bottomLabel: downLabel, playerId: playerId, memeIV: memeImageView)
                     

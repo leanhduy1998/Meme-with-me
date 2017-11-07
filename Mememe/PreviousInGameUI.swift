@@ -13,10 +13,12 @@ extension PreviewInGameViewController{
     func getUserIconView(round: Round, frame: CGRect, playerCard: CardNormal,completeHandler: @escaping (_ IV: UIImageView)-> Void){
         var players = round.players?.allObjects as? [Player]
         
-        if players?.count == 0 {
-            players = game.players?.allObjects as? [Player]
-        }
+        let game = self.game as? Game
         
+        if players?.count == 0 {
+            players = game?.players?.allObjects as? [Player]
+        }
+
         var player: Player!
         
         for p in players! {
@@ -29,9 +31,60 @@ extension PreviewInGameViewController{
         let imageview = UIImageView()
         imageview.frame = CGRect(x: frame.maxX - self.cardHeight/20, y: frame.minY, width: self.cardHeight/10, height: self.cardHeight/10)
         
-        imageview.image = playerImageDic[player.playerId!]
-        completeHandler(imageview)
+        let image = FileManagerHelper.getImageFromMemory(imagePath: player.imageStorageLocation!)
+        if image == #imageLiteral(resourceName: "ichooseyou") {
+            helper.loadUserProfilePicture(userId: player.playerId!, completeHandler: { (imageData) in
+                DispatchQueue.main.async {
+                    let image = UIImage(data: (UIImage(data: imageData)?.jpeg(UIImage.JPEGQuality.lowest))!)
+                    imageview.image = image
+                    completeHandler(imageview)
+                }
+            })
+        }
+        else{
+            imageview.image = image
+            completeHandler(imageview)
+        }
     }
+    
+    func getUserIconView(round: RoundJSONModel, frame: CGRect, playerCard: CardNormalJSONModel,completeHandler: @escaping (_ IV: UIImageView)-> Void){
+        var players = round.players
+        
+        let game = self.game as? GameJSONModel
+        
+        if players.count == 0 {
+            players = (game?.player)!
+        }
+        
+        var player: PlayerJSONModel!
+        
+        for p in players {
+            if(p.playerId == playerCard.playerId){
+                player = p
+                break
+            }
+        }
+        
+        let imageview = UIImageView()
+        imageview.frame = CGRect(x: frame.maxX - self.cardHeight/20, y: frame.minY, width: self.cardHeight/10, height: self.cardHeight/10)
+        
+        let image = FileManagerHelper.getImageFromMemory(imagePath: player.userImageLocation)
+        if image == #imageLiteral(resourceName: "ichooseyou") {
+            helper.loadUserProfilePicture(userId: player.playerId!, completeHandler: { (imageData) in
+                DispatchQueue.main.async {
+                    let image = UIImage(data: (UIImage(data: imageData)?.jpeg(UIImage.JPEGQuality.lowest))!)
+                    imageview.image = image
+                    completeHandler(imageview)
+                }
+            })
+        }
+        else{
+            imageview.image = image
+            completeHandler(imageview)
+        }
+    }
+    
+    
     func getBorderForWinningCard() -> UIImageView{
         let borderImage = #imageLiteral(resourceName: "border")
         let borderIV = UIImageView(image: borderImage)
@@ -42,7 +95,7 @@ extension PreviewInGameViewController{
         var memeImageView = UIImageView(image: image)
         
         memeImageView.frame = CGRect(x: 0, y: 0, width: cardWidth, height: cardHeight)
-        memeImageView = CircleImageCutter.roundImageView(imageview: memeImageView, radius: 5)
+        memeImageView = UIImageViewHelper.roundImageView(imageview: memeImageView, radius: 5)
         return memeImageView
     }
     func getHeartView(frame: CGRect, playerCard: CardNormal) -> HeartView{
@@ -52,6 +105,14 @@ extension PreviewInGameViewController{
         
         return heartView
     }
+    func getHeartView(frame: CGRect, playerCard: CardNormalJSONModel) -> HeartView{
+        let heartView = HeartView()
+        heartView.cardNormalJSON = playerCard
+        heartView.frame = frame
+        
+        return heartView
+    }
+    
     func getTopLabel(text: String) -> UILabel {
         let upLabel = UILabel(frame: CGRect(x: space, y: 0, width: cardWidth - space*2, height: cardHeight/4))
         MemeLabelConfigurer.configureMemeLabel(upLabel, defaultText: text)

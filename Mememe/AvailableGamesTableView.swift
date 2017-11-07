@@ -12,13 +12,14 @@ import SwiftTryCatch
 
 extension AvailableGamesViewController {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
         let room = openRooms[indexPath.row]
         
         //if room.roomImageUrl! == "noURL" && (room.playerInRoom?.count)! == 2 {
         if (room.playerInRoom?.count)! == 1 {
             var cell = (tableView.dequeueReusableCell(withIdentifier: "AvailableGamesOneImageCell") as? AvailableGamesOneImageCell)!
             cell = CellAnimator.add(cell: cell)
+            cell.selectionStyle = UITableViewCellSelectionStyle.none
+            
             cell.nameLabel.text = getLeaderNameFromRoom(room: room)
             cell.nameLabel.layer.masksToBounds = true
             cell.nameLabel.layer.cornerRadius = 5
@@ -35,13 +36,15 @@ extension AvailableGamesViewController {
                         }
                     }
                 })
-                cell.imageview = CircleImageCutter.roundImageView(imageview: cell.imageview, radius: 15)
+                cell.imageview = UIImageViewHelper.roundImageView(imageview: cell.imageview, radius: 15)
                 return cell
             }
         }
         else if (room.playerInRoom?.count)! == 2 {
             var cell = (tableView.dequeueReusableCell(withIdentifier: "AvailableGamesTwoImageCell") as? AvailableGamesTwoImageCell)!
             cell = CellAnimator.add(cell: cell)
+            cell.selectionStyle = UITableViewCellSelectionStyle.none
+            
             cell.nameLabel.text = getLeaderNameFromRoom(room: room)
             cell.nameLabel.layer.masksToBounds = true
             cell.nameLabel.layer.cornerRadius = 5
@@ -60,8 +63,8 @@ extension AvailableGamesViewController {
                             cell.firstIV.image = playerImages[0]
                             cell.secondIV.image = playerImages[1]
                             cell.activityIndicator.stopAnimating()
-                            cell.firstIV = CircleImageCutter.roundImageView(imageview: cell.firstIV, radius: 15)
-                            cell.secondIV = CircleImageCutter.roundImageView(imageview: cell.secondIV, radius: 15)
+                            cell.firstIV = UIImageViewHelper.roundImageView(imageview: cell.firstIV, radius: 15)
+                            cell.secondIV = UIImageViewHelper.roundImageView(imageview: cell.secondIV, radius: 15)
                         }
                     }
                 })
@@ -71,6 +74,8 @@ extension AvailableGamesViewController {
         else if (room.playerInRoom?.count)! == 3 {
             var cell = (tableView.dequeueReusableCell(withIdentifier: "AvailableGamesThreeImageCell") as? AvailableGamesThreeImageCell)!
             cell = CellAnimator.add(cell: cell)
+            cell.selectionStyle = UITableViewCellSelectionStyle.none
+            
             cell.nameLabel.text = getLeaderNameFromRoom(room: room)
             cell.nameLabel.layer.masksToBounds = true
             cell.nameLabel.layer.cornerRadius = 5
@@ -90,9 +95,9 @@ extension AvailableGamesViewController {
                             cell.secondIV.image = playerImages[1]
                             cell.thirdIV.image = playerImages[2]
                             cell.activityIndicator.stopAnimating()
-                            cell.firstIV = CircleImageCutter.roundImageView(imageview: cell.firstIV, radius: 15)
-                            cell.secondIV = CircleImageCutter.roundImageView(imageview: cell.secondIV, radius: 15)
-                            cell.thirdIV = CircleImageCutter.roundImageView(imageview: cell.thirdIV, radius: 15)
+                            cell.firstIV = UIImageViewHelper.roundImageView(imageview: cell.firstIV, radius: 15)
+                            cell.secondIV = UIImageViewHelper.roundImageView(imageview: cell.secondIV, radius: 15)
+                            cell.thirdIV = UIImageViewHelper.roundImageView(imageview: cell.thirdIV, radius: 15)
                         }
                     }
                 })
@@ -103,6 +108,8 @@ extension AvailableGamesViewController {
             
             var cell = (tableView.dequeueReusableCell(withIdentifier: "AvailableGamesFourImageCell") as? AvailableGamesFourImageCell)!
             cell = CellAnimator.add(cell: cell)
+            cell.selectionStyle = UITableViewCellSelectionStyle.none
+            
             cell.nameLabel.text = getLeaderNameFromRoom(room: room)
             
             cell.nameLabel.layer.masksToBounds = true
@@ -124,10 +131,10 @@ extension AvailableGamesViewController {
                             cell.thirdIV.image = playerImages[2]
                             cell.fourthIV.image = playerImages[3]
                             cell.activityIndicator.stopAnimating()
-                            cell.firstIV = CircleImageCutter.roundImageView(imageview: cell.firstIV, radius: 15)
-                            cell.secondIV = CircleImageCutter.roundImageView(imageview: cell.secondIV, radius: 15)
-                            cell.thirdIV = CircleImageCutter.roundImageView(imageview: cell.thirdIV, radius: 15)
-                            cell.fourthIV = CircleImageCutter.roundImageView(imageview: cell.fourthIV, radius: 15)
+                            cell.firstIV = UIImageViewHelper.roundImageView(imageview: cell.firstIV, radius: 15)
+                            cell.secondIV = UIImageViewHelper.roundImageView(imageview: cell.secondIV, radius: 15)
+                            cell.thirdIV = UIImageViewHelper.roundImageView(imageview: cell.thirdIV, radius: 15)
+                            cell.fourthIV = UIImageViewHelper.roundImageView(imageview: cell.fourthIV, radius: 15)
                         }
                     }
                 })

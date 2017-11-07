@@ -206,7 +206,7 @@ extension InGameTutController {
     func getMemeIV(image:UIImage) -> UIImageView {
         var memeImageView = UIImageView(image:  image)
         memeImageView.frame = CGRect(x: 0, y: 0, width: cardWidth, height: cardHeight)
-        memeImageView = CircleImageCutter.roundImageView(imageview: memeImageView, radius: 5)
+        memeImageView = UIImageViewHelper.roundImageView(imageview: memeImageView, radius: 5)
         return memeImageView
     }
     func getBorderForWinningCard() -> UIImageView{

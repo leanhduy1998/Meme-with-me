@@ -49,7 +49,7 @@ extension RoomTutorialController {
                 
                
                 cell?.userIV.image = self.userImages[message.senderId]
-                cell?.userIV = CircleImageCutter.roundImageView(imageview: (cell?.userIV)!, radius: 15)
+                cell?.userIV = UIImageViewHelper.roundImageView(imageview: (cell?.userIV)!, radius: 15)
                                 
                 return cell!
             }
@@ -65,7 +65,7 @@ extension RoomTutorialController {
                 cell?.messageTF.layer.cornerRadius = 5
            
                 cell?.userIV.image = #imageLiteral(resourceName: "ichooseyou")
-                cell?.userIV = CircleImageCutter.roundImageView(imageview: (cell?.userIV)!, radius: 15)
+                cell?.userIV = UIImageViewHelper.roundImageView(imageview: (cell?.userIV)!, radius: 15)
                 
                 return cell!
             }

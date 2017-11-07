@@ -14,7 +14,7 @@ class CardNormalJSONModel{
     var playerId: String!
     var round: Int!
     var topText: String!
-    var playerLove: 
+    var playerLove = [PlayerLoveJSONModel]()
     
     init(bottomText: String, didWin: Bool, playerId: String, round: Int, topText: String){
         self.bottomText = bottomText

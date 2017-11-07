@@ -47,7 +47,7 @@ extension InGameViewController {
             cell?.messageTF.layer.cornerRadius = 5
             
             cell?.userIV.image = userImagesDic[message.senderId]
-            cell?.userIV = CircleImageCutter.roundImageView(imageview: (cell?.userIV)!, radius: 15)
+            cell?.userIV = UIImageViewHelper.roundImageView(imageview: (cell?.userIV)!, radius: 15)
             return cell!
         }
         else {
@@ -61,7 +61,7 @@ extension InGameViewController {
             cell?.messageTF.layer.cornerRadius = 5
             
             cell?.userIV.image = userImagesDic[message.senderId]
-            cell?.userIV = CircleImageCutter.roundImageView(imageview: (cell?.userIV)!, radius: 15)
+            cell?.userIV = UIImageViewHelper.roundImageView(imageview: (cell?.userIV)!, radius: 15)
             return cell!
         }
     }

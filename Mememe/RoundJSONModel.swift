@@ -12,6 +12,7 @@ class RoundJSONModel{
     var roundNum: Int!
     var players = [PlayerJSONModel]()
     var cardCeasar: CardCeasarJSONModel!
+    var cardNormal = [CardNormalJSONModel]()
     
     init(roundNum: Int){
         self.roundNum = roundNum

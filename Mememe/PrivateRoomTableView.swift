@@ -58,7 +58,7 @@ extension PrivateRoomViewController {
                 else {
                     cell?.userIV.image = userImagesDic[message.senderId]
                 }
-                cell?.userIV = CircleImageCutter.roundImageView(imageview: (cell?.userIV)!, radius: 15)
+                cell?.userIV = UIImageViewHelper.roundImageView(imageview: (cell?.userIV)!, radius: 15)
                 return cell!
             }
             else {
@@ -83,7 +83,7 @@ extension PrivateRoomViewController {
                 else {
                     cell?.userIV.image = userImagesDic[message.senderId]
                 }
-                cell?.userIV = CircleImageCutter.roundImageView(imageview: (cell?.userIV)!, radius: 15)
+                cell?.userIV = UIImageViewHelper.roundImageView(imageview: (cell?.userIV)!, radius: 15)
                 return cell!
             }
         }
@@ -106,7 +106,7 @@ extension PrivateRoomViewController {
                     }
                 }
             }
-            cell?.imageview = CircleImageCutter.roundImageView(imageview: (cell?.imageview)!, radius: 15)
+            cell?.imageview = UIImageViewHelper.roundImageView(imageview: (cell?.imageview)!, radius: 15)
             cell?.nameLabel.text = userInRoom[indexPath.row].userName
             
             return cell!

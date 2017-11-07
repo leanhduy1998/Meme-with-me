@@ -34,13 +34,13 @@ extension InGameTutController{
             if(player.userId == MyPlayerData.id){
                 let image = userImages[player.userId]
                 userIconIV.image = image
-                userIconIV = CircleImageCutter.roundImageView(imageview: userIconIV, radius: 15)
+                userIconIV = UIImageViewHelper.roundImageView(imageview: userIconIV, radius: 15)
                 
                 self.currentPlayersScrollView.addSubview(userIconIV)
                 self.currentPlayersScrollView.sendSubview(toBack: userIconIV)
             }
             else {
-                userIconIV = CircleImageCutter.roundImageView(imageview: userIconIV, radius: 15)
+                userIconIV = UIImageViewHelper.roundImageView(imageview: userIconIV, radius: 15)
                 userIconIV.image = #imageLiteral(resourceName: "ichooseyou")
                 self.currentPlayersScrollView.addSubview(userIconIV)
                 self.currentPlayersScrollView.sendSubview(toBack: userIconIV)
@@ -103,7 +103,7 @@ extension InGameTutController{
             if (currentPlayersCards?.count)! == 0 {
                 var iv = UIImageView(image: thisRoundImage)
                 iv.frame = CGRect(x: 0, y: 0, width: cardWidth, height: cardHeight)
-                iv = CircleImageCutter.roundImageView(imageview: iv, radius: 15)
+                iv = UIImageViewHelper.roundImageView(imageview: iv, radius: 15)
                 
                 // -40 is for animation
                 let emptyCardUIView = CardView(frame: CGRect(x: space, y: space/2 - cardInitialYBeforeAnimation, width: cardWidth, height: cardHeight))
@@ -139,7 +139,7 @@ extension InGameTutController{
                 
                 var iv = UIImageView(image: thisRoundImage)
                 iv.frame = CGRect(x: 0, y: 0, width: cardWidth, height: cardHeight)
-                iv = CircleImageCutter.roundImageView(imageview: iv, radius: 15)
+                iv = UIImageViewHelper.roundImageView(imageview: iv, radius: 15)
                 
                 cardUIView.addSubview(iv)
                 cardUIView.sendSubview(toBack: iv)
@@ -177,7 +177,7 @@ extension InGameTutController{
                 
                 var iv = UIImageView(image: thisRoundImage)
                 iv.frame = CGRect(x: 0, y: 0, width: cardWidth, height: cardHeight)
-                iv = CircleImageCutter.roundImageView(imageview: iv, radius: 15)
+                iv = UIImageViewHelper.roundImageView(imageview: iv, radius: 15)
                 
                 cardUIView.addSubview(iv)
                 cardUIView.sendSubview(toBack: iv)

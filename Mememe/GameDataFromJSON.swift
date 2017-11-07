@@ -24,6 +24,10 @@ class GameDataFromJSON{
         let createdDate = formatter.date(from: (json!?["createdDate"] as? String)!)
         
         let game = GameJSONModel(createdDate: createdDate!, gameId: (json??["gameId"] as? String)!, model: model)
+        self.addRoundToGameJSONModel(game: game, roundDic: (json??["rounds"] as? [String:Any])!)
+        self.addPlayersToGameJSONModel(game: game, playersDic: (json??["players"] as? [String:[String:String]])!)
+        self.addWinCounterToGameJSONModel(game: game, winCountDic: (json??["winCounter"] as? [String:Int])!)
+        return game
     }
     
     static func getGameCoreDataFromJSON(model: MememeDBObjectModel) -> Game {
@@ -42,9 +46,6 @@ class GameDataFromJSON{
         self.addPlayersToGame(game: game, playersDic: (json??["players"] as? [String:[String:String]])!)
         self.addWinCounterToGame(game: game, winCountDic: (json??["winCounter"] as? [String:Int])!)
         
-        /*GameStack.sharedInstance.saveContext {
-            completionHandler()
-        }*/
         return game
     }
     private static func addPlayersToGame(game: Game, playersDic: [String:[String:String]]){
@@ -63,10 +64,30 @@ class GameDataFromJSON{
             game.addToPlayers(Player(playerName: name, playerId: playerId, userImageLocation: imageLocation!, context: GameStack.sharedInstance.stack.context))
         }
     }
+    private static func addPlayersToGameJSONModel(game: GameJSONModel, playersDic: [String:[String:String]]){
+        for(playerId,playerDic2) in playersDic {
+            var name:String!
+            var imageLocation: String!
+            for(key,value) in playerDic2 {
+                if key == "name"{
+                    name = value
+                }
+                if key == "imageStorageLocation" {
+                    imageLocation = value
+                }
+            }
+            game.player.append(PlayerJSONModel(playerName: name, playerId: playerId, userImageLocation: imageLocation!))
+        }
+    }
     
     private static func addWinCounterToGame(game: Game, winCountDic: [String:Int]){
         for(playerId,winCount) in winCountDic {
             game.addToWincounter(WinCounter(playerId: playerId, wonNum: winCount, context: GameStack.sharedInstance.stack.context))
+        }
+    }
+    private static func addWinCounterToGameJSONModel(game: GameJSONModel, winCountDic: [String:Int]){
+        for(playerId,winCount) in winCountDic {
+            game.winCounter.append(WinCounterJSONModel(playerId: playerId, wonNum: winCount))
         }
     }
     
@@ -91,11 +112,12 @@ class GameDataFromJSON{
             let thisRoundDic = roundDic["\(x)"] as? [String:Any]
             let roundCoreData = RoundJSONModel(roundNum: x)
             
-            addCardCeasarToRoundJSONModel(gameId: game.gameId! ,round: roundCoreData, roundDic: (thisRoundDic?["cardCeasar"] as? [String:Any])!)
-            addCardNormalToRound(round: roundCoreData, cardDic: (thisRoundDic?["cardNormals"] as? [String:Any])!)
+            addCardNormalToRoundJSONModel(round: roundCoreData, cardDic: (thisRoundDic?["cardNormals"] as? [String:Any])!)
             addRoundPlayersToRoundJSONModel(round: roundCoreData, playerDic: thisRoundDic!["players"] as! [String : [String : String]])
             
-            game.rounds.append(RoundJSONModel)
+            addCardCeasarToRoundJSONModel(gameId: game.gameId! ,round: roundCoreData, roundDic: (thisRoundDic?["cardCeasar"] as? [String:Any])!, completeHandler: {round in
+                game.rounds.append(round)
+            })
         }
     }
     
@@ -147,7 +169,7 @@ class GameDataFromJSON{
             }
         }
     }
-    private static func addCardCeasarToRoundJSONModel(gameId: String, round: RoundJSONModel, roundDic: [String:Any]){
+    private static func addCardCeasarToRoundJSONModel(gameId: String, round: RoundJSONModel, roundDic: [String:Any], completeHandler: @escaping (_ round: RoundJSONModel)-> Void){
         let helper = UserFilesHelper()
         
         let playerId = roundDic["playerId"] as! String
@@ -163,6 +185,7 @@ class GameDataFromJSON{
                 
                 let cardCeasar = CardCeasarJSONModel(playerId: playerId, round: Int(round.roundNum), cardDBurl: roundDic["cardDBUrl"] as! String, imageStorageLocation: filePath)
                 round.cardCeasar = cardCeasar
+                completeHandler(round)
             }
         }
     }
@@ -202,8 +225,8 @@ class GameDataFromJSON{
             }
             
             let cardNormal = CardNormalJSONModel(bottomText: thisCardDic["bottomText"] as! String, didWin: didWin, playerId: playerId, round: Int(round.roundNum), topText: thisCardDic["topText"] as! String)
-            addPlayerLoveToCardNormal(cardNormal: cardNormal, loveDic: thisCardDic["playerlove"] as! [String])
-            round.addToCardnormal(cardNormal)
+            addPlayerLoveToCardNormalJSONModel(cardNormal: cardNormal, loveDic: thisCardDic["playerlove"] as! [String])
+            round.cardNormal.append(cardNormal)
         }
     }
     
@@ -211,6 +234,11 @@ class GameDataFromJSON{
         for playerId in loveDic {
             let playerLove = PlayerLove(playerId: playerId, context: GameStack.sharedInstance.stack.context)
             cardNormal.addToPlayerlove(playerLove)
+        }
+    }
+    private static func addPlayerLoveToCardNormalJSONModel(cardNormal: CardNormalJSONModel, loveDic: [String]){
+        for playerId in loveDic {
+            cardNormal.playerLove.append(PlayerLoveJSONModel(playerId: playerId))
         }
     }
 }

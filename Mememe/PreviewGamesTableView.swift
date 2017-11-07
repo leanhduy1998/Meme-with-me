@@ -18,10 +18,9 @@ extension PreviousGamesViewController {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if sections[indexPath.section].finishLoading{
-            gameForSegue = sections[indexPath.section].games[indexPath.row]
-            performSegue(withIdentifier: "PreviewInGameViewControllerSegue", sender: self)
-        }
+        gameForSegue = sections[indexPath.section].games[indexPath.row]
+        performSegue(withIdentifier: "PreviewInGameViewControllerSegue", sender: self)
+        
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
@@ -31,21 +30,30 @@ extension PreviousGamesViewController {
                 return
             }
             
-            let game = sections[indexPath.section].games[indexPath.row]
-            GameStack.sharedInstance.stack.context.delete(game)
-            sections[indexPath.section].games.remove(at: indexPath.row)
-            
-            if gameModels[game.gameId!] == nil {
-                self.tableview.reloadData()
-                return
-            }
-            MememeDynamoDB.removeItem(gameModels[game.gameId!]!, completionHandler: { (error) in
-                if error == nil {
-                    DispatchQueue.main.async {
-                        self.tableview.reloadData()
+            if let game = sections[indexPath.section].games[indexPath.row] as? Game {
+                GameStack.sharedInstance.stack.context.delete(game)
+                
+                MememeDynamoDB.removeItem(gameModels[game.gameId!]!, completionHandler: { (error) in
+                    if error == nil {
+                        DispatchQueue.main.async {
+                            self.tableview.reloadData()
+                        }
                     }
-                }
-            })
+                })
+            }
+            else if let game = sections[indexPath.section].games[indexPath.row] as? GameJSONModel{
+                MememeDynamoDB.removeItem(game.model, completionHandler: { (error) in
+                    if error == nil {
+                        DispatchQueue.main.async {
+                            if self.gameModels[game.gameId!] == nil {
+                                self.tableview.reloadData()
+                                return
+                            }
+                        }
+                    }
+                })
+            }
+            sections[indexPath.section].games.remove(at: indexPath.row)
         }
     }
     /*
@@ -57,7 +65,16 @@ extension PreviousGamesViewController {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let game = sections[indexPath.section].games[indexPath.row]
         
-        switch((game.players?.count)!){
+        var gameCount = 0
+        
+        if let game = game as? Game{
+            gameCount = (game.players?.count)!
+        }
+        else if let game = game as? GameJSONModel{
+            gameCount = game.player.count
+        }
+        
+        switch(gameCount){
         case 1:
             return UITableViewCell()
             
@@ -85,21 +102,25 @@ extension PreviousGamesViewController {
     }
     
     func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
-        /*
+        
         for indexPath in indexPaths {
-            let players = sections[indexPath.section].games[indexPath.row].players?.allObjects as? [Player]
-            
             let game = sections[indexPath.section].games[indexPath.row]
             
-            for player in players!{
-                if playerImagesDic[player.playerId!] == nil {
-                    self.helper.loadUserProfilePicture(userId: player.playerId!, completeHandler: { (imageData) in
-                        DispatchQueue.main.async {
-                            self.playerImagesDic[player.playerId!] = UIImage(data: (UIImage(data: imageData)?.jpeg(UIImage.JPEGQuality.lowest))!)
-                        }
-                    })
+            if let game = game as? Game {
+                let previewImages = playerImagesInGameDic[game.gameId!]
+                for previewImage in previewImages! {
+                    if previewImage.imageEmpty {
+                        self.helper.loadUserProfilePicture(userId: previewImage.playerId, completeHandler: { (imageData) in
+                            
+                            let image = UIImage(data: imageData)
+                            
+                            previewImage.image = UIImageEditor.resizeImage(image: image!, targetSize: CGSize(width: 90, height: 90))
+                            previewImage.imageEmpty = false
+                            
+                        })
+                    }
                 }
             }
-        }*/
+        }
     }
 }

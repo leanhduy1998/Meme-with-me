@@ -11,12 +11,11 @@ import UIKit
 
 class PreviewSection{
     var sectionTitle: String!
-    var games = [Game]()
+    var games = [Any]()
     var fromInt: Int!
     var toInt: Int!
     var changed = false
     var imageview: UIImageView!
-    var finishLoading = false
     
     init(sectionTitle: String, fromInt: Int, toInt: Int){
         self.sectionTitle = sectionTitle
