@@ -102,7 +102,7 @@ extension PreviousGamesViewController {
     }
     
     func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
-        
+        /*
         for indexPath in indexPaths {
             let game = sections[indexPath.section].games[indexPath.row]
             
@@ -110,17 +110,24 @@ extension PreviousGamesViewController {
                 let previewImages = playerImagesInGameDic[game.gameId!]
                 for previewImage in previewImages! {
                     if previewImage.imageEmpty {
-                        self.helper.loadUserProfilePicture(userId: previewImage.playerId, completeHandler: { (imageData) in
-                            
-                            let image = UIImage(data: imageData)
-                            
-                            previewImage.image = UIImageEditor.resizeImage(image: image!, targetSize: CGSize(width: 90, height: 90))
-                            previewImage.imageEmpty = false
-                            
-                        })
+                        if imageDownloaded[previewImage.playerId] == nil {
+                            self.helper.loadUserProfilePicture(userId: previewImage.playerId, completeHandler: { (imageData) in
+                                
+                                var image = UIImage(data: imageData)
+                                image = UIImageEditor.resizeImage(image: image!, targetSize: CGSize(width: 90, height: 90))
+                                
+                                self.imageDownloaded[previewImage.playerId] = image
+                                
+                                previewImage.image = image
+                                previewImage.imageEmpty = false
+                            })
+                        }
+                        else{
+                            previewImage.image = imageDownloaded[previewImage.playerId]
+                        }
                     }
                 }
             }
-        }
+        }*/
     }
 }

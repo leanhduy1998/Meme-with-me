@@ -14,8 +14,7 @@ class PreviewImage{
     var playerId: String!
     var imageEmpty = false
     
-    init(image: UIImage, playerId: String){
-        self.image = image
+    init(playerId: String){
         self.playerId = playerId
     }
 }

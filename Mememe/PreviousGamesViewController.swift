@@ -12,6 +12,8 @@ import UIKit
 class PreviousGamesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITableViewDataSourcePrefetching {
     
     var playerImagesInGameDic = [String:[PreviewImage]]()
+    var imageDownloaded = [String:UIImage]()
+    
     var gamesStorageLocation = [String:String]()
     var gameForSegue:Any!
     var gameModels = [String:MememeDBObjectModel]()
@@ -26,11 +28,14 @@ class PreviousGamesViewController: UIViewController, UITableViewDelegate, UITabl
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //tableview.decelerationRate = 1
+        
         GetGameData.getTimeIntForPreviewTable { (timeArr, currentTimeInt) in
+            self.setupSections(timeArr: timeArr, currentTimeInt: currentTimeInt)
+            self.firstTimeLoading = false
+            
             DispatchQueue.main.async {
-                self.setupSections(timeArr: timeArr, currentTimeInt: currentTimeInt)
-
-                self.firstTimeLoading = false
+                
                 if(Reachability.isConnectedToNetwork()){
                     self.addDynamoDBDataToGames()
                 }
@@ -60,43 +65,41 @@ class PreviousGamesViewController: UIViewController, UITableViewDelegate, UITabl
     }
     private func queryAndHandleData(completeHandler: @escaping ()-> Void){
         MememeDynamoDB.queryWithMyPlayerIdWithCompletionHandler(userId: MyPlayerData.id) { (result, error) in
-            
-            DispatchQueue.main.async {
-                let models = result?.items as? [MememeDBObjectModel]
+            let models = result?.items as? [MememeDBObjectModel]
         
-                self.gameModels.removeAll()
+            self.gameModels.removeAll()
                 
-                for model in models!{
-                    let game = GameDataFromJSON.getGameJSONModelFromJSON(model: model)
-                    self.gameModels[game.gameId!] = model
+            for model in models!{
+                let game = GameDataFromJSON.getGameJSONModelFromJSON(model: model)
+                self.gameModels[game.gameId!] = model
                     
-                    if self.playerImagesInGameDic[game.gameId!] == nil {
-                        self.playerImagesInGameDic[game.gameId!] = [PreviewImage]()
-                    }
-
-                    let players = game.player
-                    for player in players{
-                        var image = FileManagerHelper.getImageFromMemory(imagePath: player.userImageLocation!)
-                        
-                        let previewImage = PreviewImage(image: image, playerId: player.playerId!)
-                        
-                        if image != #imageLiteral(resourceName: "ichooseyou") {
-                            image = UIImageEditor.resizeImage(image: image, targetSize: CGSize(width: 90, height: 90))
-                        }
-                        else{
-                            previewImage.imageEmpty = true
-                        }
-                        self.playerImagesInGameDic[game.gameId!]?.append(previewImage)
-                    }
-                    
-                    if(self.gamesStorageLocation[game.gameId!] == nil){
-                        self.putGameIntoRightSection(game: game)
-                        self.gamesStorageLocation[game.gameId!] = "dynamodb"
-                    }
+                if self.playerImagesInGameDic[game.gameId!] == nil {
+                    self.playerImagesInGameDic[game.gameId!] = [PreviewImage]()
                 }
-                self.sortDataAndReloadTableView()
-                completeHandler()
+
+                let players = game.player
+                for player in players{
+                    var image = FileManagerHelper.getImageFromMemory(imagePath: player.userImageLocation!)
+                        
+                    let previewImage = PreviewImage(playerId: player.playerId!)
+                        
+                    if image != #imageLiteral(resourceName: "ichooseyou") {
+                        image = UIImageEditor.resizeImage(image: image, targetSize: CGSize(width: 90, height: 90))
+                        previewImage.image = image
+                    }
+                    else{
+                        previewImage.imageEmpty = true
+                    }
+                    self.playerImagesInGameDic[game.gameId!]?.append(previewImage)
+                }
+                    
+                if(self.gamesStorageLocation[game.gameId!] == nil){
+                    self.putGameIntoRightSection(game: game)
+                    self.gamesStorageLocation[game.gameId!] = "dynamodb"
+                }
             }
+            self.sortDataAndReloadTableView()
+            completeHandler()
         }
     }
     
@@ -116,10 +119,11 @@ class PreviousGamesViewController: UIViewController, UITableViewDelegate, UITabl
                 for player in (object.players?.allObjects as? [Player])!{
                     var image = FileManagerHelper.getImageFromMemory(imagePath: player.imageStorageLocation!)
                     
-                    let previewImage = PreviewImage(image: image, playerId: player.playerId!)
+                    let previewImage = PreviewImage(playerId: player.playerId!)
                     
                     if image != #imageLiteral(resourceName: "ichooseyou") {
                         image = UIImageEditor.resizeImage(image: image, targetSize: CGSize(width: 90, height: 90))
+                        previewImage.image = image
                     }
                     else {
                         previewImage.imageEmpty = true
@@ -183,7 +187,7 @@ class PreviousGamesViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     func downloadBtnPressed(sender: UIButton){
-        //...
+        
     }
     
     @IBAction func cancelBtnPressed(_ sender: Any) {
