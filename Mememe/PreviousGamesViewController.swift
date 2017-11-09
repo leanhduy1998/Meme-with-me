@@ -25,24 +25,36 @@ class PreviousGamesViewController: UIViewController, UITableViewDelegate, UITabl
     
     
     // long hold in cell stuffs
-    let cellHoldOptionAlertController = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
+  //  let cellHoldOptionAlertController = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
     var downloadAlertAction: UIAlertAction!
-    var holdedIndex:IndexPath!
+    
+    // selecting mode
+    @IBOutlet weak var cancelBarBtn: UIBarButtonItem!
+    @IBOutlet weak var downloadBarBtn: UIBarButtonItem!
+    @IBOutlet weak var deleteBarBtn: UIBarButtonItem!
+    @IBOutlet weak var selectAllBarBtn: UIBarButtonItem!
+    
+    var selectingMode = false
+    var selectedAll = false
+    
+    var selectedIndexPath = [IndexPath:Bool]()
     
     @IBOutlet weak var tableview: UITableView!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableview.allowsMultipleSelection = true
         //tableview.decelerationRate = 1
         let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(self.longPress))
-        self.view.addGestureRecognizer(longPressRecognizer)
-        
+        self.tableview.addGestureRecognizer(longPressRecognizer)
+
+        /*
         downloadAlertAction = UIAlertAction(title: "Download To Phone", style: UIAlertActionStyle.default, handler: downloadOption)
         
         cellHoldOptionAlertController.addAction(downloadAlertAction)
         cellHoldOptionAlertController.addAction(UIAlertAction(title: "Delete Game", style: UIAlertActionStyle.default, handler: deleteOption))
-        cellHoldOptionAlertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))
+        cellHoldOptionAlertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))*/
 
         
         GetGameData.getTimeIntForPreviewTable { (timeArr, currentTimeInt) in
@@ -61,6 +73,120 @@ class PreviousGamesViewController: UIViewController, UITableViewDelegate, UITabl
         }
     }
     
+    @IBAction func selectAllBtnPressed(_ sender: Any) {
+        if selectAllBarBtn.title! == "Select All"{
+            selectAllBarBtn.title = "Deselect All"
+            showDownloadDeleteCancelBarBtn()
+            selectingMode = true
+            selectedAll = true
+            for cell in tableview.visibleCells {
+                cell.accessoryType = .checkmark
+            }
+        }
+        else {
+            selectAllBarBtn.title = "Select All"
+            hideDownloadDeleteCancelBarBtn()
+            selectingMode = false
+            selectedAll = false
+            for cell in tableview.visibleCells {
+                cell.accessoryType = .none
+            }
+        }
+    }
+    
+    @IBAction func deleteBtnPressed(_ sender: Any) {
+        if(!Reachability.isConnectedToNetwork()){
+            DisplayAlert.display(controller: self, title: "Master Access Denied! Beep! Boop!", message: "You can't delete games unless there is wifi! Sorry!")
+            return
+        }
+        
+        hideDownloadDeleteCancelBarBtn()
+        selectingMode = false
+        
+        if selectedAll {
+            selectedIndexPath.removeAll()
+            for section in sections {
+                for game in section.games {
+                    if let game = game as? Game {
+                        GameStack.sharedInstance.stack.context.delete(game)
+                        
+                        MememeDynamoDB.removeItem(gameModels[game.gameId!]!, completionHandler: { (error) in
+                            if error == nil {
+                                DispatchQueue.main.async {
+                                    self.tableview.reloadData()
+                                }
+                            }
+                        })
+                    }
+                    else if let game = game as? GameJSONModel{
+                        MememeDynamoDB.removeItem(game.model, completionHandler: { (error) in
+                            if error == nil {
+                                DispatchQueue.main.async {
+                                    if self.gameModels[game.gameId!] == nil {
+                                        self.tableview.reloadData()
+                                        return
+                                    }
+                                }
+                            }
+                        })
+                    }
+                }
+            }
+        }
+        else{
+            for (indexPath,_) in selectedIndexPath {
+                if let game = sections[indexPath.section].games[indexPath.row] as? Game {
+                    GameStack.sharedInstance.stack.context.delete(game)
+                    GameStack.sharedInstance.saveContext {}
+                    
+                    if game.gameId == nil || gameModels[game.gameId!] == nil {
+                        self.sections[indexPath.section].games.remove(at: indexPath.row)
+                        self.selectedIndexPath.removeValue(forKey: indexPath)
+                        self.tableview.reloadData()
+                        continue
+                    }
+                    
+                    MememeDynamoDB.removeItem(gameModels[game.gameId!]!, completionHandler: { (error) in
+                        if error == nil {
+                            DispatchQueue.main.async {
+                                self.sections[indexPath.section].games.remove(at: indexPath.row)
+                                self.gameModels.removeValue(forKey: game.gameId!)
+                                self.selectedIndexPath.removeValue(forKey: indexPath)
+                                self.tableview.reloadData()
+                            }
+                        }
+                    })
+                }
+                else if let game = sections[indexPath.section].games[indexPath.row] as? GameJSONModel{
+                    MememeDynamoDB.removeItem(game.model, completionHandler: { (error) in
+                        if error == nil {
+                            DispatchQueue.main.async {
+                                self.sections[indexPath.section].games.remove(at: indexPath.row)
+                                self.gameModels.removeValue(forKey: game.gameId!)
+                                self.selectedIndexPath.removeValue(forKey: indexPath)
+                                self.tableview.reloadData()
+                            }
+                        }
+                    })
+                }
+            }
+        }
+    }
+    
+    @IBAction func downloadBtnPressed(_ sender: Any) {
+    }
+    
+    @IBAction func cancelBtnBarPressed(_ sender: Any) {
+        selectAllBarBtn.title = "Select All"
+        hideDownloadDeleteCancelBarBtn()
+        selectingMode = false
+        selectedAll = false
+        for cell in tableview.visibleCells {
+            cell.accessoryType = .none
+        }
+    }
+    
+    /*
     func downloadOption(action: UIAlertAction){
         print("download")
         var gameModel = sections[holdedIndex.section].games[holdedIndex.row] as? GameJSONModel
@@ -104,10 +230,7 @@ class PreviousGamesViewController: UIViewController, UITableViewDelegate, UITabl
                     }
                 })
             break
-        }
-        
-        
-        
+ 
     }
     func deleteOption(action: UIAlertAction){
         if(!Reachability.isConnectedToNetwork()){
@@ -139,22 +262,26 @@ class PreviousGamesViewController: UIViewController, UITableViewDelegate, UITabl
             })
         }
     }
+ */
     
     func longPress(longPressGestureRecognizer: UILongPressGestureRecognizer) {
         if longPressGestureRecognizer.state == UIGestureRecognizerState.began {
             let touchPoint = longPressGestureRecognizer.location(in: tableview)
             if let indexPath = tableview.indexPathForRow(at: touchPoint) {
-                holdedIndex = indexPath
+                selectingMode = true
+                tableview.cellForRow(at: indexPath)?.accessoryType = .checkmark
+                selectedIndexPath[indexPath] = true
+                showDownloadDeleteCancelBarBtn()
                 
+                /*
                 if sections[holdedIndex.section].games[holdedIndex.row] is Game {
                     downloadAlertAction.isEnabled = false
                 }
                 else if sections[holdedIndex.section].games[holdedIndex.row] is GameJSONModel{
                     downloadAlertAction.isEnabled = true
                 }
+                present(cellHoldOptionAlertController, animated: true, completion: nil)*/
                 
-                present(cellHoldOptionAlertController, animated: true, completion: nil)
-                // your code here, get the row for the indexPath or do whatever you want
             }
         }
     }
@@ -164,6 +291,24 @@ class PreviousGamesViewController: UIViewController, UITableViewDelegate, UITabl
         if(!firstTimeLoading && Reachability.isConnectedToNetwork()){
             addDynamoDBDataToGames()
         }
+        hideDownloadDeleteCancelBarBtn()
+    }
+    
+    private func hideDownloadDeleteCancelBarBtn(){
+        downloadBarBtn.title = ""
+        downloadBarBtn.isEnabled = false
+        cancelBarBtn.title = ""
+        cancelBarBtn.isEnabled = false
+        deleteBarBtn.title = ""
+        deleteBarBtn.isEnabled = false
+    }
+    private func showDownloadDeleteCancelBarBtn(){
+        downloadBarBtn.title = "Download"
+        downloadBarBtn.isEnabled = true
+        cancelBarBtn.title = "Cancel"
+        cancelBarBtn.isEnabled = true
+        deleteBarBtn.title = "Delete"
+        deleteBarBtn.isEnabled = true
     }
     
     private func addDynamoDBDataToGames(){
@@ -296,10 +441,6 @@ class PreviousGamesViewController: UIViewController, UITableViewDelegate, UITabl
                 return
             }
         }
-    }
-    
-    func downloadBtnPressed(sender: UIButton){
-        
     }
     
     @IBAction func cancelBtnPressed(_ sender: Any) {

@@ -18,9 +18,21 @@ extension PreviousGamesViewController {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        gameForSegue = sections[indexPath.section].games[indexPath.row]
-        performSegue(withIdentifier: "PreviewInGameViewControllerSegue", sender: self)
-        
+        if selectingMode {
+            tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
+            selectedIndexPath[indexPath] = true
+        }
+        else {
+            gameForSegue = sections[indexPath.section].games[indexPath.row]
+            performSegue(withIdentifier: "PreviewInGameViewControllerSegue", sender: self)
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        if selectingMode {
+            tableView.cellForRow(at: indexPath)?.accessoryType = .none
+            selectedIndexPath.removeValue(forKey: indexPath)
+        }
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
