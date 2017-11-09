@@ -23,19 +23,33 @@ class PreviousGamesViewController: UIViewController, UITableViewDelegate, UITabl
     
     let helper = UserFilesHelper()
     
+    
+    // long hold in cell stuffs
+    let cellHoldOptionAlertController = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
+    var downloadAlertAction: UIAlertAction!
+    var holdedIndex:IndexPath!
+    
     @IBOutlet weak var tableview: UITableView!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         //tableview.decelerationRate = 1
+        let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(self.longPress))
+        self.view.addGestureRecognizer(longPressRecognizer)
+        
+        downloadAlertAction = UIAlertAction(title: "Download To Phone", style: UIAlertActionStyle.default, handler: downloadOption)
+        
+        cellHoldOptionAlertController.addAction(downloadAlertAction)
+        cellHoldOptionAlertController.addAction(UIAlertAction(title: "Delete Game", style: UIAlertActionStyle.default, handler: deleteOption))
+        cellHoldOptionAlertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))
+
         
         GetGameData.getTimeIntForPreviewTable { (timeArr, currentTimeInt) in
             self.setupSections(timeArr: timeArr, currentTimeInt: currentTimeInt)
             self.firstTimeLoading = false
             
             DispatchQueue.main.async {
-                
                 if(Reachability.isConnectedToNetwork()){
                     self.addDynamoDBDataToGames()
                 }
@@ -43,6 +57,104 @@ class PreviousGamesViewController: UIViewController, UITableViewDelegate, UITabl
                     self.addCoreDataToGames()
                     self.tableview.reloadData()
                 }
+            }
+        }
+    }
+    
+    func downloadOption(action: UIAlertAction){
+        print("download")
+        var gameModel = sections[holdedIndex.section].games[holdedIndex.row] as? GameJSONModel
+        
+        switch((gameModel?.player.count)!){
+            case 1:
+            break
+            case 2:
+                let cell = tableview.cellForRow(at: holdedIndex) as? PreviewGamesTwoImageCell
+                cell?.downloadBtn.isHidden = true
+                cell?.activityIndicator.startAnimating()
+                GameDataFromJSON.saveGameCoreDataFromJSON(model: (gameModel?.model)!, completeHandler: {
+                    gameModel = nil
+                    DispatchQueue.main.async {
+                        cell?.activityIndicator.stopAnimating()
+                        self.gamesStorageLocation[(gameModel?.gameId)!] = "coreData"
+                    }
+                })
+            break
+            case 3:
+                let cell = tableview.cellForRow(at: holdedIndex) as? PreviewGamesThreeImageCell
+                cell?.downloadBtn.isHidden = true
+                cell?.activityIndicator.startAnimating()
+                GameDataFromJSON.saveGameCoreDataFromJSON(model: (gameModel?.model)!, completeHandler: {
+                    gameModel = nil
+                    DispatchQueue.main.async {
+                        cell?.activityIndicator.stopAnimating()
+                        self.gamesStorageLocation[(gameModel?.gameId)!] = "coreData"
+                    }
+                })
+            break
+            default:
+                let cell = tableview.cellForRow(at: holdedIndex) as? PreviewGamesFourImageCell
+                cell?.downloadBtn.isHidden = true
+                cell?.activityIndicator.startAnimating()
+                GameDataFromJSON.saveGameCoreDataFromJSON(model: (gameModel?.model)!, completeHandler: {
+                    gameModel = nil
+                    DispatchQueue.main.async {
+                        cell?.activityIndicator.stopAnimating()
+                        self.gamesStorageLocation[(gameModel?.gameId)!] = "coreData"
+                    }
+                })
+            break
+        }
+        
+        
+        
+    }
+    func deleteOption(action: UIAlertAction){
+        if(!Reachability.isConnectedToNetwork()){
+            DisplayAlert.display(controller: self, title: "Master Access Denied! Beep! Boop!", message: "You can't delete games unless there is wifi! Sorry!")
+            return
+        }
+        
+        if let game = sections[holdedIndex.section].games[holdedIndex.row] as? Game {
+            GameStack.sharedInstance.stack.context.delete(game)
+            
+            MememeDynamoDB.removeItem(gameModels[game.gameId!]!, completionHandler: { (error) in
+                if error == nil {
+                    DispatchQueue.main.async {
+                        self.tableview.reloadData()
+                    }
+                }
+            })
+        }
+        else if let game = sections[holdedIndex.section].games[holdedIndex.row] as? GameJSONModel{
+            MememeDynamoDB.removeItem(game.model, completionHandler: { (error) in
+                if error == nil {
+                    DispatchQueue.main.async {
+                        if self.gameModels[game.gameId!] == nil {
+                            self.tableview.reloadData()
+                            return
+                        }
+                    }
+                }
+            })
+        }
+    }
+    
+    func longPress(longPressGestureRecognizer: UILongPressGestureRecognizer) {
+        if longPressGestureRecognizer.state == UIGestureRecognizerState.began {
+            let touchPoint = longPressGestureRecognizer.location(in: tableview)
+            if let indexPath = tableview.indexPathForRow(at: touchPoint) {
+                holdedIndex = indexPath
+                
+                if sections[holdedIndex.section].games[holdedIndex.row] is Game {
+                    downloadAlertAction.isEnabled = false
+                }
+                else if sections[holdedIndex.section].games[holdedIndex.row] is GameJSONModel{
+                    downloadAlertAction.isEnabled = true
+                }
+                
+                present(cellHoldOptionAlertController, animated: true, completion: nil)
+                // your code here, get the row for the indexPath or do whatever you want
             }
         }
     }

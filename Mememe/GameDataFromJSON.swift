@@ -30,7 +30,7 @@ class GameDataFromJSON{
         return game
     }
     
-    static func getGameCoreDataFromJSON(model: MememeDBObjectModel) -> Game {
+    static func saveGameCoreDataFromJSON(model: MememeDBObjectModel, completeHandler: @escaping ()-> Void){
         let gameJSON = model._game
         
         let json = try? JSONSerialization.jsonObject(with: gameJSON!, options: []) as? [String: Any]
@@ -46,7 +46,9 @@ class GameDataFromJSON{
         self.addPlayersToGame(game: game, playersDic: (json??["players"] as? [String:[String:String]])!)
         self.addWinCounterToGame(game: game, winCountDic: (json??["winCounter"] as? [String:Int])!)
         
-        return game
+        GameStack.sharedInstance.saveContext {
+            completeHandler()
+        }
     }
     private static func addPlayersToGame(game: Game, playersDic: [String:[String:String]]){
         for(playerId,playerDic2) in playersDic {
