@@ -220,10 +220,13 @@ class PreviousGamesViewController: UIViewController, UITableViewDelegate, UITabl
                     cell?.downloadBtn.isHidden = true
                     cell?.activityIndicator.startAnimating()
                     GameDataFromJSON.saveGameCoreDataFromJSON(model: (gameModel?.model)!, completeHandler: {
-                        gameModel = nil
                         DispatchQueue.main.async {
                             cell?.activityIndicator.stopAnimating()
                             self.gamesStorageLocation[(gameModel?.gameId)!] = "coreData"
+                            gameModel = nil
+                            self.selectingMode = false
+                            self.hideDownloadDeleteCancelBarBtn()
+                            self.selectedIndexPath.removeValue(forKey: indexPath)
                             self.tableview.reloadRows(at: [indexPath], with: .fade)
                         }
                     })
@@ -236,10 +239,13 @@ class PreviousGamesViewController: UIViewController, UITableViewDelegate, UITabl
                     }
                     cell?.activityIndicator.startAnimating()
                     GameDataFromJSON.saveGameCoreDataFromJSON(model: (gameModel?.model)!, completeHandler: {
-                        gameModel = nil
                         DispatchQueue.main.async {
                             cell?.activityIndicator.stopAnimating()
                             self.gamesStorageLocation[(gameModel?.gameId)!] = "coreData"
+                            gameModel = nil
+                            self.selectingMode = false
+                            self.hideDownloadDeleteCancelBarBtn()
+                            self.selectedIndexPath.removeValue(forKey: indexPath)
                             self.tableview.reloadRows(at: [indexPath], with: .fade)
                         }
                     })
@@ -252,10 +258,13 @@ class PreviousGamesViewController: UIViewController, UITableViewDelegate, UITabl
                     }
                     cell?.activityIndicator.startAnimating()
                     GameDataFromJSON.saveGameCoreDataFromJSON(model: (gameModel?.model)!, completeHandler: {
-                        gameModel = nil
                         DispatchQueue.main.async {
                             cell?.activityIndicator.stopAnimating()
                             self.gamesStorageLocation[(gameModel?.gameId)!] = "coreData"
+                            gameModel = nil
+                            self.selectingMode = false
+                            self.hideDownloadDeleteCancelBarBtn()
+                            self.selectedIndexPath.removeValue(forKey: indexPath)
                             self.tableview.reloadRows(at: [indexPath], with: .fade)
                         }
                     })

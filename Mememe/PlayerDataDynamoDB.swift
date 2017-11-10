@@ -112,6 +112,27 @@ class PlayerDataDynamoDB {
         }
     }
     
+    static func updateUserName(name: String,completionHandler: @escaping (_ error: NSError?) -> Void) {
+        queryWithPartitionKeyWithCompletionHandler(userId: MyPlayerData.id) { (results, error) in
+            DispatchQueue.main.async {
+                if(error == nil){
+                    let data = results?.items[0] as? PlayerDataDBObjectModel
+                    
+                    let objectMapper = AWSDynamoDBObjectMapper.default()
+                    let itemToUpdate: PlayerDataDBObjectModel = data!
+                    
+                    itemToUpdate._name = name
+                    
+                    objectMapper.save(itemToUpdate, completionHandler: {(error: Error?) in
+                        DispatchQueue.main.async(execute: {
+                            completionHandler(error as NSError?)
+                        })
+                    })
+                }
+            }
+        }
+    }
+    
     
 }
 

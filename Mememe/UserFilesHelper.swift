@@ -82,7 +82,7 @@ class UserFilesHelper {
     }
     
     
-    private func downloadContent(_ content: AWSContent, pinOnCompletion: Bool, completeHandler: @escaping (_ data: Data) -> Void) {
+    /*private func downloadContent(_ content: AWSContent, pinOnCompletion: Bool, completeHandler: @escaping (_ data: Data) -> Void) {
         
         content.download(with: .ifNotCached, pinOnCompletion: pinOnCompletion, progressBlock: {(content: AWSContent, progress: Progress) in
             print(progress)
@@ -92,7 +92,7 @@ class UserFilesHelper {
             }
             completeHandler(data!)
         }
-    }
+    }*/
     
     private func getOnlyFileNameNotDirectory(directory: String) -> String{
         for x in 1...(directory.characters.count-1) {

@@ -80,6 +80,7 @@
 		244F2CF71F86DF0C00547AB2 /* InGameCards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244F2CF61F86DF0C00547AB2 /* InGameCards.swift */; };
 		244F7C011F8EC31E00865BB3 /* StartTut.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244F7C001F8EC31E00865BB3 /* StartTut.swift */; };
 		245031EC1F99AE0F009060D2 /* FileManagerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245031EB1F99AE0F009060D2 /* FileManagerHelper.swift */; };
+		2451FE6A1FB59025001D62A4 /* ChangeNameSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2451FE691FB59025001D62A4 /* ChangeNameSettingViewController.swift */; };
 		245B2B141F4F685500BCF75A /* GameDataFromJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245B2B131F4F685500BCF75A /* GameDataFromJSON.swift */; };
 		245B2B1F1F50F9D100BCF75A /* PrivateRoomTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245B2B1E1F50F9D100BCF75A /* PrivateRoomTableView.swift */; };
 		245B2B221F50FB2D00BCF75A /* PrivateRoomTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245B2B211F50FB2D00BCF75A /* PrivateRoomTableCell.swift */; };
@@ -94,6 +95,8 @@
 		24602D591FB145C1002D1CC2 /* WinCounterJSONModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24602D581FB145C1002D1CC2 /* WinCounterJSONModel.swift */; };
 		24602D5B1FB1AFEC002D1CC2 /* UIImageEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24602D5A1FB1AFEC002D1CC2 /* UIImageEditor.swift */; };
 		24602D5E1FB1CB8F002D1CC2 /* PreviewImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24602D5D1FB1CB8F002D1CC2 /* PreviewImage.swift */; };
+		2463EC661FB52ECC00D50E58 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2463EC651FB52ECC00D50E58 /* SettingViewController.swift */; };
+		2463EC681FB5303E00D50E58 /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2463EC671FB5303E00D50E58 /* SettingTableViewCell.swift */; };
 		2468B02F1F4E59870091EDD0 /* GameDataToJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2468B02E1F4E59870091EDD0 /* GameDataToJSON.swift */; };
 		246B8A731F735B3D0034DC24 /* InGameHelperConversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246B8A721F735B3D0034DC24 /* InGameHelperConversion.swift */; };
 		246D08EF1F7CAB730025DA40 /* MyDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246D08EE1F7CAB730025DA40 /* MyDataStack.swift */; };
@@ -306,6 +309,7 @@
 		244F2CF61F86DF0C00547AB2 /* InGameCards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InGameCards.swift; sourceTree = "<group>"; };
 		244F7C001F8EC31E00865BB3 /* StartTut.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartTut.swift; sourceTree = "<group>"; };
 		245031EB1F99AE0F009060D2 /* FileManagerHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerHelper.swift; sourceTree = "<group>"; };
+		2451FE691FB59025001D62A4 /* ChangeNameSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeNameSettingViewController.swift; sourceTree = "<group>"; };
 		245B2B131F4F685500BCF75A /* GameDataFromJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameDataFromJSON.swift; sourceTree = "<group>"; };
 		245B2B1E1F50F9D100BCF75A /* PrivateRoomTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivateRoomTableView.swift; sourceTree = "<group>"; };
 		245B2B211F50FB2D00BCF75A /* PrivateRoomTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivateRoomTableCell.swift; sourceTree = "<group>"; };
@@ -320,6 +324,8 @@
 		24602D581FB145C1002D1CC2 /* WinCounterJSONModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinCounterJSONModel.swift; sourceTree = "<group>"; };
 		24602D5A1FB1AFEC002D1CC2 /* UIImageEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageEditor.swift; sourceTree = "<group>"; };
 		24602D5D1FB1CB8F002D1CC2 /* PreviewImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewImage.swift; sourceTree = "<group>"; };
+		2463EC651FB52ECC00D50E58 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		2463EC671FB5303E00D50E58 /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
 		2468B02E1F4E59870091EDD0 /* GameDataToJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameDataToJSON.swift; sourceTree = "<group>"; };
 		246B8A721F735B3D0034DC24 /* InGameHelperConversion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InGameHelperConversion.swift; sourceTree = "<group>"; };
 		246D08EE1F7CAB730025DA40 /* MyDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDataStack.swift; sourceTree = "<group>"; };
@@ -744,6 +750,16 @@
 			name = View;
 			sourceTree = "<group>";
 		};
+		2463EC641FB5282300D50E58 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				2463EC651FB52ECC00D50E58 /* SettingViewController.swift */,
+				2463EC671FB5303E00D50E58 /* SettingTableViewCell.swift */,
+				2451FE691FB59025001D62A4 /* ChangeNameSettingViewController.swift */,
+			);
+			name = Setting;
+			sourceTree = "<group>";
+		};
 		2465D2011FAEEC8A00449027 /* Preview Part */ = {
 			isa = PBXGroup;
 			children = (
@@ -967,6 +983,7 @@
 			children = (
 				24896D551F2A5FA2003B6954 /* StartViewController.swift */,
 				241C6E681F58AF2600756BA7 /* Sign up */,
+				2463EC641FB5282300D50E58 /* Setting */,
 				24233F561F61F1AC00B2B7EE /* AvailableGames */,
 				242088601F8B55A800BFFD1B /* Tutorial */,
 				245BE5341F8F2E2800B02CD3 /* Previous Game */,
@@ -1393,6 +1410,7 @@
 				2488B07D1F8D97050064E7A5 /* AddEditTutUI.swift in Sources */,
 				2413D7BF1F43E78C001EA209 /* CardNormal.swift in Sources */,
 				24C4A7811F2AC94C00A1E277 /* AvailableGamesViewController.swift in Sources */,
+				2451FE6A1FB59025001D62A4 /* ChangeNameSettingViewController.swift in Sources */,
 				244A43EA1F9BB14700463F2E /* MyCoreData+CoreDataClass.swift in Sources */,
 				24F7C9991FA0541800D20368 /* Player+CoreDataClass.swift in Sources */,
 				242088751F8CA3D000BFFD1B /* InGameTutUI.swift in Sources */,
@@ -1423,6 +1441,7 @@
 				24F0105A1FAC5A270029E804 /* PreviewGamesTwoImageCell.swift in Sources */,
 				248CC2191F8D47ED0097FB6A /* InGameTutSound.swift in Sources */,
 				2413D7B01F42112A001EA209 /* PlayerLoveCoreDataProperties.swift in Sources */,
+				2463EC661FB52ECC00D50E58 /* SettingViewController.swift in Sources */,
 				24F7C99A1FA0541800D20368 /* Round+CoreDataProperties.swift in Sources */,
 				24C30F441F7441E8007237C1 /* InGameScrollViews.swift in Sources */,
 				242088661F8C02CC00BFFD1B /* AvailableGameTutorialController.swift in Sources */,
@@ -1432,6 +1451,7 @@
 				24AB455D1FB04D9D004DE842 /* CardCeasarJSONModel.swift in Sources */,
 				2413D7B51F422838001EA209 /* AddEditMyMemeView.swift in Sources */,
 				2498F9DB1F3478C500B21267 /* HerChatTableViewCell.swift in Sources */,
+				2463EC681FB5303E00D50E58 /* SettingTableViewCell.swift in Sources */,
 				244F2CF71F86DF0C00547AB2 /* InGameCards.swift in Sources */,
 				24E328A11F89687700A2A2FE /* InGameLeaveRoom.swift in Sources */,
 				24233F5C1F6312D500B2B7EE /* Extension.swift in Sources */,
