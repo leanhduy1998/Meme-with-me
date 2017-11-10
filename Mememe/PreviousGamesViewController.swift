@@ -174,6 +174,101 @@ class PreviousGamesViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     @IBAction func downloadBtnPressed(_ sender: Any) {
+        if(!Reachability.isConnectedToNetwork()){
+            DisplayAlert.display(controller: self, title: "There's a bug in my pants", message: "You can't download games unless there is wifi! Sorry!")
+            return
+        }
+        
+        var unableToDownloadCounts = 0
+        
+        if selectedAll {
+            
+            for section in sections {
+                for game in section.games {
+                    if game is Game{
+                        unableToDownloadCounts = unableToDownloadCounts + 1
+                        continue
+                    }
+                    var gameModel = game as? GameJSONModel
+                    gamesStorageLocation[(gameModel?.gameId!)!]! = "coreData"
+                    
+                    GameDataFromJSON.saveGameCoreDataFromJSON(model: (gameModel?.model)!, completeHandler: {
+                        gameModel = nil
+                    })
+                }
+            }
+            tableview.reloadData()
+        }
+        else {
+            for (indexPath,_) in selectedIndexPath {
+                if sections[indexPath.section].games[indexPath.row] is Game{
+                    unableToDownloadCounts = unableToDownloadCounts + 1
+                    continue
+                }
+                var gameModel = sections[indexPath.section].games[indexPath.row] as? GameJSONModel
+                
+                switch((gameModel?.player.count)!){
+                case 1:
+                    break
+                case 2:
+                    let cell = tableview.cellForRow(at: indexPath) as? PreviewGamesTwoImageCell
+                    if cell?.downloadBtn.isHidden == true {
+                        unableToDownloadCounts = unableToDownloadCounts + 1
+                        continue
+                    }
+                    
+                    cell?.downloadBtn.isHidden = true
+                    cell?.activityIndicator.startAnimating()
+                    GameDataFromJSON.saveGameCoreDataFromJSON(model: (gameModel?.model)!, completeHandler: {
+                        gameModel = nil
+                        DispatchQueue.main.async {
+                            cell?.activityIndicator.stopAnimating()
+                            self.gamesStorageLocation[(gameModel?.gameId)!] = "coreData"
+                            self.tableview.reloadRows(at: [indexPath], with: .fade)
+                        }
+                    })
+                    break
+                case 3:
+                    let cell = tableview.cellForRow(at: indexPath) as? PreviewGamesThreeImageCell
+                    if cell?.downloadBtn.isHidden == true {
+                        unableToDownloadCounts = unableToDownloadCounts + 1
+                        continue
+                    }
+                    cell?.activityIndicator.startAnimating()
+                    GameDataFromJSON.saveGameCoreDataFromJSON(model: (gameModel?.model)!, completeHandler: {
+                        gameModel = nil
+                        DispatchQueue.main.async {
+                            cell?.activityIndicator.stopAnimating()
+                            self.gamesStorageLocation[(gameModel?.gameId)!] = "coreData"
+                            self.tableview.reloadRows(at: [indexPath], with: .fade)
+                        }
+                    })
+                    break
+                default:
+                    let cell = tableview.cellForRow(at: indexPath) as? PreviewGamesFourImageCell
+                    if cell?.downloadBtn.isHidden == true {
+                        unableToDownloadCounts = unableToDownloadCounts + 1
+                        continue
+                    }
+                    cell?.activityIndicator.startAnimating()
+                    GameDataFromJSON.saveGameCoreDataFromJSON(model: (gameModel?.model)!, completeHandler: {
+                        gameModel = nil
+                        DispatchQueue.main.async {
+                            cell?.activityIndicator.stopAnimating()
+                            self.gamesStorageLocation[(gameModel?.gameId)!] = "coreData"
+                            self.tableview.reloadRows(at: [indexPath], with: .fade)
+                        }
+                    })
+                    break
+                }
+            }
+        }
+        if unableToDownloadCounts == 0 {
+            DisplayAlert.display(controller: self, title: "All sets!", message: "All selected games are being download!")
+        }
+        else {
+            DisplayAlert.display(controller: self, title: "Hmmm", message: "Some games are already on your phone!")
+        }
     }
     
     @IBAction func cancelBtnBarPressed(_ sender: Any) {
@@ -189,47 +284,7 @@ class PreviousGamesViewController: UIViewController, UITableViewDelegate, UITabl
     /*
     func downloadOption(action: UIAlertAction){
         print("download")
-        var gameModel = sections[holdedIndex.section].games[holdedIndex.row] as? GameJSONModel
-        
-        switch((gameModel?.player.count)!){
-            case 1:
-            break
-            case 2:
-                let cell = tableview.cellForRow(at: holdedIndex) as? PreviewGamesTwoImageCell
-                cell?.downloadBtn.isHidden = true
-                cell?.activityIndicator.startAnimating()
-                GameDataFromJSON.saveGameCoreDataFromJSON(model: (gameModel?.model)!, completeHandler: {
-                    gameModel = nil
-                    DispatchQueue.main.async {
-                        cell?.activityIndicator.stopAnimating()
-                        self.gamesStorageLocation[(gameModel?.gameId)!] = "coreData"
-                    }
-                })
-            break
-            case 3:
-                let cell = tableview.cellForRow(at: holdedIndex) as? PreviewGamesThreeImageCell
-                cell?.downloadBtn.isHidden = true
-                cell?.activityIndicator.startAnimating()
-                GameDataFromJSON.saveGameCoreDataFromJSON(model: (gameModel?.model)!, completeHandler: {
-                    gameModel = nil
-                    DispatchQueue.main.async {
-                        cell?.activityIndicator.stopAnimating()
-                        self.gamesStorageLocation[(gameModel?.gameId)!] = "coreData"
-                    }
-                })
-            break
-            default:
-                let cell = tableview.cellForRow(at: holdedIndex) as? PreviewGamesFourImageCell
-                cell?.downloadBtn.isHidden = true
-                cell?.activityIndicator.startAnimating()
-                GameDataFromJSON.saveGameCoreDataFromJSON(model: (gameModel?.model)!, completeHandler: {
-                    gameModel = nil
-                    DispatchQueue.main.async {
-                        cell?.activityIndicator.stopAnimating()
-                        self.gamesStorageLocation[(gameModel?.gameId)!] = "coreData"
-                    }
-                })
-            break
+     
  
     }
     func deleteOption(action: UIAlertAction){
