@@ -10,6 +10,8 @@ import UIKit
 
 class SettingViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    @IBOutlet weak var tableview: UITableView!
+    
     var sections = ["Change Your Name","Change Your Profile Picture","Log Out Of Google Account"]
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -23,29 +25,25 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if sections[indexPath.row] == "Change Your Name" {
+        switch(sections[indexPath.row]){
+        case "Change Your Name":
             performSegue(withIdentifier: "ChangeNameSettingViewControllerSegue", sender: self)
+            break
+        
+        case "Change Your Profile Picture":
+            performSegue(withIdentifier: "ChangePictureSegue", sender: self)
+            break
+            
+        default:
+            break
+        }
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destination = segue.destination as? ChangeUserPictureViewController {
+            destination.isFromSetting = true
         }
     }
     
-
-    @IBOutlet weak var tableview: UITableView!
-    
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-    }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

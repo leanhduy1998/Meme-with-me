@@ -527,7 +527,6 @@
 			isa = PBXGroup;
 			children = (
 				241C6E641F58983B00756BA7 /* SignUpViewController.swift */,
-				241C6E661F58AEFF00756BA7 /* ChangeUserPictureViewController.swift */,
 			);
 			name = "Sign up";
 			sourceTree = "<group>";
@@ -756,6 +755,7 @@
 				2463EC651FB52ECC00D50E58 /* SettingViewController.swift */,
 				2463EC671FB5303E00D50E58 /* SettingTableViewCell.swift */,
 				2451FE691FB59025001D62A4 /* ChangeNameSettingViewController.swift */,
+				241C6E661F58AEFF00756BA7 /* ChangeUserPictureViewController.swift */,
 			);
 			name = Setting;
 			sourceTree = "<group>";

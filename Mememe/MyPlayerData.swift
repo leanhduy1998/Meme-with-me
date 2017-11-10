@@ -7,10 +7,10 @@
 //
 
 import Foundation
+import UIKit
 
 class MyPlayerData{
     static var name: String!
     static var userImageUrl: String!
     static var id: String!
-
 }

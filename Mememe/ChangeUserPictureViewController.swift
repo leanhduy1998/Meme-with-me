@@ -9,20 +9,24 @@
 import UIKit
 
 class ChangeUserPictureViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
-    
-    
     @IBOutlet weak var cameraBtn: UIButton!
     @IBOutlet weak var finishBtn: UIButton!
     @IBOutlet weak var userIV: UIImageView!
     
     @IBOutlet weak var searchTF: UITextField!
     
-    
+    @IBOutlet weak var progressView: UIProgressView!
     
     
     var userImage = #imageLiteral(resourceName: "emptyUser")
     let imagePicker = UIImagePickerController()
     
+    var isFromSetting = false
+    
+    let helper = UserFilesHelper()
+    
+    let compressedProfileImageDirectory = "public/compressedProfileImage"
+    let originalProfileImageDirectory = "public/originalProfileImage"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,9 +37,6 @@ class ChangeUserPictureViewController: UIViewController, UIImagePickerController
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tap)
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
     func keyboardWillShow(notification: NSNotification) {
@@ -45,9 +46,7 @@ class ChangeUserPictureViewController: UIViewController, UIImagePickerController
     }
     
     func keyboardWillHide(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            self.view.frame.origin.y += keyboardSize.height
-        }
+        self.view.frame.origin.y = 0
     }
     
     func dismissKeyboard() {
@@ -62,6 +61,22 @@ class ChangeUserPictureViewController: UIViewController, UIImagePickerController
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         finishBtn.isEnabled = false
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        if isFromSetting {
+            helper.loadUserProfilePicture(userId: MyPlayerData.id, completeHandler: { (imageData) in
+                DispatchQueue.main.async {
+                    self.userIV.image = UIImage(data: imageData)
+                }
+            })
+        }
+        progressView.isHidden = true
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillShow, object: nil)
+        isFromSetting = false
     }
 
     @IBAction func libraryBtnPressed(_ sender: Any) {
@@ -119,7 +134,44 @@ class ChangeUserPictureViewController: UIViewController, UIImagePickerController
     }
     
     @IBAction func finishBtnPressed(_ sender: Any) {
-        performSegue(withIdentifier: "UnwindToSignUpViewController", sender: self)
+        if isFromSetting{
+            progressView.isHidden = false
+            let S3Helper = UserFilesHelper()
+            let data = userIV.image?.jpeg(UIImage.JPEGQuality.lowest)
+            
+            S3Helper.uploadData(directory: compressedProfileImageDirectory, fileName: "\(MyPlayerData.id!)", data: data!, progressView: progressView) { (url) in
+                DispatchQueue.main.async {
+                    let alertController = UIAlertController(title: "Finish Upload", message: "I compressed and uploaded your image. Do you want to also upload your image at full resolution", preferredStyle: UIAlertControllerStyle.actionSheet)
+                    alertController.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.default, handler: self.uploadFullResImage))
+                    alertController.addAction(UIAlertAction(title: "Nah", style: UIAlertActionStyle.default, handler: self.finishUploading))
+                    self.present(alertController, animated: true, completion: nil)
+                }
+            }
+        }
+        else {
+            performSegue(withIdentifier: "UnwindToSignUpViewController", sender: self)
+        }
+    }
+    
+    // this is only for when called from setting
+    private func uploadFullResImage(action: UIAlertAction){
+        let S3Helper = UserFilesHelper()
+        let data = userIV.image?.jpeg(UIImage.JPEGQuality.highest)
+        S3Helper.uploadData(directory: originalProfileImageDirectory, fileName: "\(MyPlayerData.id!)", data: data!, progressView: progressView) { (url) in
+            DispatchQueue.main.async {
+                self.dismiss(animated: true, completion: nil)
+            }
+        }
+    }
+    
+    // this is only for when called from setting
+    private func finishUploading(action: UIAlertAction){
+        dismiss(animated: true, completion: nil)
+    }
+    
+    
+    @IBAction func cancelBtnPressed(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

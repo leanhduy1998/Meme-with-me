@@ -48,7 +48,6 @@ class StartViewController: UIViewController,UIGestureRecognizerDelegate, AWSSign
         let path = Bundle.main.path(forResource: "topMemes", ofType: "txt")
         do {
             let data = try String(contentsOfFile: path!, encoding: .utf8)
-            print(data)
             let myStrings = data.components(separatedBy: .newlines)
             Database.database().reference().child("meme").child("topMemes").setValue(myStrings)
         } catch {

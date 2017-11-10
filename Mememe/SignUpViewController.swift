@@ -81,38 +81,12 @@ class SignUpViewController: UIViewController, UITextFieldDelegate{
         return false
     }
     
-    
-
-    
     @IBAction func finishBtnPressed(_ sender: Any) {
         finishBtn.isEnabled = false
         progressView.isHidden = false
         progressLabel.isHidden = false
         
-        var compressedImageData = (currentUserImage?.jpeg(.highest))!
-       
-        var quality = 5
-        while compressedImageData.count > 2000000 {
-            quality = quality - 1
-            
-            switch(quality){
-            case 4:
-                compressedImageData = (currentUserImage?.jpeg(.high))!
-                break
-            case 3:
-                compressedImageData = (currentUserImage?.jpeg(.medium))!
-                break
-            case 2:
-                compressedImageData = (currentUserImage?.jpeg(.low))!
-                break
-            case 1:
-                compressedImageData = (currentUserImage?.jpeg(.lowest))!
-                break
-                
-            default:
-                break
-            }
-        }
+        let compressedImageData = (currentUserImage?.jpeg(.lowest))!
         
         S3Helper.uploadData(directory: compressedProfileImageDirectory, fileName: "\(MyPlayerData.id!)", data: compressedImageData, progressView: progressView) { (url) in
             DispatchQueue.main.async {
@@ -127,7 +101,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate{
     }
     
     private func uploadFullResImage(action: UIAlertAction){
-        S3Helper.uploadData(directory: originalProfileImageDirectory, fileName: "\(MyPlayerData.id!)", data: UIImagePNGRepresentation(currentUserImage)!, progressView: progressView) { (url) in
+        let data = currentUserImage.jpeg(UIImage.JPEGQuality.highest)
+        S3Helper.uploadData(directory: originalProfileImageDirectory, fileName: "\(MyPlayerData.id!)", data: data!, progressView: progressView) { (url) in
             DispatchQueue.main.async {
                 self.finishUploading()
             }
