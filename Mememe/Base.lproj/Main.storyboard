@@ -179,7 +179,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-239.13043478260872" y="40.760869565217398"/>
+            <point key="canvasLocation" x="-284" y="-33"/>
         </scene>
         <!--AvailableGamesViewController-->
         <scene sceneID="74L-Wh-cqH">
@@ -194,7 +194,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7DR-TY-cHo">
-                                <rect key="frame" x="30" y="676" width="354" height="40"/>
+                                <rect key="frame" x="30" y="627" width="354" height="40"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jLs-5U-tJj">
                                         <rect key="frame" x="0.0" y="0.0" width="354" height="40"/>
@@ -223,7 +223,7 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="128" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fPc-n5-i96">
-                                <rect key="frame" x="0.0" y="74" width="414" height="582"/>
+                                <rect key="frame" x="0.0" y="74" width="414" height="533"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AvailableGamesOneImageCell" rowHeight="128" id="eYk-2Z-1tD" customClass="AvailableGamesOneImageCell" customModule="Mememe" customModuleProvider="target">
@@ -556,6 +556,182 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TdQ-uB-72n" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2920" y="-33"/>
+        </scene>
+        <!--Legal View Controller-->
+        <scene sceneID="GRQ-UE-hRa">
+            <objects>
+                <viewController id="s57-vf-pcf" customClass="LegalViewController" customModule="Mememe" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="6Pe-0P-6B2"/>
+                        <viewControllerLayoutGuide type="bottom" id="VlD-yE-Ig1"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Pr8-6R-DHa">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s36-rh-Hb6">
+                                <rect key="frame" x="0.0" y="20" width="414" height="44"/>
+                                <items>
+                                    <navigationItem title="Title" id="UFT-mp-1cs">
+                                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="L47-4W-N3D">
+                                            <connections>
+                                                <action selector="cancelBtnPressed:" destination="s57-vf-pcf" id="MVW-85-Pgh"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="5Wu-YL-4D7">
+                                <rect key="frame" x="30" y="74" width="354" height="652"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <mutableString key="text">Mememe Privacy Policy
+
+This privacy policy has been compiled to better serve those who are concerned with how their 'Personally Identifiable Information' (PII) is being used online. PII, as described in US privacy law and information security, is information that can be used on its own or with other information to identify, contact, or locate a single person, or to identify an individual in context. Please read our privacy policy carefully to get a clear understanding of how we collect, use, protect or otherwise handle your Personally Identifiable Information in accordance with our website.
+What personal information do we collect from the people that visit our blog, website or app?
+We do not collect information from visitors of our site. or other details to help you with your experience.
+
+When do we collect information?
+
+We collect information from you when you register on our site, Open a Support Ticket or enter information on our site.
+
+How do we use your information?
+
+We may use the information we collect from you when you register, make a purchase, sign up for our newsletter, respond to a survey or marketing communication, surf the website, or use certain other site features in the following ways:
+• To personalize your experience and to allow us to deliver the type of content and product offerings in which you are most interested.
+• To improve our website in order to better serve you.
+• To allow us to better service you in responding to your customer service requests.
+
+How do we protect your information?
+
+We do not use vulnerability scanning and/or scanning to PCI standards. We use regular Malware Scanning.
+
+We do not use an SSL certificate
+• We do not need an SSL because:
+
+Do we use 'cookies'?
+Yes. Cookies are small files that a site or its service provider transfers to your computer's hard drive through your Web browser (if you allow) that enables the site's or service provider's systems to recognize your browser and capture and remember certain information. For instance, we use cookies to help us remember and process the items in your shopping cart. They are also used to help us understand your preferences based on previous or current site activity, which enables us to provide you with improved services. We also use cookies to help us compile aggregate data about site traffic and site interaction so that we can offer better site experiences and tools in the future.
+
+We use cookies to:
+• Understand and save user's preferences for future visits.
+• Keep track of advertisements.
+• Compile aggregate data about site traffic and site interactions in order to offer better site experiences and tools in the future. We may also use trusted third-party services that track this information on our behalf.
+
+You can choose to have your computer warn you each time a cookie is being sent, or you can choose to turn off all cookies. You do this through your browser settings. Since browser is a little different, look at your browser's Help Menu to learn the correct way to modify your cookies.
+If you turn cookies off, Some of the features that make your site experience more efficient may not function properly.that make your site experience more efficient and may not function properly.
+
+Third-party disclosure
+
+Third-party links
+
+Google
+
+Google's advertising requirements can be summed up by Google's Advertising Principles. They are put in place to provide a positive experience for users. https://support.google.com/adwordspolicy/answer/1316548?hl=en
+
+We have not enabled Google AdSense on our site but we may do so in the future.
+
+California Online Privacy Protection Act
+
+CalOPPA is the first state law in the nation to require commercial websites and online services to post a privacy policy. The law's reach stretches well beyond California to require any person or company in the United States (and conceivably the world) that operates websites collecting Personally Identifiable Information from California consumers to post a conspicuous privacy policy on its website stating exactly the information being collected and those individuals or companies with whom it is being shared. - See more at: http://consumercal.org/california-online-privacy-protection-act-caloppa/#sthash.0FdRbT51.dpuf
+
+According to CalOPPA, we agree to the following:
+Users can visit our site anonymously.
+Once this privacy policy is created, we will add a link to it on our home page or as a minimum, on the first significant page after entering our website.
+
+Our Privacy Policy link includes the word 'Privacy' and can easily be found on the page specified above.
+
+You will be notified of any Privacy Policy changes: 
+• On our Privacy Policy Page
+Can change your personal information: 
+• By logging in to your account
+
+How does our site handle Do Not Track signals? Does our site allow third-party behavioral tracking? COPPA (Children Online Privacy Protection Act)
+
+When it comes to the collection of personal information from children under the age of 13 years old, the Children's Online Privacy Protection Act (COPPA) puts parents in control. The Federal Trade Commission, United States' consumer protection agency, enforces the COPPA Rule, which spells out what operators of websites and online services must do to protect children's privacy and safety online.
+
+Do we let third-parties, including ad networks or plug-ins collect PII from children under 13?
+
+Fair Information Practices
+
+The Fair Information Practices Principles form the backbone of privacy law in the United States and the concepts they include have played a significant role in the development of data protection laws around the globe. Understanding the Fair Information Practice Principles and how they should be implemented is critical to comply with the various privacy laws that protect personal information.
+
+In order to be in line with Fair Information Practices we will take the following responsive action, should a data breach occur:
+We will notify you via email
+• Within 7 business days
+We will notify the users via in-site notification
+• Within 7 business days
+
+We also agree to the Individual Redress Principle which requires that individuals have the right to legally pursue enforceable rights against data collectors and processors who fail to adhere to the law. This principle requires not only that individuals have enforceable rights against data users, but also that individuals have recourse to courts or government agencies to investigate and/or prosecute non-compliance by data processors.
+
+CAN SPAM Act
+
+The CAN-SPAM Act is a law that sets the rules for commercial email, establishes requirements for commercial messages, gives recipients the right to have emails stopped from being sent to them, and spells out tough penalties for violations.
+
+We collect your email address in order to:
+• Send information, respond to inquiries, and/or other requests or questions
+To be in accordance with CANSPAM, we agree to the following:
+• Not use false or misleading subjects or email addresses.
+• Identify the message as an advertisement in some reasonable way.
+• Include the physical address of our business or site headquarters.
+• Monitor third-party email marketing services for compliance, if one is used. • Honor opt-out/unsubscribe requests quickly.
+• Allow users to unsubscribe by using the link at the bottom of each email.
+If at any time you would like to unsubscribe from receiving future emails, you can email us atandrewledev@gmail.com and we will promptly remove you from ALL correspondence.
+
+Acknowledgements
+
+Human Heartbeat, by Mike Koenig Music by Kevin MacLeod. Available under the Creative Commons Attribution 3.0 Unported license: https://creativecommons.org/licenses/by/3.0/ Airstrip Serenity, Lobby Time, BossaBossa, On My Way, Ascending the Vale, Concentration.
+
+Sketchy food background created by Freepik. Download button free icon, Logout free icon made by Freepik from www.flaticon.com. Info Icon requires linking to https://icons8.com/.
+
+SwiftTryCatch is licensed under the
+
+The MIT License (MIT)
+
+Copyright (c) 2014 William Falcon
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+Contacting Us
+If there are any questions regarding this privacy policy, you may contact us using the information below.
+
+Mememe
+166 Jones Ave.
+New Brunswick, New Jersey 08901
+</mutableString>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="VlD-yE-Ig1" firstAttribute="top" secondItem="5Wu-YL-4D7" secondAttribute="bottom" constant="10" id="LPA-l5-W55"/>
+                            <constraint firstItem="5Wu-YL-4D7" firstAttribute="leading" secondItem="Pr8-6R-DHa" secondAttribute="leadingMargin" constant="10" id="XZj-ID-qLF"/>
+                            <constraint firstItem="s36-rh-Hb6" firstAttribute="leading" secondItem="Pr8-6R-DHa" secondAttribute="leading" id="d1n-no-dxw"/>
+                            <constraint firstItem="5Wu-YL-4D7" firstAttribute="top" secondItem="s36-rh-Hb6" secondAttribute="bottom" constant="10" id="iS0-2q-NdK"/>
+                            <constraint firstItem="s36-rh-Hb6" firstAttribute="top" secondItem="6Pe-0P-6B2" secondAttribute="bottom" id="rUb-fa-QoT"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="5Wu-YL-4D7" secondAttribute="trailing" constant="10" id="wbA-I5-cU3"/>
+                            <constraint firstAttribute="trailing" secondItem="s36-rh-Hb6" secondAttribute="trailing" id="y8c-No-6VW"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="69Z-v4-aXP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2080" y="2321"/>
         </scene>
         <!--AvailableGamesViewController-->
         <scene sceneID="TbZ-8U-jCL">
@@ -938,7 +1114,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R7T-DM-IU2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3654" y="1565"/>
+            <point key="canvasLocation" x="4162" y="1524"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="qVu-4r-hLc">
@@ -2023,7 +2199,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iow-Na-otC" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="SOZ-uG-kSo" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="5646" y="1548"/>
+            <point key="canvasLocation" x="6152" y="1507"/>
         </scene>
         <!--Add Edit My Meme View Controller-->
         <scene sceneID="A9V-ig-c3S">
@@ -2146,7 +2322,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vjs-1W-P7g" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="F0U-6B-Ajn" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="6693" y="-494"/>
+            <point key="canvasLocation" x="5714" y="-413"/>
         </scene>
         <!--Add Edit Tut Controller-->
         <scene sceneID="1Zh-ZM-Wj0">
@@ -2255,7 +2431,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A4R-Rf-Nau" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="zo7-CW-OPY" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="6641" y="1354"/>
+            <point key="canvasLocation" x="7149" y="1313"/>
         </scene>
         <!--Judging View Controller-->
         <scene sceneID="9U6-Pa-acM">
@@ -2320,7 +2496,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h8J-6F-J8k" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="YxM-99-dMq" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="6693" y="267"/>
+            <point key="canvasLocation" x="5714" y="347"/>
         </scene>
         <!--Judging Tut Controller-->
         <scene sceneID="y1L-mG-60L">
@@ -2370,7 +2546,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KG4-1A-JWm" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="iEk-OH-ko1" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="6641" y="2035"/>
+            <point key="canvasLocation" x="7149" y="1996"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="zeD-fk-bfL">
@@ -2659,9 +2835,18 @@
                                     <outlet property="delegate" destination="FWS-eI-YuD" id="VUR-Md-bir"/>
                                 </connections>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KZJ-72-30b">
+                                <rect key="frame" x="309" y="20" width="93" height="30"/>
+                                <state key="normal" title="Private Policy"/>
+                                <connections>
+                                    <segue destination="s57-vf-pcf" kind="show" id="grq-5F-2tf"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="KZJ-72-30b" firstAttribute="trailing" secondItem="nxk-gn-ItN" secondAttribute="trailingMargin" constant="8" id="3Iw-3F-alr"/>
+                            <constraint firstItem="KZJ-72-30b" firstAttribute="top" secondItem="nxk-gn-ItN" secondAttribute="top" constant="20" id="5wx-01-y3a"/>
                             <constraint firstItem="wxg-gj-btF" firstAttribute="centerY" secondItem="nxk-gn-ItN" secondAttribute="centerY" id="64K-7f-IJ7"/>
                             <constraint firstAttribute="trailingMargin" secondItem="wxg-gj-btF" secondAttribute="trailing" id="IHv-LP-kyc"/>
                             <constraint firstItem="wxg-gj-btF" firstAttribute="leading" secondItem="nxk-gn-ItN" secondAttribute="leadingMargin" id="VIm-Pg-DAy"/>
@@ -2678,7 +2863,74 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1ZY-Dl-z2u" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="5E1-PF-bx9" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1487" y="1004"/>
+            <point key="canvasLocation" x="1248" y="1595"/>
+        </scene>
+        <!--About us-->
+        <scene sceneID="9Cn-Tq-B14">
+            <objects>
+                <viewController id="IvO-AK-Rz8" customClass="AboutUsViewController" customModule="Mememe" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jW9-ox-OkH"/>
+                        <viewControllerLayoutGuide type="bottom" id="1gK-tZ-Kko"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="UJz-q1-L0a">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="T81-6L-cE3">
+                                <rect key="frame" x="50" y="120" width="314" height="130"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="andrew" translatesAutoresizingMaskIntoConstraints="NO" id="lXb-Fa-1fB">
+                                        <rect key="frame" x="0.0" y="0.0" width="130" height="130"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="lXb-Fa-1fB" secondAttribute="height" id="yP2-VC-EAo"/>
+                                        </constraints>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="kayser" translatesAutoresizingMaskIntoConstraints="NO" id="NQb-F9-Ard">
+                                        <rect key="frame" x="184" y="0.0" width="130" height="130"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="NQb-F9-Ard" secondAttribute="height" multiplier="1:1" id="Ojk-dq-ay2"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="130" id="chp-Kk-NCv"/>
+                                </constraints>
+                            </stackView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ead-V8-9Gz">
+                                <rect key="frame" x="30" y="300" width="354" height="377"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <string key="text">Hey guys, 
+
+We're Andrew and Kayser, the creator of Mememe. We are two college students from Rutgers University. Andrew is a Computer Science major, while Kayser is a Law major. One fun fact is that both of us are living with other 12 students. 
+
+Please support us through Patreon at https://www.patreon.com/taydrew as we continue to refine and polish this game (and Andrew is living in closet, please send help). 
+
+Thank you for your time, we hope you enjoy.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ead-V8-9Gz" firstAttribute="leading" secondItem="UJz-q1-L0a" secondAttribute="leadingMargin" constant="10" id="7oj-bZ-tiz"/>
+                            <constraint firstItem="T81-6L-cE3" firstAttribute="leading" secondItem="UJz-q1-L0a" secondAttribute="leading" constant="50" id="8hP-fX-tVr"/>
+                            <constraint firstItem="1gK-tZ-Kko" firstAttribute="top" secondItem="ead-V8-9Gz" secondAttribute="bottom" constant="10" id="f93-H0-bou"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ead-V8-9Gz" secondAttribute="trailing" constant="10" id="gNb-qD-zgC"/>
+                            <constraint firstItem="T81-6L-cE3" firstAttribute="top" secondItem="jW9-ox-OkH" secondAttribute="bottom" constant="100" id="nNv-oR-v1r"/>
+                            <constraint firstItem="ead-V8-9Gz" firstAttribute="top" secondItem="T81-6L-cE3" secondAttribute="bottom" constant="50" id="uYM-28-qzM"/>
+                            <constraint firstAttribute="trailing" secondItem="T81-6L-cE3" secondAttribute="trailing" constant="50" id="z3B-re-ntv"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="About us" image="info" id="AY7-mf-v2n"/>
+                    <connections>
+                        <outlet property="iv1" destination="lXb-Fa-1fB" id="z6B-Bb-ELg"/>
+                        <outlet property="iv2" destination="NQb-F9-Ard" id="dJX-n4-1XT"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rDR-fO-AOc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2405.7971014492755" y="779.34782608695662"/>
         </scene>
         <!--Change Name Setting View Controller-->
         <scene sceneID="HuC-Vx-SKF">
@@ -2742,7 +2994,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9eD-Ws-ZON" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2319" y="1004"/>
+            <point key="canvasLocation" x="2080" y="1595"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="CqZ-fC-UpH">
@@ -2757,11 +3009,12 @@
                         <segue destination="VJ8-fe-rjT" kind="relationship" relationship="viewControllers" id="gTY-Lo-ee3"/>
                         <segue destination="yj0-ZI-HMp" kind="relationship" relationship="viewControllers" id="tfL-Tn-NAB"/>
                         <segue destination="FWS-eI-YuD" kind="relationship" relationship="viewControllers" id="0Ok-sN-FE4"/>
+                        <segue destination="IvO-AK-Rz8" kind="relationship" relationship="viewControllers" id="BMN-E8-sJM"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="90k-1j-hnl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1357" y="-33"/>
+            <point key="canvasLocation" x="635" y="-33"/>
         </scene>
         <!--Tutorial-->
         <scene sceneID="Jfl-4q-VF0">
@@ -3019,7 +3272,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kvi-G3-Ush" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4557" y="1548"/>
+            <point key="canvasLocation" x="5065" y="1507"/>
         </scene>
         <!--Preview In Game View Controller-->
         <scene sceneID="shz-H5-axT">
@@ -3117,6 +3370,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="andrew" width="400" height="400"/>
         <image name="caesar" width="100" height="100"/>
         <image name="clock" width="33" height="33"/>
         <image name="door" width="426" height="227"/>
@@ -3124,6 +3378,8 @@
         <image name="download" width="128" height="128"/>
         <image name="emptyUser" width="100" height="100"/>
         <image name="hammer" width="1920" height="1440"/>
+        <image name="info" width="33" height="33"/>
+        <image name="kayser" width="140" height="140"/>
         <image name="laughing" width="100" height="100"/>
         <image name="plus" width="50" height="50"/>
         <image name="redCircle" width="50" height="50"/>
@@ -3133,7 +3389,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="Vqk-Rj-oSd"/>
         <segue reference="tfL-Tn-NAB"/>
-        <segue reference="DSh-im-12n"/>
-        <segue reference="1c9-XJ-faU"/>
+        <segue reference="K4P-As-mOh"/>
+        <segue reference="gTY-Lo-ee3"/>
     </inferredMetricsTieBreakers>
 </document>

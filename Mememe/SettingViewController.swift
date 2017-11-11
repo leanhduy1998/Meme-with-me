@@ -13,7 +13,7 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     @IBOutlet weak var tableview: UITableView!
     
-    var sections = ["Change Your Name","Change Your Profile Picture","Log Out Of Google Account"]
+    var sections = ["Change Your Name","Change Your Profile Picture", "Log Out Of Google Account"]
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 3

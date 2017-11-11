@@ -152,6 +152,8 @@
 		2498FA361F3485E800B21267 /* SignIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2498FA331F3485E800B21267 /* SignIn.storyboard */; };
 		2498FA371F3485E800B21267 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2498FA341F3485E800B21267 /* SignInViewController.swift */; };
 		249F11A51F6DA4CD00C60059 /* PlayerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249F11A41F6DA4CD00C60059 /* PlayerData.swift */; };
+		249F15AF1FB6B684009A1112 /* LegalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249F15AE1FB6B684009A1112 /* LegalViewController.swift */; };
+		249F15B11FB6BBC4009A1112 /* AboutUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249F15B01FB6BBC4009A1112 /* AboutUsViewController.swift */; };
 		24AB45571FB0490C004DE842 /* GameJSONModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AB45561FB0490C004DE842 /* GameJSONModel.swift */; };
 		24AB45591FB04966004DE842 /* RoundJSONModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AB45581FB04966004DE842 /* RoundJSONModel.swift */; };
 		24AB455B1FB04CA8004DE842 /* PlayerJSONModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AB455A1FB04CA8004DE842 /* PlayerJSONModel.swift */; };
@@ -393,6 +395,8 @@
 		2498FA331F3485E800B21267 /* SignIn.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SignIn.storyboard; sourceTree = "<group>"; };
 		2498FA341F3485E800B21267 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		249F11A41F6DA4CD00C60059 /* PlayerData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerData.swift; sourceTree = "<group>"; };
+		249F15AE1FB6B684009A1112 /* LegalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalViewController.swift; sourceTree = "<group>"; };
+		249F15B01FB6BBC4009A1112 /* AboutUsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsViewController.swift; sourceTree = "<group>"; };
 		24AB45561FB0490C004DE842 /* GameJSONModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameJSONModel.swift; sourceTree = "<group>"; };
 		24AB45581FB04966004DE842 /* RoundJSONModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundJSONModel.swift; sourceTree = "<group>"; };
 		24AB455A1FB04CA8004DE842 /* PlayerJSONModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerJSONModel.swift; sourceTree = "<group>"; };
@@ -756,6 +760,7 @@
 				2463EC671FB5303E00D50E58 /* SettingTableViewCell.swift */,
 				2451FE691FB59025001D62A4 /* ChangeNameSettingViewController.swift */,
 				241C6E661F58AEFF00756BA7 /* ChangeUserPictureViewController.swift */,
+				249F15AE1FB6B684009A1112 /* LegalViewController.swift */,
 			);
 			name = Setting;
 			sourceTree = "<group>";
@@ -982,6 +987,7 @@
 			isa = PBXGroup;
 			children = (
 				24896D551F2A5FA2003B6954 /* StartViewController.swift */,
+				249F15B01FB6BBC4009A1112 /* AboutUsViewController.swift */,
 				241C6E681F58AF2600756BA7 /* Sign up */,
 				2463EC641FB5282300D50E58 /* Setting */,
 				24233F561F61F1AC00B2B7EE /* AvailableGames */,
@@ -1453,6 +1459,7 @@
 				2498F9DB1F3478C500B21267 /* HerChatTableViewCell.swift in Sources */,
 				2463EC681FB5303E00D50E58 /* SettingTableViewCell.swift in Sources */,
 				244F2CF71F86DF0C00547AB2 /* InGameCards.swift in Sources */,
+				249F15B11FB6BBC4009A1112 /* AboutUsViewController.swift in Sources */,
 				24E328A11F89687700A2A2FE /* InGameLeaveRoom.swift in Sources */,
 				24233F5C1F6312D500B2B7EE /* Extension.swift in Sources */,
 				2498F9D81F342E8600B21267 /* UIImageViewHelper.swift in Sources */,
@@ -1490,6 +1497,7 @@
 				241C6E651F58983B00756BA7 /* SignUpViewController.swift in Sources */,
 				240E6B6D1F90DC1E000B28D0 /* WinCounter+CoreDataProperties.swift in Sources */,
 				24BE6F011F8FE8C00022B981 /* PreviewInGameViewController.swift in Sources */,
+				249F15AF1FB6B684009A1112 /* LegalViewController.swift in Sources */,
 				245031EC1F99AE0F009060D2 /* FileManagerHelper.swift in Sources */,
 				247A55C91F7F3EE3004D1701 /* ChatModel.swift in Sources */,
 				244A43EB1F9BB14700463F2E /* MyCoreData+CoreDataProperties.swift in Sources */,
