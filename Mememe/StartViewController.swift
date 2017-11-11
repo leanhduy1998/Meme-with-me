@@ -29,6 +29,7 @@ class StartViewController: UIViewController,UIGestureRecognizerDelegate, AWSSign
     @IBOutlet weak var rightNotificationLabel: UILabel!
     @IBOutlet weak var googleButton: AWSGoogleSignInButton!
     
+    @IBAction func unwindToStartViewController(segue:UIStoryboardSegue) { }
     
     var screenWidth = CGFloat(0)
     var screenHeight = CGFloat(0)
@@ -43,6 +44,7 @@ class StartViewController: UIViewController,UIGestureRecognizerDelegate, AWSSign
 
     var backgroundPlayer: AVAudioPlayer!
 
+    var isLoggedOut = false
 
     func onlyForAdmin(){
         let path = Bundle.main.path(forResource: "topMemes", ofType: "txt")
@@ -87,11 +89,16 @@ class StartViewController: UIViewController,UIGestureRecognizerDelegate, AWSSign
         
         myDataStack.initializeFetchedResultsController()
         let fetchedObjects = self.myDataStack.fetchedResultsController.fetchedObjects as? [MyCoreData]
-        if((fetchedObjects?.count)! > 0){
+        if((fetchedObjects?.count)! > 0) && !isLoggedOut{
             let image = FileManagerHelper.getImageFromMemory(imagePath: fetchedObjects![0].imageStorageLocation!)
             userIcon.image = image
             leftNotificationLabel.text = "\(Int(fetchedObjects![0].laughes))"
             rightNotificationLabel.text = "\(Int(fetchedObjects![0].madeCeasar))"
+        }
+        else {
+            userIcon.image = #imageLiteral(resourceName: "emptyUser")
+            leftNotificationLabel.text = "0"
+            rightNotificationLabel.text = "0"
         }
         
         GameStack.sharedInstance.initializeFetchedResultsController()
@@ -99,6 +106,7 @@ class StartViewController: UIViewController,UIGestureRecognizerDelegate, AWSSign
         for item in deleteItems!{
           //      GameStack.sharedInstance.stack.context.delete(item as! NSManagedObject)
         }
+        
     }
     
     private func setupMainScreenTap(){
@@ -134,6 +142,7 @@ class StartViewController: UIViewController,UIGestureRecognizerDelegate, AWSSign
     private func showPreviewGames(action: UIAlertAction){
         performSegue(withIdentifier: "PreviewGamesSegue", sender: self)
     }
+    
     
     func onLogin(signInProvider: AWSSignInProvider, result: Any?, authState: AWSIdentityManagerAuthState, error: Error?) {
 
@@ -251,6 +260,7 @@ class StartViewController: UIViewController,UIGestureRecognizerDelegate, AWSSign
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         backgroundPlayer.stop()
+        isLoggedOut = false
     }
 
 }

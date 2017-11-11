@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AWSGoogleSignIn
 
 class SettingViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -21,19 +22,41 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableview.dequeueReusableCell(withIdentifier: "SettingCell") as? SettingTableViewCell
         cell?.label.text = sections[indexPath.row]
+        switch(indexPath.row){
+            case 0:
+                cell?.imageview.image = #imageLiteral(resourceName: "id card")
+            break
+            case 1:
+                cell?.imageview.image = #imageLiteral(resourceName: "emptyUser")
+            break
+            case 2:
+                cell?.imageview.image = #imageLiteral(resourceName: "logout")
+            break
+            default:
+            break
+        }
         return cell!
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        switch(sections[indexPath.row]){
-        case "Change Your Name":
+        switch(indexPath.row){
+        case 0:
             performSegue(withIdentifier: "ChangeNameSettingViewControllerSegue", sender: self)
             break
         
-        case "Change Your Profile Picture":
+        case 1:
             performSegue(withIdentifier: "ChangePictureSegue", sender: self)
             break
+        case 2:
+            AWSSignInManager.sharedInstance().logout(completionHandler: { (result, state, error) in
+                if error == nil {
+                    DispatchQueue.main.async {
+                        self.performSegue(withIdentifier: "startViewUnwind", sender: self)
+                    }
+                }
+            })
             
+            break
         default:
             break
         }
@@ -42,6 +65,9 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? ChangeUserPictureViewController {
             destination.isFromSetting = true
+        }
+        if let destination = segue.destination as? StartViewController {
+            destination.isLoggedOut = true
         }
     }
     

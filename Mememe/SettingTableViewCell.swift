@@ -12,6 +12,8 @@ class SettingTableViewCell: UITableViewCell {
     
     @IBOutlet weak var label: UILabel!
     
+    @IBOutlet weak var imageview: UIImageView!
+    
 
     override func awakeFromNib() {
         super.awakeFromNib()
