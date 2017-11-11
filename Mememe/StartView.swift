@@ -14,7 +14,7 @@ extension StartViewController {
     func setupUI(){
         setupDimensions()
         ceasarIcon = UIImageViewHelper.roundImageView(imageview: ceasarIcon, radius: 5)
-        userIcon = UIImageViewHelper.roundImageView(imageview: userIcon, radius: Float(userIcon.frame.width/2))
+        userIcon = UIImageViewHelper.roundImageView(imageview: userIcon, radius: 25)
         touchToStartLabel.isHidden = false
         
         setupTouchToStartLabel()

@@ -88,6 +88,12 @@ class InGameViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var myTopText = ""
     var myBottomText = ""
     var memesRelatedPos = [String:String]()
+    
+    // show picture detail
+    var topTextSegue: String!
+    var bottomTextSegue: String!
+    var imageSegue: UIImage!
+    var detailPictureSegueSent = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -145,6 +151,7 @@ class InGameViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        detailPictureSegueSent = false
         if game != nil {
             reloadPreviewCards()
         }
@@ -224,6 +231,11 @@ class InGameViewController: UIViewController, UITableViewDelegate, UITableViewDa
         else if let destination = segue.destination as? AvailableGamesViewController{
             destination.updateOpenRoomValue()
             backgroundPlayer.stop()
+        }
+        else if let destination = segue.destination as? PictureDetailViewController{
+            destination.topText = topTextSegue
+            destination.bottomText = bottomTextSegue
+            destination.image = thisRoundImage
         }
     }
 }

@@ -195,6 +195,11 @@ extension InGameViewController {
                     
                     cardUIView.initCardView(topLabel: upLabel, bottomLabel: downLabel, playerId: playerId, memeIV: memeImageView)
                     
+                    let tap = UILongPressGestureRecognizer(target: self, action: #selector(showPictureDetailTap))
+                    
+                    tap.delegate = self
+                    cardUIView.addGestureRecognizer(tap)
+                    
                     if playerId != MyPlayerData.id{
                         if !cardUIView.haveHeartView{
                             cardUIView.haveHeartView = true
@@ -259,8 +264,18 @@ extension InGameViewController {
         }
     }
         previewScrollView.contentSize = CGSize(width: contentWidth, height: cardHeight)
-        
     }
+    
+    func showPictureDetailTap(sender: UILongPressGestureRecognizer) {
+        let cardView = sender.view as? CardView
+        topTextSegue = cardView?.topText
+        bottomTextSegue = cardView?.bottomText
+        if !detailPictureSegueSent{
+            detailPictureSegueSent = true
+            performSegue(withIdentifier: "PictureDetailViewControllerSegue", sender: self)
+        }
+    }
+    
     func isTextEmpty(string: String)->Bool{
         if (string == " " || string == "" || string.isEmpty) {
             return true

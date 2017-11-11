@@ -21,7 +21,6 @@ extension AvailableGamesViewController{
         tableview.backgroundColor = UIColor.white
         self.tabBarController?.tabBar.barTintColor = UIColor.white
         view.backgroundColor = UIColor.white
-        plusBtnView.isHidden = false
         tableview.separatorStyle = UITableViewCellSeparatorStyle.singleLine
     }
 }

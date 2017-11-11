@@ -15,12 +15,14 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     var sections = ["Change Your Name","Change Your Profile Picture", "Log Out Of Google Account"]
     
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 3
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableview.dequeueReusableCell(withIdentifier: "SettingCell") as? SettingTableViewCell
+        cell?.selectionStyle = UITableViewCellSelectionStyle.none
         cell?.label.text = sections[indexPath.row]
         switch(indexPath.row){
             case 0:

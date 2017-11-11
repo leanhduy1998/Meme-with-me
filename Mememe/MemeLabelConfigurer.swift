@@ -18,11 +18,28 @@ class MemeLabelConfigurer {
         resizeLabelFont(label: label)
     }
     
+    static func setAttributeForLabel(_ label: UILabel, defaultText: String, size: CGFloat){
+        setAttribute(label: label, defaultText: defaultText, size: size)
+        label.numberOfLines = 0
+        label.textAlignment = .center
+        
+    }
+    
     private static func setAttribute(label: UILabel, defaultText: String) {
         let memeTextAttributes:[String:Any] = [
             NSStrokeColorAttributeName: UIColor.black,
             NSForegroundColorAttributeName: UIColor.white,
             NSFontAttributeName: UIFont(name: "HelveticaNeue-CondensedBlack", size: label.font.pointSize)!,
+            NSStrokeWidthAttributeName: -(label.font.pointSize/10)]
+        let myString = NSMutableAttributedString(string: defaultText, attributes: memeTextAttributes )
+        
+        label.attributedText = myString
+    }
+    private static func setAttribute(label: UILabel, defaultText: String, size: CGFloat) {
+        let memeTextAttributes:[String:Any] = [
+            NSStrokeColorAttributeName: UIColor.black,
+            NSForegroundColorAttributeName: UIColor.white,
+            NSFontAttributeName: UIFont(name: "HelveticaNeue-CondensedBlack", size: size)!,
             NSStrokeWidthAttributeName: -(label.font.pointSize/10)]
         let myString = NSMutableAttributedString(string: defaultText, attributes: memeTextAttributes )
         
@@ -40,8 +57,6 @@ class MemeLabelConfigurer {
             options: .usesLineFragmentOrigin,
             attributes: [NSFontAttributeName: label.font],
             context: nil).size
-        
-
         
         while ( labelTextWidth.width < label.frame.width && labelTextHeight.height < label.frame.height) {
             let prediction = UILabel(frame: label.frame)

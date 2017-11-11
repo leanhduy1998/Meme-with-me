@@ -16,7 +16,6 @@ class AvailableGamesViewController: UIViewController, UITableViewDelegate, UITab
     @IBAction func unwindToAvailableGamesViewController(segue:UIStoryboardSegue) { }
     @IBOutlet weak var tableview: UITableView!
     @IBOutlet weak var addBtn: UIButton!
-    @IBOutlet weak var plusBtnView: UIView!
     
     var openRooms = [AvailableRoomFirBModel]()
     var selectedLeaderId: String!
@@ -33,6 +32,9 @@ class AvailableGamesViewController: UIViewController, UITableViewDelegate, UITab
     var kickedOutOfRoom = false
     
     override func viewDidLoad() {
+        addBtn.layer.masksToBounds = true
+        addBtn.layer.cornerRadius = CGFloat(5)
+        
         UserOnlineSystem.updateUserOnlineStatus()
         tableview.reloadData()
         

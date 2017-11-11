@@ -160,7 +160,6 @@ extension AvailableGamesViewController {
                     if self.openRooms[indexPath.row].roomIsOpen == "true"{
                         self.selectedLeaderId = self.openRooms[indexPath.row].leaderId
                         
-                        self.plusBtnView.isHidden = true
                         self.tableview.separatorStyle = UITableViewCellSeparatorStyle.none
                         self.availableRoomRef.removeAllObservers()
                         

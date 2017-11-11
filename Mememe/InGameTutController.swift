@@ -136,7 +136,7 @@ class InGameTutController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func step6(action: UIAlertAction){
         alertController.dismiss(animated: true, completion: nil)
-        self.alertController = UIAlertController(title: "Did you know?", message: "You can double tap on any card that is not yours to like it. Also, every time you open the app, Mememe will tell you how many times people laughed at your cards! Try it out to continue!", preferredStyle: UIAlertControllerStyle.alert)
+        self.alertController = UIAlertController(title: "Did you know?", message: "You can long tap on any card that is not yours to like it. Also, every time you open the app, Mememe will tell you how many times people laughed at your cards! Try it out to continue!", preferredStyle: UIAlertControllerStyle.alert)
         self.alertController.addAction(UIAlertAction(title: "Okay!", style: UIAlertActionStyle.cancel, handler: nil))
         self.present(self.alertController, animated: true, completion: nil)
     }

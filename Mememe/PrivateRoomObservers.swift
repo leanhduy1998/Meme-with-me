@@ -44,13 +44,7 @@ extension PrivateRoomViewController{
                                 self.checkIfStartBtnCanBeEnabled()
                             }
                             
-                            SwiftTryCatch.try({
-                                self.tableview.insertRows(at: [IndexPath(row: self.userInRoom.count-1, section: 0)], with: UITableViewRowAnimation.left)
-                            }, catch: { (error) in
-                                self.tableview.reloadData()
-                            }, finally: {
-                                // close resources
-                            })
+                            self.tableview.reloadData()
                         }
                     }
                     
@@ -149,7 +143,10 @@ extension PrivateRoomViewController{
     func addIfTheRoomIAmInIsRemovedObserver(){
         // if main room got removed
         let ob1 = availableRoomRef.observe(DataEventType.childRemoved, with: { (snapshot) in
-            if snapshot.key == self.leaderId && self.leaderId != MyPlayerData.id {
+            if self.leaderId == nil{
+                
+            }
+            else if snapshot.key == self.leaderId && self.leaderId != MyPlayerData.id {
                 DispatchQueue.main.async {
                     if !self.segueAlreadyPushed{
                         self.dismiss(animated: true, completion: nil)

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PreviewInGameViewController: UIViewController {
+class PreviewInGameViewController: UIViewController,UIGestureRecognizerDelegate {
     @IBOutlet weak var previewScrollView: UIScrollView!
     @IBOutlet weak var currentPlayersScrollView: UIScrollView!
     @IBOutlet weak var previousRoundBtn: UIBarButtonItem!
@@ -30,6 +30,11 @@ class PreviewInGameViewController: UIViewController {
     
     let helper = UserFilesHelper()
     
+    var topTextSegue: String!
+    var bottomTextSegue: String!
+    var detailPictureSegueSent = false
+    var imageSegue: UIImage!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setFloorBackground()
@@ -41,6 +46,7 @@ class PreviewInGameViewController: UIViewController {
         reloadPreviewCards()
         reloadCurrentPlayersIcon()
         checkSwitchingRoundCondition()
+        detailPictureSegueSent = false
     }
     
     @IBAction func doneBtnPressed(_ sender: Any) {
@@ -233,6 +239,11 @@ class PreviewInGameViewController: UIViewController {
                 }
             }
             
+            let tap = UILongPressGestureRecognizer(target: self, action: #selector(showPictureDetailTap))
+            
+            tap.delegate = self
+            cardUIView.addGestureRecognizer(tap)
+            
             previewScrollView.addSubview(cardUIView)
             previewScrollView.bringSubview(toFront: cardUIView)
             
@@ -335,6 +346,11 @@ class PreviewInGameViewController: UIViewController {
                 }
             }
             
+            let tap = UILongPressGestureRecognizer(target: self, action: #selector(showPictureDetailTap))
+            
+            tap.delegate = self
+            cardUIView.addGestureRecognizer(tap)
+            
             previewScrollView.addSubview(cardUIView)
             previewScrollView.bringSubview(toFront: cardUIView)
             
@@ -348,6 +364,18 @@ class PreviewInGameViewController: UIViewController {
         previewScrollView.contentSize = CGSize(width: contentWidth, height: cardHeight)
     }
     
+    func showPictureDetailTap(sender: UILongPressGestureRecognizer) {
+        let cardView = sender.view as? CardView
+        topTextSegue = cardView?.topText
+        bottomTextSegue = cardView?.bottomText
+        imageSegue = cardView?.memeIV.image
+        
+        if !detailPictureSegueSent{
+            detailPictureSegueSent = true
+            performSegue(withIdentifier: "PreviewShowImageDetailSegue", sender: self)
+        }
+    }
+    
     func reloadCurrentPlayersIcon(){
         for v in currentPlayersScrollView.subviews {
             v.removeFromSuperview()
@@ -355,7 +383,7 @@ class PreviewInGameViewController: UIViewController {
         borderForUserIconIV.removeFromSuperview()
         
         var contentWidth = CGFloat(0)
-        iconSize = currentPlayersScrollView.frame.height - space
+        iconSize = 100 - space
         
         var counter = 0
         
@@ -502,6 +530,13 @@ class PreviewInGameViewController: UIViewController {
         
         
         currentPlayersScrollView.contentSize = CGSize(width: contentWidth, height: iconSize)
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destination = segue.destination as? PictureDetailViewController {
+            destination.topText = topTextSegue
+            destination.bottomText = bottomTextSegue
+            destination.image = imageSegue
+        }
     }
 
 

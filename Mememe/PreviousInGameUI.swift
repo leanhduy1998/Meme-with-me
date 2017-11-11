@@ -143,7 +143,7 @@ extension PreviewInGameViewController{
         space = screenWidth/24
         
         // 44*2 is the size of two navigation bars
-        cardHeight = previewScrollView.frame.height - 44*2
+        cardHeight = view.frame.height*2/3 - 40
         cardWidth = cardHeight*9/16
         
         cardInitialYBeforeAnimation = cardHeight/2

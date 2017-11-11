@@ -154,6 +154,7 @@
 		249F11A51F6DA4CD00C60059 /* PlayerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249F11A41F6DA4CD00C60059 /* PlayerData.swift */; };
 		249F15AF1FB6B684009A1112 /* LegalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249F15AE1FB6B684009A1112 /* LegalViewController.swift */; };
 		249F15B11FB6BBC4009A1112 /* AboutUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249F15B01FB6BBC4009A1112 /* AboutUsViewController.swift */; };
+		249F15B31FB7080F009A1112 /* PictureDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249F15B21FB7080F009A1112 /* PictureDetailViewController.swift */; };
 		24AB45571FB0490C004DE842 /* GameJSONModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AB45561FB0490C004DE842 /* GameJSONModel.swift */; };
 		24AB45591FB04966004DE842 /* RoundJSONModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AB45581FB04966004DE842 /* RoundJSONModel.swift */; };
 		24AB455B1FB04CA8004DE842 /* PlayerJSONModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AB455A1FB04CA8004DE842 /* PlayerJSONModel.swift */; };
@@ -397,6 +398,7 @@
 		249F11A41F6DA4CD00C60059 /* PlayerData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerData.swift; sourceTree = "<group>"; };
 		249F15AE1FB6B684009A1112 /* LegalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalViewController.swift; sourceTree = "<group>"; };
 		249F15B01FB6BBC4009A1112 /* AboutUsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsViewController.swift; sourceTree = "<group>"; };
+		249F15B21FB7080F009A1112 /* PictureDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureDetailViewController.swift; sourceTree = "<group>"; };
 		24AB45561FB0490C004DE842 /* GameJSONModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameJSONModel.swift; sourceTree = "<group>"; };
 		24AB45581FB04966004DE842 /* RoundJSONModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundJSONModel.swift; sourceTree = "<group>"; };
 		24AB455A1FB04CA8004DE842 /* PlayerJSONModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerJSONModel.swift; sourceTree = "<group>"; };
@@ -997,6 +999,7 @@
 				2498F9DE1F347B7200B21267 /* InGame */,
 				2413D7B61F426399001EA209 /* AddEditMyMeme */,
 				24182C271F8405AE00904A86 /* Judging */,
+				249F15B21FB7080F009A1112 /* PictureDetailViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -1396,6 +1399,7 @@
 				242088731F8CA38000BFFD1B /* InGameTutController.swift in Sources */,
 				24602D551FB14162002D1CC2 /* CardNormalJSONModel.swift in Sources */,
 				2413D7D71F461DBD001EA209 /* JudgingViewController.swift in Sources */,
+				249F15B31FB7080F009A1112 /* PictureDetailViewController.swift in Sources */,
 				2413D7DF1F499004001EA209 /* GetGameData.swift in Sources */,
 				2413D79C1F4204C2001EA209 /* AddEditMyMemeViewController.swift in Sources */,
 				2413D7C01F43E78C001EA209 /* CardNormalCoreDataProperties.swift in Sources */,
