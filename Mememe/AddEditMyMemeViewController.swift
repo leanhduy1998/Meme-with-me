@@ -21,6 +21,8 @@ class AddEditMyMemeViewController: UIViewController, UITableViewDelegate, UITabl
     
     @IBOutlet weak var repickBtn: UIBarButtonItem!
     
+    @IBOutlet weak var backgroundIV: UIImageView!
+    var backgroundImage: UIImage!
     
     var topUIView : UIView!
     var bottomUIView : UIView!
@@ -48,6 +50,8 @@ class AddEditMyMemeViewController: UIViewController, UITableViewDelegate, UITabl
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        backgroundIV.image = backgroundImage
+        
     }
     
     func topUIViewTouched(sender: UITapGestureRecognizer){
@@ -194,6 +198,13 @@ class AddEditMyMemeViewController: UIViewController, UITableViewDelegate, UITabl
     
     @IBAction func repickBtnPressed(_ sender: Any) {
         repickBtn.isEnabled = false
+        
+        topLabel.text = " "
+        topLabel.font = originalFont
+        
+        bottomLabel.text = " "
+        bottomLabel.font = originalFont
+        
         self.memeModel = MemeHelper.get9Memes()
         self.memesArrangement.append(contentsOf: self.memeModel.topMemes)
         self.memesArrangement.append(contentsOf: self.memeModel.bottomMemes)

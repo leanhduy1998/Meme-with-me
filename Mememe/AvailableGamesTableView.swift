@@ -24,16 +24,17 @@ extension AvailableGamesViewController {
             cell.nameLabel.layer.masksToBounds = true
             cell.nameLabel.layer.cornerRadius = 5
             
+            cell.imageview.image = nil
+            
             cell.activityIndicator.startAnimating()
             
             for (playerId,_) in room.playerInRoom! {
                 self.helper.loadUserProfilePicture(userId: (playerId), completeHandler: { (imageData) in
                     DispatchQueue.main.async{
                         let image = UIImage(data: imageData)
-                        if cell.imageview.image != image {
-                            cell.imageview.image = image
-                            cell.activityIndicator.stopAnimating()
-                        }
+                        cell.imageview.image = image
+                        cell.activityIndicator.stopAnimating()
+                        
                     }
                 })
                 cell.imageview = UIImageViewHelper.roundImageView(imageview: cell.imageview, radius: 15)
@@ -49,26 +50,30 @@ extension AvailableGamesViewController {
             cell.nameLabel.layer.masksToBounds = true
             cell.nameLabel.layer.cornerRadius = 5
             
+            cell.firstIV.image = nil
+            cell.secondIV.image = nil
+            
             cell.activityIndicator.startAnimating()
             
-            var playerImages = [UIImage]()
+            cell.firstIV = UIImageViewHelper.roundImageView(imageview: cell.firstIV, radius: 15)
+            cell.secondIV = UIImageViewHelper.roundImageView(imageview: cell.secondIV, radius: 15)
             
-            for (playerId,_) in room.playerInRoom! {
-                helper.loadUserProfilePicture(userId: playerId, completeHandler: { (imageData) in
-                    DispatchQueue.main.async{
-                        var image = UIImage(data: imageData)
-                        playerImages.append(image!)
-                        
-                        if playerImages.count == 2 {
-                            cell.firstIV.image = playerImages[0]
-                            cell.secondIV.image = playerImages[1]
-                            cell.activityIndicator.stopAnimating()
-                            cell.firstIV = UIImageViewHelper.roundImageView(imageview: cell.firstIV, radius: 15)
-                            cell.secondIV = UIImageViewHelper.roundImageView(imageview: cell.secondIV, radius: 15)
-                        }
-                    }
-                })
-            }
+            let players = Array((room.playerInRoom?.keys)!)
+            
+            helper.loadUserProfilePicture(userId: players[0], completeHandler: { (imageData) in
+                DispatchQueue.main.async{
+                    let image = UIImage(data: imageData)
+                    cell.firstIV.image = image
+                }
+            })
+            helper.loadUserProfilePicture(userId: players[1], completeHandler: { (imageData) in
+                DispatchQueue.main.async{
+                    let image = UIImage(data: imageData)
+                    cell.secondIV.image = image
+                }
+            })
+
+            
             return cell
         }
         else if (room.playerInRoom?.count)! == 3 {
@@ -80,28 +85,40 @@ extension AvailableGamesViewController {
             cell.nameLabel.layer.masksToBounds = true
             cell.nameLabel.layer.cornerRadius = 5
             
+            cell.firstIV.image = nil
+            cell.secondIV.image = nil
+            cell.thirdIV.image = nil
+            
             cell.activityIndicator.startAnimating()
             
-            var playerImages = [UIImage]()
+            cell.firstIV = UIImageViewHelper.roundImageView(imageview: cell.firstIV, radius: 15)
+            cell.secondIV = UIImageViewHelper.roundImageView(imageview: cell.secondIV, radius: 15)
+            cell.thirdIV = UIImageViewHelper.roundImageView(imageview: cell.thirdIV, radius: 15)
             
-            for (playerId,_) in room.playerInRoom! {
-                helper.loadUserProfilePicture(userId: playerId, completeHandler: { (imageData) in
-                    DispatchQueue.main.async{
-                        var image = UIImage(data: imageData)
-                        playerImages.append(image!)
-                        
-                        if playerImages.count == 3 {
-                            cell.firstIV.image = playerImages[0]
-                            cell.secondIV.image = playerImages[1]
-                            cell.thirdIV.image = playerImages[2]
-                            cell.activityIndicator.stopAnimating()
-                            cell.firstIV = UIImageViewHelper.roundImageView(imageview: cell.firstIV, radius: 15)
-                            cell.secondIV = UIImageViewHelper.roundImageView(imageview: cell.secondIV, radius: 15)
-                            cell.thirdIV = UIImageViewHelper.roundImageView(imageview: cell.thirdIV, radius: 15)
-                        }
-                    }
-                })
-            }
+
+            
+            let players = Array((room.playerInRoom?.keys)!)
+            
+            helper.loadUserProfilePicture(userId: players[0], completeHandler: { (imageData) in
+                DispatchQueue.main.async{
+                    let image = UIImage(data: imageData)
+                    cell.firstIV.image = image
+                }
+            })
+            helper.loadUserProfilePicture(userId: players[1], completeHandler: { (imageData) in
+                DispatchQueue.main.async{
+                    let image = UIImage(data: imageData)
+                    cell.secondIV.image = image
+                }
+            })
+            helper.loadUserProfilePicture(userId: players[2], completeHandler: { (imageData) in
+                DispatchQueue.main.async{
+                    let image = UIImage(data: imageData)
+                    cell.thirdIV.image = image
+                    cell.activityIndicator.stopAnimating()
+                }
+            })
+            
             return cell
         }
         else if (room.playerInRoom?.count)! >= 4 {
@@ -117,28 +134,43 @@ extension AvailableGamesViewController {
             
             cell.activityIndicator.startAnimating()
             
-            var playerImages = [UIImage]()
+            cell.firstIV.image = nil
+            cell.secondIV.image = nil
+            cell.thirdIV.image = nil
+            cell.fourthIV.image = nil
             
-            for (playerId,_) in room.playerInRoom! {
-                helper.loadUserProfilePicture(userId: playerId, completeHandler: { (imageData) in
-                    DispatchQueue.main.async{
-                        var image = UIImage(data: imageData)
-                        playerImages.append(image!)
-                        
-                        if playerImages.count == 3 {
-                            cell.firstIV.image = playerImages[0]
-                            cell.secondIV.image = playerImages[1]
-                            cell.thirdIV.image = playerImages[2]
-                            cell.fourthIV.image = playerImages[3]
-                            cell.activityIndicator.stopAnimating()
-                            cell.firstIV = UIImageViewHelper.roundImageView(imageview: cell.firstIV, radius: 15)
-                            cell.secondIV = UIImageViewHelper.roundImageView(imageview: cell.secondIV, radius: 15)
-                            cell.thirdIV = UIImageViewHelper.roundImageView(imageview: cell.thirdIV, radius: 15)
-                            cell.fourthIV = UIImageViewHelper.roundImageView(imageview: cell.fourthIV, radius: 15)
-                        }
-                    }
-                })
-            }
+            cell.firstIV = UIImageViewHelper.roundImageView(imageview: cell.firstIV, radius: 15)
+            cell.secondIV = UIImageViewHelper.roundImageView(imageview: cell.secondIV, radius: 15)
+            cell.thirdIV = UIImageViewHelper.roundImageView(imageview: cell.thirdIV, radius: 15)
+            cell.fourthIV = UIImageViewHelper.roundImageView(imageview: cell.fourthIV, radius: 15)
+            
+            let players = Array((room.playerInRoom?.keys)!)
+    
+            helper.loadUserProfilePicture(userId: players[0], completeHandler: { (imageData) in
+                DispatchQueue.main.async{
+                    let image = UIImage(data: imageData)
+                    cell.firstIV.image = image
+                }
+            })
+            helper.loadUserProfilePicture(userId: players[1], completeHandler: { (imageData) in
+                DispatchQueue.main.async{
+                    let image = UIImage(data: imageData)
+                    cell.secondIV.image = image
+                }
+            })
+            helper.loadUserProfilePicture(userId: players[2], completeHandler: { (imageData) in
+                DispatchQueue.main.async{
+                    let image = UIImage(data: imageData)
+                    cell.thirdIV.image = image
+                }
+            })
+            helper.loadUserProfilePicture(userId: players[3], completeHandler: { (imageData) in
+                DispatchQueue.main.async{
+                    let image = UIImage(data: imageData)
+                    cell.fourthIV.image = image
+                    cell.activityIndicator.stopAnimating()
+                }
+            })
             
             return cell
         }
@@ -163,6 +195,8 @@ extension AvailableGamesViewController {
                         self.tableview.separatorStyle = UITableViewCellSeparatorStyle.none
                         self.availableRoomRef.removeAllObservers()
                         
+                        let oldFrame = tableView.visibleCells[indexPath.row].frame
+                        
                         UIView.animate(withDuration: 1, animations: {
                             tableView.backgroundColor = UIColor.black
                             //tableView.visibleCells[indexPath.row].frame.origin.x = self.view.frame.midX 
@@ -174,6 +208,7 @@ extension AvailableGamesViewController {
                             if completed {
                                 DispatchQueue.main.async {
                                     self.performSegue(withIdentifier: "PrivateRoomViewControllerSegue", sender: self)
+                                    tableView.visibleCells[indexPath.row].frame = oldFrame
                                 }
                             }
                         })

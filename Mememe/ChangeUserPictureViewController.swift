@@ -76,7 +76,6 @@ class ChangeUserPictureViewController: UIViewController, UIImagePickerController
         super.viewWillAppear(animated)
         NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillHide, object: nil)
         NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillShow, object: nil)
-        isFromSetting = false
     }
 
     @IBAction func libraryBtnPressed(_ sender: Any) {
@@ -179,6 +178,9 @@ class ChangeUserPictureViewController: UIViewController, UIImagePickerController
             if userImage != #imageLiteral(resourceName: "emptyUser") {
                 destination.currentUserImage = userImage
             }
+        }
+        if segue.destination is SettingViewController {
+            isFromSetting = false
         }
     }
 }

@@ -221,8 +221,10 @@ class InGameViewController: UIViewController, UITableViewDelegate, UITableViewDa
             destination.leaderId = leaderId
             destination.memeModel = memeModel
             destination.memesArrangement = memesArrangement
+            destination.backgroundImage = floorBackground.image
         }
         else if let destination = segue.destination as? JudgingViewController {
+            destination.backgroundImage = floorBackground.image
             destination.game = game
             destination.playerJudging = playerJudging
             destination.memeImage = thisRoundImage

@@ -127,7 +127,7 @@ class AvailableGamesViewController: UIViewController, UITableViewDelegate, UITab
                     count = count + 1
                 }
                 SwiftTryCatch.try({
-                    self.tableview.reloadRows(at: [IndexPath(item: self.openRooms.count-1, section: 0)], with: UITableViewRowAnimation.right)
+                    self.tableview.reloadRows(at: [IndexPath(item: count, section: 0)], with: UITableViewRowAnimation.right)
                 }, catch: { (error) in
                     self.tableview.reloadData()
                 }, finally: {

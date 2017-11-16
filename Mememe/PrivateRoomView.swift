@@ -11,7 +11,7 @@ import UIKit
 
 extension PrivateRoomViewController{
     func setBackground(){
-        var random = Int(arc4random_uniform(UInt32(11)))
+        var random = Int(arc4random_uniform(UInt32(10)))
         random += 1
         let imageName = "floor\(random)"
         backgroundIV.image = UIImage(named: imageName)

@@ -77,6 +77,11 @@ class StartViewController: UIViewController,UIGestureRecognizerDelegate, AWSSign
         }
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        mememeLabel.sizeToFit()
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         //onlyForAdmin()

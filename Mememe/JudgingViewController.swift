@@ -12,12 +12,16 @@ class JudgingViewController: UIViewController,UIGestureRecognizerDelegate {
 
     @IBOutlet weak var finishBtn: UIBarButtonItem!
     
+    @IBOutlet weak var backgroundIV: UIImageView!
+    
+    
     @IBOutlet weak var memeScrollView: UIScrollView!
     
     var game: Game!
     var playerJudging: String!
     var memeImage: UIImage!
     var leaderId: String!
+    var backgroundImage: UIImage!
     
     
     var cardHeight: CGFloat!
@@ -86,6 +90,7 @@ class JudgingViewController: UIViewController,UIGestureRecognizerDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         finishBtn.isEnabled = false
+        backgroundIV.image = backgroundImage
     }
     
     func addGestureToCardView(cardView: CardView) {
@@ -159,7 +164,7 @@ class JudgingViewController: UIViewController,UIGestureRecognizerDelegate {
                     card?.topLabel.alpha = 1
                     self.memeScrollView.subviews[x].isUserInteractionEnabled = true
                 }
-                self.memeScrollView.backgroundColor = UIColor.white
+                self.memeScrollView.backgroundColor = UIColor.clear
                 self.view.backgroundColor = UIColor.white
                 currentCardView?.choosingIV.isHidden = true
             }, completion: nil)

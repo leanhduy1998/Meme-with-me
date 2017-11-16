@@ -293,7 +293,7 @@ extension PreviousGamesViewController{
                     })
                 }
                 else{
-                    cell.thirdIV.image = imageDownloaded[playerImagesInGameDic[game.gameId!]![1].playerId]
+                    cell.thirdIV.image = imageDownloaded[playerImagesInGameDic[game.gameId!]![2].playerId]
                 }
             }
             else{
@@ -439,7 +439,121 @@ extension PreviousGamesViewController{
             
             cell.nameLabel.text = GetGameCoreDataData.getGameAllPlayersAsString(players: players!)
             
+            if playerImagesInGameDic[game.gameId!]![0].imageEmpty {
+                if imageDownloaded[playerImagesInGameDic[game.gameId!]![0].playerId] == nil {
+                    helper.loadUserProfilePicture(userId: playerImagesInGameDic[game.gameId!]![0].playerId, completeHandler: { (imageData) in
+                        
+                        if self.imageDownloaded[self.playerImagesInGameDic[game.gameId!]![0].playerId] != nil {
+                            DispatchQueue.main.async {
+                                cell.firstIV.image = self.imageDownloaded[self.playerImagesInGameDic[game.gameId!]![0].playerId]
+                            }
+                        }
+                        else{
+                            var image = UIImage(data: imageData)
+                            image = UIImage(data: (image?.jpeg(UIImage.JPEGQuality.lowest))!)
+                            image = UIImageEditor.resizeImage(image: image!, targetSize: CGSize(width: 90, height: 90))
+                            self.imageDownloaded[self.playerImagesInGameDic[game.gameId!]![0].playerId] = image
+                            
+                            DispatchQueue.main.async {
+                                cell.firstIV.image = image
+                            }
+                        }
+                    })
+                }
+                else {
+                    cell.firstIV.image = imageDownloaded[playerImagesInGameDic[game.gameId!]![0].playerId]
+                }
+            }
+            else{
+                cell.firstIV.image = playerImagesInGameDic[game.gameId!]![0].image
+            }
             
+            if playerImagesInGameDic[game.gameId!]![1].imageEmpty {
+                if imageDownloaded[playerImagesInGameDic[game.gameId!]![1].playerId] == nil {
+                    helper.loadUserProfilePicture(userId: playerImagesInGameDic[game.gameId!]![1].playerId, completeHandler: { (imageData) in
+                        
+                        if self.imageDownloaded[self.playerImagesInGameDic[game.gameId!]![1].playerId] != nil {
+                            DispatchQueue.main.async {
+                                cell.secondIV.image = self.imageDownloaded[self.playerImagesInGameDic[game.gameId!]![1].playerId]
+                            }
+                        }
+                        else{
+                            var image = UIImage(data: imageData)
+                            image = UIImage(data: (image?.jpeg(UIImage.JPEGQuality.lowest))!)
+                            image = UIImageEditor.resizeImage(image: image!, targetSize: CGSize(width: 90, height: 90))
+                            self.imageDownloaded[self.playerImagesInGameDic[game.gameId!]![1].playerId] = image
+                            
+                            DispatchQueue.main.async {
+                                cell.secondIV.image = image
+                            }
+                        }
+                    })
+                }
+                else{
+                    cell.secondIV.image = imageDownloaded[playerImagesInGameDic[game.gameId!]![1].playerId]
+                }
+            }
+            else{
+                cell.secondIV.image = playerImagesInGameDic[game.gameId!]![1].image
+            }
+            
+            if playerImagesInGameDic[game.gameId!]![2].imageEmpty {
+                if imageDownloaded[playerImagesInGameDic[game.gameId!]![2].playerId] == nil {
+                    helper.loadUserProfilePicture(userId: playerImagesInGameDic[game.gameId!]![2].playerId, completeHandler: { (imageData) in
+                        
+                        if self.imageDownloaded[self.playerImagesInGameDic[game.gameId!]![2].playerId] != nil {
+                            DispatchQueue.main.async {
+                                cell.thirdIV.image = self.imageDownloaded[self.playerImagesInGameDic[game.gameId!]![2].playerId]
+                            }
+                        }
+                        else {
+                            var image = UIImage(data: imageData)
+                            image = UIImage(data: (image?.jpeg(UIImage.JPEGQuality.lowest))!)
+                            image = UIImageEditor.resizeImage(image: image!, targetSize: CGSize(width: 90, height: 90))
+                            self.imageDownloaded[self.playerImagesInGameDic[game.gameId!]![2].playerId] = image
+                            
+                            DispatchQueue.main.async {
+                                cell.thirdIV.image = image
+                            }
+                        }
+                    })
+                }
+                else{
+                    cell.thirdIV.image = imageDownloaded[playerImagesInGameDic[game.gameId!]![1].playerId]
+                }
+            }
+            else{
+                cell.thirdIV.image = playerImagesInGameDic[game.gameId!]![2].image
+            }
+            
+            if playerImagesInGameDic[game.gameId!]![3].imageEmpty {
+                if imageDownloaded[playerImagesInGameDic[game.gameId!]![3].playerId] == nil {
+                    helper.loadUserProfilePicture(userId: playerImagesInGameDic[game.gameId!]![3].playerId, completeHandler: { (imageData) in
+                        
+                        if self.imageDownloaded[self.playerImagesInGameDic[game.gameId!]![3].playerId] != nil {
+                            DispatchQueue.main.async {
+                                cell.fourthIV.image = self.imageDownloaded[self.playerImagesInGameDic[game.gameId!]![3].playerId]
+                            }
+                        }
+                        else {
+                            var image = UIImage(data: imageData)
+                            image = UIImage(data: (image?.jpeg(UIImage.JPEGQuality.lowest))!)
+                            image = UIImageEditor.resizeImage(image: image!, targetSize: CGSize(width: 90, height: 90))
+                            self.imageDownloaded[self.playerImagesInGameDic[game.gameId!]![3].playerId] = image
+                            
+                            DispatchQueue.main.async {
+                                cell.fourthIV.image = image
+                            }
+                        }
+                    })
+                }
+                else{
+                    cell.fourthIV.image = imageDownloaded[playerImagesInGameDic[game.gameId!]![3].playerId]
+                }
+            }
+            else{
+                cell.fourthIV.image = playerImagesInGameDic[game.gameId!]![3].image
+            }
         }
         else if let game = game as? GameJSONModel {
             if(gamesStorageLocation[game.gameId!]! == "coreData"){
@@ -453,7 +567,120 @@ extension PreviousGamesViewController{
             let players = game.player
             
             cell.nameLabel.text = GetGameCoreDataData.getGameAllPlayersAsString(players: players)
+            if playerImagesInGameDic[game.gameId]![0].imageEmpty {
+                if imageDownloaded[playerImagesInGameDic[game.gameId!]![0].playerId] == nil {
+                    helper.loadUserProfilePicture(userId: self.playerImagesInGameDic[game.gameId!]![0].playerId, completeHandler: { (imageData) in
+                        
+                        if self.imageDownloaded[self.playerImagesInGameDic[game.gameId!]![0].playerId] != nil {
+                            DispatchQueue.main.async {
+                                cell.firstIV.image = self.imageDownloaded[self.playerImagesInGameDic[game.gameId!]![0].playerId]
+                            }
+                        }
+                        else{
+                            var image = UIImage(data: imageData)
+                            image = UIImage(data: (image?.jpeg(UIImage.JPEGQuality.lowest))!)
+                            self.playerImagesInGameDic[game.gameId]![0].image = image
+                            self.imageDownloaded[self.playerImagesInGameDic[game.gameId!]![0].playerId] = image
+                            
+                            DispatchQueue.main.async {
+                                cell.firstIV.image = image
+                            }
+                        }
+                    })
+                }
+                else{
+                    cell.firstIV.image = imageDownloaded[playerImagesInGameDic[game.gameId!]![0].playerId]
+                }
+            }
+            else{
+                cell.firstIV.image = playerImagesInGameDic[game.gameId]![0].image
+            }
             
+            if self.playerImagesInGameDic[game.gameId]![1].imageEmpty{
+                if imageDownloaded[playerImagesInGameDic[game.gameId!]![1].playerId] == nil {
+                    helper.loadUserProfilePicture(userId: self.playerImagesInGameDic[game.gameId!]![1].playerId, completeHandler: { (imageData) in
+                        
+                        if self.imageDownloaded[self.playerImagesInGameDic[game.gameId!]![1].playerId] != nil {
+                            DispatchQueue.main.async {
+                                cell.secondIV.image = self.imageDownloaded[self.playerImagesInGameDic[game.gameId!]![1].playerId]
+                            }
+                        }
+                        else {
+                            var image = UIImage(data: imageData)
+                            image = UIImage(data: (image?.jpeg(UIImage.JPEGQuality.lowest))!)
+                            self.imageDownloaded[self.playerImagesInGameDic[game.gameId!]![1].playerId] = image
+                            
+                            DispatchQueue.main.async {
+                                cell.secondIV.image = image
+                            }
+                        }
+                    })
+                }
+                else {
+                    cell.secondIV.image = imageDownloaded[playerImagesInGameDic[game.gameId!]![1].playerId]
+                }
+            }
+            else{
+                cell.secondIV.image = self.playerImagesInGameDic[game.gameId]![1].image
+            }
+            
+            if self.playerImagesInGameDic[game.gameId]![2].imageEmpty{
+                if imageDownloaded[playerImagesInGameDic[game.gameId!]![2].playerId] == nil {
+                    helper.loadUserProfilePicture(userId: self.playerImagesInGameDic[game.gameId!]![2].playerId, completeHandler: { (imageData) in
+                        
+                        if self.imageDownloaded[self.playerImagesInGameDic[game.gameId!]![2].playerId] != nil {
+                            DispatchQueue.main.async {
+                                cell.thirdIV.image = self.imageDownloaded[self.playerImagesInGameDic[game.gameId!]![2].playerId]
+                            }
+                        }
+                        else{
+                            var image = UIImage(data: imageData)
+                            image = UIImage(data: (image?.jpeg(UIImage.JPEGQuality.lowest))!)
+                            self.imageDownloaded[self.playerImagesInGameDic[game.gameId!]![2].playerId] = image
+                            
+                            DispatchQueue.main.async {
+                                cell.thirdIV.image = image
+                            }
+                        }
+                    })
+                }
+                else {
+                    cell.thirdIV.image = imageDownloaded[playerImagesInGameDic[game.gameId!]![2].playerId]
+                    
+                }
+            }
+            else{
+                cell.thirdIV.image = self.playerImagesInGameDic[game.gameId]![2].image
+            }
+            
+            if self.playerImagesInGameDic[game.gameId]![3].imageEmpty{
+                if imageDownloaded[playerImagesInGameDic[game.gameId!]![3].playerId] == nil {
+                    helper.loadUserProfilePicture(userId: self.playerImagesInGameDic[game.gameId!]![3].playerId, completeHandler: { (imageData) in
+                        
+                        if self.imageDownloaded[self.playerImagesInGameDic[game.gameId!]![3].playerId] != nil {
+                            DispatchQueue.main.async {
+                                cell.fourthIV.image = self.imageDownloaded[self.playerImagesInGameDic[game.gameId!]![3].playerId]
+                            }
+                        }
+                        else{
+                            var image = UIImage(data: imageData)
+                            image = UIImage(data: (image?.jpeg(UIImage.JPEGQuality.lowest))!)
+                            self.imageDownloaded[self.playerImagesInGameDic[game.gameId!]![3].playerId] = image
+                            
+                            DispatchQueue.main.async {
+                                cell.fourthIV.image = image
+                            }
+                        }
+                    })
+                }
+                else {
+                    cell.fourthIV.image = imageDownloaded[playerImagesInGameDic[game.gameId!]![3].playerId]
+                    
+                }
+            }
+            else{
+                cell.fourthIV.image = self.playerImagesInGameDic[game.gameId]![3].image
+            }
         }
         
         cell.nameLabel.layer.masksToBounds = true

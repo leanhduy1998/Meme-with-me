@@ -62,6 +62,7 @@ extension AddEditMyMemeViewController {
                 }
                 
                 DispatchQueue.main.async {
+                    self.topLabel.font = self.originalFont
                     MemeLabelConfigurer.configureMemeLabel(self.topLabel, defaultText: self.dragLabel.text!)
                     
                     var count = 0
@@ -87,6 +88,7 @@ extension AddEditMyMemeViewController {
                 }
                 
                 DispatchQueue.main.async {
+                    self.bottomLabel.font = self.originalFont
                     MemeLabelConfigurer.configureMemeLabel(self.bottomLabel, defaultText: self.dragLabel.text!)
                     
                     var count = 0

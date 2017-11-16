@@ -166,7 +166,7 @@
 		24AF9E5E1F30217400D05BFC /* PrivateRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AF9E5D1F30217400D05BFC /* PrivateRoomViewController.swift */; };
 		24AFAD931F73355F00D57762 /* GetGameCoreDataData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AFAD921F73355F00D57762 /* GetGameCoreDataData.swift */; };
 		24BE6F011F8FE8C00022B981 /* PreviewInGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BE6F001F8FE8C00022B981 /* PreviewInGameViewController.swift */; };
-		24C30F421F7441A4007237C1 /* InGameExtensionJudge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C30F411F7441A4007237C1 /* InGameExtensionJudge.swift */; };
+		24C30F421F7441A4007237C1 /* InGameJudgeCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C30F411F7441A4007237C1 /* InGameJudgeCheck.swift */; };
 		24C30F441F7441E8007237C1 /* InGameScrollViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C30F431F7441E8007237C1 /* InGameScrollViews.swift */; };
 		24C4A7811F2AC94C00A1E277 /* AvailableGamesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C4A7801F2AC94C00A1E277 /* AvailableGamesViewController.swift */; };
 		24CD58681F86DB42005DCA0C /* AvailableGamesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CD58671F86DB42005DCA0C /* AvailableGamesView.swift */; };
@@ -410,7 +410,7 @@
 		24AF9E5D1F30217400D05BFC /* PrivateRoomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivateRoomViewController.swift; sourceTree = "<group>"; };
 		24AFAD921F73355F00D57762 /* GetGameCoreDataData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetGameCoreDataData.swift; sourceTree = "<group>"; };
 		24BE6F001F8FE8C00022B981 /* PreviewInGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewInGameViewController.swift; sourceTree = "<group>"; };
-		24C30F411F7441A4007237C1 /* InGameExtensionJudge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InGameExtensionJudge.swift; sourceTree = "<group>"; };
+		24C30F411F7441A4007237C1 /* InGameJudgeCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InGameJudgeCheck.swift; sourceTree = "<group>"; };
 		24C30F431F7441E8007237C1 /* InGameScrollViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InGameScrollViews.swift; sourceTree = "<group>"; };
 		24C4A7801F2AC94C00A1E277 /* AvailableGamesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvailableGamesViewController.swift; sourceTree = "<group>"; };
 		24C74FA11F9FF5C800282983 /* Model 13.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model 13.xcdatamodel"; sourceTree = "<group>"; };
@@ -1043,7 +1043,7 @@
 				24AF9E591F30035800D05BFC /* InGameViewController.swift */,
 				2498F9DF1F347B8F00B21267 /* InGameChatTableView.swift */,
 				2413D7D11F44D85A001EA209 /* InGameBeginingSetup.swift */,
-				24C30F411F7441A4007237C1 /* InGameExtensionJudge.swift */,
+				24C30F411F7441A4007237C1 /* InGameJudgeCheck.swift */,
 				24C30F431F7441E8007237C1 /* InGameScrollViews.swift */,
 				24F237B01F807FCF00616F3C /* InGameChat.swift */,
 				24193BB11F8813BA00B8AA96 /* InGameSound.swift */,
@@ -1235,7 +1235,7 @@
 					24896D4F1F2A5FA2003B6954 = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = Y692F89PT8;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 					24896D631F2A5FA2003B6954 = {
 						CreatedOnToolsVersion = 8.3.3;
@@ -1425,7 +1425,7 @@
 				24F7C9991FA0541800D20368 /* Player+CoreDataClass.swift in Sources */,
 				242088751F8CA3D000BFFD1B /* InGameTutUI.swift in Sources */,
 				24F5C7EC1F87F9830095B2C5 /* InGameAddMeme.swift in Sources */,
-				24C30F421F7441A4007237C1 /* InGameExtensionJudge.swift in Sources */,
+				24C30F421F7441A4007237C1 /* InGameJudgeCheck.swift in Sources */,
 				245B2B141F4F685500BCF75A /* GameDataFromJSON.swift in Sources */,
 				24602D5E1FB1CB8F002D1CC2 /* PreviewImage.swift in Sources */,
 				2468B02F1F4E59870091EDD0 /* GameDataToJSON.swift in Sources */,
@@ -1687,6 +1687,8 @@
 			baseConfigurationReference = C319D98D1CD23D94BB79B2CE /* Pods-Mememe.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer: andrewledev@gmail.com (MW997W2285)";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = Y692F89PT8;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1711,6 +1713,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.AndrewLe.Mememe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "124c9606-99fa-4a50-b4a0-96c763d34923";
+				PROVISIONING_PROFILE_SPECIFIER = MememeDevelopment;
 				SWIFT_VERSION = 3.0;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Mememe/";
 			};
@@ -1721,6 +1725,8 @@
 			baseConfigurationReference = A726362B99EE502AE5C81BCB /* Pods-Mememe.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Duy Le (Y692F89PT8)";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = Y692F89PT8;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1745,6 +1751,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.AndrewLe.Mememe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "b11f2182-61c1-4a55-aaec-a740868673ba";
+				PROVISIONING_PROFILE_SPECIFIER = MememeDistribution;
 				SWIFT_VERSION = 3.0;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Mememe/";
 			};

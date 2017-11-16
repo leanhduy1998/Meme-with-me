@@ -32,7 +32,7 @@ extension InGameViewController {
     }
     
     func setFloorBackground(){
-        var random = Int(arc4random_uniform(UInt32(11)))
+        var random = Int(arc4random_uniform(UInt32(10)))
         random += 1
         let floorImageName = "floor\(random)"
         floorBackground.image = UIImage(named: floorImageName)
