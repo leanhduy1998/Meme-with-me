@@ -12,11 +12,6 @@
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="AsimovDistIt.otf">
-            <string>AsimovDistIt</string>
-        </array>
-    </customFonts>
     <scenes>
         <!--Start View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -45,7 +40,7 @@
                                     <constraint firstAttribute="width" secondItem="ruP-np-UDN" secondAttribute="height" multiplier="1:1" id="EFK-XX-Ay1"/>
                                 </constraints>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mZY-ru-0Kv">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mZY-ru-0Kv">
                                 <rect key="frame" x="16" y="586" width="343" height="21"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </imageView>
@@ -74,13 +69,6 @@
                                     <constraint firstItem="96A-5d-2by" firstAttribute="centerY" secondItem="06J-Z6-AoH" secondAttribute="centerY" id="wpl-Vs-Za4"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Meme With Me" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iGS-Dk-UKL">
-                                <rect key="frame" x="16" y="100" width="343" height="36.5"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name="AsimovDistIt" family="Asimov" pointSize="31"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O7N-Du-gfm">
                                 <rect key="frame" x="340" y="281" width="25" height="25"/>
                                 <subviews>
@@ -138,23 +126,18 @@
                             <constraint firstItem="eGw-Gi-Dya" firstAttribute="width" secondItem="IHR-ks-CfK" secondAttribute="height" multiplier="3:1" id="681-YV-ReU"/>
                             <constraint firstAttribute="bottomMargin" secondItem="eGw-Gi-Dya" secondAttribute="bottom" id="6AP-tI-9S4"/>
                             <constraint firstItem="tcN-mw-GIO" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="9Fj-AX-Mxv"/>
-                            <constraint firstItem="iGS-Dk-UKL" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="BSC-Po-LR7"/>
                             <constraint firstItem="06J-Z6-AoH" firstAttribute="leading" secondItem="0FZ-2v-rGY" secondAttribute="trailing" constant="-20" id="Cax-uS-ODB"/>
                             <constraint firstItem="ruP-np-UDN" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="CcU-IQ-xFQ"/>
                             <constraint firstAttribute="bottomMargin" secondItem="tcN-mw-GIO" secondAttribute="bottom" constant="40" id="ERN-OH-LVM"/>
-                            <constraint firstItem="mZY-ru-0Kv" firstAttribute="width" secondItem="iGS-Dk-UKL" secondAttribute="width" id="EWZ-66-qvo"/>
                             <constraint firstItem="eGw-Gi-Dya" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="F5F-Cp-K2X"/>
                             <constraint firstItem="eGw-Gi-Dya" firstAttribute="width" secondItem="ruP-np-UDN" secondAttribute="height" multiplier="5:1" id="OIp-AT-SI4"/>
                             <constraint firstItem="eGw-Gi-Dya" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" id="Sbx-Uu-zee"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="iGS-Dk-UKL" secondAttribute="trailing" id="T6U-wU-ill"/>
                             <constraint firstItem="mZY-ru-0Kv" firstAttribute="height" secondItem="IfT-vm-kN1" secondAttribute="height" id="Vbf-1E-9yU"/>
                             <constraint firstAttribute="trailing" secondItem="O7N-Du-gfm" secondAttribute="trailing" constant="10" id="aJC-oV-dkJ"/>
                             <constraint firstItem="0FZ-2v-rGY" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="flc-6C-vu3"/>
                             <constraint firstItem="eGw-Gi-Dya" firstAttribute="width" secondItem="0FZ-2v-rGY" secondAttribute="height" multiplier="5:1" id="ggr-QB-Ryg"/>
                             <constraint firstAttribute="bottomMargin" secondItem="mZY-ru-0Kv" secondAttribute="bottom" constant="60" id="i58-aj-fuz"/>
-                            <constraint firstItem="iGS-Dk-UKL" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="80" id="lY5-XD-kNE"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="IfT-vm-kN1" secondAttribute="bottom" constant="60" id="mLB-MN-jM8"/>
-                            <constraint firstItem="iGS-Dk-UKL" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="nM7-Uf-MkC"/>
                             <constraint firstItem="mZY-ru-0Kv" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="o2h-p4-fJ6"/>
                             <constraint firstItem="IHR-ks-CfK" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="owo-qa-xee"/>
                             <constraint firstAttribute="trailing" secondItem="O7N-Du-gfm" secondAttribute="trailing" constant="10" id="uym-8a-cNc"/>
@@ -168,7 +151,6 @@
                         <outlet property="laughingIcon" destination="0FZ-2v-rGY" id="xB9-iF-UT3"/>
                         <outlet property="leftNotificationLabel" destination="96A-5d-2by" id="Mff-JD-Ndr"/>
                         <outlet property="leftRedNotificationView" destination="06J-Z6-AoH" id="jy1-wX-Nmg"/>
-                        <outlet property="mememeLabel" destination="iGS-Dk-UKL" id="Tjv-iM-U6X"/>
                         <outlet property="rightNotificationLabel" destination="FaU-Uo-TWE" id="zQM-qK-qog"/>
                         <outlet property="rightRedNotificationView" destination="O7N-Du-gfm" id="7lE-KD-inX"/>
                         <outlet property="touchToStartLabel" destination="IfT-vm-kN1" id="Bwk-ai-uLW"/>
@@ -3459,7 +3441,7 @@ Thank you for your time, we hope you enjoy.</string>
         <image name="plus" width="50" height="50"/>
         <image name="redCircle" width="50" height="50"/>
         <image name="setting" width="33" height="33"/>
-        <image name="startBackground" width="1920" height="1920"/>
+        <image name="startBackground" width="1242" height="2208"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Ag5-I4-lby"/>

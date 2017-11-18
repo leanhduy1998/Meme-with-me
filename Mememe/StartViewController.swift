@@ -21,7 +21,6 @@ class StartViewController: UIViewController,UIGestureRecognizerDelegate, AWSSign
     @IBOutlet weak var userIcon: UIImageView!
     @IBOutlet weak var ceasarIcon: UIImageView!
     @IBOutlet weak var laughingIcon: UIImageView!
-    @IBOutlet weak var mememeLabel: UILabel!
     @IBOutlet weak var leftRedNotificationView: UIView!
     @IBOutlet weak var rightRedNotificationView: UIView!
     @IBOutlet weak var touchToStartLabel: UILabel!
@@ -79,7 +78,6 @@ class StartViewController: UIViewController,UIGestureRecognizerDelegate, AWSSign
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        mememeLabel.sizeToFit()
     }
     
     override func viewWillAppear(_ animated: Bool) {
