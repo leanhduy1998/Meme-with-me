@@ -233,7 +233,7 @@ class AddEditMyMemeViewController: UIViewController, UITableViewDelegate, UITabl
     @IBAction func optionBtnPressed(_ sender: Any) {
         let optionAlertController = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
         optionAlertController.addAction(UIAlertAction(title: "Repick Cards", style: UIAlertActionStyle.default, handler: repickOption))
-        optionAlertController.addAction(UIAlertAction(title: "Help", style: UIAlertActionStyle.default, handler: help))
+        optionAlertController.addAction(UIAlertAction(title: "Help", style: UIAlertActionStyle.default, handler: helpOption))
         optionAlertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))
         self.present(optionAlertController, animated: true, completion: nil)
     }
