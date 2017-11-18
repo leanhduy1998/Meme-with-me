@@ -140,13 +140,6 @@ extension InGameViewController {
                 self.clearPreviewCardsData()
             }
             
-            /*if((currentPlayersCards?.count)! < cardDictionary.count){
-                clearPreviewCardsData()
-                cardOrder.removeAll()
-                cardDictionary.removeAll()
-                reloadPreviewCards()
-                return
-            }*/
             
             var cardNormalDictionary = [String:CardNormal]()
             var checkIfCardNoLongerExist = [String:Bool]()

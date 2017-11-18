@@ -140,6 +140,7 @@ class ChangeUserPictureViewController: UIViewController, UIImagePickerController
             
             S3Helper.uploadData(directory: compressedProfileImageDirectory, fileName: "\(MyPlayerData.id!)", data: data!, progressView: progressView) { (url) in
                 DispatchQueue.main.async {
+                    let _ = FileManagerHelper.insertImageIntoMemory(imageName: "\(MyPlayerData.id)playerId", directory: [], image: UIImage(data: data!)!)
                     let alertController = UIAlertController(title: "Finish Upload", message: "I compressed and uploaded your image. Do you want to also upload your image at full resolution", preferredStyle: UIAlertControllerStyle.actionSheet)
                     alertController.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.default, handler: self.uploadFullResImage))
                     alertController.addAction(UIAlertAction(title: "Nah", style: UIAlertActionStyle.default, handler: self.finishUploading))

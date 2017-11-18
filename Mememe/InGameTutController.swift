@@ -61,6 +61,10 @@ class InGameTutController: UIViewController, UITableViewDelegate, UITableViewDat
     
     var alertController = UIAlertController()
     
+    var topTextSegue: String!
+    var bottomTextSegue: String!
+    var detailPictureSegueSent = false
+    
     @IBOutlet weak var emptyMessageLabel: UILabel!
     
     
@@ -94,6 +98,7 @@ class InGameTutController: UIViewController, UITableViewDelegate, UITableViewDat
             
             present(alertController, animated: true, completion: nil)
         }
+        detailPictureSegueSent = false
     }
     func step2(action: UIAlertAction){
         alertController.dismiss(animated: true, completion: nil)
@@ -132,11 +137,10 @@ class InGameTutController: UIViewController, UITableViewDelegate, UITableViewDat
         })
     }
     
-    //self.alertController = UIAlertController(title: "", message: " ", preferredStyle:
     
     func step6(action: UIAlertAction){
         alertController.dismiss(animated: true, completion: nil)
-        self.alertController = UIAlertController(title: "Did you know?", message: "You can long tap on any card that is not yours to like it. Also, every time you open the app, Mememe will tell you how many times people laughed at your cards! Try it out to continue!", preferredStyle: UIAlertControllerStyle.alert)
+        self.alertController = UIAlertController(title: "Did you know?", message: "You can double tap on any card that is not yours to like it. Every time you open the app, Mememe will tell you how many times people laughed at your cards! And you can also hold a picture to share it. Try it out to continue!", preferredStyle: UIAlertControllerStyle.alert)
         self.alertController.addAction(UIAlertAction(title: "Okay!", style: UIAlertActionStyle.cancel, handler: nil))
         self.present(self.alertController, animated: true, completion: nil)
     }
@@ -326,6 +330,11 @@ class InGameTutController: UIViewController, UITableViewDelegate, UITableViewDat
             destination.memeImage = thisRoundImage
             destination.playerJudging = playerJudging
             destination.leaderId = leaderId
+        }
+        else if let destination = segue.destination as? PictureDetailViewController{
+            destination.topText = topTextSegue
+            destination.bottomText = bottomTextSegue
+            destination.image = thisRoundImage
         }
     }
 }

@@ -208,8 +208,13 @@ class InGameViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBAction func optionBtnPressed(_ sender: Any) {
         let roomOptionAlertController = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
         roomOptionAlertController.addAction(UIAlertAction(title: "Leave Room", style: UIAlertActionStyle.default, handler: leaveRoom))
+        roomOptionAlertController.addAction(UIAlertAction(title: "Help", style: UIAlertActionStyle.default, handler: help))
         roomOptionAlertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))
         self.present(roomOptionAlertController, animated: true, completion: nil)
+    }
+    
+    func help(action: UIAlertAction){
+        DisplayAlert.display(controller: self, title: "", message: "Double tap on memes(not yours or empty) to like it. Tap and hold on a meme to view it in detail!")
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

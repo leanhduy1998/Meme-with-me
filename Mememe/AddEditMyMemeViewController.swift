@@ -19,10 +19,15 @@ class AddEditMyMemeViewController: UIViewController, UITableViewDelegate, UITabl
     
     @IBOutlet weak var navigationBar: UINavigationBar!
     
-    @IBOutlet weak var repickBtn: UIBarButtonItem!
-    
     @IBOutlet weak var backgroundIV: UIImageView!
     var backgroundImage: UIImage!
+    
+    @IBOutlet weak var optionBtn: UIBarButtonItem!
+    
+    @IBOutlet weak var finishBtn: UIBarButtonItem!
+    
+    @IBOutlet weak var cancelBtn: UIBarButtonItem!
+    
     
     var topUIView : UIView!
     var bottomUIView : UIView!
@@ -192,12 +197,9 @@ class AddEditMyMemeViewController: UIViewController, UITableViewDelegate, UITabl
         })
     }
     
-    @IBAction func cancelBtnPressed(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
-    }
-    
-    @IBAction func repickBtnPressed(_ sender: Any) {
-        repickBtn.isEnabled = false
+    func repickOption(action: UIAlertAction) {
+        optionBtn.isEnabled = false
+        finishBtn.isEnabled = false
         
         topLabel.text = " "
         topLabel.font = originalFont
@@ -223,8 +225,24 @@ class AddEditMyMemeViewController: UIViewController, UITableViewDelegate, UITabl
         tableview.reloadData()
         
         DispatchQueue.main.asyncAfter(deadline: .now()+1) {
-            self.repickBtn.isEnabled = true
+            self.optionBtn.isEnabled = true
+            self.finishBtn.isEnabled = true
         }
+    }
+    
+    @IBAction func optionBtnPressed(_ sender: Any) {
+        let optionAlertController = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
+        optionAlertController.addAction(UIAlertAction(title: "Repick Cards", style: UIAlertActionStyle.default, handler: repickOption))
+        optionAlertController.addAction(UIAlertAction(title: "Help", style: UIAlertActionStyle.default, handler: help))
+        optionAlertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))
+        self.present(optionAlertController, animated: true, completion: nil)
+    }
+    func helpOption(action: UIAlertAction){
+        DisplayAlert.display(controller: self, title: "", message: "Hold the meme line to drag it onto the image. Tap the meme line on the image to delete it!")
+    }
+    
+    @IBAction func cancelBtnPressed(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
     }
     
     

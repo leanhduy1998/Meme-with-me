@@ -195,7 +195,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7DR-TY-cHo">
-                                <rect key="frame" x="26" y="607" width="323" height="40"/>
+                                <rect key="frame" x="26" y="558" width="323" height="40"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jLs-5U-tJj">
                                         <rect key="frame" x="0.0" y="0.0" width="323" height="40"/>
@@ -224,7 +224,7 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="128" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fPc-n5-i96">
-                                <rect key="frame" x="0.0" y="74" width="375" height="513"/>
+                                <rect key="frame" x="0.0" y="74" width="375" height="464"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AvailableGamesOneImageCell" rowHeight="128" id="eYk-2Z-1tD" customClass="AvailableGamesOneImageCell" customModule="Mememe" customModuleProvider="target">
@@ -555,7 +555,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TdQ-uB-72n" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2920" y="-33"/>
+            <point key="canvasLocation" x="4354" y="-155"/>
         </scene>
         <!--Legal View Controller-->
         <scene sceneID="GRQ-UE-hRa">
@@ -1114,7 +1114,7 @@ New Brunswick, New Jersey 08901
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R7T-DM-IU2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4162" y="1524"/>
+            <point key="canvasLocation" x="4353" y="1522"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="qVu-4r-hLc">
@@ -1130,7 +1130,7 @@ New Brunswick, New Jersey 08901
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qx1-Wj-Gqe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1638" y="1154"/>
+            <point key="canvasLocation" x="-2230" y="1276"/>
         </scene>
         <!--Previous Games-->
         <scene sceneID="fLB-36-pc6">
@@ -1145,7 +1145,7 @@ New Brunswick, New Jersey 08901
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8fu-Lf-g5K">
-                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="WsQ-GP-yPt"/>
                                 </constraints>
@@ -1177,7 +1177,7 @@ New Brunswick, New Jersey 08901
                                 </items>
                             </navigationBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="96d-Vh-iLU">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="108" width="375" height="559"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PreviewGamesTwoImageCell" rowHeight="128" id="zdc-k6-YZC" customClass="PreviewGamesTwoImageCell" customModule="Mememe" customModuleProvider="target">
@@ -1482,7 +1482,7 @@ New Brunswick, New Jersey 08901
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="66L-Sl-cgl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-728" y="1154"/>
+            <point key="canvasLocation" x="-1319" y="1276"/>
         </scene>
         <!--Private Room View Controller-->
         <scene sceneID="8VJ-kG-pEO">
@@ -1745,7 +1745,7 @@ New Brunswick, New Jersey 08901
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N58-YY-vnA" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="b7q-hW-5br" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3804" y="-33"/>
+            <point key="canvasLocation" x="5239" y="-155"/>
         </scene>
         <!--In Game View Controller-->
         <scene sceneID="YjS-hG-ZJH">
@@ -1973,7 +1973,7 @@ New Brunswick, New Jersey 08901
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CB3-gK-S5z" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="rHl-eh-T5a" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="4675" y="-33"/>
+            <point key="canvasLocation" x="6110" y="-155"/>
         </scene>
         <!--In Game Tut Controller-->
         <scene sceneID="Jet-8L-byk">
@@ -2195,12 +2195,13 @@ New Brunswick, New Jersey 08901
                         <segue destination="iWs-4G-FUm" kind="show" identifier="AddEditTutControllerSegue" id="uSc-Xm-EuS"/>
                         <segue destination="aQc-Ox-PkF" kind="show" identifier="JudgingTutControllerSegue" id="84I-eQ-Bl4"/>
                         <segue destination="SOZ-uG-kSo" kind="unwind" identifier="unwindToAvailableGamesViewControllerFromInGameTut" unwindAction="unwindToAvailableGamesViewControllerWithSegue:" id="mer-co-ZRF"/>
+                        <segue destination="p1d-Nc-pfd" kind="show" identifier="TutorialShowImageDetailSegue" id="vEi-fL-PmZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iow-Na-otC" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="SOZ-uG-kSo" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="6152" y="1507"/>
+            <point key="canvasLocation" x="6343" y="1505"/>
         </scene>
         <!--Add Edit My Meme View Controller-->
         <scene sceneID="A9V-ig-c3S">
@@ -2271,14 +2272,14 @@ New Brunswick, New Jersey 08901
                                 <items>
                                     <navigationItem id="TLC-1Y-zzL">
                                         <leftBarButtonItems>
-                                            <barButtonItem systemItem="cancel" id="6or-Hw-3rT">
+                                            <barButtonItem title="Cancel" id="b9d-Hr-8aH">
                                                 <connections>
-                                                    <action selector="cancelBtnPressed:" destination="nsi-Nl-FZ6" id="UQi-8M-Clt"/>
+                                                    <action selector="cancelBtnPressed:" destination="nsi-Nl-FZ6" id="xsV-dM-zf6"/>
                                                 </connections>
                                             </barButtonItem>
-                                            <barButtonItem title="Repick Deck" id="eEE-xC-mHS">
+                                            <barButtonItem title="Option" id="iVt-j1-dLf">
                                                 <connections>
-                                                    <action selector="repickBtnPressed:" destination="nsi-Nl-FZ6" id="mmg-mm-5BP"/>
+                                                    <action selector="optionBtnPressed:" destination="nsi-Nl-FZ6" id="Jgg-1s-fOV"/>
                                                 </connections>
                                             </barButtonItem>
                                         </leftBarButtonItems>
@@ -2320,9 +2321,11 @@ New Brunswick, New Jersey 08901
                     <connections>
                         <outlet property="backgroundIV" destination="i8i-6C-wVR" id="8UZ-HN-z7Z"/>
                         <outlet property="bottomLabel" destination="He3-ov-wfq" id="Rck-ah-hqX"/>
+                        <outlet property="cancelBtn" destination="b9d-Hr-8aH" id="HuS-BS-gcJ"/>
+                        <outlet property="finishBtn" destination="5oq-Ne-T7z" id="6sN-xi-1Gq"/>
                         <outlet property="imageview" destination="zdZ-jM-bV8" id="LgI-2P-bWN"/>
                         <outlet property="navigationBar" destination="RW4-ni-nMM" id="uYl-Uw-Mpu"/>
-                        <outlet property="repickBtn" destination="eEE-xC-mHS" id="PDo-g8-lDa"/>
+                        <outlet property="optionBtn" destination="iVt-j1-dLf" id="nPa-eq-JQh"/>
                         <outlet property="tableview" destination="0Xj-mj-17d" id="QXX-bR-B56"/>
                         <outlet property="topLabel" destination="Bjc-8d-q7j" id="JOy-KV-Eis"/>
                         <segue destination="F0U-6B-Ajn" kind="unwind" identifier="unwindToInGameViewController" unwindAction="unwindToInGameViewControllerWithSegue:" id="hns-kR-ziF"/>
@@ -2331,7 +2334,7 @@ New Brunswick, New Jersey 08901
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vjs-1W-P7g" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="F0U-6B-Ajn" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="5712.8000000000002" y="-360.2698650674663"/>
+            <point key="canvasLocation" x="7148" y="-482"/>
         </scene>
         <!--Add Edit Tut Controller-->
         <scene sceneID="1Zh-ZM-Wj0">
@@ -2440,7 +2443,7 @@ New Brunswick, New Jersey 08901
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A4R-Rf-Nau" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="zo7-CW-OPY" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="7149" y="1313"/>
+            <point key="canvasLocation" x="7340" y="1312"/>
         </scene>
         <!--Judging View Controller-->
         <scene sceneID="9U6-Pa-acM">
@@ -2506,7 +2509,7 @@ New Brunswick, New Jersey 08901
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h8J-6F-J8k" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="YxM-99-dMq" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="5714" y="347"/>
+            <point key="canvasLocation" x="7148" y="225"/>
         </scene>
         <!--Judging Tut Controller-->
         <scene sceneID="y1L-mG-60L">
@@ -2556,7 +2559,7 @@ New Brunswick, New Jersey 08901
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KG4-1A-JWm" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="iEk-OH-ko1" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="7149" y="1996"/>
+            <point key="canvasLocation" x="7340" y="1995"/>
         </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="bJA-fa-dIM">
@@ -2924,7 +2927,7 @@ Thank you for your time, we hope you enjoy.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rDR-fO-AOc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2405.7971014492755" y="779.34782608695662"/>
+            <point key="canvasLocation" x="2762" y="715"/>
         </scene>
         <!--Change Name Setting View Controller-->
         <scene sceneID="HuC-Vx-SKF">
@@ -3266,7 +3269,7 @@ Thank you for your time, we hope you enjoy.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kvi-G3-Ush" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5065" y="1507"/>
+            <point key="canvasLocation" x="5257" y="1505"/>
         </scene>
         <!--Preview In Game View Controller-->
         <scene sceneID="shz-H5-axT">
@@ -3281,10 +3284,10 @@ Thank you for your time, we hope you enjoy.</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Vnx-a2-Wlo">
-                                <rect key="frame" x="0.0" y="64" width="375" height="459"/>
+                                <rect key="frame" x="0.0" y="108" width="375" height="415"/>
                             </imageView>
                             <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bNy-1u-eV6">
-                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="44"/>
                                 <items>
                                     <navigationItem id="f0G-BV-GKM">
                                         <nil key="title"/>
@@ -3304,7 +3307,7 @@ Thank you for your time, we hope you enjoy.</string>
                                 </constraints>
                             </scrollView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dUh-Ni-IIH">
-                                <rect key="frame" x="0.0" y="64" width="375" height="459"/>
+                                <rect key="frame" x="0.0" y="108" width="375" height="415"/>
                             </scrollView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ymk-uf-Cqq">
                                 <rect key="frame" x="0.0" y="623" width="375" height="44"/>
@@ -3363,7 +3366,7 @@ Thank you for your time, we hope you enjoy.</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qmd-fQ-359" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="HBp-A1-djf" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="188" y="1154"/>
+            <point key="canvasLocation" x="-402" y="1276"/>
         </scene>
         <!--Picture Detail View Controller-->
         <scene sceneID="lBz-F8-cLx">
@@ -3439,7 +3442,7 @@ Thank you for your time, we hope you enjoy.</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ESE-iu-Fr5" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="BGw-p0-hm4" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="5713" y="-1066"/>
+            <point key="canvasLocation" x="3689" y="-1218"/>
         </scene>
     </scenes>
     <resources>
@@ -3459,10 +3462,10 @@ Thank you for your time, we hope you enjoy.</string>
         <image name="startBackground" width="1920" height="1920"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="fBy-Ij-XTm"/>
+        <segue reference="Ag5-I4-lby"/>
         <segue reference="Vqk-Rj-oSd"/>
-        <segue reference="tfL-Tn-NAB"/>
-        <segue reference="DSh-im-12n"/>
-        <segue reference="1c9-XJ-faU"/>
+        <segue reference="1Cf-yr-Vl5"/>
+        <segue reference="K4P-As-mOh"/>
+        <segue reference="gTY-Lo-ee3"/>
     </inferredMetricsTieBreakers>
 </document>

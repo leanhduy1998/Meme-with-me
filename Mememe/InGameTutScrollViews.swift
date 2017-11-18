@@ -129,20 +129,13 @@ extension InGameTutController{
                 let upLabel = getTopLabel(text: (currentPlayersCards?[x].topText)!)
                 let downLabel = getBottomLabel(text: (currentPlayersCards?[x].bottomText)!)
                 
-                // -40 is for animation
-                let cardUIView = CardView(frame: CGRect(x: newX, y: 10, width: cardWidth, height: cardHeight))
-    
-                cardUIView.addSubview(upLabel)
-                cardUIView.bringSubview(toFront: upLabel)
-                cardUIView.addSubview(downLabel)
-                cardUIView.bringSubview(toFront: downLabel)
-                
                 var iv = UIImageView(image: thisRoundImage)
                 iv.frame = CGRect(x: 0, y: 0, width: cardWidth, height: cardHeight)
                 iv = UIImageViewHelper.roundImageView(imageview: iv, radius: 15)
                 
-                cardUIView.addSubview(iv)
-                cardUIView.sendSubview(toBack: iv)
+                let cardUIView = CardView()
+                cardUIView.initCardView(topLabel: upLabel, bottomLabel: downLabel, playerId: (currentPlayersCards?[x].playerId)!, memeIV: iv)
+                cardUIView.frame = CGRect(x: newX, y: 10, width: cardWidth, height: cardHeight)
                 
                 if currentPlayersCards?[x].playerId != MyPlayerData.id {
                     let heartView = getHeartView(frame: CGRect(x: 0, y: 0, width: cardWidth, height: cardHeight), playerCard: (currentPlayersCards?[x])!)
@@ -151,6 +144,11 @@ extension InGameTutController{
                 }
                 
                 cardUIView.backgroundColor = UIColor.gray
+                
+                let tap = UILongPressGestureRecognizer(target: self, action: #selector(showPictureDetailTap))
+                
+                tap.delegate = self
+                cardUIView.addGestureRecognizer(tap)
                 
                 previewScrollView.addSubview(cardUIView)
                 previewScrollView.bringSubview(toFront: cardUIView)
@@ -166,21 +164,18 @@ extension InGameTutController{
                 if !card.didWin {
                     continue
                 }
-                let cardUIView = CardView(frame: CGRect(x: newX, y: space/2 - cardInitialYBeforeAnimation, width:cardWidth, height: cardHeight))
+                
                 let upLabel = getTopLabel(text: card.topText!)
                 let downLabel = getBottomLabel(text: card.bottomText!)
                 
-                cardUIView.addSubview(upLabel)
-                cardUIView.bringSubview(toFront: upLabel)
-                cardUIView.addSubview(downLabel)
-                cardUIView.bringSubview(toFront: downLabel)
                 
                 var iv = UIImageView(image: thisRoundImage)
                 iv.frame = CGRect(x: 0, y: 0, width: cardWidth, height: cardHeight)
                 iv = UIImageViewHelper.roundImageView(imageview: iv, radius: 15)
                 
-                cardUIView.addSubview(iv)
-                cardUIView.sendSubview(toBack: iv)
+                let cardUIView = CardView()
+                cardUIView.initCardView(topLabel: upLabel, bottomLabel: downLabel, playerId: card.playerId!, memeIV: iv)
+                cardUIView.frame = CGRect(x: newX, y: space/2 - cardInitialYBeforeAnimation, width:cardWidth, height: cardHeight)
                 
                 cardUIView.backgroundColor = UIColor.gray
                 
@@ -207,6 +202,18 @@ extension InGameTutController{
         previewScrollView.contentSize = CGSize(width: contentWidth, height: cardHeight)
         
     }
+    
+    func showPictureDetailTap(sender: UILongPressGestureRecognizer) {
+        step6Finished = true
+        let cardView = sender.view as? CardView
+        topTextSegue = cardView?.topText
+        bottomTextSegue = cardView?.bottomText
+        if !detailPictureSegueSent{
+            detailPictureSegueSent = true
+            performSegue(withIdentifier: "TutorialShowImageDetailSegue", sender: self)
+        }
+    }
+    
     func checkIfWinnerExist(cards: [CardNormal]) -> Bool{
         var haveWinner = false
         for card in cards {
