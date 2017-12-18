@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -2637,7 +2637,7 @@ New Brunswick, New Jersey 08901
                         <outlet property="progressLabel" destination="8Y4-H4-Vdi" id="8Dh-AX-0KP"/>
                         <outlet property="progressView" destination="83W-C9-8vY" id="zYm-du-6fv"/>
                         <outlet property="userImageView" destination="Rbg-a5-d8T" id="hOc-WZ-tJ6"/>
-                        <segue destination="VJ8-fe-rjT" kind="presentation" identifier="AvailableGamesViewControllerSegue" id="1c9-XJ-faU"/>
+                        <segue destination="7pD-At-KCT" kind="show" identifier="AvailableGamesViewControllerSegue" id="RCe-vd-dpX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s08-vV-OH7" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3457,9 +3457,9 @@ Thank you for your time, we hope you enjoy.</string>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Ag5-I4-lby"/>
-        <segue reference="Vqk-Rj-oSd"/>
+        <segue reference="RCe-vd-dpX"/>
+        <segue reference="sfi-MR-wMW"/>
         <segue reference="1Cf-yr-Vl5"/>
         <segue reference="K4P-As-mOh"/>
-        <segue reference="gTY-Lo-ee3"/>
     </inferredMetricsTieBreakers>
 </document>

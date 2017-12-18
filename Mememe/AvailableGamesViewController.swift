@@ -1,6 +1,6 @@
 //
-//  HallofMememeViewController.swift
-//  Mememe
+//  AvailableGamesViewController.swift
+//  Meme with Me
 //
 //  Created by Duy Le on 7/27/17.
 //  Copyright © 2017 Andrew Le. All rights reserved.

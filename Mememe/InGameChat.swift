@@ -1,9 +1,9 @@
 //
 //  InGameChat.swift
-//  Mememe
+//  Meme with Me
 //
 //  Created by Duy Le on 9/30/17.
-//  Copyright © 2017 Andrew Le. All rights reserved.
+//  Copyright © 2017 Duy Le. All rights reserved.
 //
 
 import Foundation

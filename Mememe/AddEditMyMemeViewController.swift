@@ -1,6 +1,6 @@
 //
 //  AddEditYourMemeViewController.swift
-//  Mememe
+//  Meme with Me
 //
 //  Created by Duy Le on 8/14/17.
 //  Copyright © 2017 Andrew Le. All rights reserved.
