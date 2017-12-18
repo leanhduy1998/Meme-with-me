@@ -207,6 +207,9 @@ class AddEditMyMemeViewController: UIViewController, UITableViewDelegate, UITabl
         bottomLabel.text = " "
         bottomLabel.font = originalFont
         
+        self.memesArrangement.removeAll()
+        self.memesRelatedPos.removeAll()
+        
         self.memeModel = MemeHelper.get9Memes()
         self.memesArrangement.append(contentsOf: self.memeModel.topMemes)
         self.memesArrangement.append(contentsOf: self.memeModel.bottomMemes)

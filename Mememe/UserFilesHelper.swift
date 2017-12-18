@@ -77,6 +77,36 @@ class UserFilesHelper {
                 if self.didLoadAllContents == true {
                     completeHandler(contents)
                 }
+                else{
+                    self.loadMoreMoreContents(directory: directory, contents: contents, completeHandler: completeHandler)
+                }
+            }
+        }
+    }
+    
+    private func loadMoreMoreContents(directory: String, contents : [AWSContent], completeHandler: @escaping (_ contents: [AWSContent]) -> Void) {
+        
+        var contents = contents
+        
+        manager.listAvailableContents(withPrefix: directory, marker: marker) { (c, nextMarker, error) in
+            
+            if let error = error {
+                print("Failed to load the list of contents. \(error)")
+            }
+            if let c = c, c.count > 0 {
+                contents.append(contentsOf: c)
+                if let nextMarker = nextMarker, !nextMarker.isEmpty {
+                    self.didLoadAllContents = false
+                } else {
+                    self.didLoadAllContents = true
+                }
+                self.marker = nextMarker
+                if self.didLoadAllContents == true {
+                    completeHandler(contents)
+                }
+                else{
+                    self.loadMoreMoreContents(directory: directory, contents: contents, completeHandler: completeHandler)
+                }
             }
         }
     }
