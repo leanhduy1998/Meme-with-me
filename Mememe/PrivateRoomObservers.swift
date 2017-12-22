@@ -30,6 +30,11 @@ extension PrivateRoomViewController{
                 }
                 
                 self.startBtn.isEnabled = false
+                
+                if( self.leaderId == nil || MyPlayerData.id == self.leaderId){
+                    self.startBtn.title = "Please Wait"
+                }
+
                 self.startBtnPlayerAddedDebt = self.startBtnPlayerAddedDebt + 1
                 
                 if !exist {
@@ -60,12 +65,13 @@ extension PrivateRoomViewController{
         if(!self.startBtnTimerIsCounting){
             self.startBtnTimerIsCounting = true
 
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5, execute: {
                 self.startBtnPlayerAddedDebt = self.startBtnPlayerAddedDebt - 1
                 self.startBtnTimerIsCounting = false
                 
                 if(self.startBtnPlayerAddedDebt == 0){
                     self.startBtn.isEnabled = true
+                    self.startBtn.title = "Start Game"
                 }
                 else{
                     self.checkIfStartBtnCanBeEnabled()
