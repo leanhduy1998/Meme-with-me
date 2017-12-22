@@ -245,7 +245,7 @@ class AddEditMyMemeViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     @IBAction func cancelBtnPressed(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
+        performSegue(withIdentifier: "unwindToInGameViewController", sender: self)
     }
     
     
@@ -256,6 +256,7 @@ class AddEditMyMemeViewController: UIViewController, UITableViewDelegate, UITabl
             destination.myTopText = topLabel.text!
             destination.myBottomText = bottomLabel.text!
             destination.memesArrangement = memesArrangement
+            destination.memesRelatedPos = memesRelatedPos
             destination.memeModel = memeModel
         }
     }

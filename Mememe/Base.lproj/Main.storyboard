@@ -2256,7 +2256,7 @@ New Brunswick, New Jersey 08901
                                         <leftBarButtonItems>
                                             <barButtonItem title="Cancel" id="b9d-Hr-8aH">
                                                 <connections>
-                                                    <action selector="cancelBtnPressed:" destination="nsi-Nl-FZ6" id="xsV-dM-zf6"/>
+                                                    <segue destination="F0U-6B-Ajn" kind="unwind" identifier="unwindToInGameViewController" unwindAction="unwindToInGameViewControllerWithSegue:" id="Djv-MO-ueW"/>
                                                 </connections>
                                             </barButtonItem>
                                             <barButtonItem title="Option" id="iVt-j1-dLf">
@@ -2310,7 +2310,6 @@ New Brunswick, New Jersey 08901
                         <outlet property="optionBtn" destination="iVt-j1-dLf" id="nPa-eq-JQh"/>
                         <outlet property="tableview" destination="0Xj-mj-17d" id="QXX-bR-B56"/>
                         <outlet property="topLabel" destination="Bjc-8d-q7j" id="JOy-KV-Eis"/>
-                        <segue destination="F0U-6B-Ajn" kind="unwind" identifier="unwindToInGameViewController" unwindAction="unwindToInGameViewControllerWithSegue:" id="hns-kR-ziF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vjs-1W-P7g" userLabel="First Responder" sceneMemberID="firstResponder"/>
