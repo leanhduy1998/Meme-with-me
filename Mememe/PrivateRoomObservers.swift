@@ -45,8 +45,10 @@ extension PrivateRoomViewController{
                             let image = UIImage(data: imageData)
                             self.userImagesDic[playerId] = image
                             
-                            if(self.userImagesDic.count == self.userInRoom.count && self.userInRoom.count > 1){
-                                self.checkIfStartBtnCanBeEnabled()
+                            if(MyPlayerData.id == self.leaderId || self.leaderId == nil){
+                                if(self.userImagesDic.count == self.userInRoom.count && self.userInRoom.count > 1){
+                                    self.checkIfStartBtnCanBeEnabled()
+                                }
                             }
                             
                             self.tableview.reloadData()
