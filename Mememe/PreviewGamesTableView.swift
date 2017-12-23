@@ -44,23 +44,29 @@ extension PreviousGamesViewController {
             
             if let game = sections[indexPath.section].games[indexPath.row] as? Game {
                 GameStack.sharedInstance.stack.context.delete(game)
-                
-                MememeDynamoDB.removeItem(gameModels[game.gameId!]!, completionHandler: { (error) in
-                    if error == nil {
-                        DispatchQueue.main.async {
+                GameStack.sharedInstance.saveContext {
+                    DispatchQueue.main.async {
+                        if(self.gameModels[game.gameId!] == nil){
                             self.tableview.reloadData()
+                            return
                         }
+                        MememeDynamoDB.removeItem(self.gameModels[game.gameId!]!, completionHandler: { (error) in
+                            if error == nil {
+                                DispatchQueue.main.async {
+                                    self.gameModels.removeValue(forKey: game.gameId!)
+                                    self.tableview.reloadData()
+                                }
+                            }
+                        })
                     }
-                })
+                }
             }
             else if let game = sections[indexPath.section].games[indexPath.row] as? GameJSONModel{
                 MememeDynamoDB.removeItem(game.model, completionHandler: { (error) in
                     if error == nil {
                         DispatchQueue.main.async {
-                            if self.gameModels[game.gameId!] == nil {
-                                self.tableview.reloadData()
-                                return
-                            }
+                            self.gameModels.removeValue(forKey: game.gameId!)
+                            self.tableview.reloadData()
                         }
                     }
                 })
@@ -92,14 +98,17 @@ extension PreviousGamesViewController {
             
         case 2:
             let cell = (tableView.dequeueReusableCell(withIdentifier: "PreviewGamesTwoImageCell") as? PreviewGamesTwoImageCell)!
+            cell.activityIndicator.isHidden = true
             return loadTwoImagesCell(cell: cell, game: game, indexPath: indexPath)
             
         case 3:
             let cell = (tableView.dequeueReusableCell(withIdentifier: "PreviewGamesThreeImageCell") as? PreviewGamesThreeImageCell)!
+            cell.activityIndicator.isHidden = true
             return loadThreeImagesCell(cell: cell, game: game, indexPath: indexPath)
             
         default:
             let cell = (tableView.dequeueReusableCell(withIdentifier: "PreviewGamesFourImageCell") as? PreviewGamesFourImageCell)!
+            cell.activityIndicator.isHidden = true
             return loadFourImagesCell(cell: cell, game: game, indexPath: indexPath)
         }
     }

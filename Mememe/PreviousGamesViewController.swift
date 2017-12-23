@@ -174,7 +174,6 @@ class PreviousGamesViewController: UIViewController, UITableViewDelegate, UITabl
         var unableToDownloadCounts = 0
         
         if selectedAll {
-            
             for section in sections {
                 for game in section.games {
                     if game is Game{
@@ -183,6 +182,12 @@ class PreviousGamesViewController: UIViewController, UITableViewDelegate, UITabl
                     }
                     var gameModel = game as? GameJSONModel
                     gamesStorageLocation[(gameModel?.gameId!)!]! = "coreData"
+                    
+             /*       for player in (gameModel?.player)!{
+                        helper.loadUserProfilePicture(userId: player.playerId, completeHandler: { (imageData) in
+                            playerImagesInGameDic[]
+                        })
+                    }*/
                     
                     GameDataFromJSON.saveGameCoreDataFromJSON(model: (gameModel?.model)!, completeHandler: {
                         gameModel = nil
@@ -198,6 +203,8 @@ class PreviousGamesViewController: UIViewController, UITableViewDelegate, UITabl
                     continue
                 }
                 var gameModel = sections[indexPath.section].games[indexPath.row] as? GameJSONModel
+                
+                
                 
                 switch((gameModel?.player.count)!){
                 case 1:
@@ -452,7 +459,7 @@ class PreviousGamesViewController: UIViewController, UITableViewDelegate, UITabl
         }
     }
     
-    @IBAction func cancelBtnPressed(_ sender: Any) {
+    @IBAction func goBackBtnPressed(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
     

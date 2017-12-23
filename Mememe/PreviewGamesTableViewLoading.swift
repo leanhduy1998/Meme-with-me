@@ -50,6 +50,8 @@ extension PreviousGamesViewController{
                         if self.imageDownloaded[self.playerImagesInGameDic[game.gameId!]![0].playerId] != nil {
                             DispatchQueue.main.async {
                                 cell.firstIV.image = self.imageDownloaded[self.playerImagesInGameDic[game.gameId!]![0].playerId]
+                                
+                                self.downloadImagesForPlayer(players: players!, playerId: self.playerImagesInGameDic[game.gameId!]![0].playerId, gameId: game.gameId!, imageData: imageData)
                             }
                         }
                         else{
@@ -82,6 +84,7 @@ extension PreviousGamesViewController{
                         if self.imageDownloaded[self.playerImagesInGameDic[game.gameId!]![1].playerId] != nil {
                             DispatchQueue.main.async {
                                 cell.secondIV.image = self.imageDownloaded[self.playerImagesInGameDic[game.gameId!]![1].playerId]
+                                self.downloadImagesForPlayer(players: players!, playerId: self.playerImagesInGameDic[game.gameId!]![1].playerId, gameId: game.gameId!, imageData: imageData)
                             }
                         }
                         else{
@@ -180,6 +183,21 @@ extension PreviousGamesViewController{
         return cell
     }
     
+    func downloadImagesForPlayer(players: [Player], playerId: String, gameId: String, imageData: Data){
+        let playerIdForStorage = FileManagerHelper.getPlayerIdForStorage(playerId: playerId)
+        let gameIdForStorage = FileManagerHelper.getPlayerIdForStorage(playerId: gameId)
+        
+        let directory: [String] = ["Game","\(gameIdForStorage)"]
+        
+        let imagePath = FileManagerHelper.insertImageIntoMemory(imageName: playerIdForStorage, directory: directory, image: UIImage(data: imageData)!)
+        for player in players {
+            if player.playerId == playerId{
+                player.imageStorageLocation = imagePath
+                break
+            }
+        }
+    }
+    
     func loadThreeImagesCell(cell: PreviewGamesThreeImageCell, game:Any, indexPath: IndexPath) -> PreviewGamesThreeImageCell {
         let cell = CellAnimator.add(cell: cell)
         
@@ -220,6 +238,7 @@ extension PreviousGamesViewController{
                         if self.imageDownloaded[self.playerImagesInGameDic[game.gameId!]![0].playerId] != nil {
                             DispatchQueue.main.async {
                                 cell.firstIV.image = self.imageDownloaded[self.playerImagesInGameDic[game.gameId!]![0].playerId]
+                                self.downloadImagesForPlayer(players: players!, playerId: self.playerImagesInGameDic[game.gameId!]![0].playerId, gameId: game.gameId!, imageData: imageData)
                             }
                         }
                         else{
@@ -249,6 +268,7 @@ extension PreviousGamesViewController{
                         if self.imageDownloaded[self.playerImagesInGameDic[game.gameId!]![1].playerId] != nil {
                             DispatchQueue.main.async {
                                 cell.secondIV.image = self.imageDownloaded[self.playerImagesInGameDic[game.gameId!]![1].playerId]
+                                self.downloadImagesForPlayer(players: players!, playerId: self.playerImagesInGameDic[game.gameId!]![1].playerId, gameId: game.gameId!, imageData: imageData)
                             }
                         }
                         else{
@@ -278,6 +298,7 @@ extension PreviousGamesViewController{
                         if self.imageDownloaded[self.playerImagesInGameDic[game.gameId!]![2].playerId] != nil {
                             DispatchQueue.main.async {
                                 cell.thirdIV.image = self.imageDownloaded[self.playerImagesInGameDic[game.gameId!]![2].playerId]
+                                self.downloadImagesForPlayer(players: players!, playerId: self.playerImagesInGameDic[game.gameId!]![2].playerId, gameId: game.gameId!, imageData: imageData)
                             }
                         }
                         else {
@@ -446,6 +467,7 @@ extension PreviousGamesViewController{
                         if self.imageDownloaded[self.playerImagesInGameDic[game.gameId!]![0].playerId] != nil {
                             DispatchQueue.main.async {
                                 cell.firstIV.image = self.imageDownloaded[self.playerImagesInGameDic[game.gameId!]![0].playerId]
+                                self.downloadImagesForPlayer(players: players!, playerId: self.playerImagesInGameDic[game.gameId!]![0].playerId, gameId: game.gameId!, imageData: imageData)
                             }
                         }
                         else{
@@ -475,6 +497,7 @@ extension PreviousGamesViewController{
                         if self.imageDownloaded[self.playerImagesInGameDic[game.gameId!]![1].playerId] != nil {
                             DispatchQueue.main.async {
                                 cell.secondIV.image = self.imageDownloaded[self.playerImagesInGameDic[game.gameId!]![1].playerId]
+                                self.downloadImagesForPlayer(players: players!, playerId: self.playerImagesInGameDic[game.gameId!]![1].playerId, gameId: game.gameId!, imageData: imageData)
                             }
                         }
                         else{
@@ -504,6 +527,7 @@ extension PreviousGamesViewController{
                         if self.imageDownloaded[self.playerImagesInGameDic[game.gameId!]![2].playerId] != nil {
                             DispatchQueue.main.async {
                                 cell.thirdIV.image = self.imageDownloaded[self.playerImagesInGameDic[game.gameId!]![2].playerId]
+                                self.downloadImagesForPlayer(players: players!, playerId: self.playerImagesInGameDic[game.gameId!]![2].playerId, gameId: game.gameId!, imageData: imageData)
                             }
                         }
                         else {
@@ -533,6 +557,7 @@ extension PreviousGamesViewController{
                         if self.imageDownloaded[self.playerImagesInGameDic[game.gameId!]![3].playerId] != nil {
                             DispatchQueue.main.async {
                                 cell.fourthIV.image = self.imageDownloaded[self.playerImagesInGameDic[game.gameId!]![3].playerId]
+                                self.downloadImagesForPlayer(players: players!, playerId: self.playerImagesInGameDic[game.gameId!]![3].playerId, gameId: game.gameId!, imageData: imageData)
                             }
                         }
                         else {
