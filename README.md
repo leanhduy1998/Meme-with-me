@@ -26,17 +26,20 @@ You can create a room, and as people join your room, you will be updated in real
 
 ![alt text](https://github.com/leanhduy1998/Meme-with-me/blob/master/meme6.mov.gif)
 
+
 ## Chat While Waiting
 
 You can chat with the players in your room while waiting for other players to join.
 
 ![alt text](https://github.com/leanhduy1998/Meme-with-me/blob/master/meme7.mov.gif)
 
+
 ## Start The Game
 
 If the room has more than one person, the creator of the room can start the game.
 
 ![alt text](https://github.com/leanhduy1998/Meme-with-me/blob/master/meme8.mov.gif)
+
 
 ## When You Are The Caesar
 
@@ -47,6 +50,7 @@ You can choose the best card after all the users have finished picking their car
 After you have chosen the card, the winner of that round will be chosen.
 
 ![alt text](https://github.com/leanhduy1998/Meme-with-me/blob/master/meme12.mov.gif)
+
 
 ## When You Are The Citizen
 
@@ -63,11 +67,13 @@ You can repick your cards by going to the option button.
 
 ![alt text](https://github.com/leanhduy1998/Meme-with-me/blob/master/meme14.mov.gif)
 
+
 ## When You Win That Round
 
 The winner will be awarded with a public announment and a point to his/her score.
 
 ![alt text](https://github.com/leanhduy1998/Meme-with-me/blob/master/meme15.mov.gif)
+
 
 ## Like A Card
 
@@ -75,11 +81,13 @@ You don't have to be caesar to show people your love. You can double tap on a ca
 
 ![alt text](https://github.com/leanhduy1998/Meme-with-me/blob/master/meme19.mov.gif)
 
+
 ## Get Help And Leaving The Game
 
 You can get help or leave the game by going through the option.
 
 ![alt text](https://github.com/leanhduy1998/Meme-with-me/blob/master/meme16.mov.gif)
+
 
 ## See Your Previous Games
 
@@ -95,11 +103,13 @@ You can delete your previous games by either swipe left or hold them.
 
 ![alt text](https://github.com/leanhduy1998/Meme-with-me/blob/master/meme21.mov.gif)
 
+
 ## Download Games Into Your Phone
 
 When you sign in from another laptop, you can download your games to see them offline
 
 ![alt text](https://github.com/leanhduy1998/Meme-with-me/blob/master/meme22.mov.gif)
+
 
 ## Viewing Your Games Offline
 
