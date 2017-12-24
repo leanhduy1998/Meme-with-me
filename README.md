@@ -1,5 +1,5 @@
 # Meme with me
-<img src="https://camo.githubusercontent.com/..." data-canonical-src="https://gyazo.com/eb5c5741b6a9a16c692170a41a49c858.png" width="00" height="400" />
+<img src="https://github.com/leanhduy1998/Meme-with-me/blob/master/meme3.mov.gif" width="00" height="400" />
 An iOS online card against humanity game with meme!
 
 ## Sign In
