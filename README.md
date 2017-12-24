@@ -10,7 +10,7 @@ On the sign-in page you can also see how many times you won (caesar icon) and ho
 
 This is implemented using Google API and Amazon Web Services.
 
-![alt text](https://github.com/leanhduy1998/Meme-with-me/blob/master/meme3.mov.gif | width=100)
+![alt text](https://github.com/leanhduy1998/Meme-with-me/blob/master/meme3.mov.gif)
 
 ## Join or Create A Room
 
