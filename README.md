@@ -61,7 +61,7 @@ The text changes its size automatically when it is on the picture.
 
 You can delete the text by clicking on it, and replace them by dragging another piece of text on it.
 
-![alt text](https://github.com/leanhduy1998/Meme-with-me/blob/master/meme13.7.mov.gif |width=100)
+![alt text](https://github.com/leanhduy1998/Meme-with-me/blob/master/meme13.7.mov.gif | width=100)
 
 You can repick your cards by going to the option button.
 
