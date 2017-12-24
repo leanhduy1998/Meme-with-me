@@ -4,11 +4,11 @@ An iOS online card against humanity game with meme!
 
 ## Sign In
 
-### You can sign in with your google account.
+You can sign in with your google account.
 
-### On the sign-in page you can also see how many times you won (caesar icon) and how many times people laughed at your cards (laugh icon).
+On the sign-in page you can also see how many times you won (caesar icon) and how many times people laughed at your cards (laugh icon).
 
-### This is implemented using Google API and Amazon Web Services.
+This is implemented using Google API and Amazon Web Services.
 
 ![alt text](https://github.com/leanhduy1998/Meme-with-me/blob/master/meme3.mov.gif)
 
