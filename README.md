@@ -1,5 +1,5 @@
 # Meme with me
-<img src="https://github.com/favicon.ico">
+<img src="https://github.com/leanhduy1998/Meme-with-me/blob/master/meme3.mov.gif">
 An iOS online card against humanity game with meme!
 
 ## Sign In
