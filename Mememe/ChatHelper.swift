@@ -27,6 +27,14 @@ class ChatHelper {
         let message = ["senderId":MyPlayerData.id,"senderName":MyPlayerData.name,"text":text]
         chatRef.child(id!).childByAutoId().setValue(message)
     }
+    func insertEnterRoomNotification(){
+        let message = ["senderId":"NotificationDomMy","senderName":" ","text":"\(MyPlayerData.name!) has joined the room!"]
+        chatRef.child(id!).childByAutoId().setValue(message)
+    }
+    func insertLeaveRoomNotification(){
+        let message = ["senderId":"NotificationDomMy","senderName":" ","text":"\(MyPlayerData.name!) has left the room!"]
+        chatRef.child(id!).childByAutoId().setValue(message)
+    }
     func removeChatObserver(){
         for o in chatObservers{
             chatRef.removeObserver(withHandle: o)

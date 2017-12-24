@@ -12,12 +12,41 @@ import FirebaseDatabase
 import AVFoundation
 import SwiftTryCatch
 
-class PrivateRoomViewController: UIViewController,UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
+class PrivateRoomViewController: UIViewController,UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return userInRoom.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        var cell = playersCollectionView.dequeueReusableCell(withReuseIdentifier: "PlayerCollectionViewCell", for: indexPath) as? PlayerCollectionViewCell
+        cell = CellAnimator.add(cell: cell!)
+        
+        if(userImagesDic[userInRoom[indexPath.row].userId] != nil){
+            cell?.imageview.image = userImagesDic[userInRoom[indexPath.row].userId]!
+        }
+        else{
+            helper.loadUserProfilePicture(userId: userInRoom[indexPath.row].userId) { (imageData) in
+                DispatchQueue.main.async {
+                    let image = UIImage(data: imageData)
+                    
+                    cell?.imageview.image = image
+                    if indexPath.row <= (self.userInRoom.count-1){
+                        self.userImagesDic[self.userInRoom[indexPath.row].userId] = image
+                    }
+                }
+            }
+        }
+        cell?.imageview = UIImageViewHelper.roundImageView(imageview: (cell?.imageview)!, radius: 35)
+        cell?.nameLabel.text = userInRoom[indexPath.row].userName
+        
+        return cell!
+    }
+    
     let availableRoomRef = Database.database().reference().child("availableRoom")
     let inGameRef = Database.database().reference().child("inGame")
     let chatRef = Database.database().reference().child("chat")
     
-    @IBOutlet weak var tableview: UITableView!
     @IBOutlet weak var chatTableView: UITableView!
     @IBOutlet weak var chatTextField: UITextField!
     @IBOutlet weak var chatView: UIView!
@@ -25,6 +54,9 @@ class PrivateRoomViewController: UIViewController,UITableViewDelegate, UITableVi
     @IBOutlet weak var emptyChatLabel: UILabel!
     @IBOutlet weak var backgroundIV: UIImageView!
     @IBOutlet weak var chatSendBtn: UIButton!
+    
+    @IBOutlet weak var playersCollectionView: UICollectionView!
+    
     
     
     let chatHelper = ChatHelper()
@@ -54,6 +86,7 @@ class PrivateRoomViewController: UIViewController,UITableViewDelegate, UITableVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setupUI()
         setupMusic()
         
@@ -61,6 +94,7 @@ class PrivateRoomViewController: UIViewController,UITableViewDelegate, UITableVi
         
         // if there is no leader, the user created this room will be leader
         if leaderId == nil || leaderId == MyPlayerData.id {
+            chatHelper.initializeChatObserver(controller: self,leaderId: MyPlayerData.id)
             leaderId = MyPlayerData.id
             chatHelper.removeChatRoom(id: MyPlayerData.id)
             startBtn.isEnabled = false
@@ -71,14 +105,6 @@ class PrivateRoomViewController: UIViewController,UITableViewDelegate, UITableVi
             
             self.userInRoom.append(playerData)
             
-            SwiftTryCatch.try({
-                self.tableview.insertRows(at: [IndexPath(row: self.userInRoom.count-1, section: 0)], with: UITableViewRowAnimation.left)
-            }, catch: { (error) in
-                self.tableview.reloadData()
-            }, finally: {
-                // close resources
-            })
-            
             self.userImagesDic[MyPlayerData.id] = UIImage()
             
             self.helper.loadUserProfilePicture(userId: MyPlayerData.id) { (imageData) in
@@ -86,13 +112,7 @@ class PrivateRoomViewController: UIViewController,UITableViewDelegate, UITableVi
                     let image = UIImage(data: imageData)
                                         
                     self.userImagesDic[MyPlayerData.id] = image
-                    SwiftTryCatch.try({
-                        self.tableview.reloadRows(at: [IndexPath(row: 0, section: 0)], with: UITableViewRowAnimation.left)
-                    }, catch: { (error) in
-                        self.tableview.reloadData()
-                    }, finally: {
-                        // close resources
-                    })
+                    self.playersCollectionView.reloadData()
                     
                     self.addPlayerInRoomAddedObserver()
                     self.addPlayerInRoomRemovedObserver()
@@ -101,9 +121,12 @@ class PrivateRoomViewController: UIViewController,UITableViewDelegate, UITableVi
             }
         }
         else {
+            chatHelper.initializeChatObserver(controller: self,leaderId: leaderId)
             InGameHelper.removeYourLeaderInGameRoom(leaderId: leaderId)
             
             AvailableRoomHelper.insertYourselfIntoSomeoneRoom(leaderId: leaderId)
+            
+            chatHelper.insertEnterRoomNotification()
             availableRoomRef.child(leaderId).child("playerInRoom").observeSingleEvent(of: DataEventType.value, with: { (snapshot) in
                 if(self.availableRoomObservers["\(self.leaderId!)/playerInRoom"] == nil){
                     self.availableRoomObservers["\(self.leaderId!)/playerInRoom"] = []
@@ -123,13 +146,7 @@ class PrivateRoomViewController: UIViewController,UITableViewDelegate, UITableVi
                                 let newData = PlayerData(_userId: playerId, _userName: playerName)
                                 self.userInRoom.append(newData)
                                 
-                                SwiftTryCatch.try({
-                                    self.tableview.insertRows(at: [IndexPath(row: self.userInRoom.count-1, section: 0)], with: UITableViewRowAnimation.left)
-                                }, catch: { (error) in
-                                    self.tableview.reloadData()
-                                }, finally: {
-                                    // close resources
-                                })
+                                self.playersCollectionView.reloadData()
                             }
                         }
                         self.addPlayerInRoomAddedObserver()
@@ -141,8 +158,8 @@ class PrivateRoomViewController: UIViewController,UITableViewDelegate, UITableVi
             startBtn.title = ""
             startBtn.isEnabled = false
         }
-        chatHelper.initializeChatObserver(controller: self,leaderId: leaderId)
         
+
         InGameHelper.removeYourInGameRoom()
     }
     
@@ -165,6 +182,7 @@ class PrivateRoomViewController: UIViewController,UITableViewDelegate, UITableVi
     }
     @IBAction func leaveRoomBtnPressed(_ sender: Any) {
         removeAllObservers()
+        chatHelper.insertLeaveRoomNotification()
         chatHelper.removeChatRoom(id: leaderId)
         
         backgroundPlayer.stop()

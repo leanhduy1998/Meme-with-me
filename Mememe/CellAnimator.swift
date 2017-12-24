@@ -10,6 +10,20 @@ import Foundation
 import UIKit
 
 class CellAnimator{
+    static func add(cell: PlayerCollectionViewCell) -> PlayerCollectionViewCell{
+        cell.layer.transform = CATransform3DMakeScale(0.1,0.1,1)
+        UIView.animate(withDuration: 0.3, animations: {
+            cell.layer.transform = CATransform3DMakeScale(1,1,1)
+        },completion: { finished in})
+        return cell
+    }
+    static func add(cell: NotificationTableViewCell) -> NotificationTableViewCell{
+        cell.layer.transform = CATransform3DMakeScale(0.1,0.1,1)
+        UIView.animate(withDuration: 0.3, animations: {
+            cell.layer.transform = CATransform3DMakeScale(1,1,1)
+        },completion: { finished in})
+        return cell
+    }
     static func add(cell: UITableViewCell) -> UITableViewCell{
         cell.layer.transform = CATransform3DMakeScale(0.1,0.1,1)
         UIView.animate(withDuration: 0.3, animations: {

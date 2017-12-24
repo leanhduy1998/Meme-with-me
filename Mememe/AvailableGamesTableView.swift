@@ -197,6 +197,7 @@ extension AvailableGamesViewController {
                         
                         let oldFrame = tableView.visibleCells[indexPath.row].frame
                         
+                        /*
                         UIView.animate(withDuration: 1, animations: {
                             tableView.backgroundColor = UIColor.black
                             //tableView.visibleCells[indexPath.row].frame.origin.x = self.view.frame.midX 
@@ -211,7 +212,11 @@ extension AvailableGamesViewController {
                                     tableView.visibleCells[indexPath.row].frame = oldFrame
                                 }
                             }
-                        })
+                        })*/
+                        DispatchQueue.main.async {
+                            self.performSegue(withIdentifier: "PrivateRoomViewControllerSegue", sender: self)
+                            tableView.visibleCells[indexPath.row].frame = oldFrame
+                        }
                     }
                     else {
                         DisplayAlert.display(controller: self, title: "Room is closed", message: "This room has already started the game!")

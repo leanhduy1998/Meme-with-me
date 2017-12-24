@@ -20,18 +20,18 @@ extension PrivateRoomViewController{
             setBackground()
         }
         
-        tableview.backgroundColor = UIColor.clear
+        playersCollectionView.backgroundColor = UIColor.clear
         chatTableView.backgroundColor = UIColor.clear
     }
     func setupUI(){
-        setBackground()
+        //setBackground()
         chatTableView.separatorStyle = UITableViewCellSeparatorStyle.none
         
         emptyChatLabel.layer.masksToBounds = true
         emptyChatLabel.layer.cornerRadius = 5
         emptyChatLabel.backgroundColor = UIColor.white
         
-        tableview.allowsSelection = false
+        playersCollectionView.allowsSelection = false
         chatTableView.allowsSelection = false
         
         chatSendBtn.layer.cornerRadius = 5

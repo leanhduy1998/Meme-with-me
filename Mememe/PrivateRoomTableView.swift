@@ -21,7 +21,7 @@ extension PrivateRoomViewController {
         
         let requredSize:CGRect = rect
         
-        return requredSize.height
+        return requredSize.height + 25
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -69,6 +69,24 @@ extension PrivateRoomViewController {
                 cell?.userIV = UIImageViewHelper.roundImageView(imageview: (cell?.userIV)!, radius: 20)
                 return cell!
             }
+            else if(message.senderId == "NotificationDomMy"){
+                var cell = tableView.dequeueReusableCell(withIdentifier: "NotificationTableViewCell") as? NotificationTableViewCell
+                cell = CellAnimator.add(cell: cell!)
+                
+                cell?.notificationLabel.text = message.text
+                
+                cell?.notificationLabel.layer.masksToBounds = true
+                
+                if(calculateHeight(inString: chatHelper.messages[indexPath.row].text) > 40){
+                    cell?.notificationLabel.layer.cornerRadius = 15
+                }
+                else{
+                    cell?.notificationLabel.layer.cornerRadius = 10
+                }
+                
+                return cell!
+            }
+
             else {
                 var cell = tableView.dequeueReusableCell(withIdentifier: "HerChatTableViewCell") as? HerChatTableViewCell
                 cell = CellAnimator.add(cell: cell!)
@@ -156,9 +174,9 @@ extension PrivateRoomViewController {
             
             self.userInRoom.remove(at: indexPath.row)
             SwiftTryCatch.try({
-                self.tableview.deleteRows(at: [indexPath], with: UITableViewRowAnimation.left)
+                self.playersCollectionView.deleteItems(at: [indexPath])
             }, catch: { (error) in
-                self.tableview.reloadData()
+                self.playersCollectionView.reloadData()
             }, finally: {
                 
             })

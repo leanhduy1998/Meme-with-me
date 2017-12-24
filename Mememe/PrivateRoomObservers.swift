@@ -51,11 +51,21 @@ extension PrivateRoomViewController{
                                 }
                             }
                             
-                            self.tableview.reloadData()
+                            self.playersCollectionView.reloadData()
                         }
                     }
-                    
                 }
+                /*
+                 abcd
+                 
+                 self.chatHelper.messages.append(ChatModel(senderId: "NotificationDomMy", senderName: "NotificationDomMy", text: "\(playerName!) has join the room!"))
+                self.chatTableView.reloadData()
+                DispatchQueue.main.async {
+                    if(self.chatHelper.messages.count > 0){
+                        let indexPath = IndexPath(row: self.chatHelper.messages.count-1, section: 0)
+                        self.chatTableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+                    }
+                }*/
             }
         })
         if availableRoomObservers["\(leaderId!)/playerInRoom"] == nil {
@@ -112,9 +122,9 @@ extension PrivateRoomViewController{
                             self.userInRoom.remove(at: count)
                             
                             SwiftTryCatch.try({
-                                self.tableview.deleteRows(at: [IndexPath(row: count, section: 0)], with: UITableViewRowAnimation.right)
+                                self.playersCollectionView.deleteItems(at: [IndexPath(row: count, section: 0)])
                             }, catch: { (error) in
-                                self.tableview.reloadData()
+                                self.playersCollectionView.reloadData()
                             }, finally: {
                                 // close resources
                             })

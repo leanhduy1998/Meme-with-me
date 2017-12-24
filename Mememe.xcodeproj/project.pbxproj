@@ -159,6 +159,7 @@
 		24AB45591FB04966004DE842 /* RoundJSONModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AB45581FB04966004DE842 /* RoundJSONModel.swift */; };
 		24AB455B1FB04CA8004DE842 /* PlayerJSONModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AB455A1FB04CA8004DE842 /* PlayerJSONModel.swift */; };
 		24AB455D1FB04D9D004DE842 /* CardCeasarJSONModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AB455C1FB04D9D004DE842 /* CardCeasarJSONModel.swift */; };
+		24ACABC01FEF86C600606D00 /* PlayerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24ACABBF1FEF86C600606D00 /* PlayerCollectionViewCell.swift */; };
 		24AD96A21FA40D3000C51279 /* AvailableGamesTwoImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AD96A11FA40D3000C51279 /* AvailableGamesTwoImageCell.swift */; };
 		24AD96A41FA414A200C51279 /* AvailableGamesThreeImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AD96A31FA414A200C51279 /* AvailableGamesThreeImageCell.swift */; };
 		24AF9E5A1F30035800D05BFC /* InGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AF9E591F30035800D05BFC /* InGameViewController.swift */; };
@@ -173,6 +174,7 @@
 		24D2BE2F1F7B6949003B7957 /* GameStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D2BE2E1F7B6949003B7957 /* GameStack.swift */; };
 		24D599591FA1D39500D101B8 /* inGame2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 24D599571FA1D39500D101B8 /* inGame2.mp3 */; };
 		24D5995A1FA1D39500D101B8 /* startMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 24D599581FA1D39500D101B8 /* startMusic.mp3 */; };
+		24D81C951FF01E7C0048BB8D /* NotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D81C941FF01E7C0048BB8D /* NotificationTableViewCell.swift */; };
 		24E3289B1F89650900A2A2FE /* endRound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 24E3289A1F8964FB00A2A2FE /* endRound.mp3 */; };
 		24E3289D1F89668B00A2A2FE /* InGameConditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E3289C1F89668B00A2A2FE /* InGameConditions.swift */; };
 		24E3289F1F89677E00A2A2FE /* InGameSwitchingRound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E3289E1F89677E00A2A2FE /* InGameSwitchingRound.swift */; };
@@ -403,6 +405,7 @@
 		24AB45581FB04966004DE842 /* RoundJSONModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundJSONModel.swift; sourceTree = "<group>"; };
 		24AB455A1FB04CA8004DE842 /* PlayerJSONModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerJSONModel.swift; sourceTree = "<group>"; };
 		24AB455C1FB04D9D004DE842 /* CardCeasarJSONModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCeasarJSONModel.swift; sourceTree = "<group>"; };
+		24ACABBF1FEF86C600606D00 /* PlayerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerCollectionViewCell.swift; sourceTree = "<group>"; };
 		24AD96A11FA40D3000C51279 /* AvailableGamesTwoImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableGamesTwoImageCell.swift; sourceTree = "<group>"; };
 		24AD96A31FA414A200C51279 /* AvailableGamesThreeImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableGamesThreeImageCell.swift; sourceTree = "<group>"; };
 		24AF9E591F30035800D05BFC /* InGameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InGameViewController.swift; sourceTree = "<group>"; };
@@ -418,6 +421,7 @@
 		24D2BE2E1F7B6949003B7957 /* GameStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStack.swift; sourceTree = "<group>"; };
 		24D599571FA1D39500D101B8 /* inGame2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = inGame2.mp3; sourceTree = "<group>"; };
 		24D599581FA1D39500D101B8 /* startMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = startMusic.mp3; sourceTree = "<group>"; };
+		24D81C941FF01E7C0048BB8D /* NotificationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTableViewCell.swift; sourceTree = "<group>"; };
 		24E3289A1F8964FB00A2A2FE /* endRound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = endRound.mp3; sourceTree = "<group>"; };
 		24E3289C1F89668B00A2A2FE /* InGameConditions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InGameConditions.swift; sourceTree = "<group>"; };
 		24E3289E1F89677E00A2A2FE /* InGameSwitchingRound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InGameSwitchingRound.swift; sourceTree = "<group>"; };
@@ -651,14 +655,6 @@
 			name = CoreData;
 			sourceTree = "<group>";
 		};
-		24305CE11F2E62BD00B14632 /* TableCell */ = {
-			isa = PBXGroup;
-			children = (
-				2498F9D91F3478B100B21267 /* ChatCell */,
-			);
-			name = TableCell;
-			sourceTree = "<group>";
-		};
 		243F20821F68E6FE0003C604 /* Firebase */ = {
 			isa = PBXGroup;
 			children = (
@@ -730,6 +726,7 @@
 				247A55CA1F7F5FBC004D1701 /* PrivateRoomChat.swift */,
 				245BE52E1F8EE7E600B02CD3 /* PrivateViewSound.swift */,
 				249397291FA07924002F392A /* PrivateRoomObservers.swift */,
+				24ACABBF1FEF86C600606D00 /* PlayerCollectionViewCell.swift */,
 			);
 			name = PrivateRoom;
 			sourceTree = "<group>";
@@ -977,7 +974,7 @@
 			isa = PBXGroup;
 			children = (
 				2413D7B31F422808001EA209 /* ViewController */,
-				24305CE11F2E62BD00B14632 /* TableCell */,
+				2498F9D91F3478B100B21267 /* ChatCell */,
 				2413D79D1F42082B001EA209 /* HeartView.swift */,
 				2413D7D31F45189A001EA209 /* CardView.swift */,
 				2413D7DC1F484470001EA209 /* ChoosingCardView.swift */,
@@ -1033,6 +1030,7 @@
 			children = (
 				2498F9DA1F3478C500B21267 /* HerChatTableViewCell.swift */,
 				2498F9DC1F3478E200B21267 /* MyChatTableViewCell.swift */,
+				24D81C941FF01E7C0048BB8D /* NotificationTableViewCell.swift */,
 			);
 			name = ChatCell;
 			sourceTree = "<group>";
@@ -1450,6 +1448,8 @@
 				24233F581F61F27E00B2B7EE /* AvailableGamesFourImageCell.swift in Sources */,
 				24F0105A1FAC5A270029E804 /* PreviewGamesTwoImageCell.swift in Sources */,
 				248CC2191F8D47ED0097FB6A /* InGameTutSound.swift in Sources */,
+				24ACABC01FEF86C600606D00 /* PlayerCollectionViewCell.swift in Sources */,
+				24D81C951FF01E7C0048BB8D /* NotificationTableViewCell.swift in Sources */,
 				2413D7B01F42112A001EA209 /* PlayerLoveCoreDataProperties.swift in Sources */,
 				2463EC661FB52ECC00D50E58 /* SettingViewController.swift in Sources */,
 				24F7C99A1FA0541800D20368 /* Round+CoreDataProperties.swift in Sources */,
