@@ -55,58 +55,57 @@ The text changes its size automatically when it is on the picture.
 
 ![alt text](https://github.com/leanhduy1998/Meme-with-me/blob/master/meme13.6.mov.gif)
 
-### You can delete the text by clicking on it, and replace them by dragging another piece of text on it.
+You can delete the text by clicking on it, and replace them by dragging another piece of text on it.
 
 ![alt text](https://github.com/leanhduy1998/Meme-with-me/blob/master/meme13.7.mov.gif)
 
-### You can repick your cards by going to the option button.
+You can repick your cards by going to the option button.
 
 ![alt text](https://github.com/leanhduy1998/Meme-with-me/blob/master/meme14.mov.gif)
 
 ## When You Win That Round
 
-### The winner will be awarded with a public announment and a point to his/her score.
+The winner will be awarded with a public announment and a point to his/her score.
 
 ![alt text](https://github.com/leanhduy1998/Meme-with-me/blob/master/meme15.mov.gif)
 
 ## Like A Card
 
-### You don't have to be caesar to show people your love. You can double tap on a card to like it.
+You don't have to be caesar to show people your love. You can double tap on a card to like it.
 
 ![alt text](https://github.com/leanhduy1998/Meme-with-me/blob/master/meme19.mov.gif)
 
 ## Get Help And Leaving The Game
 
-### You can get help or leave the game by going through the option.
+You can get help or leave the game by going through the option.
 
 ![alt text](https://github.com/leanhduy1998/Meme-with-me/blob/master/meme16.mov.gif)
 
 ## See Your Previous Games
 
-### You can see your previous game by going through the Previous Games tab.
+You can see your previous game by going through the Previous Games tab.
 
 ![alt text](https://github.com/leanhduy1998/Meme-with-me/blob/master/meme17.mov.gif)
 
-### Your previous games are ordered by time.
+Your previous games are ordered by time.
 
 ![alt text](https://github.com/leanhduy1998/Meme-with-me/blob/master/meme17.5.mov.gif)
 
-### You can delete your previous games by either swipe left or hold them.
+You can delete your previous games by either swipe left or hold them.
 
 ![alt text](https://github.com/leanhduy1998/Meme-with-me/blob/master/meme21.mov.gif)
 
 ## Download Games Into Your Phone
 
-### When you sign in from another laptop, you can download your games to see them offline
+When you sign in from another laptop, you can download your games to see them offline
 
 ![alt text](https://github.com/leanhduy1998/Meme-with-me/blob/master/meme22.mov.gif)
 
 ## Viewing Your Games Offline
 
-### You can view your previous games when you don't have the internet.
+You can view your previous games when you don't have the internet.
 
 ![alt text](https://github.com/leanhduy1998/Meme-with-me/blob/master/meme23.mov.gif)
-
 
 
 ## Built With
