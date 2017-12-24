@@ -45,7 +45,7 @@ If the room has more than one person, the creator of the room can start the game
 
 You can choose the best card after all the users have finished picking their cards.
 
-<img src="https://github.com/leanhduy1998/Meme-with-me/blob/master/meme11.mov.gif" width="300">
+<img src="https://github.com/leanhduy1998/Meme-with-me/blob/master/meme11.1.mov.gif" width="300">
 
 After you have chosen the card, the winner of that round will be chosen.
 
