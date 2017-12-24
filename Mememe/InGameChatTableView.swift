@@ -12,7 +12,7 @@ import UIKit
 extension InGameViewController {
     func calculateHeight(inString:String) -> CGFloat {
         let messageString = inString
-        let attributes : [String : Any] = [NSFontAttributeName : UIFont.systemFont(ofSize: 25.0)]
+        let attributes : [String : Any] = [NSFontAttributeName : UIFont.systemFont(ofSize: 18.0)]
         
         let attributedString : NSAttributedString = NSAttributedString(string: messageString, attributes: attributes)
         

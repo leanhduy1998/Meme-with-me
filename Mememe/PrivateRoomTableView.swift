@@ -13,13 +13,14 @@ import SwiftTryCatch
 extension PrivateRoomViewController {
     func calculateHeight(inString:String) -> CGFloat {
         let messageString = inString
-        let attributes : [String : Any] = [NSFontAttributeName : UIFont.systemFont(ofSize: 25.0)]
+        let attributes : [String : Any] = [NSFontAttributeName : UIFont.systemFont(ofSize: 18.0)]
         
         let attributedString : NSAttributedString = NSAttributedString(string: messageString, attributes: attributes)
         
         let rect : CGRect = attributedString.boundingRect(with: CGSize(width: view.frame.width - 106, height: CGFloat.greatestFiniteMagnitude), options: .usesLineFragmentOrigin, context: nil)
         
         let requredSize:CGRect = rect
+        
         return requredSize.height
     }
 
@@ -45,7 +46,14 @@ extension PrivateRoomViewController {
                 cell?.messageTF.text = message.text
                 
                 cell?.messageTF.layer.masksToBounds = true
-                cell?.messageTF.layer.cornerRadius = 5
+                
+                if(calculateHeight(inString: chatHelper.messages[indexPath.row].text) > 40){
+                    cell?.messageTF.layer.cornerRadius = 15
+                }
+                else{
+                    cell?.messageTF.layer.cornerRadius = 10
+                }
+                
                 
                 if userImagesDic[message.senderId] == nil {
                     helper.loadUserProfilePicture(userId: message.senderId) { (imageData) in
@@ -58,7 +66,7 @@ extension PrivateRoomViewController {
                 else {
                     cell?.userIV.image = userImagesDic[message.senderId]
                 }
-                cell?.userIV = UIImageViewHelper.roundImageView(imageview: (cell?.userIV)!, radius: 15)
+                cell?.userIV = UIImageViewHelper.roundImageView(imageview: (cell?.userIV)!, radius: 20)
                 return cell!
             }
             else {
@@ -70,7 +78,13 @@ extension PrivateRoomViewController {
                 cell?.messageTF.lineBreakMode = NSLineBreakMode.byWordWrapping
                 
                 cell?.messageTF.layer.masksToBounds = true
-                cell?.messageTF.layer.cornerRadius = 5
+                
+                if(calculateHeight(inString: chatHelper.messages[indexPath.row].text) > 40){
+                    cell?.messageTF.layer.cornerRadius = 15
+                }
+                else{
+                    cell?.messageTF.layer.cornerRadius = 10
+                }
                 
                 if userImagesDic[message.senderId] == nil {
                     helper.loadUserProfilePicture(userId: message.senderId) { (imageData) in
@@ -83,7 +97,7 @@ extension PrivateRoomViewController {
                 else {
                     cell?.userIV.image = userImagesDic[message.senderId]
                 }
-                cell?.userIV = UIImageViewHelper.roundImageView(imageview: (cell?.userIV)!, radius: 15)
+                cell?.userIV = UIImageViewHelper.roundImageView(imageview: (cell?.userIV)!, radius: 20)
                 return cell!
             }
         }
