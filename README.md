@@ -34,24 +34,24 @@ You can chat with the players in your room while waiting for other players to jo
 
 ## Start The Game
 
-### If the room has more than one person, the creator of the room can start the game.
+If the room has more than one person, the creator of the room can start the game.
 
 ![alt text](https://github.com/leanhduy1998/Meme-with-me/blob/master/meme8.mov.gif)
 
 ## When You Are The Caesar
 
-### You can choose the best card after all the users have finished picking their cards.
+You can choose the best card after all the users have finished picking their cards.
 
 ![alt text](https://github.com/leanhduy1998/Meme-with-me/blob/master/meme11.mov.gif)
 
-### After you have chosen the card, the winner of that round will be chosen.
+After you have chosen the card, the winner of that round will be chosen.
 
 ![alt text](https://github.com/leanhduy1998/Meme-with-me/blob/master/meme12.mov.gif)
 
 ## When You Are The Citizen
 
-### You can add your card by holding a piece of text and drag it to the meme.
-### The text changes its size automatically when it is on the picture.
+You can add your card by holding a piece of text and drag it to the meme.
+The text changes its size automatically when it is on the picture.
 
 ![alt text](https://github.com/leanhduy1998/Meme-with-me/blob/master/meme13.6.mov.gif)
 
