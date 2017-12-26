@@ -15,7 +15,7 @@ class HeartView: UIView {
     var liked = false
     
     func get(heartWidth: CGFloat, heartHeight: CGFloat,x: CGFloat, y: CGFloat) -> UIImageView{
-        let heartImageView = UIImageView(image: #imageLiteral(resourceName: "heart"))
+        let heartImageView = UIImageView(image: #imageLiteral(resourceName: "troll"))
         
         heartImageView.frame = CGRect(x: x, y: y, width: heartWidth, height: heartHeight)
         heartImageView.clipsToBounds = true

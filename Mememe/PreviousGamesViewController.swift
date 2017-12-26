@@ -41,6 +41,9 @@ class PreviousGamesViewController: UIViewController, UITableViewDelegate, UITabl
     
     @IBOutlet weak var tableview: UITableView!
     
+    var showGoBackToFrontPageBtn = false
+    @IBOutlet weak var goBackToFrontPageBtn: UIButton!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -102,34 +105,29 @@ class PreviousGamesViewController: UIViewController, UITableViewDelegate, UITabl
                     if let game = game as? Game {
                         GameStack.sharedInstance.stack.context.delete(game)
                         
+                        if(gameModels[game.gameId!]==nil){
+                            continue
+                        }
                         MememeDynamoDB.removeItem(gameModels[game.gameId!]!, completionHandler: { (error) in
-                            if error == nil {
-                                DispatchQueue.main.async {
-                                    self.tableview.reloadData()
-                                }
-                            }
                         })
                     }
                     else if let game = game as? GameJSONModel{
+                        if(gameModels[game.gameId!]==nil){
+                            continue
+                        }
                         MememeDynamoDB.removeItem(game.model, completionHandler: { (error) in
-                            if error == nil {
-                                DispatchQueue.main.async {
-                                    if self.gameModels[game.gameId!] == nil {
-                                        self.tableview.reloadData()
-                                        return
-                                    }
-                                }
-                            }
                         })
                     }
                 }
             }
+            self.gameModels.removeAll()
+            self.sections.removeAll()
+            self.tableview.reloadData()
         }
         else{
             for (indexPath,_) in selectedIndexPath {
                 if let game = sections[indexPath.section].games[indexPath.row] as? Game {
                     GameStack.sharedInstance.stack.context.delete(game)
-                    GameStack.sharedInstance.saveContext {}
                     
                     if game.gameId == nil || gameModels[game.gameId!] == nil {
                         self.sections[indexPath.section].games.remove(at: indexPath.row)
@@ -163,6 +161,7 @@ class PreviousGamesViewController: UIViewController, UITableViewDelegate, UITabl
                 }
             }
         }
+        GameStack.sharedInstance.saveContext {}
     }
     
     @IBAction func downloadBtnPressed(_ sender: Any) {
@@ -308,6 +307,12 @@ class PreviousGamesViewController: UIViewController, UITableViewDelegate, UITabl
             addDynamoDBDataToGames()
         }
         hideDownloadDeleteCancelBarBtn()
+        if(showGoBackToFrontPageBtn){
+            goBackToFrontPageBtn.isHidden = false
+        }
+        else{
+            goBackToFrontPageBtn.isHidden = true
+        }
     }
     
     private func hideDownloadDeleteCancelBarBtn(){

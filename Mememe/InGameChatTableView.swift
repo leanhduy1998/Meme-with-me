@@ -19,7 +19,7 @@ extension InGameViewController {
         let rect : CGRect = attributedString.boundingRect(with: CGSize(width: view.frame.width - 106, height: CGFloat.greatestFiniteMagnitude), options: .usesLineFragmentOrigin, context: nil)
         
         let requredSize:CGRect = rect
-        return requredSize.height + 20
+        return requredSize.height + 30
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -44,7 +44,13 @@ extension InGameViewController {
             cell?.messageTF.lineBreakMode = NSLineBreakMode.byWordWrapping
             
             cell?.messageTF.layer.masksToBounds = true
-            cell?.messageTF.layer.cornerRadius = 5
+            
+            if(calculateHeight(inString: chatHelper.messages[indexPath.row].text) > 40){
+                cell?.messageTF.layer.cornerRadius = 15
+            }
+            else{
+                cell?.messageTF.layer.cornerRadius = 10
+            }
             
             cell?.userIV.image = userImagesDic[message.senderId]
             cell?.userIV = UIImageViewHelper.roundImageView(imageview: (cell?.userIV)!, radius: 15)
@@ -58,7 +64,13 @@ extension InGameViewController {
             cell?.messageTF.lineBreakMode = NSLineBreakMode.byWordWrapping
             
             cell?.messageTF.layer.masksToBounds = true
-            cell?.messageTF.layer.cornerRadius = 5
+            
+            if(calculateHeight(inString: chatHelper.messages[indexPath.row].text) > 40){
+                cell?.messageTF.layer.cornerRadius = 15
+            }
+            else{
+                cell?.messageTF.layer.cornerRadius = 10
+            }
             
             cell?.userIV.image = userImagesDic[message.senderId]
             cell?.userIV = UIImageViewHelper.roundImageView(imageview: (cell?.userIV)!, radius: 15)

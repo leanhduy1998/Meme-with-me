@@ -22,8 +22,14 @@ extension InGameViewController{
     func getBorderForWinningCard() -> UIImageView{
         let borderImage = #imageLiteral(resourceName: "border")
         let borderIV = UIImageView(image: borderImage)
-        borderIV.frame = CGRect(x:-5, y: -5, width: cardWidth+10, height: cardHeight+10)
+        borderIV.frame = CGRect(x:-75, y: -75, width: cardWidth+160, height: cardHeight+150)
         return borderIV
+    }
+    func getBorderIVForIcon(iconSize: CGFloat, newX: CGFloat) -> UIImageView{
+        let crownImage = #imageLiteral(resourceName: "border")
+        let crownIV = UIImageView(image: crownImage)
+        crownIV.frame = CGRect(x: newX - 20, y: -10, width: iconSize+45, height: iconSize+25)
+        return crownIV
     }
     func getMemeIV(image:UIImage) -> UIImageView {
         var memeImageView = UIImageView(image: image)
@@ -54,11 +60,12 @@ extension InGameViewController{
                     let heartWidth = self.cardHeight/5
                     let heartHeight = self.cardHeight*2/5
                     
-                    let heartImageView = heartView?.get(heartWidth: heartWidth, heartHeight: heartHeight, x: (heartView?.frame.width)!/2 - heartWidth/2, y: (heartView?.frame.height)!/2 - heartHeight/2)
-                    heartImageView?.alpha = 0
+                    let heartImageView = heartView?.get(heartWidth: heartWidth, heartHeight: heartHeight, x: (heartView?.frame.width)!/2 - heartWidth/2, y: 0)
+                //    heartImageView?.alpha = 0
                     UIView.animate(withDuration: 0.5, delay: 0, options: [.autoreverse, .repeat], animations: {
-                        heartImageView?.alpha = 1
-                        heartImageView?.transform = CGAffineTransform(scaleX: 0.80, y: 0.80)
+                //        heartImageView?.alpha = 1
+                //        heartImageView?.transform = CGAffineTransform(scaleX: 0.80, y: 0.80)
+                        heartImageView?.frame.origin.y = (heartImageView?.frame.origin.y)! + self.cardHeight/2
                     }, completion: nil)
                     self.playHeartSound()
                     

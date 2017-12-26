@@ -256,6 +256,10 @@ class StartViewController: UIViewController,UIGestureRecognizerDelegate, AWSSign
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         backgroundPlayer.stop()
         isLoggedOut = false
+        
+        if let desination = segue.destination as? PreviousGamesViewController{
+            desination.showGoBackToFrontPageBtn = true
+        }
     }
 
 }

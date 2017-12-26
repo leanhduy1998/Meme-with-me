@@ -39,7 +39,7 @@ extension InGameViewController {
             let image = userImagesDic[player.userId]
             
             userIconIV.image = image
-            userIconIV = UIImageViewHelper.roundImageView(imageview: userIconIV, radius: 15)
+            userIconIV = UIImageViewHelper.roundImageView(imageview: userIconIV, radius: 20)
             
             contentWidth += self.space + self.iconSize
     
@@ -47,7 +47,7 @@ extension InGameViewController {
             
             let redDotSize = iconSize/4
             let redDotIV = UIImageView(image: #imageLiteral(resourceName: "redCircle"))
-            redDotIV.frame = CGRect(x: iconSize/2 - (redDotSize)/2, y: 0, width: redDotSize, height: redDotSize)
+            redDotIV.frame = CGRect(x: newX + iconSize*3/4, y: 0, width: redDotSize, height: redDotSize)
             let whiteLabel = UILabel()
             
             var timesWon: Int!
@@ -68,20 +68,19 @@ extension InGameViewController {
             whiteLabel.textColor = UIColor.white
             redDotIV.addSubview(whiteLabel)
             
-            userIconIV.addSubview(redDotIV)
-            userIconIV.bringSubview(toFront: redDotIV)
-            
+            currentPlayersScrollView.addSubview(redDotIV)
             
             currentPlayersScrollView.addSubview(userIconIV)
             currentPlayersScrollView.sendSubview(toBack: userIconIV)
             
             if userCoreData.playerId == userWhoWon {
-                borderForUserIconIV = getBorderIVForIcon(iconSize: iconSize)
-                userIconIV.addSubview(borderForUserIconIV)
-                userIconIV.bringSubview(toFront: borderForUserIconIV)
+                borderForUserIconIV = getBorderIVForIcon(iconSize: iconSize, newX: newX)
+                currentPlayersScrollView.addSubview(borderForUserIconIV)
+                currentPlayersScrollView.bringSubview(toFront: borderForUserIconIV)
             }
             
             currentPlayersScrollView.bringSubview(toFront: borderForUserIconIV)
+            currentPlayersScrollView.bringSubview(toFront: redDotIV)
         }
         
         currentPlayersScrollView.contentSize = CGSize(width: contentWidth, height: iconSize)

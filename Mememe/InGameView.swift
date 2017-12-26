@@ -12,14 +12,14 @@ import UIKit
 extension InGameViewController {
     func setupUI() {
         setupDimensions()
-        setupPreviewScrollViewConstraints()
-        setupChatViewConstraints()
-        setupCurrentPlayersScrollViewConstraints()
+    //    setupPreviewScrollViewConstraints()
+    //    setupChatViewConstraints()
+    //    setupCurrentPlayersScrollViewConstraints()
         chatTableView.separatorStyle = UITableViewCellSeparatorStyle.none
         setupNavigationBar()
         previewScrollView.alwaysBounceHorizontal = true
         currentPlayersScrollView.alwaysBounceHorizontal = true
-        setFloorBackground()
+       // setFloorBackground()
         
         chatTableView.backgroundColor = UIColor.clear
         
@@ -51,7 +51,8 @@ extension InGameViewController {
         space = screenWidth/24
         
         cardHeight = screenHeight/2 - space
-        cardWidth = cardHeight*9/16
+        //cardWidth = cardHeight*9/16
+        cardWidth = cardHeight*2/3
         
         previewScrollHeight = cardHeight + space
         chatViewHeight = (screenHeight/2)*3/4
@@ -72,7 +73,7 @@ extension InGameViewController {
         navigationController?.view.backgroundColor = .clear
     }
 
-
+/*
     private func setupPreviewScrollViewConstraints(){
         previewScrollView.translatesAutoresizingMaskIntoConstraints = false
         var previewScrollViewConstraintArr = [NSLayoutConstraint]()
@@ -101,7 +102,7 @@ extension InGameViewController {
         
         NSLayoutConstraint.activate(currentPlayersScrollViewConstraintArr)
     }
-    
+    */
     func getTopLabel(text: String) -> UILabel {
         let upLabel = UILabel(frame: CGRect(x: space, y: 0, width: cardWidth - space*2, height: cardHeight/4))
         MemeLabelConfigurer.configureMemeLabel(upLabel, defaultText: text)

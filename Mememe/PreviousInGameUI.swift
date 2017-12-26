@@ -88,7 +88,7 @@ extension PreviewInGameViewController{
     func getBorderForWinningCard() -> UIImageView{
         let borderImage = #imageLiteral(resourceName: "border")
         let borderIV = UIImageView(image: borderImage)
-        borderIV.frame = CGRect(x:-5, y: -5, width: cardWidth+10, height: cardHeight+10)
+        borderIV.frame = CGRect(x:-70, y: -40, width: cardWidth+155, height: cardHeight+110)
         return borderIV
     }
     func getMemeIV(image:UIImage) -> UIImageView {
