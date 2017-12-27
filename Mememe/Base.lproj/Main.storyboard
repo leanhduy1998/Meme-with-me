@@ -527,7 +527,7 @@
                             <constraint firstAttribute="trailing" secondItem="TFx-58-oBL" secondAttribute="trailing" id="ofD-RE-ioG"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Available Doors" image="doorIcon" id="NMl-Mf-VT8"/>
+                    <tabBarItem key="tabBarItem" title="Available Games" image="doorIcon" id="NMl-Mf-VT8"/>
                     <navigationItem key="navigationItem" id="5t3-Eh-znn"/>
                     <connections>
                         <outlet property="addBtn" destination="jLs-5U-tJj" id="XlE-0E-Mm3"/>
