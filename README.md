@@ -82,6 +82,13 @@ You don't have to be caesar to show people your love. You can double tap on a ca
 <img src="https://github.com/leanhduy1998/Meme-with-me/blob/master/meme19.mov.gif" width="300">
 
 
+## Share or Save A Card
+
+You can view a card in more detail by holding it for a few seconds. Then you can share or save it.
+
+<img src="https://github.com/leanhduy1998/Meme-with-me/blob/master/meme14.5.mov.gif" width="300">
+
+
 ## Get Help And Leaving The Game
 
 You can get help or leave the game by going through the option.
