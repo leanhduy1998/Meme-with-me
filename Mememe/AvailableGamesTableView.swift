@@ -60,16 +60,27 @@ extension AvailableGamesViewController {
             
             let players = Array((room.playerInRoom?.keys)!)
             
+            var firstLoaded = false
+            var secondLoaded = false
+            
             helper.loadUserProfilePicture(userId: players[0], completeHandler: { (imageData) in
                 DispatchQueue.main.async{
                     let image = UIImage(data: imageData)
                     cell.firstIV.image = image
+                    firstLoaded = true
+                    if(secondLoaded){
+                        cell.activityIndicator.stopAnimating()
+                    }
                 }
             })
             helper.loadUserProfilePicture(userId: players[1], completeHandler: { (imageData) in
                 DispatchQueue.main.async{
                     let image = UIImage(data: imageData)
                     cell.secondIV.image = image
+                    secondLoaded = true
+                    if(firstLoaded){
+                        cell.activityIndicator.stopAnimating()
+                    }
                 }
             })
 
@@ -95,7 +106,9 @@ extension AvailableGamesViewController {
             cell.secondIV = UIImageViewHelper.roundImageView(imageview: cell.secondIV, radius: 15)
             cell.thirdIV = UIImageViewHelper.roundImageView(imageview: cell.thirdIV, radius: 15)
             
-
+            var firstLoaded = false
+            var secondLoaded = false
+            var thirdLoaded = false
             
             let players = Array((room.playerInRoom?.keys)!)
             
@@ -103,19 +116,30 @@ extension AvailableGamesViewController {
                 DispatchQueue.main.async{
                     let image = UIImage(data: imageData)
                     cell.firstIV.image = image
+                    firstLoaded = true
+                    if(secondLoaded&&thirdLoaded){
+                        cell.activityIndicator.stopAnimating()
+                    }
                 }
             })
             helper.loadUserProfilePicture(userId: players[1], completeHandler: { (imageData) in
                 DispatchQueue.main.async{
                     let image = UIImage(data: imageData)
                     cell.secondIV.image = image
+                    secondLoaded = true
+                    if(firstLoaded&&thirdLoaded){
+                        cell.activityIndicator.stopAnimating()
+                    }
                 }
             })
             helper.loadUserProfilePicture(userId: players[2], completeHandler: { (imageData) in
                 DispatchQueue.main.async{
                     let image = UIImage(data: imageData)
                     cell.thirdIV.image = image
-                    cell.activityIndicator.stopAnimating()
+                    thirdLoaded = true
+                    if(firstLoaded&&secondLoaded){
+                        cell.activityIndicator.stopAnimating()
+                    }
                 }
             })
             
@@ -145,30 +169,50 @@ extension AvailableGamesViewController {
             cell.fourthIV = UIImageViewHelper.roundImageView(imageview: cell.fourthIV, radius: 15)
             
             let players = Array((room.playerInRoom?.keys)!)
+            
+            var firstLoaded = false
+            var secondLoaded = false
+            var thirdLoaded = false
+            var fourthLoaded = false
     
             helper.loadUserProfilePicture(userId: players[0], completeHandler: { (imageData) in
                 DispatchQueue.main.async{
                     let image = UIImage(data: imageData)
                     cell.firstIV.image = image
+                    firstLoaded = true
+                    if(thirdLoaded&&secondLoaded&&fourthLoaded){
+                        cell.activityIndicator.stopAnimating()
+                    }
                 }
             })
             helper.loadUserProfilePicture(userId: players[1], completeHandler: { (imageData) in
                 DispatchQueue.main.async{
                     let image = UIImage(data: imageData)
                     cell.secondIV.image = image
+                    secondLoaded = true
+                    if(thirdLoaded&&firstLoaded&&fourthLoaded){
+                        cell.activityIndicator.stopAnimating()
+                    }
                 }
             })
             helper.loadUserProfilePicture(userId: players[2], completeHandler: { (imageData) in
                 DispatchQueue.main.async{
                     let image = UIImage(data: imageData)
                     cell.thirdIV.image = image
+                    thirdLoaded = true
+                    if(secondLoaded&&firstLoaded&&fourthLoaded){
+                        cell.activityIndicator.stopAnimating()
+                    }
                 }
             })
             helper.loadUserProfilePicture(userId: players[3], completeHandler: { (imageData) in
                 DispatchQueue.main.async{
                     let image = UIImage(data: imageData)
                     cell.fourthIV.image = image
-                    cell.activityIndicator.stopAnimating()
+                    fourthLoaded = true
+                    if(secondLoaded&&firstLoaded&&thirdLoaded){
+                        cell.activityIndicator.stopAnimating()
+                    }
                 }
             })
             

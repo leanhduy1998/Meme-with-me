@@ -79,7 +79,7 @@ extension InGameViewController {
                 currentPlayersScrollView.bringSubview(toFront: borderForUserIconIV)
             }
             
-            currentPlayersScrollView.bringSubview(toFront: borderForUserIconIV)
+            //currentPlayersScrollView.bringSubview(toFront: borderForUserIconIV)
             currentPlayersScrollView.bringSubview(toFront: redDotIV)
         }
         

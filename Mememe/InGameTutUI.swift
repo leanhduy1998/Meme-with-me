@@ -123,12 +123,6 @@ extension InGameTutController {
         }
         return newX
     }
-    func getBorderIVForIcon(iconSize: CGFloat) -> UIImageView{
-        let crownImage = #imageLiteral(resourceName: "border")
-        let crownIV = UIImageView(image: crownImage)
-        crownIV.frame = CGRect(x: -5, y: -5, width: iconSize+10, height: iconSize+10)
-        return crownIV
-    }
     
     func getHeartView(frame: CGRect, playerCard: CardNormal) -> HeartView{
         let heartView = HeartView()
@@ -212,9 +206,17 @@ extension InGameTutController {
     func getBorderForWinningCard() -> UIImageView{
         let borderImage = #imageLiteral(resourceName: "border")
         let borderIV = UIImageView(image: borderImage)
-        borderIV.frame = CGRect(x:-70, y: -40, width: cardWidth+155, height: cardHeight+110)
+        borderIV.frame = CGRect(x:-75, y: -75, width: cardWidth+160, height: cardHeight+150)
         return borderIV
     }
+    
+    func getBorderIVForIcon(iconSize: CGFloat) -> UIImageView{
+        let crownImage = #imageLiteral(resourceName: "border")
+        let crownIV = UIImageView(image: crownImage)
+        crownIV.frame = CGRect(x: -20, y: -10, width: iconSize+45, height: iconSize+25)
+        return crownIV
+    }
+    
     func getUserIconView(frame: CGRect, playerCard: CardNormal,completeHandler: @escaping (_ IV: UIImageView)-> Void){
         if(playerCard.playerId == MyPlayerData.id){
             s3Helper.loadUserProfilePicture(userId: playerCard.playerId!) { (imageData) in

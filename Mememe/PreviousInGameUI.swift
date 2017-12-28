@@ -88,9 +88,16 @@ extension PreviewInGameViewController{
     func getBorderForWinningCard() -> UIImageView{
         let borderImage = #imageLiteral(resourceName: "border")
         let borderIV = UIImageView(image: borderImage)
-        borderIV.frame = CGRect(x:-70, y: -40, width: cardWidth+155, height: cardHeight+110)
+        borderIV.frame = CGRect(x:-75, y: -75, width: cardWidth+160, height: cardHeight+150)
         return borderIV
     }
+    func getBorderIVForIcon(iconSize: CGFloat) -> UIImageView{
+        let crownImage = #imageLiteral(resourceName: "border")
+        let crownIV = UIImageView(image: crownImage)
+        crownIV.frame = CGRect(x: -10, y: -10, width: iconSize+45, height: iconSize+25)
+        return crownIV
+    }
+    
     func getMemeIV(image:UIImage) -> UIImageView {
         var memeImageView = UIImageView(image: image)
         
@@ -148,10 +155,5 @@ extension PreviewInGameViewController{
         
         cardInitialYBeforeAnimation = cardHeight/2
     }
-    func getBorderIVForIcon(iconSize: CGFloat) -> UIImageView{
-        let crownImage = #imageLiteral(resourceName: "border")
-        let crownIV = UIImageView(image: crownImage)
-        crownIV.frame = CGRect(x: 0, y: 0, width: iconSize, height: iconSize)
-        return crownIV
-    }
+    
 }

@@ -448,8 +448,8 @@ class PreviewInGameViewController: UIViewController,UIGestureRecognizerDelegate 
                 for card in (round.cardnormal?.allObjects as? [CardNormal])!{
                     if(card.didWin && card.playerId == player.playerId){
                         self.borderForUserIconIV = self.getBorderIVForIcon(iconSize: self.iconSize)
-                        userIconIV.addSubview(self.borderForUserIconIV)
-                        userIconIV.bringSubview(toFront: self.borderForUserIconIV)
+                        currentPlayersScrollView.addSubview(self.borderForUserIconIV)
+                        currentPlayersScrollView.bringSubview(toFront: self.borderForUserIconIV)
                     }
                 }
                 
