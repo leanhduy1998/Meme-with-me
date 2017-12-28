@@ -108,7 +108,7 @@ Your previous games are ordered by time.
 
 You can delete your previous games by either swipe left or hold them.
 
-<img src="https://github.com/leanhduy1998/Meme-with-me/blob/master/meme21.mov.gif" width="300">
+<img src="https://github.com/leanhduy1998/Meme-with-me/blob/master/meme21.mov.gif" width="300">         <img src="https://github.com/leanhduy1998/Meme-with-me/blob/master/meme21.5.mov.gif" width="300">
 
 
 ## Download Games Into Your Phone
