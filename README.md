@@ -93,7 +93,7 @@ You can view a card in more detail by holding it for a few seconds. Then you can
 
 You can get help or leave the game by going through the option.
 
-<img src="https://github.com/leanhduy1998/Meme-with-me/blob/master/meme16.mov.gif" width="300">
+<img src="https://github.com/leanhduy1998/Meme-with-me/blob/master/meme16.mov.gif" width="300"> <img src="https://github.com/leanhduy1998/Meme-with-me/blob/master/meme16.mov.gif" width="300">
 
 
 ## See Your Previous Games
