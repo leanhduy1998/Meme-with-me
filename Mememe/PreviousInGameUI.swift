@@ -91,10 +91,10 @@ extension PreviewInGameViewController{
         borderIV.frame = CGRect(x:-75, y: -75, width: cardWidth+160, height: cardHeight+150)
         return borderIV
     }
-    func getBorderIVForIcon(iconSize: CGFloat) -> UIImageView{
+    func getBorderIVForIcon(iconSize: CGFloat, newX: CGFloat) -> UIImageView{
         let crownImage = #imageLiteral(resourceName: "border")
         let crownIV = UIImageView(image: crownImage)
-        crownIV.frame = CGRect(x: -10, y: -10, width: iconSize+45, height: iconSize+25)
+        crownIV.frame = CGRect(x: newX - 20, y: -10, width: iconSize+45, height: iconSize+25)
         return crownIV
     }
     

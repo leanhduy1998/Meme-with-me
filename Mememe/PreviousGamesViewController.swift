@@ -127,23 +127,20 @@ class PreviousGamesViewController: UIViewController, UITableViewDelegate, UITabl
         else{
             for (indexPath,_) in selectedIndexPath {
                 if let game = sections[indexPath.section].games[indexPath.row] as? Game {
-                    GameStack.sharedInstance.stack.context.delete(game)
-                    
-                    if game.gameId == nil || gameModels[game.gameId!] == nil {
-                        self.sections[indexPath.section].games.remove(at: indexPath.row)
-                        self.selectedIndexPath.removeValue(forKey: indexPath)
-                        self.tableview.reloadData()
-                        continue
-                    }
-                    
                     MememeDynamoDB.removeItem(gameModels[game.gameId!]!, completionHandler: { (error) in
-                        if error == nil {
-                            DispatchQueue.main.async {
+                        DispatchQueue.main.async {
+                            if error == nil {
                                 self.sections[indexPath.section].games.remove(at: indexPath.row)
                                 self.gameModels.removeValue(forKey: game.gameId!)
                                 self.selectedIndexPath.removeValue(forKey: indexPath)
                                 self.tableview.reloadData()
                             }
+                        }
+                        GameStack.sharedInstance.stack.context.delete(game)
+                        GameStack.sharedInstance.saveContext {
+                            self.sections[indexPath.section].games.remove(at: indexPath.row)
+                            self.selectedIndexPath.removeValue(forKey: indexPath)
+                            self.tableview.reloadData()
                         }
                     })
                 }
@@ -161,7 +158,6 @@ class PreviousGamesViewController: UIViewController, UITableViewDelegate, UITabl
                 }
             }
         }
-        GameStack.sharedInstance.saveContext {}
     }
     
     @IBAction func downloadBtnPressed(_ sender: Any) {
@@ -188,8 +184,7 @@ class PreviousGamesViewController: UIViewController, UITableViewDelegate, UITabl
                         })
                     }*/
                     
-                    GameDataFromJSON.saveGameCoreDataFromJSON(model: (gameModel?.model)!, completeHandler: {
-                        gameModel = nil
+                    GameDataFromJSON.saveGameCoreDataFromJSON(model: (gameModel?.model)!, imageDownloaded: imageDownloaded, completeHandler: {
                     })
                 }
             }
@@ -203,8 +198,6 @@ class PreviousGamesViewController: UIViewController, UITableViewDelegate, UITabl
                 }
                 var gameModel = sections[indexPath.section].games[indexPath.row] as? GameJSONModel
                 
-                
-                
                 switch((gameModel?.player.count)!){
                 case 1:
                     break
@@ -217,11 +210,10 @@ class PreviousGamesViewController: UIViewController, UITableViewDelegate, UITabl
                     
                     cell?.downloadBtn.isHidden = true
                     cell?.activityIndicator.startAnimating()
-                    GameDataFromJSON.saveGameCoreDataFromJSON(model: (gameModel?.model)!, completeHandler: {
+                    GameDataFromJSON.saveGameCoreDataFromJSON(model: (gameModel?.model)!, imageDownloaded: imageDownloaded, completeHandler: {
                         DispatchQueue.main.async {
                             cell?.activityIndicator.stopAnimating()
                             self.gamesStorageLocation[(gameModel?.gameId)!] = "coreData"
-                            gameModel = nil
                             self.selectingMode = false
                             self.hideDownloadDeleteCancelBarBtn()
                             self.selectedIndexPath.removeValue(forKey: indexPath)
@@ -236,11 +228,11 @@ class PreviousGamesViewController: UIViewController, UITableViewDelegate, UITabl
                         continue
                     }
                     cell?.activityIndicator.startAnimating()
-                    GameDataFromJSON.saveGameCoreDataFromJSON(model: (gameModel?.model)!, completeHandler: {
+                    GameDataFromJSON.saveGameCoreDataFromJSON(model: (gameModel?.model)!, imageDownloaded: imageDownloaded, completeHandler: {
                         DispatchQueue.main.async {
                             cell?.activityIndicator.stopAnimating()
                             self.gamesStorageLocation[(gameModel?.gameId)!] = "coreData"
-                            gameModel = nil
+                            
                             self.selectingMode = false
                             self.hideDownloadDeleteCancelBarBtn()
                             self.selectedIndexPath.removeValue(forKey: indexPath)
@@ -255,11 +247,10 @@ class PreviousGamesViewController: UIViewController, UITableViewDelegate, UITabl
                         continue
                     }
                     cell?.activityIndicator.startAnimating()
-                    GameDataFromJSON.saveGameCoreDataFromJSON(model: (gameModel?.model)!, completeHandler: {
+                    GameDataFromJSON.saveGameCoreDataFromJSON(model: (gameModel?.model)!, imageDownloaded: imageDownloaded, completeHandler: {
                         DispatchQueue.main.async {
                             cell?.activityIndicator.stopAnimating()
                             self.gamesStorageLocation[(gameModel?.gameId)!] = "coreData"
-                            gameModel = nil
                             self.selectingMode = false
                             self.hideDownloadDeleteCancelBarBtn()
                             self.selectedIndexPath.removeValue(forKey: indexPath)

@@ -103,6 +103,13 @@ class StartViewController: UIViewController,UIGestureRecognizerDelegate, AWSSign
             leftNotificationLabel.text = "0"
             rightNotificationLabel.text = "0"
         }
+        self.userIcon.alpha = 1
+        self.laughingIcon.alpha = 1
+        self.ceasarIcon.alpha = 1
+        self.leftNotificationLabel.alpha = 1
+        self.leftRedNotificationView.alpha = 1
+        self.rightNotificationLabel.alpha = 1
+        self.rightRedNotificationView.alpha = 1
         
         GameStack.sharedInstance.initializeFetchedResultsController()
         let deleteItems = GameStack.sharedInstance.fetchedResultsController.fetchedObjects

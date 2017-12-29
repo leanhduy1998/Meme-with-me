@@ -43,23 +43,24 @@ extension PreviousGamesViewController {
             }
             
             if let game = sections[indexPath.section].games[indexPath.row] as? Game {
-                GameStack.sharedInstance.stack.context.delete(game)
-                GameStack.sharedInstance.saveContext {
-                    DispatchQueue.main.async {
-                        if(self.gameModels[game.gameId!] == nil){
-                            self.tableview.reloadData()
-                            return
-                        }
-                        MememeDynamoDB.removeItem(self.gameModels[game.gameId!]!, completionHandler: { (error) in
-                            if error == nil {
+                MememeDynamoDB.removeItem(self.gameModels[game.gameId!]!, completionHandler: { (error) in
+                    if error == nil {
+                        DispatchQueue.main.async {
+                            self.gameModels.removeValue(forKey: game.gameId!)
+                            GameStack.sharedInstance.stack.context.delete(game)
+                            GameStack.sharedInstance.saveContext {
                                 DispatchQueue.main.async {
-                                    self.gameModels.removeValue(forKey: game.gameId!)
-                                    self.tableview.reloadData()
+                                    if(self.gameModels[game.gameId!] == nil){
+                                        self.tableview.reloadData()
+                                        return
+                                    }
+                                    
                                 }
                             }
-                        })
+                        }
                     }
-                }
+                })
+                
             }
             else if let game = sections[indexPath.section].games[indexPath.row] as? GameJSONModel{
                 MememeDynamoDB.removeItem(game.model, completionHandler: { (error) in

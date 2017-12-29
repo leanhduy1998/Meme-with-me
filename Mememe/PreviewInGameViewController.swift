@@ -37,7 +37,7 @@ class PreviewInGameViewController: UIViewController,UIGestureRecognizerDelegate 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setFloorBackground()
+        //setFloorBackground()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -407,7 +407,7 @@ class PreviewInGameViewController: UIViewController,UIGestureRecognizerDelegate 
                 
                 let redDotSize = iconSize/4
                 let redDotIV = UIImageView(image: #imageLiteral(resourceName: "redCircle"))
-                redDotIV.frame = CGRect(x: iconSize/2 - (redDotSize)/2, y: 0, width: redDotSize, height: redDotSize)
+                redDotIV.frame = CGRect(x: newX + iconSize - (redDotSize), y: 0, width: redDotSize, height: redDotSize)
                 let whiteLabel = UILabel()
                 
                 var timesWon: Int!
@@ -424,8 +424,8 @@ class PreviewInGameViewController: UIViewController,UIGestureRecognizerDelegate 
                 whiteLabel.textColor = UIColor.white
                 redDotIV.addSubview(whiteLabel)
                 
-                userIconIV.addSubview(redDotIV)
-                userIconIV.bringSubview(toFront: redDotIV)
+                currentPlayersScrollView.addSubview(redDotIV)
+                currentPlayersScrollView.bringSubview(toFront: redDotIV)
                 
                 let image = FileManagerHelper.getImageFromMemory(imagePath: player.imageStorageLocation!)
                 if image == #imageLiteral(resourceName: "ichooseyou") {
@@ -443,17 +443,14 @@ class PreviewInGameViewController: UIViewController,UIGestureRecognizerDelegate 
                 userIconIV = UIImageViewHelper.roundImageView(imageview: userIconIV, radius: 5)
                 
                 self.currentPlayersScrollView.addSubview(userIconIV)
-                self.currentPlayersScrollView.sendSubview(toBack: userIconIV)
                 
                 for card in (round.cardnormal?.allObjects as? [CardNormal])!{
                     if(card.didWin && card.playerId == player.playerId){
-                        self.borderForUserIconIV = self.getBorderIVForIcon(iconSize: self.iconSize)
+                        borderForUserIconIV = getBorderIVForIcon(iconSize: iconSize, newX: newX)
                         currentPlayersScrollView.addSubview(self.borderForUserIconIV)
-                        currentPlayersScrollView.bringSubview(toFront: self.borderForUserIconIV)
                     }
                 }
-                
-                currentPlayersScrollView.bringSubview(toFront: borderForUserIconIV)
+                currentPlayersScrollView.bringSubview(toFront: redDotIV)
             }
         }
         else if let game = game as? GameJSONModel{
@@ -476,7 +473,7 @@ class PreviewInGameViewController: UIViewController,UIGestureRecognizerDelegate 
                 
                 let redDotSize = iconSize/4
                 let redDotIV = UIImageView(image: #imageLiteral(resourceName: "redCircle"))
-                redDotIV.frame = CGRect(x: iconSize/2 - (redDotSize)/2, y: 0, width: redDotSize, height: redDotSize)
+                redDotIV.frame = CGRect(x: newX + iconSize - (redDotSize), y: 0, width: redDotSize, height: redDotSize)
                 let whiteLabel = UILabel()
                 
                 var timesWon: Int!
@@ -493,8 +490,7 @@ class PreviewInGameViewController: UIViewController,UIGestureRecognizerDelegate 
                 whiteLabel.textColor = UIColor.white
                 redDotIV.addSubview(whiteLabel)
                 
-                userIconIV.addSubview(redDotIV)
-                userIconIV.bringSubview(toFront: redDotIV)
+                currentPlayersScrollView.addSubview(redDotIV)
                 
                 
                 let image = FileManagerHelper.getImageFromMemory(imagePath: player.userImageLocation)
@@ -512,18 +508,16 @@ class PreviewInGameViewController: UIViewController,UIGestureRecognizerDelegate 
                 
                 userIconIV = UIImageViewHelper.roundImageView(imageview: userIconIV, radius: 5)
                 
-                self.currentPlayersScrollView.addSubview(userIconIV)
-                self.currentPlayersScrollView.sendSubview(toBack: userIconIV)
+                currentPlayersScrollView.addSubview(userIconIV)
                 
                 for card in round.cardNormal{
                     if(card.didWin && card.playerId == player.playerId){
-                        self.borderForUserIconIV = self.getBorderIVForIcon(iconSize: self.iconSize)
-                        userIconIV.addSubview(self.borderForUserIconIV)
-                        userIconIV.bringSubview(toFront: self.borderForUserIconIV)
+                        borderForUserIconIV = getBorderIVForIcon(iconSize: iconSize, newX: newX)
+                        currentPlayersScrollView.addSubview(self.borderForUserIconIV)
                     }
                 }
+                currentPlayersScrollView.bringSubview(toFront: redDotIV)
                 
-                currentPlayersScrollView.bringSubview(toFront: borderForUserIconIV)
             }
         }
         

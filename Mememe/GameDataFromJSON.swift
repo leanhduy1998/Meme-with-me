@@ -30,11 +30,10 @@ class GameDataFromJSON{
         return game
     }
     
-    static func saveGameCoreDataFromJSON(model: MememeDBObjectModel, completeHandler: @escaping ()-> Void){
+    static func saveGameCoreDataFromJSON(model: MememeDBObjectModel, imageDownloaded:[String:UIImage], completeHandler: @escaping ()-> Void){
         let gameJSON = model._game
         
         let json = try? JSONSerialization.jsonObject(with: gameJSON!, options: []) as? [String: Any]
-        
         
         let formatter = DateFormatter()
         formatter.dateFormat = "MM/dd/yyyy hh:mm"
@@ -42,28 +41,38 @@ class GameDataFromJSON{
         
         let game = Game(createdDate: createdDate!, gameId: (json??["gameId"] as? String)!, context: GameStack.sharedInstance.stack.context)
         
-        self.addRoundToGame(game: game, roundDic: (json??["rounds"] as? [String:Any])!)
-        self.addPlayersToGame(game: game, playersDic: (json??["players"] as? [String:[String:String]])!)
+        self.addPlayersToGame(game: game, playersDic: (json??["players"] as? [String:[String:String]])!, imageDownloaded: imageDownloaded)
         self.addWinCounterToGame(game: game, winCountDic: (json??["winCounter"] as? [String:Int])!)
         
-        GameStack.sharedInstance.saveContext {
-            completeHandler()
-        }
+        self.addRoundToGame(game: game, roundDic: (json??["rounds"] as? [String:Any])!, completeHandler: {
+            DispatchQueue.main.async {
+                GameStack.sharedInstance.saveContext {
+                    completeHandler()
+                }
+            }
+        })
+        
     }
-    private static func addPlayersToGame(game: Game, playersDic: [String:[String:String]]){
+    private static func addPlayersToGame(game: Game, playersDic: [String:[String:String]],imageDownloaded:[String:UIImage]){
         for(playerId,playerDic2) in playersDic {
             var name:String!
-            var imageLocation: String!
             for(key,value) in playerDic2 {
                 if key == "name"{
                     name = value
                 }
-                if key == "imageStorageLocation" {
-                    imageLocation = value
-                }
             }
+            let playerIdForStorage = FileManagerHelper.getPlayerIdForStorage(playerId: playerId)
+            let gameIdForStorage = FileManagerHelper.getPlayerIdForStorage(playerId: game.gameId!)
+            
+            let directory: [String] = ["Game","\(gameIdForStorage)"]
+            
+            let image = imageDownloaded[playerId]
+            
+            let imageLocation = FileManagerHelper.insertImageIntoMemory(imageName: playerIdForStorage, directory: directory, image: image!)
+            
+            
 
-            game.addToPlayers(Player(playerName: name, playerId: playerId, userImageLocation: imageLocation!, context: GameStack.sharedInstance.stack.context))
+            game.addToPlayers(Player(playerName: name, playerId: playerId, userImageLocation: imageLocation, context: GameStack.sharedInstance.stack.context))
         }
     }
     private static func addPlayersToGameJSONModel(game: GameJSONModel, playersDic: [String:[String:String]]){
@@ -93,18 +102,22 @@ class GameDataFromJSON{
         }
     }
     
-    private static func addRoundToGame(game: Game, roundDic: [String:Any]){
+    private static func addRoundToGame(game: Game, roundDic: [String:Any],completeHandler: @escaping ()-> Void){
         let roundCount = roundDic.count - 1
         
         for x in 0...roundCount {
             let thisRoundDic = roundDic["\(x)"] as? [String:Any]
             let roundCoreData = Round(roundNum: x, context: GameStack.sharedInstance.stack.context)
             
-            addCardCeasarToRound(gameId: game.gameId! ,round: roundCoreData, roundDic: (thisRoundDic?["cardCeasar"] as? [String:Any])!)
-            addCardNormalToRound(round: roundCoreData, cardDic: (thisRoundDic?["cardNormals"] as? [String:Any])!)
-            addRoundPlayersToRound(round: roundCoreData, playerDic: thisRoundDic!["players"] as! [String : [String : String]])
-            
-            game.addToRounds(roundCoreData)
+            addCardCeasarToRound(gameId: game.gameId! ,round: roundCoreData, roundDic: (thisRoundDic?["cardCeasar"] as? [String:Any])!, completeHandler: {
+                DispatchQueue.main.async {
+                    addCardNormalToRound(round: roundCoreData, cardDic: (thisRoundDic?["cardNormals"] as? [String:Any])!)
+                    addRoundPlayersToRound(round: roundCoreData, playerDic: thisRoundDic!["players"] as! [String : [String : String]])
+                    
+                    game.addToRounds(roundCoreData)
+                    completeHandler()
+                }
+            })
         }
     }
     private static func addRoundToGameJSONModel(game: GameJSONModel, roundDic: [String:Any]){
@@ -154,7 +167,7 @@ class GameDataFromJSON{
         }
     }
     
-    private static func addCardCeasarToRound(gameId: String, round: Round, roundDic: [String:Any]){
+    private static func addCardCeasarToRound(gameId: String, round: Round, roundDic: [String:Any],completeHandler: @escaping ()-> Void){
         let helper = UserFilesHelper()
         
         let playerId = roundDic["playerId"] as! String
@@ -168,6 +181,7 @@ class GameDataFromJSON{
                 let filePath = FileManagerHelper.insertImageIntoMemory(imageName: "round\(Int(round.roundNum))", directory: directory, image: UIImage(data: memeData)!)
                 let cardCeasar = CardCeasar(playerId: playerId, round: Int(round.roundNum), cardDBurl: roundDic["cardDBUrl"] as! String, imageStorageLocation: filePath, context: GameStack.sharedInstance.stack.context)
                 round.cardceasar = cardCeasar
+                completeHandler()
             }
         }
     }
