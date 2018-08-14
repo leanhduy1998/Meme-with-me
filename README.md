@@ -1,4 +1,4 @@
-# Meme with me
+# Meme with me (The UI is built programmatically most of the time)
 
 An iOS online card against humanity game with meme!
 
